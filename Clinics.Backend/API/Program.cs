@@ -1,4 +1,32 @@
+using API.Options.Database;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Persistence.Context;
+
 var builder = WebApplication.CreateBuilder(args);
+
+#region Add Database context
+// First, get database options
+builder.Services.ConfigureOptions<DatabaseOptionsSetup>();
+
+builder.Services.AddDbContext<ClinicsDbContext>(
+    (serviceProvider, dbContectOptionsBuilder) =>
+    {
+        // Now, get options just like any other service
+        var databaseOptions = serviceProvider.GetService<IOptions<DatabaseOptions>>()!.Value;
+
+        dbContectOptionsBuilder.UseSqlServer(databaseOptions.ConnectionString, sqlServerAction =>
+        {
+            sqlServerAction.EnableRetryOnFailure(databaseOptions.MaxRetryCount);
+
+            sqlServerAction.CommandTimeout(databaseOptions.CommandTimeout);
+        });
+
+        // Be careful with this option, true only in development process!
+
+        dbContectOptionsBuilder.EnableDetailedErrors(databaseOptions.EnableDetailedErrors);
+    });
+#endregion
 
 // Add services to the container.
 
