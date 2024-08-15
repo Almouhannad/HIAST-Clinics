@@ -12,6 +12,6 @@ public partial class ClinicsDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        //modelBuilder.ApplyConfigurationsFromAssembly(typeof(ClinicsDbContext).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ClinicsDbContext).Assembly);
     }
 }
