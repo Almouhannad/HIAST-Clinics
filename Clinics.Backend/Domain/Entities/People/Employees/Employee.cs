@@ -1,4 +1,5 @@
-﻿using Domain.Entities.People.Employees.Shared;
+﻿using Domain.Entities.People.Employees.Relations.EmployeeFamilyMembers;
+using Domain.Entities.People.Employees.Shared;
 using Domain.Entities.People.Patients;
 using Domain.Primitives;
 

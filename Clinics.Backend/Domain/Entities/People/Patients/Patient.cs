@@ -1,6 +1,8 @@
 ﻿using Domain.Entities.People.Patients.Relations.PatientDiseases;
+using Domain.Entities.People.Patients.Relations.PatientMedicines;
 using Domain.Entities.People.Shared;
-using Domain.Entities.People.Shared.Constants.GenderValues;
+using Domain.Entities.People.Shared.GenderValues;
+using Domain.Entities.Visits;
 using Domain.Primitives;
 
 namespace Domain.Entities.People.Patients;

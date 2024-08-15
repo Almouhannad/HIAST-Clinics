@@ -1,4 +1,5 @@
-﻿using Domain.Primitives;
+﻿using Domain.Entities.Medicals.Medicines;
+using Domain.Primitives;
 
 namespace Domain.Entities.People.Patients.Relations.PatientMedicines;
 

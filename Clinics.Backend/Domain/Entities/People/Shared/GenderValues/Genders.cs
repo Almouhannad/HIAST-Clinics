@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities.People.Shared.Constants.GenderValues;
+﻿namespace Domain.Entities.People.Shared.GenderValues;
 
 public static class Genders
 {
