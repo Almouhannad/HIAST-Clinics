@@ -4,10 +4,9 @@ namespace Persistence.Context;
 
 public partial class ClinicsDbContext : DbContext
 {
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public ClinicsDbContext(DbContextOptions<ClinicsDbContext> options)
+    : base(options)
     {
-        // TODO: Use options pattern
-        optionsBuilder.UseSqlServer("server=.\\;database=Clinics;Trusted_Connection=True; Encrypt=False;MultipleActiveResultSets=true");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
