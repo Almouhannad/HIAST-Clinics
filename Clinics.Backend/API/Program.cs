@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 #region Link controllers with presentation layer
 var presentationAssembly = typeof(Presentation.AssemblyReference).Assembly;
 builder.Services.AddControllers()
-    .AddApplicationPart(assembly);
+    .AddApplicationPart(presentationAssembly);
 #endregion
 
 
