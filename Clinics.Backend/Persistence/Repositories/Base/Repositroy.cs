@@ -19,6 +19,12 @@ public class Repositroy<TEntity> : IRepository<TEntity> where TEntity : Entity
 
     #endregion
 
+    #region Apply specification
+
+    #endregion
+
+    #region CRUD
+
     #region Create operation
 
     public async Task<TEntity> CreateAsync(TEntity entity)
@@ -65,6 +71,11 @@ public class Repositroy<TEntity> : IRepository<TEntity> where TEntity : Entity
     }
 
     #endregion
+
+    #endregion
+
+
+
 
 
 
