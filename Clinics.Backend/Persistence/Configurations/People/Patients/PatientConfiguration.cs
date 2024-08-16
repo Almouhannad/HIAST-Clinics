@@ -23,6 +23,7 @@ internal class PatientConfiguration : IEntityTypeConfiguration<Patient>
 
         builder.HasMany(patient => patient.Visits)
             .WithOne(visit => visit.Patient)
+            .HasForeignKey(visit => visit.PatientId)
             .OnDelete(DeleteBehavior.NoAction);
     }
 }
