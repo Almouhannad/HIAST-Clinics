@@ -74,13 +74,4 @@ public class Repositroy<TEntity> : IRepository<TEntity> where TEntity : Entity
 
     #endregion
 
-
-
-
-
-
-
-
-
-
 }

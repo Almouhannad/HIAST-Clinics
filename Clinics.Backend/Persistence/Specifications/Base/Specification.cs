@@ -10,12 +10,26 @@ public abstract class Specification<TEntity> where TEntity : Entity
         Criteria = criteria;
     }
 
+    #region Where criteria
+
     public Expression<Func<TEntity, bool>>? Criteria { get; }
+
+    #endregion
+
+    #region Includes
 
     public List<Expression<Func<TEntity, object>>> IncludeExpressions { get; } = new();
 
+    #endregion
+
+    #region Order by
+
     public Expression<Func<TEntity, object>>? OrderByExpression { get; private set; }
     public Expression<Func<TEntity, object>>? OrderByDescendingExpression { get; private set; }
+
+    #endregion
+
+    #region Add methods
 
     protected void AddInclude(Expression<Func<TEntity, object>> includeExpression)
     {
@@ -32,5 +46,6 @@ public abstract class Specification<TEntity> where TEntity : Entity
         OrderByDescendingExpression = orderByDescendingExpression;
     }
 
+    #endregion
 
 }
