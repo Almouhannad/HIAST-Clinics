@@ -30,6 +30,7 @@ public sealed class FamilyMember : Entity
         string gender
         )
     {
+        #region Create patient
         Patient patient;
 
         try
@@ -40,6 +41,7 @@ public sealed class FamilyMember : Entity
         {
             throw;
         }
+        #endregion
 
         return new FamilyMember(0, patient);
     }
