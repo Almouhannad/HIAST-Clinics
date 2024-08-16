@@ -11,6 +11,8 @@ public sealed class Medicine(int id) : Entity(id)
 
     public MedicineForm MedicineForm { get; set; } = null!;
 
+    public int Amount { get; set; }
+
     public string Name { get; set; } = null!;
 
     public decimal Dosage { get; set; }
