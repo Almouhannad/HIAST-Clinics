@@ -86,6 +86,9 @@ public sealed class Patient : Entity
         #endregion
 
         #region Gender
+        if (gender is null)
+            throw new InvalidValuesDomainException<Gender>();
+
         Gender? selectedGender;
 
         Gender male = Genders.Male;
