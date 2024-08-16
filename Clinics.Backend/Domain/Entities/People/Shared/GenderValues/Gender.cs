@@ -31,11 +31,13 @@ public sealed class Gender : Entity
         if (name is null)
             throw new InvalidValuesDomainException<Gender>();
 
-        if (id < 0)
-            throw new InvalidValuesDomainException<Gender>();
-
         if (id is not null)
+        {
+            if (id < 0)
+                throw new InvalidValuesDomainException<Gender>();
+
             return new Gender(id.Value, name);
+        }
 
         return new Gender(0, name);
     }
