@@ -29,7 +29,9 @@ public class Repositroy<TEntity> : IRepository<TEntity> where TEntity : Entity
 
     public async Task<TEntity> CreateAsync(TEntity entity)
     {
-        return await _context.Set<TEntity>().FirstAsync(e => e.Id == entity.Id);
+        var query = await _context.Set<TEntity>().AddAsync(entity);
+        await _context.SaveChangesAsync();
+        return query.Entity;
     }
 
     #endregion
@@ -43,7 +45,7 @@ public class Repositroy<TEntity> : IRepository<TEntity> where TEntity : Entity
 
     public async Task<ICollection<TEntity>> GetAllAsync()
     {
-        return await _context.Set<TEntity>().ToListAsync<TEntity>();
+        return await _context.Set<TEntity>().ToListAsync();
     }
 
     #endregion
