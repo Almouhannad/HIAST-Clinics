@@ -4,9 +4,9 @@ public static class MedicineForms
 {
     #region Constant id values
 
-    public static int Tablet => 1;
+    public static MedicineForm Tablet => MedicineForm.Create("حبوب", 1);
 
-    public static int Syrup => 2;
+    public static MedicineForm Syrup => MedicineForm.Create("شراب", 2);
 
     #endregion
 }
