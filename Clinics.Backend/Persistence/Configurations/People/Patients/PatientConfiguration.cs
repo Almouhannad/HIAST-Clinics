@@ -10,6 +10,8 @@ internal class PatientConfiguration : IEntityTypeConfiguration<Patient>
     {
         builder.ToTable(nameof(Patient));
 
+        builder.Ignore(patient => patient.Age);
+
         builder.HasOne(patient => patient.PersonalInfo)
             .WithOne()
             .HasForeignKey<Patient>("PersonalInfoId")

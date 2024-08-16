@@ -10,8 +10,12 @@ internal class PersonalInfoConfiguration : IEntityTypeConfiguration<PersonalInfo
     {
         builder.ToTable(nameof(PersonalInfo));
 
+        builder.Ignore(personalInfo => personalInfo.FullName);
+
         builder.Property(personalInfo => personalInfo.FirstName).HasMaxLength(50);
+
         builder.Property(personalInfo => personalInfo.LastName).HasMaxLength(50);
+
         builder.Property(personalInfo => personalInfo.MiddleName).HasMaxLength(50);
     }
 }
