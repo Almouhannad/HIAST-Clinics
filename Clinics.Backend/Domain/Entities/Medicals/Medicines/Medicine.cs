@@ -34,7 +34,12 @@ public sealed class Medicine : Entity
 
     #region Navigations
 
-    public ICollection<PatientMedicine> Patients { get; set; } = [];
+    #region Patients
+    private readonly List<PatientMedicine> _patients = [];
+    public IReadOnlyCollection<PatientMedicine> Patients => _patients;
+
+    #endregion
+
 
     #endregion
 

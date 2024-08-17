@@ -28,7 +28,11 @@ public sealed class Doctor : Entity
 
     #region Navigations
 
-    public ICollection<DoctorPhone> Phones { get; set; } = [];
+    #region Phones
+    private readonly List<DoctorPhone> _phones = [];
+    public IReadOnlyCollection<DoctorPhone> Phones => _phones;
+
+    #endregion
 
     #endregion
 
@@ -66,10 +70,7 @@ public sealed class Doctor : Entity
             throw;
         }
 
-        if (Phones is null)
-            Phones = [];
-
-        Phones.Add(doctorPhone);
+        _phones.Add(doctorPhone);
     }
     #endregion
 

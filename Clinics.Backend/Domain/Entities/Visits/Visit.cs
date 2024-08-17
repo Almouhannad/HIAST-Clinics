@@ -63,9 +63,23 @@ public sealed class Visit : Entity
 
     #region Navigations
 
-    public ICollection<VisitMedicalImage> MedicalImages { get; set; } = [];
-    public ICollection<VisitMedicalTest> MedicalTests { get; set; } = [];
-    public ICollection<VisitMedicine> Medicines { get; set; } = [];
+    #region Medical images
+    private readonly List<VisitMedicalImage> _medicalImages = [];
+    public IReadOnlyCollection<VisitMedicalImage> MedicalImages => _medicalImages;
+
+    #endregion
+
+    #region Medical tests
+    private readonly List<VisitMedicalTest> _medicalTests = [];
+    public IReadOnlyCollection<VisitMedicalTest> MedicalTests => _medicalTests;
+
+    #endregion
+
+    #region Medicines
+    private readonly List<VisitMedicine> _medicines = [];
+    public IReadOnlyCollection<VisitMedicine> Medicines => _medicines;
+
+    #endregion
 
     #endregion
 
@@ -96,10 +110,7 @@ public sealed class Visit : Entity
             throw;
         }
 
-        if (MedicalImages is null)
-            MedicalImages = [];
-
-        MedicalImages.Add(entry);
+        _medicalImages.Add(entry);
     }
     #endregion
 
@@ -115,9 +126,8 @@ public sealed class Visit : Entity
         {
             throw;
         }
-        if (MedicalTests is null)
-            MedicalTests = [];
-        MedicalTests.Add(entry);
+
+        _medicalTests.Add(entry);
     }
     #endregion
 
@@ -133,9 +143,8 @@ public sealed class Visit : Entity
         {
             throw;
         }
-        if (Medicines is null)
-            Medicines = [];
-        Medicines.Add(entry);
+
+        _medicines.Add(entry);
     }
     #endregion
 

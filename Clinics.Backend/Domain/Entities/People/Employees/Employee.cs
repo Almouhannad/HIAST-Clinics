@@ -42,11 +42,21 @@ public sealed class Employee : Entity
 
     #region Navigations
 
-    public ICollection<EmployeeFamilyMember> FamilyMembers { get; set; } = [];
+    #region Family members
+    private readonly List<EmployeeFamilyMember> _familyMembers = [];
+    public IReadOnlyCollection<EmployeeFamilyMember> FamilyMembers => _familyMembers;
 
-    public ICollection<Employee> RelatedEmployees { get; set; } = [];
+    #endregion
 
-    public ICollection<Employee> RelatedTo { get; set; } = [];
+    #region Related employees
+    private readonly List<Employee> _relatedEmployees = [];
+    public IReadOnlyCollection<Employee> RelatedEmployees => _relatedEmployees;
+
+    private readonly List<Employee> _relatedTo = [];
+    public IReadOnlyCollection<Employee> RelatedTo => _relatedTo;
+
+    #endregion
+
 
     #endregion
 
@@ -115,26 +125,14 @@ public sealed class Employee : Entity
             throw;
         }
 
-        if (FamilyMembers is null)
-            FamilyMembers = [];
-
-        FamilyMembers.Add(employeeFamilyMember);
+        _familyMembers.Add(employeeFamilyMember);
     }
     #endregion
 
     #region Add related employee
-    public void AddRelatedEmployee( Employee employee )
+    public void AddRelatedEmployee(Employee employee)
     {
-        // Add new employee to related
-        if (RelatedEmployees is null)
-            RelatedEmployees = [];
-        RelatedEmployees.Add(employee);
-
-        // Make this related to new employee
-        if (employee.RelatedTo is null)
-            employee.RelatedTo = [];
-        employee.RelatedTo.Add(this);
-
+        _relatedEmployees.Add(employee);
     }
     #endregion
 

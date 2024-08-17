@@ -22,7 +22,11 @@ public sealed class Disease : Entity
 
     #region Navigations
 
-    public ICollection<PatientDisease> Patients { get; set; } = [];
+    #region Patients
+    private readonly List<PatientDisease> _patients = [];
+    public IReadOnlyCollection<PatientDisease> Patients => _patients;
+
+    #endregion
 
     #endregion
 

@@ -22,10 +22,6 @@ public sealed class Patient : Entity
         PersonalInfo = personalInfo;
         DateOfBirth = dateOfBirth;
         Gender = gender;
-
-        Diseases = [];
-        Medicines = [];
-        Visits = [];
     }
 
     #endregion
@@ -54,11 +50,23 @@ public sealed class Patient : Entity
 
     #region Navigations
 
-    public ICollection<PatientDisease> Diseases { get; set; }
+    #region Diseases
+    private readonly List<PatientDisease> _diseases = [];
+    public IReadOnlyCollection<PatientDisease> Diseases => _diseases;
 
-    public ICollection<PatientMedicine> Medicines { get; set; }
+    #endregion
 
-    public ICollection<Visit> Visits { get; set; }
+    #region Medicines
+    private readonly List<PatientMedicine> _medicines = [];
+    public IReadOnlyCollection<PatientMedicine> Medicines => _medicines;
+
+    #endregion
+
+    #region Visits
+    private readonly List<Visit> _visits = [];
+    public IReadOnlyCollection<Visit> Visits => _visits;
+
+    #endregion
 
     #endregion
 
@@ -122,9 +130,8 @@ public sealed class Patient : Entity
         {
             throw;
         }
-        if (Medicines is null)
-            Medicines = [];
-        Medicines.Add(entry);
+
+        _medicines.Add(entry);
     }
     #endregion
 
@@ -141,11 +148,7 @@ public sealed class Patient : Entity
             throw;
         }
 
-        if (Diseases is null)
-            Diseases = [];
-
-        Diseases.Add(entry);
-
+        _diseases.Add(entry);
     }
     #endregion
 
