@@ -1,6 +1,5 @@
 ﻿using Domain.Primitives;
 using Domain.Repositories.Base;
-using Domain.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Context;
 using Persistence.Repositories.Specifications.Base;
@@ -15,7 +14,7 @@ public class Repositroy<TEntity> : IRepository<TEntity> where TEntity : Entity
 
     protected readonly ClinicsDbContext _context;
 
-    public Repositroy(ClinicsDbContext context, IUnitOfWork unitOfWork)
+    public Repositroy(ClinicsDbContext context)
     {
         _context = context;
     }

@@ -54,7 +54,7 @@ public sealed class EmployeeAdditionalInfo : Entity
     #region Methods
 
     #region Static factory
-    public static EmployeeAdditionalInfo Create(DateOnly? startDate,
+    public static EmployeeAdditionalInfo? Create(DateOnly? startDate,
         string? academicQualification,
         string? workPhone,
         string? location,
@@ -62,6 +62,14 @@ public sealed class EmployeeAdditionalInfo : Entity
         string? jobStatus,
         string? imageUrl)
     {
+        if (startDate is null &&
+            academicQualification is null &&
+            workPhone is null &&
+            location is null &&
+            specialization is null &&
+            jobStatus is null &&
+            imageUrl is null)
+            return null;
         return new EmployeeAdditionalInfo(0,
             startDate, academicQualification, workPhone, location, specialization, jobStatus, imageUrl);
     }

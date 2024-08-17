@@ -95,7 +95,7 @@ public sealed class Employee : Entity
         #endregion
 
         #region Create additional info
-        EmployeeAdditionalInfo additionalInfo;
+        EmployeeAdditionalInfo? additionalInfo;
         try
         {
             additionalInfo = EmployeeAdditionalInfo.Create(startDate, academicQualification,
