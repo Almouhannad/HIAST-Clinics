@@ -1,10 +1,24 @@
 ﻿using Domain.Entities.Medicals.Medicines;
+using Domain.Exceptions.InvalidValue;
 using Domain.Primitives;
 
 namespace Domain.Entities.Visits.Relations.VisitMedicines;
 
-public sealed class VisitMedicine(int id) : Entity(id)
+public sealed class VisitMedicine : Entity
 {
+
+    #region Private ctor
+    private VisitMedicine(int id) : base(id) { }
+
+    private VisitMedicine(int id, int visitId, int medicineId, int number) : base(id)
+    {
+        VisitId = visitId;
+        MedicineId = medicineId;
+
+        Number = number;
+    }
+    #endregion
+
     #region Properties
 
     #region Visit
@@ -25,6 +39,20 @@ public sealed class VisitMedicine(int id) : Entity(id)
 
     public int Number { get; set; }
 
+    #endregion
+
+    #endregion
+
+    #region Methods
+
+    #region Static factory
+    public static VisitMedicine Create(int visitId, int medicineId, int number)
+    {
+        if (visitId <= 0 || medicineId <= 0 || number <= 0)
+            throw new InvalidValuesDomainException<VisitMedicine>();
+
+        return new VisitMedicine(0, visitId, medicineId, number);
+    }
     #endregion
 
     #endregion

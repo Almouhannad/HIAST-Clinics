@@ -4,9 +4,9 @@ public static class Genders
 {
     #region Constant id values 
 
-    public static int Male => 1;
+    public static Gender Male => Gender.Create("ذكر", 1);
 
-    public static int Female => 2;
+    public static Gender Female => Gender.Create("أنثى", 2);
 
     #endregion
 }
