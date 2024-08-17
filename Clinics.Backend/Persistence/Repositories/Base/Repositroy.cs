@@ -1,7 +1,10 @@
 ﻿using Domain.Primitives;
 using Domain.Repositories.Base;
+using Domain.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Context;
+using Persistence.Repositories.Specifications.Base;
+using Persistence.Repositories.Specifications.Evaluator;
 
 namespace Persistence.Repositories.Base;
 
@@ -10,9 +13,9 @@ public class Repositroy<TEntity> : IRepository<TEntity> where TEntity : Entity
 
     #region Ctor DI for context
 
-    private readonly ClinicsDbContext _context;
+    protected readonly ClinicsDbContext _context;
 
-    public Repositroy(ClinicsDbContext context)
+    public Repositroy(ClinicsDbContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
     }
@@ -20,30 +23,31 @@ public class Repositroy<TEntity> : IRepository<TEntity> where TEntity : Entity
     #endregion
 
     #region Apply specification
-
+    protected IQueryable<TEntity> ApplySpecification (Specification<TEntity> specification)
+    {
+        return SpecificationEvaluator.GetQuery(_context.Set<TEntity>(), specification);
+    }
     #endregion
 
-    #region CRUD
+    // CRUD operations
 
     #region Create operation
 
-    public async Task<TEntity> CreateAsync(TEntity entity)
+    public virtual void Create(TEntity entity)
     {
-        var query = await _context.Set<TEntity>().AddAsync(entity);
-        await _context.SaveChangesAsync();
-        return query.Entity;
+        _context.Set<TEntity>().Add(entity);
     }
 
     #endregion
 
     #region Read operations
 
-    public async Task<TEntity?> GetByIdAsync(int id)
+    public virtual async Task<TEntity?> GetByIdAsync(int id)
     {
         return await _context.Set<TEntity>().FindAsync(id);
     }
 
-    public async Task<ICollection<TEntity>> GetAllAsync()
+    public virtual async Task<ICollection<TEntity>> GetAllAsync()
     {
         return await _context.Set<TEntity>().ToListAsync();
     }
@@ -52,27 +56,19 @@ public class Repositroy<TEntity> : IRepository<TEntity> where TEntity : Entity
 
     #region Update operation
 
-    public async Task<TEntity> UpdateAsync(TEntity entity)
+    public virtual void Update(TEntity entity)
     {
-        var query = _context.Set<TEntity>().Update(entity);
-        await _context.SaveChangesAsync();
-        return query.Entity;
+        _context.Set<TEntity>().Update(entity);
     }
 
     #endregion
 
     #region Delete operation
 
-    public async Task DeleteAsync(int id)
+    public virtual void Delete(TEntity entity)
     {
-        var entity = await GetByIdAsync(id);
-        if (entity is not null)
-            _context.Set<TEntity>().Remove(entity);
-        await _context.SaveChangesAsync();
-
+        _context.Set<TEntity>().Remove(entity);
     }
-
-    #endregion
 
     #endregion
 

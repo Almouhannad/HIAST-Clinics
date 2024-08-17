@@ -1,8 +1,8 @@
 ﻿using Domain.Primitives;
 using Microsoft.EntityFrameworkCore;
-using Persistence.Specifications.Base;
+using Persistence.Repositories.Specifications.Base;
 
-namespace Persistence.Specifications.Evaluator;
+namespace Persistence.Repositories.Specifications.Evaluator;
 
 public static class SpecificationEvaluator
 {

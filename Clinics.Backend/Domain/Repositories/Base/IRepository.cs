@@ -2,14 +2,16 @@
 
 namespace Domain.Repositories.Base
 {
-    // CRUD operations
+    // Note that queries are async, but commands are NOT
+        // Since the persist operation is done by UnitOfWork
     public interface IRepository<TEntity>
         where TEntity : Entity
     {
+        // CRUD operations
 
         #region Create operation
 
-        public Task<TEntity> CreateAsync(TEntity entity);
+        public void Create(TEntity entity);
 
         #endregion
 
@@ -23,13 +25,13 @@ namespace Domain.Repositories.Base
 
         #region Update oprtation
 
-        public Task<TEntity> UpdateAsync(TEntity entity);
+        public void Update(TEntity entity);
 
         #endregion
 
         #region Delete operation
 
-        public Task DeleteAsync(int id);
+        public void Delete(TEntity entity);
 
         #endregion
     }

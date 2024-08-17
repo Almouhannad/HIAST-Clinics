@@ -1,7 +1,7 @@
 ﻿using Domain.Primitives;
 using System.Linq.Expressions;
 
-namespace Persistence.Specifications.Base;
+namespace Persistence.Repositories.Specifications.Base;
 
 public abstract class Specification<TEntity> where TEntity : Entity
 {
