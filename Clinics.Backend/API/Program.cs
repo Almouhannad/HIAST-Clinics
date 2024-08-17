@@ -1,9 +1,7 @@
 using API.Options.Database;
-using Domain.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Persistence.Context;
-using Persistence.Repositories.Base;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,15 +30,29 @@ builder.Services.AddDbContext<ClinicsDbContext>(
 
 // Add services to the container.
 
-#region Link repositories
-// AddTransient: Created on demand, every time they are requested, not shared across requests or components.
-builder.Services.AddTransient(typeof(IRepository<>), typeof(Repositroy<>));
+#region Link interfaces implemented in persistence
+// Using Scrutor library
+builder
+    .Services
+    .Scan(
+        selector => selector
+            .FromAssemblies(Persistence.AssemblyReference.Assembly
+            // Add other assemblies here
+            )
+            .AddClasses(false)
+            .AsImplementedInterfaces()
+            .WithScopedLifetime()
+            );
+#endregion
+
+#region Add MadiatR
+builder.Services.AddMediatR(configuration =>
+    configuration.RegisterServicesFromAssembly(Application.AssemblyReference.Assembly));
 #endregion
 
 #region Link controllers with presentation layer
-var presentationAssembly = typeof(Presentation.AssemblyReference).Assembly;
 builder.Services.AddControllers()
-    .AddApplicationPart(presentationAssembly);
+    .AddApplicationPart(Presentation.AssemblyReference.Assembly);
 #endregion
 
 
