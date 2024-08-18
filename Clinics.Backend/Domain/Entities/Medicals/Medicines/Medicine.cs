@@ -2,6 +2,7 @@
 using Domain.Entities.People.Patients.Relations.PatientMedicines;
 using Domain.Exceptions.InvalidValue;
 using Domain.Primitives;
+using Domain.Shared;
 
 namespace Domain.Entities.Medicals.Medicines;
 
@@ -48,26 +49,27 @@ public sealed class Medicine : Entity
     #region Methods
 
     #region Static factory
-    public static Medicine Create(string form, int amount, string name, decimal dosage)
+    public static Result<Medicine> Create(string form, int amount, string name, decimal dosage)
     {
         if (form is null || name is null || amount < 0 || dosage < 0)
-            throw new InvalidValuesDomainException<Medicine>();
+            return Result.Failure<Medicine>(Errors.DomainErrors.InvalidValuesError);
 
         #region Check form
-        MedicineForm selectedMedicineForm;
+        Result<MedicineForm> selectedMedicineForm = new(null, false, Errors.DomainErrors.InvalidValuesError);
 
         MedicineForm tablet = MedicineForms.Tablet;
         MedicineForm syrup = MedicineForms.Syrup;
 
         if (form == tablet.Name)
-            selectedMedicineForm = tablet;
+            selectedMedicineForm = Result.Success<MedicineForm>(tablet);
         else if (form == syrup.Name)
-            selectedMedicineForm = syrup;
-        else throw new InvalidValuesDomainException<MedicineForm>();
+            selectedMedicineForm = Result.Success<MedicineForm>(syrup);
 
+        if (selectedMedicineForm.IsFailure)
+            return Result.Failure<Medicine>(Errors.DomainErrors.InvalidValuesError);
         #endregion
 
-        return new Medicine(0, selectedMedicineForm, amount, name, dosage);
+        return new Medicine(0, selectedMedicineForm.Value, amount, name, dosage);
     }
     #endregion
 

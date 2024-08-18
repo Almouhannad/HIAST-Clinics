@@ -1,5 +1,5 @@
-﻿using Domain.Exceptions.InvalidValue;
-using Domain.Primitives;
+﻿using Domain.Primitives;
+using Domain.Shared;
 
 namespace Domain.Entities.Medicals.MedicalTests;
 
@@ -26,10 +26,10 @@ public sealed class MedicalTest : Entity
     #region Methods
 
     #region Static factory
-    public static MedicalTest Create(string name, string description)
+    public static Result<MedicalTest> Create(string name, string description)
     {
         if (name is null)
-            throw new InvalidValuesDomainException<MedicalTest>();
+            return Result.Failure<MedicalTest>(Errors.DomainErrors.InvalidValuesError);
         return new MedicalTest(0, name, description);
     }
     #endregion

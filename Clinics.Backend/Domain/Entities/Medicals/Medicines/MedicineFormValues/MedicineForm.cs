@@ -1,5 +1,5 @@
-﻿using Domain.Exceptions.InvalidValue;
-using Domain.Primitives;
+﻿using Domain.Primitives;
+using Domain.Shared;
 
 namespace Domain.Entities.Medicals.Medicines.MedicineFormValues;
 
@@ -23,15 +23,15 @@ public sealed class MedicineForm : Entity
     #region Methods
 
     #region Static factory
-    public static MedicineForm Create(string name, int? id)
+    public static Result<MedicineForm> Create(string name, int? id)
     {
         if (name is null)
-            throw new InvalidValuesDomainException<MedicineForm>();
+            return Result.Failure<MedicineForm>(Errors.DomainErrors.InvalidValuesError);
 
         if (id is not null)
         {
             if (id < 0)
-                throw new InvalidValuesDomainException<MedicineForm>();
+                return Result.Failure<MedicineForm>(Errors.DomainErrors.InvalidValuesError);
             return new MedicineForm(id.Value, name);
         }
         return new MedicineForm(0, name);
