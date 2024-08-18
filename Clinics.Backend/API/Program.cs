@@ -1,5 +1,8 @@
 using API.Options.Database;
 using API.SeedDatabaseHelper;
+using Application.Behaviors;
+using FluentValidation;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Persistence.Context;
@@ -49,6 +52,12 @@ builder
 #region Add MadiatR
 builder.Services.AddMediatR(configuration =>
     configuration.RegisterServicesFromAssembly(Application.AssemblyReference.Assembly));
+
+#region Add validation pipeline
+builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>));
+builder.Services.AddValidatorsFromAssembly(Application.AssemblyReference.Assembly);
+#endregion
+
 #endregion
 
 #region Link controllers with presentation layer
