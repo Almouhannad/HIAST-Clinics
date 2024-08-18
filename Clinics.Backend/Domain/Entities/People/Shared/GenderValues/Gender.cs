@@ -1,5 +1,5 @@
-﻿using Domain.Exceptions.InvalidValue;
-using Domain.Primitives;
+﻿using Domain.Primitives;
+using Domain.Shared;
 
 namespace Domain.Entities.People.Shared.GenderValues;
 
@@ -26,15 +26,15 @@ public sealed class Gender : Entity
     #region Methods
 
     #region Static factory
-    public static Gender Create(string name, int? id)
+    public static Result<Gender> Create(string name, int? id)
     {
         if (name is null)
-            throw new InvalidValuesDomainException<Gender>();
+            return Result.Failure<Gender>(Errors.DomainErrors.InvalidValuesError);
 
         if (id is not null)
         {
             if (id < 0)
-                throw new InvalidValuesDomainException<Gender>();
+                return Result.Failure<Gender>(Errors.DomainErrors.InvalidValuesError);
 
             return new Gender(id.Value, name);
         }

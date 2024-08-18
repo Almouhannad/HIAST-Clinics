@@ -1,5 +1,5 @@
-﻿using Domain.Exceptions.InvalidValue;
-using Domain.Primitives;
+﻿using Domain.Primitives;
+using Domain.Shared;
 
 namespace Domain.Entities.People.Doctors.Shared;
 
@@ -18,9 +18,9 @@ public sealed class DoctorPhone : Entity
 
     #region Properties
 
-    public string? Name { get; set; }
+    public string? Name { get; private set; }
 
-    public string Phone { get; set; } = null!;
+    public string Phone { get; private set; } = null!;
 
     #endregion
 
@@ -28,10 +28,10 @@ public sealed class DoctorPhone : Entity
 
     #region Static factory
 
-    public static DoctorPhone Create(string phone, string? name)
+    public static Result<DoctorPhone> Create(string phone, string? name)
     {
         if (phone is null)
-            throw new InvalidValuesDomainException<DoctorPhone>();
+            return Result.Failure<DoctorPhone>(Errors.DomainErrors.InvalidValuesError);
         return new DoctorPhone(0, phone, name);
     }
 

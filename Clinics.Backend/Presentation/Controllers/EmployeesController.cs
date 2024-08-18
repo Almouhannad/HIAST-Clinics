@@ -20,7 +20,9 @@ public class EmployeesController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create(CreateEmployeeCommand command)
     {
-        await _sender.Send(command);
-        return Ok();
+        var result = await _sender.Send(command);
+        if (result.IsSuccess)
+            return Created();
+        else return BadRequest(result.Error.Message);
     }
 }

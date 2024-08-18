@@ -1,7 +1,7 @@
 ﻿using Domain.Entities.People.Doctors;
 using Domain.Entities.People.Patients;
-using Domain.Exceptions.InvalidValue;
 using Domain.Primitives;
+using Domain.Shared;
 
 namespace Domain.Entities.WaitingList;
 
@@ -46,21 +46,23 @@ public sealed class WaitingListRecord : Entity
 
     #region Static factory
 
-    public static WaitingListRecord Create(int patientId)
+    public static Result<WaitingListRecord> Create(int patientId)
     {
         if (patientId <= 0)
-            throw new InvalidValuesDomainException<WaitingListRecord>();
+            return Result.Failure<WaitingListRecord>(Errors.DomainErrors.InvalidValuesError);
         return new WaitingListRecord(0, patientId);
     }
 
     #endregion
 
     #region Link to doctor
-    public void LinkToDoctor(int doctorId)
+    public Result LinkToDoctor(int doctorId)
     {
         if (doctorId <= 0)
-            throw new InvalidValuesDomainException<WaitingListRecord>();
+            return Result.Failure(Errors.DomainErrors.InvalidValuesError);
+
         DoctorId = doctorId;
+        return Result.Success();
     }
     #endregion
 

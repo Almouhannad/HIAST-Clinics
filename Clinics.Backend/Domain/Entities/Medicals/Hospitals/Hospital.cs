@@ -1,5 +1,5 @@
-﻿using Domain.Exceptions.InvalidValue;
-using Domain.Primitives;
+﻿using Domain.Primitives;
+using Domain.Shared;
 
 namespace Domain.Entities.Medicals.Hospitals;
 
@@ -18,17 +18,17 @@ public sealed class Hospital : Entity
 
     #region Properties
 
-    public string Name { get; set; } = null!;
+    public string Name { get; private set; } = null!;
 
     #endregion
 
     #region Methods
 
     #region Static factory
-    public static Hospital Create(string name)
+    public static Result<Hospital> Create(string name)
     {
         if (name is null)
-            throw new InvalidValuesDomainException<Hospital>();
+            return Result.Failure<Hospital>(Errors.DomainErrors.InvalidValuesError);
         return new Hospital(0, name);
     }
     #endregion

@@ -1,6 +1,6 @@
 ﻿using Domain.Entities.Medicals.Medicines;
-using Domain.Exceptions.InvalidValue;
 using Domain.Primitives;
+using Domain.Shared;
 
 namespace Domain.Entities.Visits.Relations.VisitMedicines;
 
@@ -23,21 +23,21 @@ public sealed class VisitMedicine : Entity
 
     #region Visit
 
-    public int VisitId { get; set; }
-    public Visit Visit { get; set; } = null!;
+    public int VisitId { get; private set; }
+    public Visit Visit { get; private set; } = null!;
 
     #endregion
 
     #region Medicine
 
-    public int MedicineId { get; set; }
-    public Medicine Medicine { get; set; } = null!;
+    public int MedicineId { get; private set; }
+    public Medicine Medicine { get; private set; } = null!;
 
     #endregion
 
     #region Additional
 
-    public int Number { get; set; }
+    public int Number { get; private set; }
 
     #endregion
 
@@ -46,10 +46,10 @@ public sealed class VisitMedicine : Entity
     #region Methods
 
     #region Static factory
-    public static VisitMedicine Create(int visitId, int medicineId, int number)
+    public static Result<VisitMedicine> Create(int visitId, int medicineId, int number)
     {
         if (visitId <= 0 || medicineId <= 0 || number <= 0)
-            throw new InvalidValuesDomainException<VisitMedicine>();
+            return Result.Failure<VisitMedicine>(Errors.DomainErrors.InvalidValuesError);
 
         return new VisitMedicine(0, visitId, medicineId, number);
     }

@@ -1,12 +1,32 @@
-﻿namespace Domain.Entities.Medicals.Medicines.MedicineFormValues;
+﻿using Domain.Exceptions.InvalidValue;
+
+namespace Domain.Entities.Medicals.Medicines.MedicineFormValues;
 
 public static class MedicineForms
 {
-    #region Constant id values
+    #region Constant values
 
-    public static MedicineForm Tablet => MedicineForm.Create("حبوب", 1);
+    public static MedicineForm Tablet
+    {
+        get
+        {
+            var result = MedicineForm.Create("حبوب", 1);
+            if (result.IsFailure)
+                throw new InvalidValuesDomainException<MedicineForm>();
+            return result.Value;
+        }
+    }
 
-    public static MedicineForm Syrup => MedicineForm.Create("شراب", 2);
+    public static MedicineForm Syrup
+    {
+        get
+        {
+            var result = MedicineForm.Create("شراب", 2);
+            if (result.IsFailure)
+                throw new InvalidValuesDomainException<MedicineForm>();
+            return result.Value;
+        }
+    }
 
     #endregion
 }

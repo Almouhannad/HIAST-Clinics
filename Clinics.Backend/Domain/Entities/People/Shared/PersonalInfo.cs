@@ -1,5 +1,5 @@
-﻿using Domain.Exceptions.InvalidValue;
-using Domain.Primitives;
+﻿using Domain.Primitives;
+using Domain.Shared;
 
 namespace Domain.Entities.People.Shared;
 
@@ -41,10 +41,10 @@ public sealed class PersonalInfo : Entity
     #region Methods
 
     #region Static factory
-    public static PersonalInfo Create(string firstName, string middleName, string lastName)
+    public static Result<PersonalInfo> Create(string firstName, string middleName, string lastName)
     {
         if (firstName is null || middleName is null || lastName is null)
-            throw new InvalidValuesDomainException<PersonalInfo>();
+            return Result.Failure<PersonalInfo>(Errors.DomainErrors.InvalidValuesError);
 
         return new PersonalInfo(0, firstName, middleName, lastName);
     }

@@ -1,5 +1,5 @@
-﻿using Domain.Exceptions.InvalidValue;
-using Domain.Primitives;
+﻿using Domain.Primitives;
+using Domain.Shared;
 
 namespace Domain.Entities.Medicals.MedicalImages;
 
@@ -17,19 +17,19 @@ public sealed class MedicalImage : Entity
 
     #region Properties
 
-    public string Name { get; set; } = null!;
+    public string Name { get; private set; } = null!;
 
-    public string? Description { get; set; }
+    public string? Description { get; private set; }
 
     #endregion
 
     #region Methods
 
     #region Static factory
-    public static MedicalImage Create(string name, string? description = null)
+    public static Result<MedicalImage> Create(string name, string? description = null)
     {
         if (name is null)
-            throw new InvalidValuesDomainException<MedicalImage>();
+            return Result.Failure<MedicalImage>(Errors.DomainErrors.InvalidValuesError);
         return new MedicalImage(0, name, description);
     }
     #endregion

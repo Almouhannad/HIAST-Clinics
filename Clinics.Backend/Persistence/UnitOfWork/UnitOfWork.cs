@@ -21,7 +21,7 @@ public class UnitOfWork : IUnitOfWork
         catch (Exception)
         {
             // TODO: Log errors using ILogger
-            //throw;
+            throw;
         }
     }
 }

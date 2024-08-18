@@ -1,7 +1,7 @@
 ﻿using Domain.Entities.People.Employees.Relations.EmployeeFamilyMembers.FamilyRoleValues;
 using Domain.Entities.People.FamilyMembers;
-using Domain.Exceptions.InvalidValue;
 using Domain.Primitives;
+using Domain.Shared;
 
 namespace Domain.Entities.People.Employees.Relations.EmployeeFamilyMembers;
 
@@ -18,26 +18,26 @@ public sealed class EmployeeFamilyMember : Entity
         Role = role;
     }
     #endregion
-    
+
     #region Properties
 
     #region Employee
 
-    public int EmployeeId { get; set; }
-    public Employee Employee { get; set; } = null!;
+    public int EmployeeId { get; private set; }
+    public Employee Employee { get; private set; } = null!;
 
     #endregion
 
     #region Family member
 
-    public int FamilyMemberId { get; set; }
-    public FamilyMember FamilyMember { get; set; } = null!;
+    public int FamilyMemberId { get; private set; }
+    public FamilyMember FamilyMember { get; private set; } = null!;
 
     #endregion
 
     #region Additional
 
-    public FamilyRole Role { get; set; } = null!;
+    public FamilyRole Role { get; private set; } = null!;
 
     #endregion
 
@@ -46,13 +46,13 @@ public sealed class EmployeeFamilyMember : Entity
     #region Methods
 
     #region Static factory
-    public static EmployeeFamilyMember Create(int employeeId, int familyMemberId, string role)
+    public static Result<EmployeeFamilyMember> Create(int employeeId, int familyMemberId, string role)
     {
         if (employeeId <= 0 || familyMemberId <= 0 || role is null)
-            throw new InvalidValuesDomainException<EmployeeFamilyMember>();
+            return Result.Failure<EmployeeFamilyMember>(Errors.DomainErrors.InvalidValuesError);
 
         #region Check role
-        FamilyRole? selectedRole;
+        Result<FamilyRole> selectedRole = new(null, false, Errors.DomainErrors.InvalidValuesError);
 
         FamilyRole husband = FamilyRoles.Husband;
         FamilyRole wife = FamilyRoles.Wife;
@@ -60,21 +60,20 @@ public sealed class EmployeeFamilyMember : Entity
         FamilyRole daughter = FamilyRoles.Daughter;
 
         if (role == husband.Name)
-            selectedRole = husband;
+            selectedRole = Result.Success<FamilyRole>(husband);
         else if (role == wife.Name)
-            selectedRole = wife;
+            selectedRole = Result.Success<FamilyRole>(wife);
         else if (role == son.Name)
-            selectedRole = son;
+            selectedRole = Result.Success<FamilyRole>(son);
         else if (role == daughter.Name)
-            selectedRole = daughter;
-        else selectedRole = null;
+            selectedRole = Result.Success<FamilyRole>(daughter);
 
-        if (selectedRole is null)
-            throw new InvalidValuesDomainException<FamilyRole>();
+        if (selectedRole.IsFailure)
+            return Result.Failure<EmployeeFamilyMember>(Errors.DomainErrors.InvalidValuesError);
 
         #endregion
 
-        return new EmployeeFamilyMember(0, employeeId, familyMemberId, selectedRole);
+        return new EmployeeFamilyMember(0, employeeId, familyMemberId, selectedRole.Value);
     }
     #endregion
 

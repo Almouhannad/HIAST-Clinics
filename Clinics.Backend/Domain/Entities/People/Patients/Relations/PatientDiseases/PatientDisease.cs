@@ -1,6 +1,6 @@
 ﻿using Domain.Entities.Medicals.Diseases;
-using Domain.Exceptions.InvalidValue;
 using Domain.Primitives;
+using Domain.Shared;
 
 namespace Domain.Entities.People.Patients.Relations.PatientDiseases;
 
@@ -22,15 +22,15 @@ public sealed class PatientDisease : Entity
 
     #region Patient
 
-    public int PatientId { get; set; }
-    public Patient Patient { get; set; } = null!;
+    public int PatientId { get; private set; }
+    public Patient Patient { get; private set; } = null!;
 
     #endregion
 
     #region Disease
 
-    public int DiseaseId { get; set; }
-    public Disease Disease { get; set; } = null!;
+    public int DiseaseId { get; private set; }
+    public Disease Disease { get; private set; } = null!;
 
     #endregion
 
@@ -43,10 +43,10 @@ public sealed class PatientDisease : Entity
     #region Methods
 
     #region Static factory
-    public static PatientDisease Create(int patientId, int diseaseId)
+    public static Result<PatientDisease> Create(int patientId, int diseaseId)
     {
         if (patientId <= 0 || diseaseId <= 0)
-            throw new InvalidValuesDomainException<PatientDisease>();
+            return Result.Failure<PatientDisease>(Errors.DomainErrors.InvalidValuesError);
         return new PatientDisease(0, patientId, diseaseId);
     }
     #endregion
