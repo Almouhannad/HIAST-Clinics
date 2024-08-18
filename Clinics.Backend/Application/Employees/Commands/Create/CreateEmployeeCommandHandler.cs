@@ -1,5 +1,6 @@
 ﻿using Application.Abstractions.CQRS.Commands;
 using Domain.Entities.People.Employees;
+using Domain.Errors;
 using Domain.Repositories;
 using Domain.Shared;
 using Domain.UnitOfWork;
@@ -32,6 +33,14 @@ public class CreateEmployeeCommandHandler : ICommandHandler<CreateEmployeeComman
                 );
         if (employeeResult.IsFailure)
             return Result.Failure(employeeResult.Error);
+
+
+        #region Check existed serial number
+        Result<Employee> existedResult = await _employeesRepository.GetEmployeeBySerialNumberAsync(request.SerialNumber);
+        if (existedResult.IsSuccess)
+            return Result.Failure(DomainErrors.EmployeeAlreadyExist);
+        #endregion
+
 
         try
         {
