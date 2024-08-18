@@ -1,6 +1,7 @@
 ﻿using Application.Abstractions.CQRS.Commands;
 using Domain.Entities.People.Employees;
 using Domain.Repositories;
+using Domain.Shared;
 using Domain.UnitOfWork;
 
 namespace Application.Employees.Commands.Create;
@@ -17,39 +18,35 @@ public class CreateEmployeeCommandHandler : ICommandHandler<CreateEmployeeComman
     }
     #endregion
 
-    public async Task Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
     {
-        #region Create new employee
-        Employee employee;
+        Result<Employee> employeeResult =
+            Employee
+            .Create(
+                request.FirstName, request.MiddleName, request.LastName,
+
+                request.DateOfBirth, request.Gender, request.SerialNumber, request.CenterStatus, false,
+
+                request.StartDate, request.AcademicQualification, request.WorkPhone, request.Location, request.Specialization,
+                request.JobStatus
+                );
+        if (employeeResult.IsFailure)
+            return Result.Failure(employeeResult.Error);
+
         try
         {
-            employee = Employee.Create(
-                request.FirstName, request.MiddleName, request.LastName, // Personal info
-
-                request.DateOfBirth, request.Gender, // Patient info
-
-                request.SerialNumber, request.CenterStatus, false, // Employee info
-
-                request.StartDate, request.AcademicQualification, request.WorkPhone, // additional
-                request.Location, request.Specialization, request.JobStatus);
-        }
-        catch (Exception)
-        {
-            throw;
-        }
-        #endregion
-
-        #region Add to DB
-        try
-        {
-            _employeesRepository.Create(employee);
+            _employeesRepository.Create(employeeResult.Value);
             await _unitOfWork.SaveChangesAsync();
         }
-        catch (Exception)
+        catch (Exception exp)
         {
-            throw;
-        }
-        #endregion
+            // For debugging
+            //return Result.Failure(new Error("Persistence.UnableToSaveTransaction", exp.Message));
 
+            // For deployment
+            return Result.Failure(Domain.Errors.PersistenceErrors.UnableToCompleteTransaction);
+        }
+
+        return Result.Success();
     }
 }
