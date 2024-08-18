@@ -1,18 +1,17 @@
 ﻿using Application.Employees.Commands.Create;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.Controllers.Base;
 
 namespace Presentation.Controllers;
 
-[Route("api/[controller]")]
-[ApiController]
-public class EmployeesController : ControllerBase
+[Route("api/Employees")]
+public class EmployeesController : ApiController
 {
+
     #region DI for MeditR sender
-    private readonly ISender _sender;
-    public EmployeesController(ISender sender)
+    public EmployeesController(ISender sender) : base(sender)
     {
-        _sender = sender;
     }
     #endregion
 
@@ -21,8 +20,8 @@ public class EmployeesController : ControllerBase
     public async Task<IActionResult> Create(CreateEmployeeCommand command)
     {
         var result = await _sender.Send(command);
-        if (result.IsSuccess)
-            return Created();
-        else return BadRequest(result.Error.Message);
+        if (result.IsFailure)
+            return HandleFailure(result);
+        return Created();
     }
 }
