@@ -6,6 +6,7 @@ public static class MedicineForms
 {
     #region Constant values
 
+    public static int Count => 2;
     public static MedicineForm Tablet
     {
         get

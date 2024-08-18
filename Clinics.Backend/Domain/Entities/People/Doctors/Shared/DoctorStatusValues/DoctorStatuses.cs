@@ -1,10 +1,13 @@
-﻿using Domain.Exceptions.InvalidValue;
+﻿using Domain.Entities.People.Doctors.Shared.Constants.DoctorStatusValues;
+using Domain.Exceptions.InvalidValue;
 
-namespace Domain.Entities.People.Doctors.Shared.Constants.DoctorStatusValues;
+namespace Domain.Entities.People.Doctors.Shared.DoctorStatusValues;
 
 public static class DoctorStatuses
 {
     #region Constant values
+
+    public static int Count => 3;
 
     public static DoctorStatus Available
     {
@@ -21,7 +24,7 @@ public static class DoctorStatuses
     {
         get
         {
-            var result = DoctorStatus.Create("لديه مريض", 1);
+            var result = DoctorStatus.Create("لديه مريض", 2);
             if (result.IsFailure)
                 throw new InvalidValuesDomainException<DoctorStatus>();
             return result.Value;
@@ -32,7 +35,7 @@ public static class DoctorStatuses
     {
         get
         {
-            var result = DoctorStatus.Create("مشغول", 1);
+            var result = DoctorStatus.Create("مشغول", 3);
             if (result.IsFailure)
                 throw new InvalidValuesDomainException<DoctorStatus>();
             return result.Value;

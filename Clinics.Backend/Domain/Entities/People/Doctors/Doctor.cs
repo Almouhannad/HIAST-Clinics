@@ -1,5 +1,6 @@
 ﻿using Domain.Entities.People.Doctors.Shared;
 using Domain.Entities.People.Doctors.Shared.Constants.DoctorStatusValues;
+using Domain.Entities.People.Doctors.Shared.DoctorStatusValues;
 using Domain.Entities.People.Shared;
 using Domain.Primitives;
 using Domain.Shared;

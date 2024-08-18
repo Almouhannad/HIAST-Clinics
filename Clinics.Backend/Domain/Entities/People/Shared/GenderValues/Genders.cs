@@ -6,6 +6,8 @@ public static class Genders
 {
     #region Constant values
 
+    public static int Count => 2;
+
     public static Gender Male
     {
         get

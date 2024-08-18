@@ -1,4 +1,5 @@
 using API.Options.Database;
+using API.SeedDatabaseHelper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Persistence.Context;
@@ -60,6 +61,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+#region Seed database
+await SeedHelper.Seed(app);
+#endregion
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

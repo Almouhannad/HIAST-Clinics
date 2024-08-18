@@ -6,6 +6,7 @@ public static class FamilyRoles
 {
     #region Constant id values
 
+    public static int Count => 4;
     public static FamilyRole Husband
     {
         get
