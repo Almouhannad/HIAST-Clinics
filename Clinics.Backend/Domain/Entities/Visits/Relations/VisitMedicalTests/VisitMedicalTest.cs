@@ -1,7 +1,6 @@
 ﻿using Domain.Entities.Medicals.MedicalTests;
-using Domain.Entities.Visits.Relations.VisitMedicalImages;
-using Domain.Exceptions.InvalidValue;
 using Domain.Primitives;
+using Domain.Shared;
 
 namespace Domain.Entities.Visits.Relations.VisitMedicalTests;
 
@@ -26,21 +25,21 @@ public sealed class VisitMedicalTest : Entity
 
     #region Visit
 
-    public int VisitId { get; set; }
-    public Visit Visit { get; set; } = null!;
+    public int VisitId { get; private set; }
+    public Visit Visit { get; private set; } = null!;
 
     #endregion
 
     #region Medical test
 
-    public int MedicalTestId { get; set; }
-    public MedicalTest MedicalTest { get; set; } = null!;
+    public int MedicalTestId { get; private set; }
+    public MedicalTest MedicalTest { get; private set; } = null!;
 
     #endregion
 
     #region Additional
 
-    public string? Result { get; set; }
+    public string? Result { get; private set; }
 
     #endregion
 
@@ -49,22 +48,23 @@ public sealed class VisitMedicalTest : Entity
     #region Methods
 
     #region Static factory
-    public static VisitMedicalTest Create(int visitId, int medicalTestId)
+    public static Result<VisitMedicalTest> Create(int visitId, int medicalTestId)
     {
         if (visitId <= 0 || medicalTestId <= 0)
-            throw new InvalidValuesDomainException<VisitMedicalTest>();
+            return Shared.Result.Failure<VisitMedicalTest>(Errors.DomainErrors.InvalidValuesError);
 
         return new VisitMedicalTest(0, visitId, medicalTestId);
     }
     #endregion
 
     #region Add result
-    public void AddResult(string result)
+    public Result AddResult(string result)
     {
         if (result is null)
-            throw new InvalidValuesDomainException<VisitMedicalTest>();
+            return Shared.Result.Failure(Errors.DomainErrors.InvalidValuesError);
 
         Result = result;
+        return Shared.Result.Success();
     }
     #endregion
 

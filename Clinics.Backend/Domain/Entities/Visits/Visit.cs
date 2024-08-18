@@ -7,8 +7,8 @@ using Domain.Entities.People.Patients;
 using Domain.Entities.Visits.Relations.VisitMedicalImages;
 using Domain.Entities.Visits.Relations.VisitMedicalTests;
 using Domain.Entities.Visits.Relations.VisitMedicines;
-using Domain.Exceptions.InvalidValue;
 using Domain.Primitives;
+using Domain.Shared;
 
 namespace Domain.Entities.Visits;
 
@@ -34,23 +34,23 @@ public sealed class Visit : Entity
 
     #region Patient
 
-    public int PatientId { get; set; }
-    public Patient Patient { get; set; } = null!;
+    public int PatientId { get; private set; }
+    public Patient Patient { get; private set; } = null!;
 
     #endregion
 
     #region Doctor
 
-    public int DoctorId { get; set; }
-    public Doctor Doctor { get; set; } = null!;
+    public int DoctorId { get; private set; }
+    public Doctor Doctor { get; private set; } = null!;
 
     #endregion
 
     #region Additional
 
-    public DateOnly Date { get; set; }
+    public DateOnly Date { get; private set; }
 
-    public string Diagnosis { get; set; } = null!;
+    public string Diagnosis { get; private set; } = null!;
 
     #region Hospital
 
@@ -88,73 +88,81 @@ public sealed class Visit : Entity
     #region Methods
 
     #region Static factory
-    public static Visit Create(int patientId, int doctorId,  DateOnly date, string diagnosis)
+    public static Result<Visit> Create(int patientId, int doctorId, DateOnly date, string diagnosis)
     {
         if (patientId <= 0 || doctorId <= 0 || diagnosis is null)
-            throw new InvalidValuesDomainException<Visit>();
-        
+            return Result.Failure<Visit>(Errors.DomainErrors.InvalidValuesError);
+
         return new Visit(0, patientId, doctorId, date, diagnosis);
     }
     #endregion
 
     #region Add medical image
-    public void AddMedicalImage(MedicalImage medicalImage)
+    public Result AddMedicalImage(MedicalImage medicalImage)
     {
-        VisitMedicalImage entry;
-        try
-        {
-            entry = VisitMedicalImage.Create(Id, medicalImage.Id);
-        }
-        catch
-        {
-            throw;
-        }
+        #region Create medical image to attach
+        Result<VisitMedicalImage> entry = VisitMedicalImage.Create(Id, medicalImage.Id);
+        if (entry.IsFailure)
+            return Result.Failure(Errors.DomainErrors.InvalidValuesError);
+        #endregion
 
-        _medicalImages.Add(entry);
+        #region Check duplicate
+        if (MedicalImages.Where(mi => mi.MedicalImage == medicalImage).ToList().Count > 0)
+            return Result.Failure(Errors.DomainErrors.VisitAlreadyHasThisMedicalImage);
+        #endregion
+
+        _medicalImages.Add(entry.Value);
+        return Result.Success();
     }
     #endregion
 
     #region Add medical test
-    public void AddMedicalTest(MedicalTest medicalTest)
+    public Result AddMedicalTest(MedicalTest medicalTest)
     {
-        VisitMedicalTest entry;
-        try
-        {
-            entry = VisitMedicalTest.Create(Id, medicalTest.Id);
-        }
-        catch
-        {
-            throw;
-        }
+        #region Create medical test to attach
+        Result<VisitMedicalTest> entry = VisitMedicalTest.Create(Id, medicalTest.Id);
+        if (entry.IsFailure)
+            return Result.Failure(Errors.DomainErrors.InvalidValuesError);
+        #endregion
 
-        _medicalTests.Add(entry);
+        #region Check duplicate
+        if (MedicalTests.Where(mt => mt.MedicalTest == medicalTest).ToList().Count > 0)
+            return Result.Failure(Errors.DomainErrors.VisitAlreadyHasThisMedicalTest);
+        #endregion
+
+        _medicalTests.Add(entry.Value);
+        return Result.Success();
     }
     #endregion
 
     #region Add medicine
-    public void AddMedicine (Medicine medicine, int number)
+    public Result AddMedicine(Medicine medicine, int number)
     {
-        VisitMedicine entry;
-        try
-        {
-            entry = VisitMedicine.Create(Id, medicine.Id, number);
-        }
-        catch
-        {
-            throw;
-        }
+        #region Create medicine to attach
+        Result<VisitMedicine> entry = VisitMedicine.Create(Id, medicine.Id, number);
+        if (entry.IsFailure)
+            return Result.Failure(Errors.DomainErrors.InvalidValuesError);
+        #endregion
 
-        _medicines.Add(entry);
+        #region Check duplicate
+        if (Medicines.Where(m => m.Medicine == medicine).ToList().Count > 0)
+            return Result.Failure(Errors.DomainErrors.VisitAlreadyHasThisMedicine);
+        #endregion
+
+        _medicines.Add(entry.Value);
+        return Result.Success();
     }
     #endregion
 
     #region Add hospital
-    public void AddHospital(Hospital hospital)
+    public Result AddHospital(Hospital hospital)
     {
         if (hospital is null)
-            throw new InvalidValuesDomainException<Visit>();
+            return Result.Failure(Errors.DomainErrors.InvalidValuesError);
+
         Hospital = hospital;
         HospitalId = hospital.Id;
+        return Result.Success();
     }
     #endregion
 

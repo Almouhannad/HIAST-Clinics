@@ -124,7 +124,7 @@ public sealed class Employee : Entity
         #endregion
 
         #region Check duplicate
-        if (FamilyMembers.Where(fm => fm.FamilyMemberId == familyMember.Id).ToList().Count > 0)
+        if (FamilyMembers.Where(fm => fm.FamilyMember == familyMember).ToList().Count > 0)
             return Result.Failure(Errors.DomainErrors.RelationAlreadyExist);
         #endregion
 
@@ -151,8 +151,8 @@ public sealed class Employee : Entity
 
         #region Check duplicate
 
-        if (RelatedEmployees.Where(re => re.Id == employee.Id).ToList().Count > 0
-            || RelatedTo.Where(rt => rt.Id == employee.Id).ToList().Count > 0
+        if (RelatedEmployees.Where(re => re == employee).ToList().Count > 0
+            || RelatedTo.Where(rt => rt == employee).ToList().Count > 0
             )
             return Result.Failure(Errors.DomainErrors.RelationAlreadyExist);
 

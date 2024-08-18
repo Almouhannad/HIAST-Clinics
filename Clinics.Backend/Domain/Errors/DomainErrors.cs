@@ -25,6 +25,13 @@ public static class DomainErrors
     public static Error PhoneAlreadyExist =>
         new("Domain.PhoneAlreadyExist", "رقم الهاتف موجود بالفعل");
 
+    public static Error VisitAlreadyHasThisMedicine =>
+        new("Domain.VisitAlreadyHasThisMedicine", "تحتوي الوصفة الطبية بالفعل على الدواء الذي تحاول اضافته");
 
+    public static Error VisitAlreadyHasThisMedicalTest =>
+        new("Domain.VisitAlreadyHasThisMedicalTest", "تحتوي هذه الزيارة بالفعل على التحليل الطبي الذي تحاول اضافته");
+
+    public static Error VisitAlreadyHasThisMedicalImage =>
+    new("Domain.PatientAlreadyHasThisMedicine", "تحتوي هذه الزيارة بالفعل على الصورة التي تحاول اضافتها");
 
 }
