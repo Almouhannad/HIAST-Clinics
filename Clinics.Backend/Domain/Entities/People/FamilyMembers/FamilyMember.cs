@@ -1,5 +1,6 @@
 ﻿using Domain.Entities.People.Patients;
 using Domain.Primitives;
+using Domain.Shared;
 
 namespace Domain.Entities.People.FamilyMembers;
 
@@ -18,32 +19,25 @@ public sealed class FamilyMember : Entity
 
     #region Properties
 
-    public Patient Patient { get; set; } = null!;
+    public Patient Patient { get; private set; } = null!;
 
     #endregion
 
     #region Methods
 
     #region Static factory
-    public static FamilyMember Create(string firstName, string middleName, string lastName,
+    public static Result<FamilyMember> Create(string firstName, string middleName, string lastName,
         DateOnly dateOfBirth,
         string gender
         )
     {
         #region Create patient
-        Patient patient;
-
-        try
-        {
-            patient = Patient.Create(firstName, middleName, lastName, dateOfBirth, gender);
-        }
-        catch
-        {
-            throw;
-        }
+        Result<Patient> patient = Patient.Create(firstName, middleName, lastName, dateOfBirth, gender);
+        if (patient.IsFailure)
+            return Result.Failure<FamilyMember>(Errors.DomainErrors.InvalidValuesError);
         #endregion
 
-        return new FamilyMember(0, patient);
+        return new FamilyMember(0, patient.Value);
     }
     #endregion
 

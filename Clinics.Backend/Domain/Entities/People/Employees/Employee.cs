@@ -1,9 +1,11 @@
 ﻿using Domain.Entities.People.Employees.Relations.EmployeeFamilyMembers;
+using Domain.Entities.People.Employees.Relations.EmployeeFamilyMembers.FamilyRoleValues;
 using Domain.Entities.People.Employees.Shared;
 using Domain.Entities.People.FamilyMembers;
 using Domain.Entities.People.Patients;
-using Domain.Exceptions.InvalidValue;
+using Domain.Entities.People.Shared.GenderValues;
 using Domain.Primitives;
+using Domain.Shared;
 
 namespace Domain.Entities.People.Employees;
 
@@ -30,15 +32,15 @@ public sealed class Employee : Entity
 
     #region Properties
 
-    public Patient Patient { get; set; } = null!;
+    public Patient Patient { get; private set; } = null!;
 
-    public EmployeeAdditionalInfo? AdditionalInfo { get; set; }
+    public EmployeeAdditionalInfo? AdditionalInfo { get; private set; }
 
-    public string SerialNumber { get; set; } = null!;
+    public string SerialNumber { get; private set; } = null!;
 
-    public string CenterStatus { get; set; } = null!;
+    public string CenterStatus { get; private set; } = null!;
 
-    public bool IsMarried { get; set; }
+    public bool IsMarried { get; private set; }
 
     #region Navigations
 
@@ -65,7 +67,7 @@ public sealed class Employee : Entity
     #region Methods
 
     #region Static factory
-    public static Employee Create(
+    public static Result<Employee> Create(
         string firstName, string middleName, string lastName, DateOnly dateOfBirth, string gender,
 
         string serialNumber, string centerStatus, bool isMarried = false,
@@ -75,64 +77,90 @@ public sealed class Employee : Entity
         )
     {
         #region Create patient
-        Patient patient;
-
-        try
-        {
-            patient = Patient.Create(firstName, middleName, lastName, dateOfBirth, gender);
-        }
-        catch
-        {
-            throw;
-        }
+        Result<Patient> patient = Patient.Create(firstName, middleName, lastName, dateOfBirth, gender);
+        if (patient.IsFailure)
+            return Result.Failure<Employee>(Errors.DomainErrors.InvalidValuesError);
         #endregion
 
         #region Check employee's required details
 
         if (serialNumber is null || centerStatus is null)
-            throw new InvalidValuesDomainException<Employee>();
+            return Result.Failure<Employee>(Errors.DomainErrors.InvalidValuesError);
 
         #endregion
 
         #region Create additional info
-        EmployeeAdditionalInfo? additionalInfo;
-        try
-        {
-            additionalInfo = EmployeeAdditionalInfo.Create(startDate, academicQualification,
-                workPhone, location, specialization, jobStatus, imageUrl);
-        }
-        catch
-        {
-            throw;
-        }
+
+        EmployeeAdditionalInfo? additionalInfo = EmployeeAdditionalInfo.Create(
+            startDate, academicQualification, workPhone,
+            location, specialization, jobStatus, imageUrl);
+
+
         #endregion
 
-        return new Employee(0, patient, serialNumber, centerStatus, isMarried, additionalInfo);
+        return new Employee(0, patient.Value, serialNumber, centerStatus, isMarried, additionalInfo);
     }
     #endregion
 
     #region Add family member
-    public void AddFamilyMember(FamilyMember familyMember, string role)
+    public Result AddFamilyMember(FamilyMember familyMember, string role)
     {
-        EmployeeFamilyMember employeeFamilyMember;
 
-        try
-        {
-            employeeFamilyMember = EmployeeFamilyMember.Create(Id, familyMember.Id, role);
-        }
-        catch
-        {
-            throw;
-        }
+        #region Create family member to attach
+        Result<EmployeeFamilyMember> employeeFamilyMember =
+            EmployeeFamilyMember.Create(Id, familyMember.Id, role);
+        if (employeeFamilyMember.IsFailure)
+            return Result.Failure(Errors.DomainErrors.InvalidValuesError);
+        #endregion
 
-        _familyMembers.Add(employeeFamilyMember);
+        #region Check valid relation
+
+        if (role == FamilyRoles.Husband.Name && Patient.Gender == Genders.Male)
+            return Result.Failure(Errors.DomainErrors.InvalidHusbandRole);
+
+        if (role == FamilyRoles.Wife.Name && Patient.Gender == Genders.Female)
+            return Result.Failure(Errors.DomainErrors.InvalidWifeRole);
+
+        #endregion
+
+        #region Check duplicate
+        if (FamilyMembers.Where(fm => fm.FamilyMemberId == familyMember.Id).ToList().Count > 0)
+            return Result.Failure(Errors.DomainErrors.RelationAlreadyExist);
+        #endregion
+
+        _familyMembers.Add(employeeFamilyMember.Value);
+        IsMarried = true;
+        return Result.Success();
     }
     #endregion
 
     #region Add related employee
-    public void AddRelatedEmployee(Employee employee)
+    public Result AddRelatedEmployee(Employee employee)
     {
+        #region Check valid relation
+
+        if (Patient.Gender == Genders.Male && employee.Patient.Gender == Genders.Male)
+            return Result.Failure(Errors.DomainErrors.InvalidHusbandRole);
+
+        if (Patient.Gender == Genders.Female && employee.Patient.Gender == Genders.Female)
+        {
+            return Result.Failure(Errors.DomainErrors.InvalidWifeRole);
+        }
+
+        #endregion
+
+        #region Check duplicate
+
+        if (RelatedEmployees.Where(re => re.Id == employee.Id).ToList().Count > 0
+            || RelatedTo.Where(rt => rt.Id == employee.Id).ToList().Count > 0
+            )
+            return Result.Failure(Errors.DomainErrors.RelationAlreadyExist);
+
+        #endregion
+
         _relatedEmployees.Add(employee);
+        IsMarried = true;
+        return Result.Success();
     }
     #endregion
 

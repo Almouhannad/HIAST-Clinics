@@ -17,9 +17,9 @@ public sealed class MedicalTest : Entity
 
     #region Properties
 
-    public string Name { get; set; } = null!;
+    public string Name { get; private set; } = null!;
 
-    public string? Description { get; set; }
+    public string? Description { get; private set; }
 
     #endregion
 

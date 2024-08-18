@@ -1,6 +1,5 @@
 ﻿using Domain.Entities.Medicals.Medicines.MedicineFormValues;
 using Domain.Entities.People.Patients.Relations.PatientMedicines;
-using Domain.Exceptions.InvalidValue;
 using Domain.Primitives;
 using Domain.Shared;
 
@@ -25,13 +24,13 @@ public sealed class Medicine : Entity
 
     #region Properties
 
-    public MedicineForm MedicineForm { get; set; } = null!;
+    public MedicineForm MedicineForm { get; private set; } = null!;
 
-    public int Amount { get; set; }
+    public int Amount { get; private set; }
 
-    public string Name { get; set; } = null!;
+    public string Name { get; private set; } = null!;
 
-    public decimal Dosage { get; set; }
+    public decimal Dosage { get; private set; }
 
     #region Navigations
 

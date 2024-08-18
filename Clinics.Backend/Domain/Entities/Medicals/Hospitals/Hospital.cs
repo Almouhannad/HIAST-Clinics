@@ -18,7 +18,7 @@ public sealed class Hospital : Entity
 
     #region Properties
 
-    public string Name { get; set; } = null!;
+    public string Name { get; private set; } = null!;
 
     #endregion
 

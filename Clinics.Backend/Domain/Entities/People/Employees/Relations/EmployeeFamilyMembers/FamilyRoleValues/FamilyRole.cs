@@ -1,5 +1,5 @@
-﻿using Domain.Exceptions.InvalidValue;
-using Domain.Primitives;
+﻿using Domain.Primitives;
+using Domain.Shared;
 
 namespace Domain.Entities.People.Employees.Relations.EmployeeFamilyMembers.FamilyRoleValues;
 
@@ -19,21 +19,21 @@ public sealed class FamilyRole : Entity
 
     #region Properties
 
-    public string Name { get; set; } = null!;
+    public string Name { get; private set; } = null!;
 
     #endregion
 
     #region Methods
 
     #region Static factory
-    public static FamilyRole Create(string name, int? id)
+    public static Result<FamilyRole> Create(string name, int? id)
     {
         if (name is null)
-            throw new InvalidValuesDomainException<FamilyRole>();
+            return Result.Failure<FamilyRole>(Errors.DomainErrors.InvalidValuesError);
         if (id is not null)
         {
             if (id < 0)
-                throw new InvalidValuesDomainException<FamilyRole>();
+                return Result.Failure<FamilyRole>(Errors.DomainErrors.InvalidValuesError);
 
             return new FamilyRole(id.Value, name);
         }
