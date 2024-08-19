@@ -7,20 +7,22 @@ using Domain.UnitOfWork;
 
 namespace Application.Employees.Commands.CreateEmployee;
 
-public class CreateEmployeeCommandHandler : ICommandHandler<CreateEmployeeCommand>
+public class CreateEmployeeCommandHandler : CommandHandler<CreateEmployeeCommand>
 {
     #region CTOR DI
     private readonly IEmployeesRepository _employeesRepository;
-    private readonly IUnitOfWork _unitOfWork;
-    public CreateEmployeeCommandHandler(IEmployeesRepository employeesRepository, IUnitOfWork unitOfWork)
+
+    public CreateEmployeeCommandHandler(IUnitOfWork unitOfWork, IEmployeesRepository employeesRepository) : base(unitOfWork)
     {
         _employeesRepository = employeesRepository;
-        _unitOfWork = unitOfWork;
     }
+
     #endregion
 
-    public async Task<Result> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
+    public override async Task<Result> HandleHelper(CreateEmployeeCommand request, CancellationToken cancellationToken)
     {
+
+        #region 1. Create employee
         Result<Employee> employeeResult =
             Employee
             .Create(
@@ -33,28 +35,19 @@ public class CreateEmployeeCommandHandler : ICommandHandler<CreateEmployeeComman
                 );
         if (employeeResult.IsFailure)
             return Result.Failure(employeeResult.Error);
+        #endregion
 
-
-        #region Check existed serial number
+        #region 2. Check existed serial number
         Result<Employee> existedResult = await _employeesRepository.GetEmployeeBySerialNumberAsync(request.SerialNumber);
         if (existedResult.IsSuccess)
             return Result.Failure(DomainErrors.EmployeeAlreadyExist);
         #endregion
 
-
-        try
-        {
-            _employeesRepository.Create(employeeResult.Value);
-            await _unitOfWork.SaveChangesAsync();
-        }
-        catch (Exception exp)
-        {
-            // For debugging
-            //return Result.Failure(new Error("Persistence.UnableToSaveTransaction", exp.Message));
-
-            // For deployment
-            return Result.Failure(PersistenceErrors.UnableToCompleteTransaction);
-        }
+        #region 3. Add to DB
+        var createResult = await _employeesRepository.CreateAsync(employeeResult.Value);
+        if (createResult.IsFailure)
+            return Result.Failure(createResult.Error);
+        #endregion
 
         return Result.Success();
     }

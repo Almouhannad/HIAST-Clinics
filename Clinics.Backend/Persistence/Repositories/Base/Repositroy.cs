@@ -34,7 +34,7 @@ public class Repositroy<TEntity> : IRepository<TEntity> where TEntity : Entity
 
     #region Create operation
 
-    public async Task<Result<TEntity>> CreateAsync(TEntity entity)
+    public virtual async Task<Result<TEntity>> CreateAsync(TEntity entity)
     {
         try
         {
@@ -52,7 +52,7 @@ public class Repositroy<TEntity> : IRepository<TEntity> where TEntity : Entity
 
     #region Read operations
 
-    public async Task<Result<TEntity>> GetByIdAsync(int id)
+    public virtual async Task<Result<TEntity>> GetByIdAsync(int id)
     {
         try
         {
@@ -66,7 +66,7 @@ public class Repositroy<TEntity> : IRepository<TEntity> where TEntity : Entity
 
     }
 
-    public async Task<Result<ICollection<TEntity>>> GetAllAsync()
+    public virtual async Task<Result<ICollection<TEntity>>> GetAllAsync()
     {
         try
         {
@@ -83,7 +83,7 @@ public class Repositroy<TEntity> : IRepository<TEntity> where TEntity : Entity
     #endregion
 
     #region Update operation
-    public async Task<Result> UpdateAsync(TEntity entity)
+    public virtual async Task<Result> UpdateAsync(TEntity entity)
     {
         try
         {
@@ -99,7 +99,7 @@ public class Repositroy<TEntity> : IRepository<TEntity> where TEntity : Entity
     #endregion
 
     #region Delete operation
-    public async Task<Result> DeleteAsync(TEntity entity)
+    public virtual async Task<Result> DeleteAsync(TEntity entity)
     {
         try
         {

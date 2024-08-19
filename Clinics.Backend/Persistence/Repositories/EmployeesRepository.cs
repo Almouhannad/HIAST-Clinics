@@ -13,10 +13,10 @@ public class EmployeesRepository : Repositroy<Employee>, IEmployeesRepository
     public EmployeesRepository(ClinicsDbContext context) : base(context) {}
 
     #region Create method
-    public override void Create(Employee entity)
+    public override Task<Result<Employee>> CreateAsync(Employee entity)
     {
         _context.Entry(entity.Patient.Gender).State = EntityState.Unchanged;
-        _context.Set<Employee>().Add(entity);
+        return base.CreateAsync(entity);
 
     }
     #endregion
