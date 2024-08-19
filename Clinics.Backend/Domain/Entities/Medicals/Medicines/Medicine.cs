@@ -65,7 +65,7 @@ public sealed class Medicine : Entity
             selectedMedicineForm = Result.Success<MedicineForm>(syrup);
 
         if (selectedMedicineForm.IsFailure)
-            return Result.Failure<Medicine>(Errors.DomainErrors.InvalidValuesError);
+            return Result.Failure<Medicine>(selectedMedicineForm.Error);
         #endregion
 
         return new Medicine(0, selectedMedicineForm.Value, amount, name, dosage);

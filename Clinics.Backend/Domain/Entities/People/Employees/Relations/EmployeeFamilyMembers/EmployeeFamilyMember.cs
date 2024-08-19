@@ -69,7 +69,7 @@ public sealed class EmployeeFamilyMember : Entity
             selectedRole = Result.Success<FamilyRole>(daughter);
 
         if (selectedRole.IsFailure)
-            return Result.Failure<EmployeeFamilyMember>(Errors.DomainErrors.InvalidValuesError);
+            return Result.Failure<EmployeeFamilyMember>(selectedRole.Error);
 
         #endregion
 

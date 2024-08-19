@@ -83,7 +83,7 @@ public sealed class Patient : Entity
         #region Personal info
         Result<PersonalInfo> personalInfo = PersonalInfo.Create(firstName, middleName, lastName);
         if (personalInfo.IsFailure)
-            return Result.Failure<Patient>(Errors.DomainErrors.InvalidValuesError);
+            return Result.Failure<Patient>(personalInfo.Error);
         #endregion
 
         #region Gender
@@ -98,7 +98,7 @@ public sealed class Patient : Entity
             selectedGender = Result.Success<Gender>(female);
 
         if (selectedGender.IsFailure)
-            return Result.Failure<Patient>(Errors.DomainErrors.InvalidValuesError);
+            return Result.Failure<Patient>(selectedGender.Error);
         #endregion
 
         return new Patient(0, personalInfo.Value, dateOfBirth, selectedGender.Value);
@@ -112,7 +112,7 @@ public sealed class Patient : Entity
         #region Create medicine to attach
         Result<PatientMedicine> entry = PatientMedicine.Create(Id, medicine.Id, number);
         if (entry.IsFailure)
-            return Result.Failure(Errors.DomainErrors.InvalidValuesError);
+            return Result.Failure(entry.Error);
         #endregion
 
         #region Check duplication
@@ -131,7 +131,7 @@ public sealed class Patient : Entity
         #region Create disease to attach
         Result<PatientDisease> entry = PatientDisease.Create(Id, disease.Id);
         if (entry.IsFailure)
-            return Result.Failure(Errors.DomainErrors.InvalidValuesError);
+            return Result.Failure(entry.Error);
         #endregion
 
         #region Check duplication

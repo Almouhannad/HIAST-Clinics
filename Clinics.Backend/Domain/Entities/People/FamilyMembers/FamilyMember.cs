@@ -34,7 +34,7 @@ public sealed class FamilyMember : Entity
         #region Create patient
         Result<Patient> patient = Patient.Create(firstName, middleName, lastName, dateOfBirth, gender);
         if (patient.IsFailure)
-            return Result.Failure<FamilyMember>(Errors.DomainErrors.InvalidValuesError);
+            return Result.Failure<FamilyMember>(patient.Error);
         #endregion
 
         return new FamilyMember(0, patient.Value);

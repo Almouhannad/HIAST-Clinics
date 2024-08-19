@@ -46,7 +46,7 @@ public sealed class Doctor : Entity
     {
         Result<PersonalInfo> personalInfo = PersonalInfo.Create(firstName, middleName, lastName);
         if (personalInfo.IsFailure)
-            return Result.Failure<Doctor>(Errors.DomainErrors.InvalidValuesError);
+            return Result.Failure<Doctor>(personalInfo.Error);
 
         return new Doctor(0, personalInfo.Value);
     }
@@ -58,7 +58,7 @@ public sealed class Doctor : Entity
         #region Create number to attach
         Result<DoctorPhone> doctorPhone = DoctorPhone.Create(phone, name);
         if (doctorPhone.IsFailure)
-            return Result.Failure(Errors.DomainErrors.InvalidValuesError);
+            return Result.Failure(doctorPhone.Error);
         #endregion
 
         #region Check duplicate

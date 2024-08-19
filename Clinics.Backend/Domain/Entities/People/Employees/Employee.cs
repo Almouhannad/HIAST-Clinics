@@ -79,7 +79,7 @@ public sealed class Employee : Entity
         #region Create patient
         Result<Patient> patient = Patient.Create(firstName, middleName, lastName, dateOfBirth, gender);
         if (patient.IsFailure)
-            return Result.Failure<Employee>(Errors.DomainErrors.InvalidValuesError);
+            return Result.Failure<Employee>(patient.Error);
         #endregion
 
         #region Check employee's required details
@@ -110,7 +110,7 @@ public sealed class Employee : Entity
         Result<EmployeeFamilyMember> employeeFamilyMember =
             EmployeeFamilyMember.Create(Id, familyMember.Id, role);
         if (employeeFamilyMember.IsFailure)
-            return Result.Failure(Errors.DomainErrors.InvalidValuesError);
+            return Result.Failure(employeeFamilyMember.Error);
         #endregion
 
         #region Check valid relation

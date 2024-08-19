@@ -103,7 +103,7 @@ public sealed class Visit : Entity
         #region Create medical image to attach
         Result<VisitMedicalImage> entry = VisitMedicalImage.Create(Id, medicalImage.Id);
         if (entry.IsFailure)
-            return Result.Failure(Errors.DomainErrors.InvalidValuesError);
+            return Result.Failure(entry.Error);
         #endregion
 
         #region Check duplicate
@@ -122,7 +122,7 @@ public sealed class Visit : Entity
         #region Create medical test to attach
         Result<VisitMedicalTest> entry = VisitMedicalTest.Create(Id, medicalTest.Id);
         if (entry.IsFailure)
-            return Result.Failure(Errors.DomainErrors.InvalidValuesError);
+            return Result.Failure(entry.Error);
         #endregion
 
         #region Check duplicate
@@ -141,7 +141,7 @@ public sealed class Visit : Entity
         #region Create medicine to attach
         Result<VisitMedicine> entry = VisitMedicine.Create(Id, medicine.Id, number);
         if (entry.IsFailure)
-            return Result.Failure(Errors.DomainErrors.InvalidValuesError);
+            return Result.Failure(entry.Error);
         #endregion
 
         #region Check duplicate
