@@ -28,6 +28,7 @@ public abstract class CommandHandlerBase<TCommand> : ICommandHandler<TCommand>
         }
         catch (Exception)
         {
+            transaction.Rollback();
             return Result.Failure(PersistenceErrors.UnableToCompleteTransaction);
         }
     }
