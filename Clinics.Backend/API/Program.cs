@@ -21,9 +21,9 @@ builder.Services.AddDbContext<ClinicsDbContext>(
 
         dbContectOptionsBuilder.UseSqlServer(databaseOptions.ConnectionString, sqlServerAction =>
         {
-            sqlServerAction.EnableRetryOnFailure(databaseOptions.MaxRetryCount);
+            //sqlServerAction.EnableRetryOnFailure(databaseOptions.MaxRetryCount);
 
-            sqlServerAction.CommandTimeout(databaseOptions.CommandTimeout);
+            //sqlServerAction.CommandTimeout(databaseOptions.CommandTimeout);
         });
 
         // Be careful with this option, true only in development process!
