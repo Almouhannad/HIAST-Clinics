@@ -24,7 +24,7 @@ public class Repositroy<TEntity> : IRepository<TEntity> where TEntity : Entity
     #endregion
 
     #region Apply specification
-    protected IQueryable<TEntity> ApplySpecification (Specification<TEntity> specification)
+    protected IQueryable<TEntity> ApplySpecification(Specification<TEntity> specification)
     {
         return SpecificationEvaluator.GetQuery(_context.Set<TEntity>(), specification);
     }
@@ -34,57 +34,84 @@ public class Repositroy<TEntity> : IRepository<TEntity> where TEntity : Entity
 
     #region Create operation
 
-    public virtual void Create(TEntity entity)
+    public async Task<Result<TEntity>> CreateAsync(TEntity entity)
     {
-        _context.Set<TEntity>().Add(entity);
-    }
-
-    public virtual async Task<Result<TEntity>> CreateWithEntityResultAsync (TEntity entity)
-    {
-        var entry = await _context.Set<TEntity>().AddAsync(entity);
         try
         {
+            var createdEntity = await _context.Set<TEntity>().AddAsync(entity);
             await _context.SaveChangesAsync();
+            return Result.Success<TEntity>(createdEntity.Entity);
         }
         catch (Exception)
         {
-            return Result.Failure<TEntity>(PersistenceErrors.UnableToCompleteTransaction);
+            return Result.Failure<TEntity>(PersistenceErrors.UnableToCreate);
         }
-        return Result.Success<TEntity>(entry.Entity);
     }
 
     #endregion
 
     #region Read operations
 
-    public virtual async Task<TEntity?> GetByIdAsync(int id)
+    public async Task<Result<TEntity>> GetByIdAsync(int id)
     {
-        return await _context.Set<TEntity>().FindAsync(id);
+        try
+        {
+            var entity = await _context.Set<TEntity>().FirstAsync(e => e.Id == id);
+            return Result.Success<TEntity>(entity);
+        }
+        catch (Exception)
+        {
+            return Result.Failure<TEntity>(PersistenceErrors.NotFound);
+        }
+
     }
 
-    public virtual async Task<ICollection<TEntity>> GetAllAsync()
+    public async Task<Result<ICollection<TEntity>>> GetAllAsync()
     {
-        return await _context.Set<TEntity>().ToListAsync();
+        try
+        {
+            var entites = await _context.Set<TEntity>().ToListAsync();
+            return Result.Success<ICollection<TEntity>>(entites);
+        }
+        catch (Exception)
+        {
+            return Result.Failure<ICollection<TEntity>>(PersistenceErrors.NotFound);
+        }
+
     }
 
     #endregion
 
     #region Update operation
-
-    public virtual void Update(TEntity entity)
+    public async Task<Result> UpdateAsync(TEntity entity)
     {
-        _context.Set<TEntity>().Update(entity);
+        try
+        {
+            _context.Set<TEntity>().Update(entity);
+            await _context.SaveChangesAsync();
+            return Result.Success();
+        }
+        catch (Exception)
+        {
+            return Result.Failure(PersistenceErrors.UnableToUpdate);
+        }
     }
-
     #endregion
 
     #region Delete operation
-
-    public virtual void Delete(TEntity entity)
+    public async Task<Result> DeleteAsync(TEntity entity)
     {
-        _context.Set<TEntity>().Remove(entity);
+        try
+        {
+            _context.Set<TEntity>().Remove(entity);
+            await _context.SaveChangesAsync();
+            return Result.Success();
+        }
+        catch (Exception)
+        {
+            return Result.Failure(PersistenceErrors.UnableToDelete);
+        }
     }
-
     #endregion
 
 }

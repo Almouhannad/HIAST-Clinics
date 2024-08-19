@@ -3,8 +3,6 @@ using Domain.Shared;
 
 namespace Domain.Repositories.Base
 {
-    // Note that queries are async, but commands are NOT
-        // Since the persist operation is done by UnitOfWork
     public interface IRepository<TEntity>
         where TEntity : Entity
     {
@@ -12,29 +10,27 @@ namespace Domain.Repositories.Base
 
         #region Create operation
 
-        public void Create(TEntity entity);
-
-        public Task<Result<TEntity>> CreateWithEntityResultAsync (TEntity entity);
+        public Task<Result<TEntity>> CreateAsync(TEntity entity);
 
         #endregion
 
         #region Read operations
 
-        public Task<TEntity?> GetByIdAsync(int id);
+        public Task<Result<TEntity>> GetByIdAsync(int id);
 
-        public Task<ICollection<TEntity>> GetAllAsync();
+        public Task<Result<ICollection<TEntity>>> GetAllAsync();
 
         #endregion
 
         #region Update oprtation
 
-        public void Update(TEntity entity);
+        public Task<Result> UpdateAsync(TEntity entity);
 
         #endregion
 
         #region Delete operation
 
-        public void Delete(TEntity entity);
+        public Task<Result> DeleteAsync(TEntity entity);
 
         #endregion
     }
