@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Persistence.Context;
 using Persistence.Repositories.Base;
 
-namespace Persistence.Repositories;
+namespace Persistence.Repositories.Employees.Relations;
 
 public class EmployeeFamilyMembersRepository : Repositroy<EmployeeFamilyMember>, IEmployeeFamilyMembersRepository
 {

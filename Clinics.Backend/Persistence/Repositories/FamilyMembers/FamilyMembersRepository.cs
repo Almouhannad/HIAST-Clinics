@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore;
 using Persistence.Context;
 using Persistence.Repositories.Base;
 
-namespace Persistence.Repositories;
+namespace Persistence.Repositories.FamilyMembers;
 
 public class FamilyMembersRepository : Repositroy<FamilyMember>, IFamilyMembersRepository
 {
     #region CTOR DI for context
-    public FamilyMembersRepository(ClinicsDbContext context) : base(context) {}
+    public FamilyMembersRepository(ClinicsDbContext context) : base(context) { }
     #endregion
 
     #region Create method

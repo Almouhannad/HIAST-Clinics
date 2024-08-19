@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 using Persistence.Context;
 using Persistence.Repositories.Base;
 
-namespace Persistence.Repositories;
+namespace Persistence.Repositories.Employees;
 
 public class EmployeesRepository : Repositroy<Employee>, IEmployeesRepository
 {
-    public EmployeesRepository(ClinicsDbContext context) : base(context) {}
+    public EmployeesRepository(ClinicsDbContext context) : base(context) { }
 
     #region Create method
     public override Task<Result<Employee>> CreateAsync(Employee entity)
@@ -22,12 +22,12 @@ public class EmployeesRepository : Repositroy<Employee>, IEmployeesRepository
     #endregion
 
     #region Get by serial Number
-    public async Task<Result<Employee>> GetEmployeeBySerialNumberAsync (string serialNumber)
+    public async Task<Result<Employee>> GetEmployeeBySerialNumberAsync(string serialNumber)
     {
         var all = await _context.Set<Employee>().Where(employee => employee.SerialNumber == serialNumber).ToListAsync();
         if (all.Count != 1)
             return Result.Failure<Employee>(PersistenceErrors.NotFound);
-        return Result.Success<Employee>(all.First());
+        return Result.Success(all.First());
     }
     #endregion
 }
