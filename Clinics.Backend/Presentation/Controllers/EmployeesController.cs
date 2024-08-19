@@ -1,4 +1,5 @@
-﻿using Application.Employees.Commands.CreateEmployee;
+﻿using Application.Employees.Commands.AttachFamilyMemberToEmployee;
+using Application.Employees.Commands.CreateEmployee;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Controllers.Base;
@@ -17,11 +18,20 @@ public class EmployeesController : ApiController
 
 
     [HttpPost]
-    public async Task<IActionResult> Create(CreateEmployeeCommand command)
+    public async Task<IActionResult> Create([FromBody] CreateEmployeeCommand command)
     {
         var result = await _sender.Send(command);
         if (result.IsFailure)
             return HandleFailure(result);
         return Created();
+    }
+
+    [HttpPut("FamilyMembers")]
+    public async Task<IActionResult> AttachFamilyMember([FromBody] AttachFamilyMemberToEmployeeCommand command)
+    {
+        var result = await _sender.Send(command);
+        if (result.IsFailure)
+            return HandleFailure(result);
+        return Ok();
     }
 }
