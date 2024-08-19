@@ -7,7 +7,7 @@ using Domain.UnitOfWork;
 
 namespace Application.Employees.Commands.CreateEmployee;
 
-public class CreateEmployeeCommandHandler : CommandHandler<CreateEmployeeCommand>
+public class CreateEmployeeCommandHandler : CommandHandlerBase<CreateEmployeeCommand>
 {
     #region CTOR DI
     private readonly IEmployeesRepository _employeesRepository;

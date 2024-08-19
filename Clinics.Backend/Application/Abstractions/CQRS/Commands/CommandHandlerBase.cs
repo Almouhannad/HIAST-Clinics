@@ -4,12 +4,12 @@ using Domain.UnitOfWork;
 
 namespace Application.Abstractions.CQRS.Commands;
 
-public abstract class CommandHandler<TCommand> : ICommandHandler<TCommand>
+public abstract class CommandHandlerBase<TCommand> : ICommandHandler<TCommand>
     where TCommand : ICommand
 {
     protected readonly IUnitOfWork _unitOfWork;
 
-    protected CommandHandler(IUnitOfWork unitOfWork)
+    protected CommandHandlerBase(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
     }
@@ -36,11 +36,11 @@ public abstract class CommandHandler<TCommand> : ICommandHandler<TCommand>
 }
 
 
-public abstract class CommandHandler<TCommand, TResponse> : ICommandHandler<TCommand, TResponse>
+public abstract class CommandHandlerBase<TCommand, TResponse> : ICommandHandler<TCommand, TResponse>
     where TCommand : ICommand<TResponse>
 {
     protected readonly IUnitOfWork _unitOfWork;
-    protected CommandHandler(IUnitOfWork unitOfWork)
+    protected CommandHandlerBase(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
     }

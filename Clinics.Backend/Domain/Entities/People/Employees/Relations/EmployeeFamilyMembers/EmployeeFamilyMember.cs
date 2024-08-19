@@ -11,10 +11,10 @@ public sealed class EmployeeFamilyMember : Entity
     private EmployeeFamilyMember(int id) : base(id)
     {
     }
-    private EmployeeFamilyMember(int id, int employeeId, int familyMemberId, FamilyRole role) : base(id)
+    private EmployeeFamilyMember(int id, Employee employee, FamilyMember familyMember, FamilyRole role) : base(id)
     {
-        EmployeeId = employeeId;
-        FamilyMemberId = familyMemberId;
+        Employee = employee;
+        FamilyMember = familyMember;
         Role = role;
     }
     #endregion
@@ -46,9 +46,9 @@ public sealed class EmployeeFamilyMember : Entity
     #region Methods
 
     #region Static factory
-    public static Result<EmployeeFamilyMember> Create(int employeeId, int familyMemberId, string role)
+    public static Result<EmployeeFamilyMember> Create(Employee employee, FamilyMember familyMember, string role)
     {
-        if (employeeId <= 0 || familyMemberId <= 0 || role is null)
+        if (employee is null || familyMember is null || role is null)
             return Result.Failure<EmployeeFamilyMember>(Errors.DomainErrors.InvalidValuesError);
 
         #region Check role
@@ -73,7 +73,7 @@ public sealed class EmployeeFamilyMember : Entity
 
         #endregion
 
-        return new EmployeeFamilyMember(0, employeeId, familyMemberId, selectedRole.Value);
+        return new EmployeeFamilyMember(0, employee, familyMember, selectedRole.Value);
     }
     #endregion
 

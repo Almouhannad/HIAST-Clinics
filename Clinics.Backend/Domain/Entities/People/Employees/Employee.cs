@@ -1,7 +1,6 @@
 ﻿using Domain.Entities.People.Employees.Relations.EmployeeFamilyMembers;
 using Domain.Entities.People.Employees.Relations.EmployeeFamilyMembers.FamilyRoleValues;
 using Domain.Entities.People.Employees.Shared;
-using Domain.Entities.People.FamilyMembers;
 using Domain.Entities.People.Patients;
 using Domain.Entities.People.Shared.GenderValues;
 using Domain.Primitives;
@@ -103,32 +102,24 @@ public sealed class Employee : Entity
     #endregion
 
     #region Add family member
-    public Result AddFamilyMember(FamilyMember familyMember, string role)
+    public Result AddFamilyMember(EmployeeFamilyMember employeeFamilyMember)
     {
-
-        #region Create family member to attach
-        Result<EmployeeFamilyMember> employeeFamilyMember =
-            EmployeeFamilyMember.Create(Id, familyMember.Id, role);
-        if (employeeFamilyMember.IsFailure)
-            return Result.Failure(employeeFamilyMember.Error);
-        #endregion
 
         #region Check valid relation
 
-        if (role == FamilyRoles.Husband.Name && Patient.Gender == Genders.Male)
+        if (employeeFamilyMember.Role == FamilyRoles.Husband
+            && employeeFamilyMember.FamilyMember.Patient.Gender == Genders.Male)
+
             return Result.Failure(Errors.DomainErrors.InvalidHusbandRole);
 
-        if (role == FamilyRoles.Wife.Name && Patient.Gender == Genders.Female)
+        if (employeeFamilyMember.Role == FamilyRoles.Wife
+            && Patient.Gender == Genders.Female)
+
             return Result.Failure(Errors.DomainErrors.InvalidWifeRole);
 
         #endregion
 
-        #region Check duplicate
-        if (FamilyMembers.Where(fm => fm.FamilyMember == familyMember).ToList().Count > 0)
-            return Result.Failure(Errors.DomainErrors.RelationAlreadyExist);
-        #endregion
-
-        _familyMembers.Add(employeeFamilyMember.Value);
+        _familyMembers.Add(employeeFamilyMember);
         IsMarried = true;
         return Result.Success();
     }
