@@ -7,6 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/root/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { LayoutComponent } from './components/template/layout/layout.component';
+import { HeaderComponent } from './components/template/header/header.component';
+import { FooterComponent } from './components/template/footer/footer.component';
 
 @NgModule({
   imports: [
@@ -26,7 +29,10 @@ import { ToastrModule } from 'ngx-toastr';
   // the subset of declarations that should be visible and usable in
   // the component templates of other modules
   declarations: [
-    AppComponent
+    AppComponent,
+    LayoutComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   
   // identifies the root component that Angular should
