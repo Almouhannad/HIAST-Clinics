@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Employees\Commands\AttachFamilyMemberToEmployee\" />
     <Folder Include="Employees\Queries\" />
   </ItemGroup>
 </Project>

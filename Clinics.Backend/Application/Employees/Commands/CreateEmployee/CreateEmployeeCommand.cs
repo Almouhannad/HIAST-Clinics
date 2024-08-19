@@ -1,6 +1,6 @@
 ﻿using Application.Abstractions.CQRS.Commands;
 
-namespace Application.Employees.Commands.Create;
+namespace Application.Employees.Commands.CreateEmployee;
 
 public class CreateEmployeeCommand : ICommand
 {

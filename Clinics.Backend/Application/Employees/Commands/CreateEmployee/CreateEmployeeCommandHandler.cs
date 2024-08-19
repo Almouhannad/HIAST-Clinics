@@ -5,7 +5,7 @@ using Domain.Repositories;
 using Domain.Shared;
 using Domain.UnitOfWork;
 
-namespace Application.Employees.Commands.Create;
+namespace Application.Employees.Commands.CreateEmployee;
 
 public class CreateEmployeeCommandHandler : ICommandHandler<CreateEmployeeCommand>
 {
@@ -53,7 +53,7 @@ public class CreateEmployeeCommandHandler : ICommandHandler<CreateEmployeeComman
             //return Result.Failure(new Error("Persistence.UnableToSaveTransaction", exp.Message));
 
             // For deployment
-            return Result.Failure(Domain.Errors.PersistenceErrors.UnableToCompleteTransaction);
+            return Result.Failure(PersistenceErrors.UnableToCompleteTransaction);
         }
 
         return Result.Success();

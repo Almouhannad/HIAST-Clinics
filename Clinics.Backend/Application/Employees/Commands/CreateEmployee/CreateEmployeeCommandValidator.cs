@@ -2,7 +2,7 @@
 using Domain.ValidationConstants.RegularExpressions;
 using FluentValidation;
 
-namespace Application.Employees.Commands.Create;
+namespace Application.Employees.Commands.CreateEmployee;
 
 public class CreateEmployeeCommandValidator : AbstractValidator<CreateEmployeeCommand>
 {

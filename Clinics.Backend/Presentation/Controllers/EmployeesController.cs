@@ -1,4 +1,4 @@
-﻿using Application.Employees.Commands.Create;
+﻿using Application.Employees.Commands.CreateEmployee;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Controllers.Base;
