@@ -1,4 +1,5 @@
 ﻿using Domain.Primitives;
+using Domain.Shared;
 
 namespace Domain.Repositories.Base
 {
@@ -12,6 +13,8 @@ namespace Domain.Repositories.Base
         #region Create operation
 
         public void Create(TEntity entity);
+
+        public Task<Result<TEntity>> CreateWithEntityResultAsync (TEntity entity);
 
         #endregion
 

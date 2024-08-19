@@ -1,5 +1,7 @@
-﻿using Domain.Primitives;
+﻿using Domain.Errors;
+using Domain.Primitives;
 using Domain.Repositories.Base;
+using Domain.Shared;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Context;
 using Persistence.Repositories.Specifications.Base;
@@ -35,6 +37,20 @@ public class Repositroy<TEntity> : IRepository<TEntity> where TEntity : Entity
     public virtual void Create(TEntity entity)
     {
         _context.Set<TEntity>().Add(entity);
+    }
+
+    public virtual async Task<Result<TEntity>> CreateWithEntityResultAsync (TEntity entity)
+    {
+        var entry = await _context.Set<TEntity>().AddAsync(entity);
+        try
+        {
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception)
+        {
+            return Result.Failure<TEntity>(PersistenceErrors.UnableToCompleteTransaction);
+        }
+        return Result.Success<TEntity>(entry.Entity);
     }
 
     #endregion
