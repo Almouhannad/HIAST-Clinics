@@ -1,29 +1,29 @@
 /*--------------------------------------------------------------
   # General Styling & Shared Classes
   --------------------------------------------------------------*/
-* {
+::ng-deep * {
     color: var(--default-color);
     background-color: var(--background-color);
     font-family: var(--default-font);
 }
 
-a {
+::ng-deep a {
     color: var(--accent-color);
     text-decoration: none;
     transition: 0.3s;
 }
 
-a:hover {
+::ng-deep a:hover {
     color: color-mix(in srgb, var(--accent-color), transparent 25%);
     text-decoration: none;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+::ng-deep h1,
+::ng-deep h2,
+::ng-deep h3,
+::ng-deep h4,
+::ng-deep h5,
+::ng-deep h6 {
     color: var(--heading-color);
     font-family: var(--heading-font);
 }
