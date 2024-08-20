@@ -5,8 +5,13 @@
     color: var(--heading-color);
 }
 
+.custom-buttons .btn-outline-primary{
+    font-weight: 650;
+}
+
 .custom-buttons .btn-outline-secondary {
     color: var(--heading-color);
+    font-weight: 650;
     border: none;
 }
 
