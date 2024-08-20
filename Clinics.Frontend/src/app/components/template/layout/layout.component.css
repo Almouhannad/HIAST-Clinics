@@ -1,0 +1,85 @@
+/* #region General */
+::ng-deep .custom-child{
+    color: var(--default-color);
+    background-color: var(--background-color);
+    font-family: var(--default-font);
+}
+
+::ng-deep .custom-child a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+::ng-deep .custom-child a:hover {
+    color: color-mix(in srgb, var(--accent-color), transparent 25%);
+    text-decoration: none;
+}
+
+::ng-deep .custom-child h1,
+::ng-deep .custom-child h2,
+::ng-deep .custom-child h3,
+::ng-deep .custom-child h4,
+::ng-deep .custom-child h5,
+::ng-deep .custom-child h6,
+::ng-deep .custom-child p {
+    color: var(--heading-color);
+    font-family: var(--heading-font);
+}
+
+/* #endregion */
+
+/* #region Sections */
+::ng-deep section,
+::ng-deep .section {
+    color: var(--default-color);
+    background-color: var(--background-color);
+    padding: 60px 0;
+    scroll-margin-top: 72px;
+    overflow: clip;
+}
+::ng-deep .section-title {
+    text-align: center;
+    padding-bottom: 30px;
+    position: relative;
+}
+
+::ng-deep .section-title h2 {
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+::ng-deep .section-title h2:before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 160px;
+    height: 1px;
+    background: color-mix(in srgb, var(--default-color), transparent 60%);
+    left: 0;
+    right: 0;
+    bottom: 1px;
+    margin: auto;
+}
+
+::ng-deep .section-title h2::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 160px;
+    height: 3px;
+    background: var(--accent-color);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+::ng-deep .section-title p {
+    margin-bottom: 0;
+}
+
+/* #endregion */
