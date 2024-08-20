@@ -131,11 +131,11 @@
     box-shadow: 0px 0 18px rgba(0, 0, 0, 0.1);
 }
 
-/* .scrolled .header .topbar {
+.scrolled .header .topbar {
     height: 0;
     visibility: hidden;
     overflow: hidden;
-} */
+}
 
 /* #endregion */
 

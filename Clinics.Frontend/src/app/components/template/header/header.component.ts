@@ -7,4 +7,16 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  //#region Selected button
+  private selectedButton: string = 'Main Menu';
+
+  isSelected(buttonName: string): boolean {
+    return this.selectedButton === buttonName;
+  }
+
+  selectButton(buttonName: string): void {
+    this.selectedButton = buttonName;
+  }
+  //#endregion
+
 }

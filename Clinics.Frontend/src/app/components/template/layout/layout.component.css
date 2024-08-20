@@ -40,7 +40,7 @@
 }
 ::ng-deep .section-title {
     text-align: center;
-    padding-bottom: 60px;
+    padding-bottom: 30px;
     position: relative;
 }
 
@@ -69,7 +69,7 @@
     content: "";
     position: absolute;
     display: block;
-    width: 60px;
+    width: 160px;
     height: 3px;
     background: var(--accent-color);
     left: 0;
