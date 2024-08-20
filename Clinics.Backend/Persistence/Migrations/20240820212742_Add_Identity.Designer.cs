@@ -12,7 +12,7 @@ using Persistence.Context;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ClinicsDbContext))]
-    [Migration("20240820202107_Add_Identity")]
+    [Migration("20240820212742_Add_Identity")]
     partial class Add_Identity
     {
         /// <inheritdoc />
@@ -28,10 +28,7 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.Identity.UserRoles.Role", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()

@@ -10,6 +10,8 @@ public class RoleConfiguration : IEntityTypeConfiguration<Role>
     {
         builder.ToTable(nameof(Role));
 
+        builder.Property(role => role.Id).ValueGeneratedNever();
+
         builder.Property(role => role.Name)
             .HasMaxLength(50);
 
