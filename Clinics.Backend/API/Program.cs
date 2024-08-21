@@ -126,6 +126,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+#region CORS
+// TODO: Configure allows
+app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
+#endregion
+
+
+
 app.UseAuthentication();
 
 app.UseAuthorization();
