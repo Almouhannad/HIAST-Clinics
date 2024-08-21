@@ -1,5 +1,6 @@
 ﻿using Application.Abstractions.JWT;
 using Domain.Entities.Identity.Users;
+using Domain.Entities.People.Shared;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -17,14 +18,19 @@ public sealed class JWTProvider : IJWTProvider
         _options = options.Value;
     }
 
-    public string Generate(User user)
+    public string Generate(User user, PersonalInfo? personalInfo = null)
     {
-        var claims = new Claim[]
+        var claims = new List<Claim>
         {
+            new("Id", user.Id.ToString()),
             new(ClaimTypes.Name, user.UserName),
             new(ClaimTypes.Role, user.Role.Name)
-
         };
+
+        if (personalInfo is not null)
+        {
+            claims.Add(new Claim("FullName", personalInfo.FullName));
+        }
 
         var signingCredentials = new SigningCredentials(
             new SymmetricSecurityKey(
@@ -34,7 +40,7 @@ public sealed class JWTProvider : IJWTProvider
         var token = new JwtSecurityToken(
             _options.Issuer,
             _options.Audience,
-            claims,
+            claims.ToArray(),
             null,
             DateTime.UtcNow.AddDays(30),
             signingCredentials);

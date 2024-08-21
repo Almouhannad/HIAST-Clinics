@@ -8,27 +8,16 @@ namespace Application.Users.Commands.Login;
 
 public class LoginResponse
 {
-    public int Id { get; set; }
-    public string UserName { get; set; } = null!;
     public string JWT { get; set; } = null!;
-    public string FullName { get; set; } = null!;
 
-    public static Result<LoginResponse> GetResponse(User user, string jwt, PersonalInfo? personalInfo = null)
+    public static Result<LoginResponse> GetResponse(string jwt)
     {
+        if (jwt is null)
+            return Result.Failure< LoginResponse>(IdentityErrors.NotFound);
         var response = new LoginResponse
         {
-            Id = user.Id,
-            UserName = user.UserName,
             JWT = jwt
         };
-        if (personalInfo is null)
-        {
-            if (user.Role != Roles.Admin)
-                return Result.Failure<LoginResponse>(IdentityErrors.NotFound);
-            response.FullName = Roles.AdminName;
-            return response;
-        }
-        response.FullName = personalInfo.FullName;
         return response;
     }
 }
