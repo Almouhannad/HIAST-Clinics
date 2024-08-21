@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Persistence.Context;
 using Persistence.Identity.PasswordsHashing;
 using Persistence.Repositories.Base;
+using Persistence.Repositories.Users.Specifications;
 
 namespace Persistence.Repositories.Users;
 
@@ -54,6 +55,45 @@ public class UserRepository : Repositroy<User>, IUserRepository
 
         return Result.Success<User?>(userResult.Value);
 
+    }
+    #endregion
+
+    #region Get doctor user by user name full
+    public async Task<Result<DoctorUser>> GetDoctorUserByUserNameFullAsync(string username)
+    {
+        // This is a multi level query, so using specification pattern in this case is useless
+        var query
+            = _context.Set<DoctorUser>()
+            .Include(doctroUser => doctroUser.User)
+                .ThenInclude(user => user.Role)
+            .Where(doctorUser => doctorUser.User.UserName == username)
+            .Include(doctorUser => doctorUser.Doctor)
+                .ThenInclude(doctor => doctor.PersonalInfo);
+        var result = await query.ToListAsync();
+
+        if (result.Count != 1)
+            return Result.Failure<DoctorUser>(IdentityErrors.NotFound);
+
+        return result.First();
+    }
+    #endregion
+
+    #region Get receptionist user by user name full
+    public async Task<Result<ReceptionistUser>> GetReceptionistUserByUserNameFullAsync(string username)
+    {
+        var query
+            = _context.Set<ReceptionistUser>()
+            .Include(receptionistUser => receptionistUser.User)
+                .ThenInclude(user => user.Role)
+            .Where(receptionistUser => receptionistUser.User.UserName == username)
+            .Include(receptionistUser => receptionistUser.PersonalInfo);
+
+        var result = await query.ToListAsync();
+
+        if (result.Count != 1)
+            return Result.Failure<ReceptionistUser>(IdentityErrors.NotFound);
+
+        return result.First();
     }
     #endregion
 }

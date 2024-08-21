@@ -2,7 +2,7 @@
 using Persistence.Repositories.Specifications.Base;
 using System.Linq.Expressions;
 
-namespace Persistence.Repositories.Users;
+namespace Persistence.Repositories.Users.Specifications;
 
 public class FullUserSpecification : Specification<User>
 {
