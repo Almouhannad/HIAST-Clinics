@@ -5,6 +5,10 @@
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "strict": true,
+    
+    // To avoid initialization of properties in classes
+    "strictPropertyInitialization": false,
+
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,

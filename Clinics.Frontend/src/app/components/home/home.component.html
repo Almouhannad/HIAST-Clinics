@@ -10,7 +10,7 @@
             <div class="welcome position-relative">
                 <h2 style="margin-left: 0.5em">المركز الطبي</h2>
                 <br>
-                <p style="font-weight: 500; color:var(--heading-color);">لدى مركز الدراسات والبحوث العلمية</p>
+                <p style="font-weight: 500; color:var(--heading-color);">في مركز الدراسات والبحوث العلمية</p>
             </div>
 
             <div class="content row gy-4">
@@ -91,9 +91,9 @@
                             <h4>د. أحمد حافظ</h4>
                             <span>اخصائي جراحة وجه وفكين</span>
                             <div class="social">
-                                <a href=""><i class="bi bi-telephone"></i></a>
-                                <a href=""><i class="bi bi-envelope"></i></a>
-                                <a href=""><i class="bi bi-whatsapp"></i></a>
+                                <a><i class="bi bi-telephone"></i></a>
+                                <a><i class="bi bi-envelope"></i></a>
+                                <a><i class="bi bi-whatsapp"></i></a>
                             </div>
                         </div>
                     </div>
@@ -106,9 +106,9 @@
                             <h4>د. زهراء كنجو</h4>
                             <span>اخصائية تغذية</span>
                             <div class="social">
-                                <a href=""><i class="bi bi-telephone"></i></a>
-                                <a href=""><i class="bi bi-envelope"></i></a>
-                                <a href=""><i class="bi bi-whatsapp"></i></a>
+                                <a><i class="bi bi-telephone"></i></a>
+                                <a><i class="bi bi-envelope"></i></a>
+                                <a><i class="bi bi-whatsapp"></i></a>
                             </div>
                         </div>
                     </div>
@@ -121,9 +121,9 @@
                             <h4>د. رغدان ربيع</h4>
                             <span>اخصائي أمراض قلبية</span>
                             <div class="social">
-                                <a href=""><i class="bi bi-telephone"></i></a>
-                                <a href=""><i class="bi bi-envelope"></i></a>
-                                <a href=""><i class="bi bi-whatsapp"></i></a>
+                                <a><i class="bi bi-telephone"></i></a>
+                                <a><i class="bi bi-envelope"></i></a>
+                                <a><i class="bi bi-whatsapp"></i></a>
                             </div>
                         </div>
                     </div>
@@ -136,9 +136,9 @@
                             <h4>د. شام محمد</h4>
                             <span>اخصائية علاج فيزيائي</span>
                             <div class="social">
-                                <a href=""><i class="bi bi-telephone"></i></a>
-                                <a href=""><i class="bi bi-envelope"></i></a>
-                                <a href=""><i class="bi bi-whatsapp"></i></a>
+                                <a><i class="bi bi-telephone"></i></a>
+                                <a><i class="bi bi-envelope"></i></a>
+                                <a><i class="bi bi-whatsapp"></i></a>
                             </div>
                         </div>
                     </div>
@@ -201,16 +201,9 @@
 
     <!-- #region login pop-up -->
     <ng-template #loginModal let-modal>
-        <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">تسجيل الدخول</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                (click)="modal.dismiss('Cross click')"></button>
-        </div>
         <div class="modal-body">
-            <app-login-form></app-login-form>
+            <app-login-form [parentModal]="modal"></app-login-form>
         </div>
-        <!-- <div class="modal-footer">
-        </div> -->
     </ng-template>
     <!-- #endregion -->
 

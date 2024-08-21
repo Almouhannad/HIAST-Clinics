@@ -1,1 +1,64 @@
-<p>login-form works!</p>
+<div class="custom-child" dir="rtl">
+    <div>
+
+        <div class="text-center" >
+            <h3 style="font-weight: 800;">تسجيل الدخول</h3>
+        </div>
+
+        <hr>
+
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="text-center" autocomplete="off">
+
+            <!-- To avoid first field auto focus -->
+            <div class="form-group">
+                <input type="text" autofocus="autofocus" style="display:none" />
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="username" class="col-form-label custom-label mb-2">اسم المستخدم <span class="text-danger">*</span></label>
+                <input type="text" class="form-control text-center custom-input"
+                placeholder="ادخل اسم المستخدم" dir="ltr"
+                [(ngModel)]="formModel.userName" name="userName"
+                #userName="ngModel" required maxlength="50"
+                >
+
+                <div *ngIf="(userName.touched || userName.dirty) && userName.errors" class="mt-2">
+                    <span class="text-danger">
+                        {{
+                            userName.errors['required'] ? 'هذا الحقل مطلوب'
+                            : ''
+                        }}
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="password" class="col-form-label custom-label mb-2">كلمة المرور <span class="text-danger">*</span></label>
+                <input type="password" class="form-control text-center custom-input mb-2"
+                placeholder="ادخل كلمة المرور" dir="ltr"
+                [(ngModel)]="formModel.password" name="password"
+                #password="ngModel" required maxlength="50"
+                >
+
+                <div *ngIf="(password.touched || password.dirty) && password.errors" class="mt-2">
+                    <span class="text-danger">
+                        {{
+                            password.errors['required'] ? 'هذا الحقل مطلوب'
+                            : ''
+                        }}
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="d-grid gap-3">
+                <button
+                type="submit" class="btn btn-outline-primary"
+                [disabled]="!loginForm.dirty || loginForm.invalid">دخول</button>
+
+                <button type="button" class="btn btn-outline-secondary custom-cancel-button"
+                (click)="parentModal.dismiss()">الغاء</button>
+            </div>
+        </form>
+    </div>
+</div>

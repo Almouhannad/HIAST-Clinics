@@ -12,6 +12,7 @@ import { HeaderComponent } from './components/template/header/header.component';
 import { FooterComponent } from './components/template/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginFormComponent } from './components/Authentication/login-form/login-form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { LoginFormComponent } from './components/Authentication/login-form/login
     AppRoutingModule,
     NgbModule,
     ToastrModule.forRoot(),
+    FormsModule,
   ],
 
   // creators of services that this module contributes to the
