@@ -22,8 +22,9 @@
                             للاستفادة من خدمات هذا التطبيق، يحب عليك تسجيل الدخول أولاً
                         </p>
                         <div class="text-center">
-                            <a href="#about" class="more-btn"><span>تسجيل الدخول </span> <i
-                                    class="bi bi-chevron-right"></i></a>
+                            <button (click)="openLoginForm(loginModal)" class="btn more-btn">
+                                <a>تسجيل الدخول<i class="bi bi-chevron-right"></i></a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -196,6 +197,21 @@
         </div>
 
     </section>
+    <!-- #endregion -->
+
+    <!-- #region login pop-up -->
+    <ng-template #loginModal let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">تسجيل الدخول</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <app-login-form></app-login-form>
+        </div>
+        <!-- <div class="modal-footer">
+        </div> -->
+    </ng-template>
     <!-- #endregion -->
 
 </div>

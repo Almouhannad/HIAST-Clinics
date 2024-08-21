@@ -11,6 +11,7 @@ import { LayoutComponent } from './components/template/layout/layout.component';
 import { HeaderComponent } from './components/template/header/header.component';
 import { FooterComponent } from './components/template/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
+import { LoginFormComponent } from './components/Authentication/login-form/login-form.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { HomeComponent } from './components/home/home.component';
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    LoginFormComponent
   ],
   
   // identifies the root component that Angular should
