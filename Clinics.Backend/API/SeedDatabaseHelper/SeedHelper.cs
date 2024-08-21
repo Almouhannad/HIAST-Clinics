@@ -1,4 +1,5 @@
-﻿using Domain.Entities.Medicals.Medicines.MedicineFormValues;
+﻿using Domain.Entities.Identity.UserRoles;
+using Domain.Entities.Medicals.Medicines.MedicineFormValues;
 using Domain.Entities.People.Doctors.Shared.Constants.DoctorStatusValues;
 using Domain.Entities.People.Employees.Relations.EmployeeFamilyMembers.FamilyRoleValues;
 using Domain.Entities.People.Shared.GenderValues;
@@ -23,6 +24,9 @@ public class SeedHelper
 
             var seedMedicineForms = serviceScope.ServiceProvider.GetRequiredService<ISeed<MedicineForm>>();
             await seedMedicineForms.Seed();
+
+            var seedUserRoles = serviceScope.ServiceProvider.GetRequiredService<ISeed<Role>>();
+            await seedUserRoles.Seed();
         }
     }
 }
