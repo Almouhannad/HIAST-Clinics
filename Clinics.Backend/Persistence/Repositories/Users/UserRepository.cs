@@ -21,10 +21,13 @@ public class UserRepository : Repositroy<User>, IUserRepository
     #endregion
 
     #region Create method
-    public override Task<Result<User>> CreateAsync(User entity)
+    public override async Task<Result<User>> CreateAsync(User entity)
     {
         _context.Entry(entity.Role).State = EntityState.Unchanged;
-        return base.CreateAsync(entity);
+        var passwordResult = entity.SetHashedPassword(_passwordHasher.Hash(entity.HashedPassword));
+        if (passwordResult.IsFailure)
+            return Result.Failure<User>(passwordResult.Error);
+        return await base.CreateAsync(entity);
     }
     #endregion
 
@@ -95,5 +98,50 @@ public class UserRepository : Repositroy<User>, IUserRepository
 
         return result.First();
     }
+    #endregion
+
+    #region Register doctor
+    public async Task<Result<DoctorUser>> RegisterDoctorAsync(DoctorUser doctorUser)
+    {
+        _context.Entry(doctorUser.User.Role).State = EntityState.Unchanged;
+        _context.Entry(doctorUser.Doctor.Status).State = EntityState.Unchanged;
+
+        var passwordResult = doctorUser.User.SetHashedPassword(_passwordHasher.Hash(doctorUser.User.HashedPassword));
+        if (passwordResult.IsFailure)
+            return Result.Failure<DoctorUser>(passwordResult.Error);
+        try
+        {
+            var createdDoctorUser = await _context.Set<DoctorUser>().AddAsync(doctorUser);
+            await _context.SaveChangesAsync();
+            return createdDoctorUser.Entity;
+        }
+        catch (Exception)
+        {
+            return Result.Failure<DoctorUser>(IdentityErrors.UnableToRegister);
+        }
+    }
+    #endregion
+
+    #region Register receptionist
+    public async Task<Result<ReceptionistUser>> RegisterReceptionistAsync(ReceptionistUser receptionistUser)
+    {
+        _context.Entry(receptionistUser.User.Role).State = EntityState.Unchanged;
+
+        var passwordResult = receptionistUser.User.SetHashedPassword(_passwordHasher.Hash(receptionistUser.User.HashedPassword));
+        if (passwordResult.IsFailure)
+            return Result.Failure<ReceptionistUser>(passwordResult.Error);
+
+        try
+        {
+            var createdreceptionistUser = await _context.Set<ReceptionistUser>().AddAsync(receptionistUser);
+            await _context.SaveChangesAsync();
+            return createdreceptionistUser.Entity;
+        }
+        catch (Exception)
+        {
+            return Result.Failure<ReceptionistUser>(IdentityErrors.UnableToRegister);
+        }
+    }
+
     #endregion
 }

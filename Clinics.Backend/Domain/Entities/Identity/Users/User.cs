@@ -27,6 +27,8 @@ public sealed class User : Entity
     #endregion
 
     #region Methods
+
+    #region Static factory
     public static Result<User> Create(string userName, string hashedPassword, string role)
     {
         if (userName is null || hashedPassword is null || role is null)
@@ -48,5 +50,18 @@ public sealed class User : Entity
 
         return new User(0, userName, hashedPassword, selectedRole.Value);
     }
+    #endregion
+
+    #region Set HASHED password
+    public Result SetHashedPassword(string hashedPassword)
+    {
+        if (hashedPassword is null)
+            return Result.Failure(DomainErrors.InvalidValuesError);
+
+        HashedPassword = hashedPassword;
+        return Result.Success();
+    }
+    #endregion
+
     #endregion
 }
