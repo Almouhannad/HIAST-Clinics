@@ -11,7 +11,7 @@ public class LoginResponse
     public int Id { get; set; }
     public string UserName { get; set; } = null!;
     public string JWT { get; set; } = null!;
-    public PersonalInfo? PersonalInfo { get; set; } = null;
+    public string FullName { get; set; } = null!;
 
     public static Result<LoginResponse> GetResponse(User user, string jwt, PersonalInfo? personalInfo = null)
     {
@@ -25,10 +25,10 @@ public class LoginResponse
         {
             if (user.Role != Roles.Admin)
                 return Result.Failure<LoginResponse>(IdentityErrors.NotFound);
-            response.PersonalInfo = PersonalInfo.Create("admin", "", "").Value;
+            response.FullName = Roles.AdminName;
             return response;
         }
-        response.PersonalInfo = personalInfo;
+        response.FullName = personalInfo.FullName;
         return response;
     }
 }
