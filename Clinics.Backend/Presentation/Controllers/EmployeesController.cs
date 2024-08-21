@@ -1,5 +1,6 @@
 ﻿using Application.Employees.Commands.AttachFamilyMemberToEmployee;
 using Application.Employees.Commands.CreateEmployee;
+using Domain.Entities.Identity.UserRoles;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,7 @@ public class EmployeesController : ApiController
     }
     #endregion
 
-    [Authorize]
+    [Authorize(Roles = Roles.AdminName)]
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateEmployeeCommand command)
     {
@@ -26,7 +27,7 @@ public class EmployeesController : ApiController
             return HandleFailure(result);
         return Created();
     }
-
+    [Authorize(Roles = Roles.DoctorName)]
     [HttpPut("FamilyMembers")]
     public async Task<IActionResult> AttachFamilyMember([FromBody] AttachFamilyMemberToEmployeeCommand command)
     {
