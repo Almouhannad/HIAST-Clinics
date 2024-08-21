@@ -22,14 +22,14 @@ public sealed class JWTProvider : IJWTProvider
     {
         var claims = new List<Claim>
         {
-            new("Id", user.Id.ToString()),
-            new(ClaimTypes.Name, user.UserName),
-            new(ClaimTypes.Role, user.Role.Name)
+            new("id", user.Id.ToString()),
+            new("userName", user.UserName),
+            new("role", user.Role.Name)
         };
 
         if (personalInfo is not null)
         {
-            claims.Add(new Claim("FullName", personalInfo.FullName));
+            claims.Add(new Claim("fullName", personalInfo.FullName));
         }
 
         var signingCredentials = new SigningCredentials(
