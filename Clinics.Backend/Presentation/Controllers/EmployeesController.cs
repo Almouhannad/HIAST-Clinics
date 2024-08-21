@@ -1,6 +1,7 @@
 ﻿using Application.Employees.Commands.AttachFamilyMemberToEmployee;
 using Application.Employees.Commands.CreateEmployee;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Controllers.Base;
 
@@ -16,7 +17,7 @@ public class EmployeesController : ApiController
     }
     #endregion
 
-
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateEmployeeCommand command)
     {

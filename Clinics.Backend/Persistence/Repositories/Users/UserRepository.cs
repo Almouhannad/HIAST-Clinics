@@ -4,6 +4,7 @@ using Domain.Repositories;
 using Domain.Shared;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Context;
+using Persistence.Identity.PasswordsHashing;
 using Persistence.Repositories.Base;
 
 namespace Persistence.Repositories.Users;
@@ -11,8 +12,10 @@ namespace Persistence.Repositories.Users;
 public class UserRepository : Repositroy<User>, IUserRepository
 {
     #region Ctor DI
-    public UserRepository(ClinicsDbContext context) : base(context)
+    private readonly IPasswordHasher _passwordHasher;
+    public UserRepository(ClinicsDbContext context, IPasswordHasher passwordHasher) : base(context)
     {
+        _passwordHasher = passwordHasher;
     }
     #endregion
 
@@ -39,4 +42,18 @@ public class UserRepository : Repositroy<User>, IUserRepository
     }
     #endregion
 
+    #region Verify password
+    public async Task<Result<User?>> VerifyPasswordAsync(string userName, string password)
+    {
+        var userResult = await GetByUserNameFullAsync(userName);
+        if (userResult.IsFailure)
+            return Result.Failure<User?>(userResult.Error);
+
+        if (!_passwordHasher.Verify(password, userResult.Value.HashedPassword))
+            return Result.Success<User?>(null);
+
+        return Result.Success<User?>(userResult.Value);
+
+    }
+    #endregion
 }
