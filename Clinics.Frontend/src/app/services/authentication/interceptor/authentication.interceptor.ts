@@ -15,7 +15,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const jwt = JWTHandler.getJwtFromCookie();
-    console.log(req);
+    // console.log(req);
     req = req.clone({
       headers: this.HTTP_HEADERS
     });
@@ -26,7 +26,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
         }
       });
     }
-    console.log(req);
+    // console.log(req);
     return next.handle(req);
   }
 }
