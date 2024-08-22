@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserData } from '../../../classes/Authentication/user-data';
 import { AuthenticationService } from '../../../services/authentication/authentication.service';
 import { Router } from '@angular/router';
-import { HomeComponent } from '../../home/home.component';
+import { Roles } from '../../../classes/Authentication/roles';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -23,6 +23,12 @@ export class HeaderComponent {
   //#endregion
 
   //#region Variables
+
+  //#region Roles
+    readonly ADMIN: string = Roles.Admin;
+    readonly DOCTOR: string = Roles.Doctor;
+    readonly RECEPTIONIST: string = Roles.Receptionist;
+  //#endregion
 
   //#region Dropdown
   showDropdown: boolean = false;
@@ -52,6 +58,7 @@ export class HeaderComponent {
   onLogout(): void {
     this.authenticationService.logout();
     this.userData = null;
+    this.showDropdown = false;
     this.router.navigate(['']);
   }
   //#endregion

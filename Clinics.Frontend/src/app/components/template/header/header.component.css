@@ -39,6 +39,12 @@
 
 }
 
+.app-name-container {
+    text-align: center; /* or any other alignment you prefer */
+}
+
+
+
 /* #endregion */
 
 /* #region Header*/
