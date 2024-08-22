@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { LoginCommand } from '../../../classes/Authentication/Login/login-command';
-import { AuthenticationService } from '../../../services/authentication/authentication.service';
-import { UserData } from '../../../classes/Authentication/user-data';
+import { LoginCommand } from '../../classes/Login/login-command';
+import { AuthenticationService } from '../../services/authentication.service';
+import { UserData } from '../../classes/user-data';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

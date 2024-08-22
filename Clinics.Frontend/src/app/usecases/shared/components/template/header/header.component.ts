@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { UserData } from '../../../classes/Authentication/user-data';
-import { AuthenticationService } from '../../../services/authentication/authentication.service';
+import { UserData } from '../../../../../authentication/classes/user-data';
+import { AuthenticationService } from '../../../../../authentication/services/authentication.service';
 import { Router } from '@angular/router';
-import { Roles } from '../../../classes/Authentication/roles';
+import { Roles } from '../../../../../authentication/classes/roles';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 

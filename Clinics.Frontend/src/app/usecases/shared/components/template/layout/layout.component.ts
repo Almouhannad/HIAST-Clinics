@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserData } from '../../../classes/Authentication/user-data';
-import { AuthenticationService } from '../../../services/authentication/authentication.service';
+import { UserData } from '../../../../../authentication/classes/user-data';
+import { AuthenticationService } from '../../../../../authentication/services/authentication.service';
 
 @Component({
   selector: 'app-layout',

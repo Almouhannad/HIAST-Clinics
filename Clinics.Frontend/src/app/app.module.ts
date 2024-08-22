@@ -4,22 +4,22 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './components/root/app.component';
+import { AppComponent } from './usecases/shared/components/root/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { LayoutComponent } from './components/template/layout/layout.component';
-import { HeaderComponent } from './components/template/header/header.component';
-import { FooterComponent } from './components/template/footer/footer.component';
-import { HomeComponent } from './components/home/home.component';
-import { LoginFormComponent } from './components/Authentication/login-form/login-form.component';
+import { LayoutComponent } from './usecases/shared/components/template/layout/layout.component';
+import { HeaderComponent } from './usecases/shared/components/template/header/header.component';
+import { FooterComponent } from './usecases/shared/components/template/footer/footer.component';
+import { HomeComponent } from './usecases/shared/components/home/home.component';
+import { LoginFormComponent } from './authentication/components/login-form/login-form.component';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AuthenticationService } from './services/authentication/authentication.service';
-import { AuthenticationInterceptor } from './services/authentication/interceptor/authentication.interceptor';
-import { ForbiddenComponent } from './components/errors/forbidden/forbidden.component';
-import { NotFoundComponent } from './components/errors/not-found/not-found.component';
-import { TestSignalRComponent } from './test-signal-r/test-signal-r.component';
-import { SignalRService } from './notifications/signal-r.service';
+import { AuthenticationService } from './authentication/services/authentication.service';
+import { AuthenticationInterceptor } from './authentication/services/interceptor/authentication.interceptor';
+import { ForbiddenComponent } from './usecases/shared/components/errors/forbidden/forbidden.component';
+import { NotFoundComponent } from './usecases/shared/components/errors/not-found/not-found.component';
+import { TestSignalRComponent } from './notifications/components/test-signal-r/test-signal-r.component';
+import { SignalRService } from './notifications/services/signal-r.service';
 
 
 @NgModule({

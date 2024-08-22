@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HubConnectionBuilder } from '@microsoft/signalr';
-import * as config from '../../../config'
+import * as config from '../../../../config'
 
 @Injectable({
   providedIn: 'root'

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SignalRService } from '../notifications/signal-r.service';
+import { SignalRService } from '../../services/signal-r.service';
 
 @Component({
   selector: 'app-test-signal-r',

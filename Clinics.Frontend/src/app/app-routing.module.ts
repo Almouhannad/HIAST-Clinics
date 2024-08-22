@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { RoleGuard } from './services/authentication/guards/role-guard';
-import { Roles } from './classes/Authentication/roles';
-import { ForbiddenComponent } from './components/errors/forbidden/forbidden.component';
-import { NotFoundComponent } from './components/errors/not-found/not-found.component';
-import { TestSignalRComponent } from './test-signal-r/test-signal-r.component';
+import { HomeComponent } from './usecases/shared/components/home/home.component';
+import { RoleGuard } from './authentication/services/guards/role-guard';
+import { Roles } from './authentication/classes/roles';
+import { ForbiddenComponent } from './usecases/shared/components/errors/forbidden/forbidden.component';
+import { NotFoundComponent } from './usecases/shared/components/errors/not-found/not-found.component';
+import { TestSignalRComponent } from './notifications/components/test-signal-r/test-signal-r.component';
 
 const routes: Routes = [
   {

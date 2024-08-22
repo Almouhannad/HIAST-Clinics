@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { AppModule } from '../../app.module';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import * as config from "../../../../config";
-import { LoginCommand } from '../../classes/Authentication/Login/login-command';
-import { LoginResponse } from '../../classes/Authentication/Login/login-response';
+import { LoginCommand } from '../classes/Login/login-command';
+import { LoginResponse } from '../classes/Login/login-response';
 import { catchError, map, Observable, of } from 'rxjs';
-import { LoginResult } from '../../classes/Authentication/Login/login-result';
+import { LoginResult } from '../classes/Login/login-result';
 import { JWTHandler } from './jwtHandler';
-import { UserData } from '../../classes/Authentication/user-data';
-import { Roles } from '../../classes/Authentication/roles';
+import { UserData } from '../classes/user-data';
+import { Roles } from '../classes/roles';
 
 @Injectable({
   providedIn: AppModule
