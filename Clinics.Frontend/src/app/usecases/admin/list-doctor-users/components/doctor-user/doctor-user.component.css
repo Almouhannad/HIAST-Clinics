@@ -12,14 +12,16 @@
     border-bottom: 1px solid var(--accent-color);
 }
 
-.custom-edit-button button {
+.custom-edit-button button:hover {
     font-weight: 900;
     background-color: inherit;
     border-color: var(--heading-color);
     color: var(--heading-color);
 }
 
-.custom-edit-button button:hover {
+.custom-edit-button button {
+    font-weight: 900;
+
     background-color: var(--heading-color);
     color: white;
 }
@@ -28,9 +30,9 @@
 
 /* #region collection item */
 .collection-item {
-    background-color: #dff7ff;
+    background-color: var(--background-color);
     text-align: center;
-    border: 1px solid color-mix(in srgb, var(--accent-color), transparent 35%);
+    border: 1px solid var(--accent-color);
     border-radius: 3%;
     padding: 80px 20px;
     transition: all ease-in-out 0.3s;

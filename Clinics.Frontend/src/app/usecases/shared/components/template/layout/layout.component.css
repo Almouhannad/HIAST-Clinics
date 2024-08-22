@@ -8,6 +8,10 @@
 app-footer {
     margin-top: auto;
 }
+
+.custom-header {
+    border-bottom: 0.1px solid color-mix(in srgb, var(--accent-color), transparent 85%);
+}
 /* #endregion */
 
 /* #region General */

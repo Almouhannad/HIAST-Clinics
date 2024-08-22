@@ -7,6 +7,14 @@
 
 .custom-buttons .btn-outline-primary {
     font-weight: 700;
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.custom-buttons .btn-outline-primary:hover {
+    font-weight: 700;
+    color: white;
+    border-color: var(--accent-color);
 }
 
 .custom-buttons .btn-outline-secondary {
@@ -16,13 +24,14 @@
 }
 
 .custom-buttons .btn-outline-secondary:hover {
-    box-shadow: inset 0 0 0 2px gray;
+    box-shadow: inset 0 0 0 2px var(--heading-color);
     background-color: inherit;
 }
 
 .navmenu .dropdown ul li a {
     cursor: pointer;
     font-weight: 700;
+    color: var(--heading-color);
 }
 
 .navmenu .dropdown ul li a {
@@ -194,7 +203,7 @@
 
     .navmenu a,
     .navmenu a:focus {
-        color: var(--nav-color);
+        color: var(--heading-color);
         font-size: 15px;
         padding: 0 2px;
         font-family: var(--nav-font);
@@ -222,7 +231,7 @@
         height: 2px;
         bottom: -6px;
         left: 0;
-        background-color: var(--nav-hover-color);
+        background-color: var(--accent-color);
         visibility: hidden;
         width: 0px;
         transition: all 0.3s ease-in-out 0s;
@@ -238,7 +247,7 @@
     .navmenu li:hover>a,
     .navmenu .active,
     .navmenu .active:focus {
-        color: var(--nav-hover-color);
+        color: var(--accent-color);
     }
 
     .navmenu .dropdown ul {
@@ -265,7 +274,7 @@
         padding: 10px 20px;
         font-size: 15px;
         text-transform: none;
-        color: var(--nav-dropdown-color);
+        color: var(--heading-color);
     }
 
     .navmenu .dropdown ul a i {
@@ -275,7 +284,7 @@
     .navmenu .dropdown ul a:hover,
     .navmenu .dropdown ul .active:hover,
     .navmenu .dropdown ul li:hover>a {
-        color: var(--nav-dropdown-hover-color);
+        color: var(--accent-color);
     }
 
     .navmenu .dropdown ul {

@@ -10,7 +10,7 @@
 
                 <div class="container app-name-container m-auto">
                     <h1 class="h3 custom-app-name mb-4">المركز الطبي - برنامج الأطباء</h1>
-                    <h3 dir="rtl" *ngIf="userData!==null" class="h5 text-primary">أهلاَ <span *ngIf="userData.role===DOCTOR">د.</span> {{userData.fullName}}!</h3>
+                    <h3 dir="rtl" *ngIf="userData!==null" class="h5" style="color:var(--accent-color);">أهلاَ <span *ngIf="userData.role===DOCTOR">د.</span> {{userData.fullName}}!</h3>
                 </div>
 
                 <!-- #region unregistered buttons -->
