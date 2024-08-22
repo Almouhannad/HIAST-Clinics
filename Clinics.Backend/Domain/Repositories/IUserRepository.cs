@@ -13,6 +13,10 @@ public interface IUserRepository : IRepository<User>
     public Task<Result<User?>> VerifyPasswordAsync(string userName, string password);
     #endregion
 
+    #region Available username
+    public Task<Result<bool>> IsUserNameAvailableAsunc(string userName);
+    #endregion
+
     #region Doctor users
 
     #region Get doctor user by user name full

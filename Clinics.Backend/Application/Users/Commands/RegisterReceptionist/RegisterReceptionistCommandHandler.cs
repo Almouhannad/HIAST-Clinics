@@ -1,6 +1,7 @@
 ﻿using Application.Abstractions.CQRS.Commands;
 using Application.Users.Commands.RegisterDoctor;
 using Domain.Entities.Identity.Users;
+using Domain.Errors;
 using Domain.Repositories;
 using Domain.Shared;
 using Domain.UnitOfWork;
@@ -31,7 +32,15 @@ public class RegisterReceptionistCommandHandler : CommandHandlerBase<RegisterRec
             return Result.Failure<RegisterReceptionistResponse>(receptionistUserResult.Error);
         #endregion
 
-        #region 2. Register (save to DB)
+        #region 2. Verify unique username
+        var uniqueUserNameResult = await _userRepository.IsUserNameAvailableAsunc(request.UserName);
+        if (uniqueUserNameResult.IsFailure)
+            return Result.Failure<RegisterReceptionistResponse>(uniqueUserNameResult.Error);
+        if (uniqueUserNameResult.Value == false)
+            return Result.Failure<RegisterReceptionistResponse>(IdentityErrors.TakenUserName);
+        #endregion
+
+        #region 3. Register (save to DB)
         var registerResult = await _userRepository.RegisterReceptionistAsync(receptionistUserResult.Value);
         if (registerResult.IsFailure)
             return Result.Failure<RegisterReceptionistResponse>(registerResult.Error);

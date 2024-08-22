@@ -5,7 +5,7 @@ namespace Domain.Errors;
 public static class PersistenceErrors
 {
     public static Error UnableToCompleteTransaction =>
-        new("Persistence.UnableToCompleteTransaction", "حدثت مشكلة عند الاتصال مع قاعدة البيانات");
+        new("Persistence.UnableToCompleteTransaction", "لم يتم تنفيذ العملية، حدثت مشكلة عند الاتصال مع قاعدة البيانات");
 
     public static Error UnableToCreate =>
         new("Persistence.UnableToCreate", "فشلت عملية الإضافة");
@@ -20,5 +20,5 @@ public static class PersistenceErrors
         new("Persistence.NotFound", "الغرض المطلوب غير موجود");
 
     public static Error Unknown =>
-        new("Persistence.Unknown", "حدث خطأ غير متوقع");
+        new("Persistence.Unknown", "حدثت مشكلة عند الاتصال مع قاعدة البيانات");
 }

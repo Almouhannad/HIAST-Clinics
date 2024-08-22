@@ -61,6 +61,21 @@ public class UserRepository : Repositroy<User>, IUserRepository
     }
     #endregion
 
+    #region Available username
+    public async Task<Result<bool>> IsUserNameAvailableAsunc(string userName)
+    {
+        try
+        {
+            var query = _context.Set<User>().Where(user => user.UserName == userName);
+            return (await query.ToListAsync()).Count == 0;
+        }
+        catch (Exception)
+        {
+            return Result.Failure<bool>(PersistenceErrors.Unknown);
+        }
+    }
+    #endregion
+
     #region Doctor users
 
     #region Get doctor user by user name full
