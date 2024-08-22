@@ -13,6 +13,12 @@ import { FooterComponent } from './components/template/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginFormComponent } from './components/Authentication/login-form/login-form.component';
 import { FormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthenticationService } from './services/authentication/authentication.service';
+import { AuthenticationInterceptor } from './services/authentication/interceptor/authentication.interceptor';
+import { ForbiddenComponent } from './components/errors/forbidden/forbidden.component';
+import { NotFoundComponent } from './components/errors/not-found/not-found.component';
+
 
 @NgModule({
   imports: [
@@ -22,12 +28,16 @@ import { FormsModule } from '@angular/forms';
     NgbModule,
     ToastrModule.forRoot(),
     FormsModule,
+    HttpClientModule,
   ],
 
   // creators of services that this module contributes to the
   // global collection of services; they become accessible in
   // all parts of the app
-  providers: [],
+  providers: [
+    AuthenticationService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true},
+  ],
 
   // components and directives that belong to this module
   // the subset of declarations that should be visible and usable in
@@ -38,7 +48,9 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    ForbiddenComponent,
+    NotFoundComponent
   ],
   
   // identifies the root component that Angular should

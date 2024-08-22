@@ -33,37 +33,38 @@ public class LoginCommandHandler : CommandHandlerBase<LoginCommand, LoginRespons
             return Result.Failure<LoginResponse>(IdentityErrors.PasswordMismatch);
         #endregion
 
-        #region 2. Generate JWT
         User user = loginResult.Value!;
-        string token = _jwtProvider.Generate(user);
-        #endregion
 
-        #region 3. Generate Response
+        #region 2. Generate Response
 
-        #region 3.1. Admin
+        #region 2.1. Admin
         if (user.Role == Roles.Admin)
         {
-            return LoginResponse.GetResponse(user, token);
+            var token = _jwtProvider.Generate(user);
+            return LoginResponse.GetResponse(token);
         }
         #endregion
 
-        #region 3.2. Doctor
+        #region 2.2. Doctor
         if (user.Role == Roles.Doctor)
         {
             var doctorUserResult = await _userRepository.GetDoctorUserByUserNameFullAsync(user.UserName);
             if (doctorUserResult.IsFailure)
                 return Result.Failure<LoginResponse>(doctorUserResult.Error);
-            return LoginResponse.GetResponse(doctorUserResult.Value.User, token, doctorUserResult.Value.Doctor.PersonalInfo);
+
+            var token = _jwtProvider.Generate(user, doctorUserResult.Value.Doctor.PersonalInfo);
+            return LoginResponse.GetResponse(token);
         }
         #endregion
 
-        #region 3.3. Receptionist user
+        #region 2.3. Receptionist user
         if (user.Role == Roles.Receptionist)
         {
             var receptionistUser = await _userRepository.GetReceptionistUserByUserNameFullAsync(user.UserName);
             if (receptionistUser.IsFailure)
                 return Result.Failure<LoginResponse>(receptionistUser.Error);
-            return LoginResponse.GetResponse(receptionistUser.Value.User, token, receptionistUser.Value.PersonalInfo);
+            var token = _jwtProvider.Generate(user, receptionistUser.Value.PersonalInfo);
+            return LoginResponse.GetResponse(token);
         }
 
         #endregion

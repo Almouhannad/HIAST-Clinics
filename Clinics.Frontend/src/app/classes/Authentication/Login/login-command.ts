@@ -1,5 +1,5 @@
-export class LoginCommand {
-    
+export class LoginCommand
+{    
     public userName!: string;
     public password!: string;
 }
