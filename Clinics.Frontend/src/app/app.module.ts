@@ -26,7 +26,9 @@ import { NotFoundComponent } from './components/errors/not-found/not-found.compo
     BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 2500,
+    }),
     FormsModule,
     HttpClientModule,
   ],

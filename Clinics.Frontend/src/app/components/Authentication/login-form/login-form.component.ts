@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { LoginCommand } from '../../../classes/Authentication/Login/login-command';
 import { AuthenticationService } from '../../../services/authentication/authentication.service';
 import { UserData } from '../../../classes/Authentication/user-data';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login-form',
@@ -12,7 +13,9 @@ import { UserData } from '../../../classes/Authentication/user-data';
 export class LoginFormComponent {
 
   //#region CTOR DI
-  constructor(private authenticationService: AuthenticationService) {}
+  constructor(private authenticationService: AuthenticationService,
+    private toastrService: ToastrService
+  ) {}
   //#endregion
 
   //#region Inputs
@@ -46,6 +49,7 @@ export class LoginFormComponent {
             this.errorMessage = result.errorMessage!;
           }
           else{
+            this.toastrService.success("تم تسجيل الدخول بنجاح ✔");
             this.loggedIn.emit(this.authenticationService.getUserData()!);
           }
         }

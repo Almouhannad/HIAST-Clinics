@@ -4,6 +4,7 @@ import { AuthenticationService } from '../../../services/authentication/authenti
 import { Router } from '@angular/router';
 import { Roles } from '../../../classes/Authentication/roles';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,8 @@ export class HeaderComponent {
   //#region CTOR DI
   constructor(private authenticationService: AuthenticationService,
     private router: Router,
-    private modalService: NgbModal) { }
+    private modalService: NgbModal,
+    private toastrService: ToastrService) { }
   //#endregion
 
   //#region Inputs
@@ -57,6 +59,7 @@ export class HeaderComponent {
   //#region On logout
   onLogout(): void {
     this.authenticationService.logout();
+    this.toastrService.success("تم تسجيل الخروج بنجاح ✔");
     this.userData = null;
     this.showDropdown = false;
     this.router.navigate(['']);

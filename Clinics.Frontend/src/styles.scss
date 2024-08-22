@@ -2,7 +2,7 @@
 @import 'bootstrap/scss/bootstrap';
 
 // Toasts style
-@import "../node_modules/ngx-toastr/toastr-bs5-alert.scss";
+@import "./styles/toastr-style.scss";
 
 // Template constants
-@import "./templateConstants.css"
+@import "./styles/templateConstants.css"
