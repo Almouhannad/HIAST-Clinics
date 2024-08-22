@@ -49,7 +49,7 @@ builder.Services.AddHostedService<ServerTimeNotifier>();
 #endregion
 
 #region Add CORS
-
+builder.Services.AddCors();
 #endregion
 
 #region Link interfaces implemented in persistence
