@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
 import { Roles } from '../../../classes/Authentication/roles';
 import { UserData } from '../../../classes/Authentication/user-data';
@@ -9,22 +9,34 @@ import { UserData } from '../../../classes/Authentication/user-data';
 })
 export class RoleGuard implements CanActivate {
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const userData: UserData | null = this.authenticationService.getUserData();
     const requiredRole: string = route.data['role'];
 
+    // No required role
     if (!requiredRole)
         return true;
 
+    // No required role
     if (requiredRole === Roles.NotRegistered)
         return true;
 
+    // Reauired role, but not registered user
     if (!userData)
-        return false;
+    {
+      this.router.navigate(["errors/forbidden"]);
+      return false;
+    }
 
-    return userData.role === requiredRole;
+    if (userData.role !== requiredRole)
+    {
+      this.router.navigate(["errors/forbidden"]);
+      return false;
+    }
+    
+    return true;
     
   }
 

@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { RoleGuard } from './services/authentication/guards/role-guard';
 import { Roles } from './classes/Authentication/roles';
+import { ForbiddenComponent } from './components/errors/forbidden/forbidden.component';
+import { NotFoundComponent } from './components/errors/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,17 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [RoleGuard],
     data: { role: Roles.NotRegistered }
+  },
+  {
+    path: 'errors/forbidden',
+    component: ForbiddenComponent,
+    canActivate: [RoleGuard],
+    data: { role: Roles.NotRegistered }
+  },
+  // Everything else
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 @NgModule({

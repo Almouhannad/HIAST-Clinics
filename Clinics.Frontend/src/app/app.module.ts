@@ -16,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from './services/authentication/authentication.service';
 import { AuthenticationInterceptor } from './services/authentication/interceptor/authentication.interceptor';
+import { ForbiddenComponent } from './components/errors/forbidden/forbidden.component';
+import { NotFoundComponent } from './components/errors/not-found/not-found.component';
 
 
 @NgModule({
@@ -46,7 +48,9 @@ import { AuthenticationInterceptor } from './services/authentication/interceptor
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    ForbiddenComponent,
+    NotFoundComponent
   ],
   
   // identifies the root component that Angular should
