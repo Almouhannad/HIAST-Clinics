@@ -8,7 +8,7 @@ using Domain.UnitOfWork;
 
 namespace Application.Users.Commands.RegisterReceptionist;
 
-public class RegisterReceptionistCommandHandler : CommandHandlerBase<RegisterReceptionistCommand, RegisterReceptionistResponse>
+public class RegisterReceptionistCommandHandler : CommandHandlerBase<RegisterReceptionistCommand>
 {
     #region CTOR DI
     private readonly IUserRepository _userRepository;
@@ -19,7 +19,7 @@ public class RegisterReceptionistCommandHandler : CommandHandlerBase<RegisterRec
     #endregion
 
 
-    public override async Task<Result<RegisterReceptionistResponse>> HandleHelper(RegisterReceptionistCommand request, CancellationToken cancellationToken)
+    public override async Task<Result> HandleHelper(RegisterReceptionistCommand request, CancellationToken cancellationToken)
     {
         #region 1. Create receptionist user
         Result<ReceptionistUser> receptionistUserResult = ReceptionistUser.Create(
@@ -29,26 +29,23 @@ public class RegisterReceptionistCommandHandler : CommandHandlerBase<RegisterRec
             );
 
         if (receptionistUserResult.IsFailure)
-            return Result.Failure<RegisterReceptionistResponse>(receptionistUserResult.Error);
+            return Result.Failure(receptionistUserResult.Error);
         #endregion
 
         #region 2. Verify unique username
         var uniqueUserNameResult = await _userRepository.IsUserNameAvailableAsunc(request.UserName);
         if (uniqueUserNameResult.IsFailure)
-            return Result.Failure<RegisterReceptionistResponse>(uniqueUserNameResult.Error);
+            return Result.Failure(uniqueUserNameResult.Error);
         if (uniqueUserNameResult.Value == false)
-            return Result.Failure<RegisterReceptionistResponse>(IdentityErrors.TakenUserName);
+            return Result.Failure(IdentityErrors.TakenUserName);
         #endregion
 
         #region 3. Register (save to DB)
         var registerResult = await _userRepository.RegisterReceptionistAsync(receptionistUserResult.Value);
         if (registerResult.IsFailure)
-            return Result.Failure<RegisterReceptionistResponse>(registerResult.Error);
+            return Result.Failure(registerResult.Error);
         #endregion
 
-        return RegisterReceptionistResponse.GetResponse(registerResult.Value);
-
-
-        throw new NotImplementedException();
+        return Result.Success();
     }
 }

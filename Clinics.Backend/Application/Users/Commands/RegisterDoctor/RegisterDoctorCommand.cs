@@ -2,7 +2,7 @@
 
 namespace Application.Users.Commands.RegisterDoctor;
 
-public class RegisterDoctorCommand : ICommand<RegisterDoctorResponse>
+public class RegisterDoctorCommand : ICommand
 {
     public string UserName { get; set; } = null!;
     public string Password { get; set; } = null!;

@@ -2,7 +2,7 @@
 
 namespace Application.Users.Commands.RegisterReceptionist;
 
-public class RegisterReceptionistCommand : ICommand<RegisterReceptionistResponse>
+public class RegisterReceptionistCommand : ICommand
 {
     public string UserName { get; set; } = null!;
     public string Password { get; set; } = null!;

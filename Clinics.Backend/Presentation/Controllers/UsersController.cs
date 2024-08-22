@@ -45,7 +45,7 @@ public class UsersController : ApiController
         if (result.IsFailure)
             return HandleFailure(result);
 
-        return Ok(result.Value);
+        return Created();
     }
 
     [Authorize(Roles = Roles.AdminName)]
@@ -70,7 +70,7 @@ public class UsersController : ApiController
         if (result.IsFailure)
             return HandleFailure(result);
 
-        return Ok(result.Value);
+        return Created();
     }
     [Authorize(Roles = Roles.AdminName)]
     [HttpGet("Receptionists")]

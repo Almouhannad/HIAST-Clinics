@@ -7,7 +7,7 @@ using Domain.UnitOfWork;
 
 namespace Application.Users.Commands.RegisterDoctor;
 
-public class RegisterDoctorHandler : CommandHandlerBase<RegisterDoctorCommand, RegisterDoctorResponse>
+public class RegisterDoctorHandler : CommandHandlerBase<RegisterDoctorCommand>
 {
     #region CTOR DI
     private readonly IUserRepository _userRepository;
@@ -18,7 +18,7 @@ public class RegisterDoctorHandler : CommandHandlerBase<RegisterDoctorCommand, R
     #endregion
 
 
-    public override async Task<Result<RegisterDoctorResponse>> HandleHelper(RegisterDoctorCommand request, CancellationToken cancellationToken)
+    public override async Task<Result> HandleHelper(RegisterDoctorCommand request, CancellationToken cancellationToken)
     {
         #region 1. Create doctor user
         Result<DoctorUser> doctorUserResult = DoctorUser.Create(
@@ -28,23 +28,23 @@ public class RegisterDoctorHandler : CommandHandlerBase<RegisterDoctorCommand, R
             );
 
         if (doctorUserResult.IsFailure)
-            return Result.Failure<RegisterDoctorResponse>(doctorUserResult.Error);
+            return Result.Failure(doctorUserResult.Error);
         #endregion
 
         #region 2. Verify unique username
         var uniqueUserNameResult = await _userRepository.IsUserNameAvailableAsunc(request.UserName);
         if (uniqueUserNameResult.IsFailure)
-            return Result.Failure<RegisterDoctorResponse>(uniqueUserNameResult.Error);
+            return Result.Failure(uniqueUserNameResult.Error);
         if (uniqueUserNameResult.Value == false)
-            return Result.Failure<RegisterDoctorResponse>(IdentityErrors.TakenUserName);
+            return Result.Failure(IdentityErrors.TakenUserName);
         #endregion
 
         #region 3. Register (save to DB)
         var registerResult = await _userRepository.RegisterDoctorAsync(doctorUserResult.Value);
         if (registerResult.IsFailure)
-            return Result.Failure<RegisterDoctorResponse>(registerResult.Error);
+            return Result.Failure(registerResult.Error);
         #endregion
 
-        return RegisterDoctorResponse.GetResponse(registerResult.Value);
+        return Result.Success();
     }
 }
