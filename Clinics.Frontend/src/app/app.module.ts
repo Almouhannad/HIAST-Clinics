@@ -20,6 +20,8 @@ import { ForbiddenComponent } from './usecases/shared/components/errors/forbidde
 import { NotFoundComponent } from './usecases/shared/components/errors/not-found/not-found.component';
 import { TestSignalRComponent } from './notifications/components/test-signal-r/test-signal-r.component';
 import { SignalRService } from './notifications/services/signal-r.service';
+import { DoctorUsersComponent } from './usecases/admin/list-doctor-users/components/doctor-users/doctor-users.component';
+import { DoctorUserComponent } from './usecases/admin/list-doctor-users/components/doctor-user/doctor-user.component';
 
 
 @NgModule({
@@ -56,7 +58,9 @@ import { SignalRService } from './notifications/services/signal-r.service';
     LoginFormComponent,
     ForbiddenComponent,
     NotFoundComponent,
-    TestSignalRComponent
+    TestSignalRComponent,
+    DoctorUserComponent,
+    DoctorUsersComponent,
   ],
   
   // identifies the root component that Angular should

@@ -54,7 +54,7 @@
                                     [class]="{'btn-outline-primary': isSelected('Admin-Receptionists'), 'btn-outline-secondary': !isSelected('Admin-Receptionists')}"
                                     (click)="selectButton('Admin-Receptionists')">موظفو الاستقبال</button></a></li>
 
-                        <li><a><button class="btn"
+                        <li><a [routerLink]="['admin/doctors']"><button class="btn"
                                     [class]="{'btn-outline-primary': isSelected('Admin-Dorctors'), 'btn-outline-secondary': !isSelected('Admin-Dorctors')}"
                                     (click)="selectButton('Admin-Dorctors')">الأطباء</button></a></li>
 

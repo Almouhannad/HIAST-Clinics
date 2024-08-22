@@ -1,0 +1,13 @@
+/* #region custom*/
+.custom-title {
+    width: 31%;
+    padding-bottom: 0.3em;
+    border-bottom: 2px solid var(--accent-color);
+    color: var(--heading-color);
+}
+
+.custom-title h2 {
+    font-weight: 700;
+}
+
+/* #endregion */
