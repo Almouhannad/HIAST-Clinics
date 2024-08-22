@@ -3,6 +3,8 @@ using API.Options.JWT;
 using API.SeedDatabaseHelper;
 using Application.Behaviors;
 using FluentValidation;
+using Infrastructure.BackgroundServices.Notifications;
+using Infrastructure.NotificationsService;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +13,10 @@ using Microsoft.OpenApi.Models;
 using Persistence.Context;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+
+// Add services to the container.
 
 #region Add Database context
 // First, get database options
@@ -35,7 +41,16 @@ builder.Services.AddDbContext<ClinicsDbContext>(
     });
 #endregion
 
-// Add services to the container.
+#region Add SignalR
+builder.Services.AddSignalR();
+
+// Background services:
+builder.Services.AddHostedService<ServerTimeNotifier>();
+#endregion
+
+#region Add CORS
+builder.Services.AddCors();
+#endregion
 
 #region Link interfaces implemented in persistence
 // Using Scrutor library
@@ -126,9 +141,17 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+#region Map notification HUB
+app.MapHub<NotificationHub>("api/Notifications");
+#endregion
+
 #region CORS
 // TODO: Configure allows
-app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
+app.UseCors(policy =>
+    policy
+        .AllowAnyHeader().AllowAnyMethod().AllowAnyHeader()
+        .AllowCredentials().SetIsOriginAllowed(origin => true));
+
 #endregion
 
 
