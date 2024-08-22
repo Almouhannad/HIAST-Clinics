@@ -22,6 +22,7 @@ import { TestSignalRComponent } from './notifications/components/test-signal-r/t
 import { SignalRService } from './notifications/services/signal-r.service';
 import { DoctorUsersComponent } from './usecases/admin/list-doctor-users/components/doctor-users/doctor-users.component';
 import { DoctorUserComponent } from './usecases/admin/list-doctor-users/components/doctor-user/doctor-user.component';
+import { DoctorUsersService } from './usecases/admin/services/doctor-users.service';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { DoctorUserComponent } from './usecases/admin/list-doctor-users/componen
   providers: [
     AuthenticationService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true},
-    SignalRService
+    SignalRService,
+    DoctorUsersService,
   ],
 
   // components and directives that belong to this module
