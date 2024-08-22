@@ -23,19 +23,12 @@ export class AuthenticationService {
 
   private readonly USERS_ENDPOINT: string = `${config.apiUrl}/Users`
 
-  //#region HTTP headers
-  private readonly HTTP_HEADERS: HttpHeaders = this.getHeaders();
-  getHeaders(): HttpHeaders {
-    return new HttpHeaders().set('Content-Type', 'application/json');
-  }
-  //#endregion
-
   //#endregion
 
   //#region Login
   private postLogin(loginCommand: LoginCommand): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(
-        this.USERS_ENDPOINT, loginCommand, { headers: this.HTTP_HEADERS });
+        this.USERS_ENDPOINT, loginCommand);
   }
 
   login(loginCommand: LoginCommand): Observable<LoginResult> {
