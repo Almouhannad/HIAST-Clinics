@@ -142,12 +142,16 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 #region Map notification HUB
-app.MapHub<NotificationHub>("notifications");
+app.MapHub<NotificationHub>("api/Notifications");
 #endregion
 
 #region CORS
 // TODO: Configure allows
-app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
+app.UseCors(policy =>
+    policy
+        .AllowAnyHeader().AllowAnyMethod().AllowAnyHeader()
+        .AllowCredentials().SetIsOriginAllowed(origin => true));
+
 #endregion
 
 
