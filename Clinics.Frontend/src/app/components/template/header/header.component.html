@@ -8,9 +8,9 @@
                     <img src="assets/images/logo.png" alt="Logo" width="100em" height="100em">
                 </div>
 
-                <div class="app-name-container m-auto">
+                <div class="container app-name-container m-auto">
                     <h1 class="h3 custom-app-name mb-4">المركز الطبي - برنامج الأطباء</h1>
-                    <h3 dir="rtl" *ngIf="userData!==null" class="h5 text-primary">أهلاً {{userData.fullName}}!</h3>
+                    <h3 dir="rtl" *ngIf="userData!==null" class="h5 text-primary">أهلاَ <span *ngIf="userData.role===DOCTOR">د.</span> {{userData.fullName}}!</h3>
                 </div>
 
                 <!-- #region unregistered buttons -->
@@ -51,24 +51,64 @@
                         </li>
 
                         <li><a><button class="btn"
-                            [class]="{'btn-outline-primary': isSelected('Admin-Receptionists'), 'btn-outline-secondary': !isSelected('Admin-Receptionists')}"
-                            (click)="selectButton('Admin-Receptionists')">موظفو الاستقبال</button></a></li>
+                                    [class]="{'btn-outline-primary': isSelected('Admin-Receptionists'), 'btn-outline-secondary': !isSelected('Admin-Receptionists')}"
+                                    (click)="selectButton('Admin-Receptionists')">موظفو الاستقبال</button></a></li>
 
                         <li><a><button class="btn"
-                            [class]="{'btn-outline-primary': isSelected('Admin-Dorctors'), 'btn-outline-secondary': !isSelected('Admin-Dorctors')}"
-                            (click)="selectButton('Admin-Dorctors')">الأطباء</button></a></li>
+                                    [class]="{'btn-outline-primary': isSelected('Admin-Dorctors'), 'btn-outline-secondary': !isSelected('Admin-Dorctors')}"
+                                    (click)="selectButton('Admin-Dorctors')">الأطباء</button></a></li>
 
                         <li><a [routerLink]="'home'"><button class="btn"
-                            [class]="{'btn-outline-primary': isSelected('Home'), 'btn-outline-secondary': !isSelected('Home')}"
-                            (click)="selectButton('Home')">الصفحة الرئيسية</button></a></li>
+                                    [class]="{'btn-outline-primary': isSelected('Home'), 'btn-outline-secondary': !isSelected('Home')}"
+                                    (click)="selectButton('Home')">الصفحة الرئيسية</button></a></li>
 
                     </ul>
-
-
-
                 </nav>
                 <!-- #endregion -->
 
+                <!-- #region doctor buttons -->
+                <nav class="navmenu custom-buttons" *ngIf="userData?.role === DOCTOR">
+
+                    <ul>
+                        <li class="dropdown">
+                            <button
+                                [ngClass]="{'btn': true, 'btn-outline-secondary': true, 'custom-selected-dropdown': showDropdown}"
+                                (click)="showDropdown = !showDropdown">خيارات <i
+                                    class="bi bi-chevron-down toggle-dropdown"></i></button>
+                            <ul [ngClass]="{'show': showDropdown}">
+                                <li (click)="onLogout();"><a>تسجيل الخروج</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a [routerLink]="'home'"><button class="btn"
+                                    [class]="{'btn-outline-primary': isSelected('Home'), 'btn-outline-secondary': !isSelected('Home')}"
+                                    (click)="selectButton('Home')">الصفحة الرئيسية</button></a></li>
+
+                    </ul>
+                </nav>
+                <!-- #endregion -->
+
+                <!-- #region receptionist buttons -->
+                <nav class="navmenu custom-buttons" *ngIf="userData?.role === RECEPTIONIST">
+
+                    <ul>
+                        <li class="dropdown">
+                            <button
+                                [ngClass]="{'btn': true, 'btn-outline-secondary': true, 'custom-selected-dropdown': showDropdown}"
+                                (click)="showDropdown = !showDropdown">خيارات <i
+                                    class="bi bi-chevron-down toggle-dropdown"></i></button>
+                            <ul [ngClass]="{'show': showDropdown}">
+                                <li (click)="onLogout();"><a>تسجيل الخروج</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a [routerLink]="'home'"><button class="btn"
+                                    [class]="{'btn-outline-primary': isSelected('Home'), 'btn-outline-secondary': !isSelected('Home')}"
+                                    (click)="selectButton('Home')">الصفحة الرئيسية</button></a></li>
+
+                    </ul>
+                </nav>
+                <!-- #endregion -->
             </div>
 
         </div>
