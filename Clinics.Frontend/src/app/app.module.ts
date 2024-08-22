@@ -18,6 +18,8 @@ import { AuthenticationService } from './services/authentication/authentication.
 import { AuthenticationInterceptor } from './services/authentication/interceptor/authentication.interceptor';
 import { ForbiddenComponent } from './components/errors/forbidden/forbidden.component';
 import { NotFoundComponent } from './components/errors/not-found/not-found.component';
+import { TestSignalRComponent } from './test-signal-r/test-signal-r.component';
+import { SignalRService } from './notifications/signal-r.service';
 
 
 @NgModule({
@@ -39,6 +41,7 @@ import { NotFoundComponent } from './components/errors/not-found/not-found.compo
   providers: [
     AuthenticationService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true},
+    SignalRService
   ],
 
   // components and directives that belong to this module
@@ -52,7 +55,8 @@ import { NotFoundComponent } from './components/errors/not-found/not-found.compo
     HomeComponent,
     LoginFormComponent,
     ForbiddenComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    TestSignalRComponent
   ],
   
   // identifies the root component that Angular should
