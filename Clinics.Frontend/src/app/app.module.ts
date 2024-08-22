@@ -13,6 +13,8 @@ import { FooterComponent } from './components/template/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginFormComponent } from './components/Authentication/login-form/login-form.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthenticationService } from './services/authentication/authentication.service';
 
 @NgModule({
   imports: [
@@ -22,12 +24,15 @@ import { FormsModule } from '@angular/forms';
     NgbModule,
     ToastrModule.forRoot(),
     FormsModule,
+    HttpClientModule,
   ],
 
   // creators of services that this module contributes to the
   // global collection of services; they become accessible in
   // all parts of the app
-  providers: [],
+  providers: [
+    AuthenticationService,
+  ],
 
   // components and directives that belong to this module
   // the subset of declarations that should be visible and usable in

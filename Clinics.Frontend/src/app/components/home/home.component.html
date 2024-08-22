@@ -15,21 +15,7 @@
 
             <div class="content row gy-4">
 
-                <div class="col-lg-4 d-flex align-items-stretch">
-                    <div class="why-box">
-                        <h3 class="text-center">تسجيل الدخول</h3>
-                        <p class="text-center text-light">
-                            للاستفادة من خدمات هذا التطبيق، يحب عليك تسجيل الدخول أولاً
-                        </p>
-                        <div class="text-center">
-                            <button (click)="openLoginForm(loginModal)" class="btn more-btn">
-                                <a>تسجيل الدخول<i class="bi bi-chevron-right"></i></a>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-8 d-flex align-items-stretch">
+                <div class="col-lg-11 d-flex align-items-stretch">
                     <div class="d-flex flex-column justify-content-center">
 
                         <div class="row gy-4">
@@ -37,7 +23,7 @@
                             <div class="col-xl-4 d-flex align-items-stretch">
                                 <div class="icon-box">
                                     <i class="bi bi-clipboard-data"></i>
-                                    <h4>التاريخ المرضي</h4>
+                                    <h4>استعراض التاريخ المرضي</h4>
                                     <p class="text-center" style="font-weight: 500; color:var(--heading-color);">يوفر
                                         التطبيق امكانية استعراض التاريخ المرضي لموظفي المركز وأفراد عائلتهم
                                     </p>
@@ -47,9 +33,9 @@
                             <div class="col-xl-4 d-flex align-items-stretch">
                                 <div class="icon-box">
                                     <i class="bi bi-graph-up"></i>
-                                    <h4>احصائيات</h4>
+                                    <h4>استخلاص الاحصائيات الطبيّة</h4>
                                     <p class="text-center" style="font-weight: 500; color:var(--heading-color);">من
-                                        مزايا هذا التطبيق امكانية عرض احصائيات طبيّة لموظفي المركز
+                                        مزايا هذا التطبيق امكانية عرض احصائيات طبيّة عن موظفي المركز
                                     </p>
                                 </div>
                             </div>
@@ -57,12 +43,11 @@
                             <div class="col-xl-4 d-flex align-items-stretch">
                                 <div class="icon-box">
                                     <i class="bi bi-clock-history"></i>
-                                    <h4>دور الانتظار</h4>
+                                    <h4>معالجة قائمة الانتظار</h4>
                                     <p style="font-weight: 500; color:var(--heading-color);">يتيح هذا التطبيق إمكانية
                                         تنظيم أدوار انتظار المرضى </p>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -197,14 +182,6 @@
         </div>
 
     </section>
-    <!-- #endregion -->
-
-    <!-- #region login pop-up -->
-    <ng-template #loginModal let-modal>
-        <div class="modal-body">
-            <app-login-form [parentModal]="modal"></app-login-form>
-        </div>
-    </ng-template>
     <!-- #endregion -->
 
 </div>

@@ -1,4 +1,5 @@
 <div class="custom-child">
+
     <div class="header">
         <div class="branding d-flex align-items-center">
 
@@ -10,16 +11,34 @@
                 <h1 class="h3 m-auto custom-app-name">المركز الطبي - برنامج الأطباء</h1>
 
                 <nav class="navmenu custom-buttons">
+
                     <ul>
-                        <li><a href="#about"><button class="btn"
+                        <li *ngIf="userData!==null" class="dropdown">
+                            <button
+                                [ngClass]="{'btn': true, 'btn-outline-secondary': true, 'custom-selected-dropdown': showDropdown}"
+                                (click)="showDropdown = !showDropdown">خيارات <i
+                                    class="bi bi-chevron-down toggle-dropdown"></i></button>
+                            <ul [ngClass]="{'show': showDropdown}">
+                                <li (click)="onLogout();"><a>تسجيل الخروج</a></li>
+                            </ul>
+                        </li>
+
+                        <li *ngIf="userData===null"><a><button class="btn"
+                            [class]="{'btn-outline-secondary': true}"
+                            (click)="openLoginForm(loginModal)">تسجيل الدخول</button></a></li>
+
+                        <li><a href="home#about"><button class="btn"
                                     [class]="{'btn-outline-primary': isSelected('About'), 'btn-outline-secondary': !isSelected('About')}"
                                     (click)="selectButton('About')">عن المستوصف</button></a></li>
-                        <li><a href="#doctors"><button class="btn"
+
+                        <li><a href="home#doctors"><button class="btn"
                                     [class]="{'btn-outline-primary': isSelected('Doctors'), 'btn-outline-secondary': !isSelected('Doctors')}"
                                     (click)="selectButton('Doctors')">الفريق الطبي</button></a></li>
-                        <li><a href="#"><button class="btn"
+
+                        <li><a href="home#"><button class="btn"
                                     [class]="{'btn-outline-primary': isSelected('Home'), 'btn-outline-secondary': !isSelected('Home')}"
                                     (click)="selectButton('Home')">الصفحة الرئيسية</button></a></li>
+
                     </ul>
                 </nav>
             </div>
@@ -27,4 +46,13 @@
         </div>
 
     </div>
+
+    <!-- #region login pop-up -->
+    <ng-template #loginModal let-modal>
+        <div *ngIf="userData===null" class="modal-body">
+            <app-login-form (loggedIn)="onLogin($event); modal.dismiss();" [parentModal]="modal"></app-login-form>
+        </div>
+    </ng-template>
+    <!-- #endregion -->
+
 </div>
