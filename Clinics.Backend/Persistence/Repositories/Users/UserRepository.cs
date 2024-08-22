@@ -61,6 +61,8 @@ public class UserRepository : Repositroy<User>, IUserRepository
     }
     #endregion
 
+    #region Doctor users
+
     #region Get doctor user by user name full
     public async Task<Result<DoctorUser>> GetDoctorUserByUserNameFullAsync(string username)
     {
@@ -81,22 +83,21 @@ public class UserRepository : Repositroy<User>, IUserRepository
     }
     #endregion
 
-    #region Get receptionist user by user name full
-    public async Task<Result<ReceptionistUser>> GetReceptionistUserByUserNameFullAsync(string username)
+    #region Get all doctors
+    public async Task<Result<ICollection<DoctorUser>>> GetAllDoctorUsersAsync()
     {
-        var query
-            = _context.Set<ReceptionistUser>()
-            .Include(receptionistUser => receptionistUser.User)
-                .ThenInclude(user => user.Role)
-            .Where(receptionistUser => receptionistUser.User.UserName == username)
-            .Include(receptionistUser => receptionistUser.PersonalInfo);
-
-        var result = await query.ToListAsync();
-
-        if (result.Count != 1)
-            return Result.Failure<ReceptionistUser>(IdentityErrors.NotFound);
-
-        return result.First();
+        try
+        {
+            var query = _context.Set<DoctorUser>()
+                .Include(doctroUser => doctroUser.User)
+                .Include(doctorUser => doctorUser.Doctor)
+                    .ThenInclude(doctor => doctor.PersonalInfo);
+            return await query.ToListAsync();
+        }
+        catch (Exception)
+        {
+            return Result.Failure<ICollection<DoctorUser>>(PersistenceErrors.Unknown);
+        }
     }
     #endregion
 
@@ -118,6 +119,47 @@ public class UserRepository : Repositroy<User>, IUserRepository
         catch (Exception)
         {
             return Result.Failure<DoctorUser>(IdentityErrors.UnableToRegister);
+        }
+    }
+    #endregion
+
+    #endregion
+
+    #region Receptionist users
+
+    #region Get receptionist user by user name full
+    public async Task<Result<ReceptionistUser>> GetReceptionistUserByUserNameFullAsync(string username)
+    {
+        var query
+            = _context.Set<ReceptionistUser>()
+            .Include(receptionistUser => receptionistUser.User)
+                .ThenInclude(user => user.Role)
+            .Where(receptionistUser => receptionistUser.User.UserName == username)
+            .Include(receptionistUser => receptionistUser.PersonalInfo);
+
+        var result = await query.ToListAsync();
+
+        if (result.Count != 1)
+            return Result.Failure<ReceptionistUser>(IdentityErrors.NotFound);
+
+        return result.First();
+    }
+    #endregion
+
+    #region GetAll
+    public async Task<Result<ICollection<ReceptionistUser>>> GetAllReceptionistUsersAsync()
+    {
+        // Tip: you can apply specification pattern here
+        try
+        {
+            var query = _context.Set<ReceptionistUser>()
+                .Include(receptionistUser => receptionistUser.User)
+                .Include(receptionistUser => receptionistUser.PersonalInfo);
+            return await query.ToListAsync();
+        }
+        catch (Exception)
+        {
+            return Result.Failure<ICollection<ReceptionistUser>>(PersistenceErrors.Unknown);
         }
     }
     #endregion
@@ -144,4 +186,7 @@ public class UserRepository : Repositroy<User>, IUserRepository
     }
 
     #endregion
+    
+    #endregion
+
 }

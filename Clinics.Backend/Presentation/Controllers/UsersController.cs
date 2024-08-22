@@ -1,6 +1,8 @@
 ﻿using Application.Users.Commands.Login;
 using Application.Users.Commands.RegisterDoctor;
 using Application.Users.Commands.RegisterReceptionist;
+using Application.Users.Queries.GetAllDoctorUsers;
+using Application.Users.Queries.GetAllReceptionistsUsers;
 using Domain.Entities.Identity.UserRoles;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -45,11 +47,22 @@ public class UsersController : ApiController
 
         return Ok(result.Value);
     }
+
+    [Authorize(Roles = Roles.AdminName)]
+    [HttpGet("Doctors")]
+    public async Task<IActionResult> GetAllDoctorUsers()
+    {
+        var query = new GetAllDoctorUsersQuery();
+        var result = await _sender.Send(query);
+        if (result.IsFailure)
+            return HandleFailure(result);
+        return Ok(result.Value);
+    }
     #endregion
 
     #region Receptionist
     [Authorize(Roles = Roles.AdminName)]
-    [HttpPost("Receptionist")]
+    [HttpPost("Receptionists")]
     public async Task<IActionResult> RegisterReceptionist([FromBody] RegisterReceptionistCommand command)
     {
         var result = await _sender.Send(command);
@@ -57,6 +70,16 @@ public class UsersController : ApiController
         if (result.IsFailure)
             return HandleFailure(result);
 
+        return Ok(result.Value);
+    }
+    [Authorize(Roles = Roles.AdminName)]
+    [HttpGet("Receptionists")]
+    public async Task<IActionResult> GetAllReceptionistUsers()
+    {
+        var query = new GetAllReceptionistUsersQuery();
+        var result = await _sender.Send(query);
+        if (result.IsFailure)
+            return HandleFailure(result);
         return Ok(result.Value);
     }
     #endregion

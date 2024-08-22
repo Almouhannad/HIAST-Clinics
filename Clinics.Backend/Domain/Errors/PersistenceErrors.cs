@@ -18,4 +18,7 @@ public static class PersistenceErrors
 
     public static Error NotFound =>
         new("Persistence.NotFound", "الغرض المطلوب غير موجود");
+
+    public static Error Unknown =>
+        new("Persistence.Unknown", "حدث خطأ غير متوقع");
 }
