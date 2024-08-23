@@ -8,7 +8,6 @@
 /* #region Footer */
 .footer {
     color: var(--default-color);
-    background-color: var(--background-color);
     border-top: 1px solid color-mix(in srgb, var(--accent-color), transparent 75%);
     font-size: 14px;
     position: relative;
