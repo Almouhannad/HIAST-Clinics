@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './usecases/shared/components/root/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,6 +23,9 @@ import { DoctorUserComponent } from './usecases/admin/list-doctor-users/componen
 import { DoctorUsersService } from './usecases/admin/services/doctor-users.service';
 import { CreateDoctorUserFormComponent } from './usecases/admin/create-doctor-user/components/create-doctor-user-form/create-doctor-user-form.component';
 import { AdminDashboardComponent } from './usecases/admin/shared/admin-dashboard/admin-dashboard.component';
+import { UpdateDoctorUserComponent } from './usecases/admin/update-doctor-user/components/update-doctor-user/update-doctor-user.component';
+import { UpdateDoctorPersonalDataFormComponent } from './usecases/admin/update-doctor-user/update-doctor-personal-data/components/update-doctor-personal-data-form/update-doctor-personal-data-form.component';
+import { UpdateDoctorUserDataFormComponent } from './usecases/admin/update-doctor-user/update-doctor-user-data/components/update-doctor-user-data-form/update-doctor-user-data-form.component';
 
 
 @NgModule({
@@ -67,6 +68,9 @@ import { AdminDashboardComponent } from './usecases/admin/shared/admin-dashboard
     DoctorUsersComponent,
     CreateDoctorUserFormComponent,
     AdminDashboardComponent,
+    UpdateDoctorUserComponent,
+    UpdateDoctorPersonalDataFormComponent,
+    UpdateDoctorUserDataFormComponent,
   ],
   
   // identifies the root component that Angular should
