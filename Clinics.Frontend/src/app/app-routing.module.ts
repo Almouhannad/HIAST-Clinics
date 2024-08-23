@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './usecases/shared/components/home/home.component';
-import { RoleGuard } from './authentication/services/guards/role-guard';
-import { Roles } from './authentication/classes/roles';
-import { ForbiddenComponent } from './usecases/shared/components/errors/forbidden/forbidden.component';
-import { NotFoundComponent } from './usecases/shared/components/errors/not-found/not-found.component';
-import { TestSignalRComponent } from './notifications/components/test-signal-r/test-signal-r.component';
-import { DoctorUsersComponent } from './usecases/admin/list-doctor-users/components/doctor-users/doctor-users.component';
-import { AdminDashboardComponent } from './usecases/admin/shared/admin-dashboard/admin-dashboard.component';
-import { CreateDoctorUserFormComponent } from './usecases/admin/create-doctor-user/components/create-doctor-user-form/create-doctor-user-form.component';
-import { UpdateDoctorUserComponent } from './usecases/admin/update-doctor-user/components/update-doctor-user/update-doctor-user.component';
+import { HomeComponent } from './components/shared/home/home.component';
+import { RoleGuard } from './services/authentication/guards/role-guard';
+import { Roles } from './classes/authentication/roles';
+import { ForbiddenComponent } from './components/shared/errors/forbidden/forbidden.component';
+import { NotFoundComponent } from './components/shared/errors/not-found/not-found.component';
+import { TestSignalRComponent } from './components/notifications/test-signal-r/test-signal-r.component';
+import { DoctorUsersComponent } from './components/admin/doctor-users/doctor-users.component';
+import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
+import { CreateDoctorUserFormComponent } from './components/admin/create-doctor-user-form/create-doctor-user-form.component';
+import { UpdateDoctorUserComponent } from './components/admin/update-doctor-user/update-doctor-user.component';
 
 const routes: Routes = [
   {
