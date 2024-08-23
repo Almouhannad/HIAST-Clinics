@@ -25,7 +25,7 @@
 
 /* #region Form card*/
 .custom-form {
-    width: 50%;
+    width: 60%;
     margin: auto;
     padding: 1em;
     border: 1px solid var(--accent-color);
@@ -34,7 +34,7 @@
 /* #endregion */
 
 /* #region Title*/
-.custom-form .custom-title h3 {
+.custom-form .custom-form-title h3 {
     width: 50%;
     margin: auto;
     padding: 0.5em;

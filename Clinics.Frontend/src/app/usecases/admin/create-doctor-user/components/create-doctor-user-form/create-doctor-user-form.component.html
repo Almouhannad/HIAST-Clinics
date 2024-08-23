@@ -1,272 +1,275 @@
-<div dir="rtl" class="mt-5 mb-5 custom-form">
+<div class="cutom-child" dir="rtl">
+    <section class="section">
+        <div dir="rtl" class="mb-5 custom-form">
     
-    <!-- #region Title-->
-
-    <div class="text-center custom-title mb-4">
-        <h3 style="font-weight: 800;">إضافة طبيب</h3>
-    </div>
-
-    <!-- #endregion -->
-    
-    <!-- #region Server-side errors -->
-    <div *ngIf="isFailure" class="mb-3 d-grid gap-3 custom-server-error-message">
-        <button type="button" class="btn btn-danger">خطأ: {{errorMessage}}</button>
-    </div>
-    <!-- #endregion -->
-
-    <form #createDoctorUserForm="ngForm" (ngSubmit)="onSubmit()" class="text-center custom-form-container" autocomplete="off">
-
-        <!-- #region User data-->
-        <div class="accordion">
-            <div class="accordion-item">
-        
-                <div class="custom-accordion-header">
-                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
-                    (click)="isUserSectionOpen = !isUserSectionOpen"
-                    [disabled]="isInvalid">
-                        معلومات الحساب
-                        <i *ngIf="!isUserSectionOpen" class="fas fa-chevron-down"></i>
-                        <i *ngIf="isUserSectionOpen" class="fas fa-chevron-up"></i>
-                    </button>
-                </div>
-        
-                <div id="collapseOne" class="accordion-collapse collapse show" [class.show]="isInvalid" ngClass="{'show': isInvalid}" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-
-                    <div class="accordion-body">
-    
-                        <!-- #region Username-->
-                        <div class="form-group mb-3 custom-field">
-
-                            <label for="username" class="col-form-label custom-label">
-                                اسم المستخدم
-                                <span class="text-danger">*</span>
-                            </label>
-
-                            <input
-                                type="text" class="form-control text-center custom-input"
-                                placeholder="ادخل اسم المستخدم" dir="ltr"
-
-                                [(ngModel)]="formModel.userName" name="userName" 
-
-                                #userName="ngModel" required maxlength="50"
-                            >
-
-                            <div *ngIf="(userName.touched || userName.dirty || isInvalid) && (userName.errors)"
-                                class="custom-error-message">
-
-                                <p class="text-danger">
-                                    {{
-                                        userName.errors['required'] ? 'هذا الحقل مطلوب'
-                                        : ''
-                                    }}
-                                </p>
-
-                            </div>
-
-                        </div>
-                        <!-- #endregion -->
-                        
-                        <!-- #region Password-->
-                        <div class="form-group mb-3 custom-field">
-
-                            <label for="password" class="col-form-label custom-label">
-                                كلمة المرور
-                                <span class="text-danger">*</span>
-                            </label>
-
-                            <input
-                                type="password" class="form-control text-center custom-input"
-                                placeholder="ادخل كلمة المرور" dir="ltr"
-
-                                [(ngModel)]="formModel.password" name="password" 
-
-                                #password="ngModel" required maxlength="50"
-                            >
-
-                            <div *ngIf="(password.touched || password.dirty || isInvalid) && (password.errors)"
-                                class="custom-error-message">
-
-                                <p class="text-danger">
-                                    {{
-                                        password.errors['required'] ? 'هذا الحقل مطلوب'
-                                        : ''
-                                    }}
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                        <!-- #endregion -->
-                        
-                    </div>
-
-                </div>
+            <!-- #region Title-->
+            <div class="text-center custom-form-title mb-4">
+                <h3 style="font-weight: 800;">إضافة طبيب</h3>
             </div>
-        </div>
-        <!-- #endregion -->
-
-        <!-- #region Personal info-->
-        <div class="accordion">
-            <div class="accordion-item">
-
-                <div class="custom-accordion-header">
-                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"
-                    (click)="isPersonalInfoSectionOpen = !isPersonalInfoSectionOpen"
-                    [disabled]="isInvalid">
-                        المعلومات الشخصية
-                        <i *ngIf="!isPersonalInfoSectionOpen" class="fas fa-chevron-down"></i>
-                        <i *ngIf="isPersonalInfoSectionOpen" class="fas fa-chevron-up"></i>
-                    </button>
-                </div>
-
-                <div id="collapseTwo" class="accordion-collapse collapse" [class.show]="isInvalid" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-
-                    <div class="accordion-body">
-
-                    <!-- #region FirstName-->
-                    <div class="form-group mb-3 custom-field">
-                        <label for="firstName" class="col-form-label custom-label">
-                            الاسم
-                            <span class="text-danger">*</span>
-                        </label>
-
-                        <input
-                            type="text" class="form-control text-center custom-input"
-                            placeholder="ادخل الاسم" dir="rtl"
-
-                            [(ngModel)]="formModel.firstName" name="firstName" 
-
-                            #firstName="ngModel" required maxlength="50"
-                        >
-
-                        <div *ngIf="(firstName.touched || firstName.dirty || isInvalid) && (firstName.errors)"
-                            class="custom-error-message">
-
-                            <p class="text-danger">
-                                {{
-                                    firstName.errors['required'] ? 'هذا الحقل مطلوب'
-                                    : ''
-                                }}
-                            </p>
-
-                        </div>
-
-                    </div>
-                    <!-- #endregion -->
-
-                    <!-- #region MiddleName-->
-                    <div class="form-group mb-3 custom-field">
-
-                        <label for="middleName" class="col-form-label custom-label">
-                            اسم الأب
-                            <span class="text-danger">*</span>
-                        </label>
-
-                        <input
-                            type="text" class="form-control text-center custom-input"
-                            placeholder="ادخل اسم الأب" dir="rtl"
-
-                            [(ngModel)]="formModel.middleName" name="middleName" 
-
-                            #middleName="ngModel" required maxlength="50"
-                        >
-
-                        <div *ngIf="(middleName.touched || middleName.dirty || isInvalid) && (middleName.errors)"
-                            class="custom-error-message">
-
-                            <p class="text-danger">
-                                {{
-                                    middleName.errors['required'] ? 'هذا الحقل مطلوب'
-                                    : ''
-                                }}
-                            </p>
-
-                        </div>
-
-                    </div>
-                    <!-- #endregion -->
-
-                    <!-- #region LastName-->
-                    <div class="form-group mb-3 custom-field">
-
-                        <label for="lastName" class="col-form-label custom-label">
-                            الكنية
-                            <span class="text-danger">*</span>
-                        </label>
-
-                        <input
-                            type="text" class="form-control text-center custom-input"
-                            placeholder="ادخل الكنية" dir="rtl"
-
-                            [(ngModel)]="formModel.lastName" name="lastName" 
-
-                            #lastName="ngModel" required maxlength="50"
-                        >
-
-                        <div *ngIf="(lastName.touched || lastName.dirty || isInvalid) && (lastName.errors)"
-                            class="custom-error-message">
-
-                            <p class="text-danger">
-                                {{
-                                    lastName.errors['required'] ? 'هذا الحقل مطلوب'
-                                    : ''
-                                }}
-                            </p>
-
-                        </div>
-
-                    </div>
-                    <!-- #endregion -->
         
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- #endregion -->
-
-        <!-- #region Buttons-->
-
-        <div class="accordion">
-            <div class="accordion-item">
-
-                <div class="custom-accordion-header">
-                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
-                    (click)="isOptionsSectionOpen = !isOptionsSectionOpen"
-                    [disabled]="isInvalid">
-                        خيارات
-                        <i *ngIf="!isOptionsSectionOpen" class="fas fa-chevron-down"></i>
-                        <i *ngIf="isOptionsSectionOpen" class="fas fa-chevron-up"></i>
-                    </button>
-
-                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-
-                        <div class="accordion-body">
-                            <div class="d-grid gap-3 mb-5 custom-buttons custom-form-buttons">
+            <!-- #endregion -->
             
-                                <button type="submit" class="btn btn-outline-primary"
-                                    [disabled]="createDoctorUserForm.pristine">
-                                    حفظ
-                                    <i class="bi bi-save"></i>
-                                </button>
-                    
-                                <a [routerLink]="['..']">
-                                    <button type="button" class="btn btn-outline-primary">
-                                        عودة
-                                        <i class="bi bi-arrow-left"></i>
-                                    </button>
-                                </a>
+            <!-- #region Server-side errors -->
+            <div *ngIf="isFailure" class="mb-3 d-grid gap-3 custom-server-error-message">
+                <button type="button" class="btn btn-danger">خطأ: {{errorMessage}}</button>
+            </div>
+            <!-- #endregion -->
+        
+            <form #createDoctorUserForm="ngForm" (ngSubmit)="onSubmit()" class="text-center custom-form-container" autocomplete="off">
+        
+                <!-- #region User data-->
+                <div class="accordion">
+                    <div class="accordion-item">
+                
+                        <div class="custom-accordion-header">
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+                            (click)="isUserSectionOpen = !isUserSectionOpen"
+                            [disabled]="isInvalid">
+                                معلومات الحساب
+                                <i *ngIf="!isUserSectionOpen" class="fas fa-chevron-down"></i>
+                                <i *ngIf="isUserSectionOpen" class="fas fa-chevron-up"></i>
+                            </button>
+                        </div>
+                
+                        <div id="collapseOne" class="accordion-collapse collapse show" [class.show]="isInvalid" ngClass="{'show': isInvalid}" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        
+                            <div class="accordion-body">
+            
+                                <!-- #region Username-->
+                                <div class="form-group mb-3 custom-field">
+        
+                                    <label for="username" class="col-form-label custom-label">
+                                        اسم المستخدم
+                                        <span class="text-danger">*</span>
+                                    </label>
+        
+                                    <input
+                                        type="text" class="form-control text-center custom-input"
+                                        placeholder="ادخل اسم المستخدم" dir="ltr"
+        
+                                        [(ngModel)]="formModel.userName" name="userName" 
+        
+                                        #userName="ngModel" required maxlength="50"
+                                    >
+        
+                                    <div *ngIf="(userName.touched || userName.dirty || isInvalid) && (userName.errors)"
+                                        class="custom-error-message">
+        
+                                        <p class="text-danger">
+                                            {{
+                                                userName.errors['required'] ? 'هذا الحقل مطلوب'
+                                                : ''
+                                            }}
+                                        </p>
+        
+                                    </div>
+        
+                                </div>
+                                <!-- #endregion -->
+                                
+                                <!-- #region Password-->
+                                <div class="form-group mb-3 custom-field">
+        
+                                    <label for="password" class="col-form-label custom-label">
+                                        كلمة المرور
+                                        <span class="text-danger">*</span>
+                                    </label>
+        
+                                    <input
+                                        type="password" class="form-control text-center custom-input"
+                                        placeholder="ادخل كلمة المرور" dir="ltr"
+        
+                                        [(ngModel)]="formModel.password" name="password" 
+        
+                                        #password="ngModel" required maxlength="50"
+                                    >
+        
+                                    <div *ngIf="(password.touched || password.dirty || isInvalid) && (password.errors)"
+                                        class="custom-error-message">
+        
+                                        <p class="text-danger">
+                                            {{
+                                                password.errors['required'] ? 'هذا الحقل مطلوب'
+                                                : ''
+                                            }}
+                                        </p>
+        
+                                    </div>
+        
+                                </div>
+        
+                                <!-- #endregion -->
+                                
+                            </div>
+        
+                        </div>
+                    </div>
+                </div>
+                <!-- #endregion -->
+        
+                <!-- #region Personal info-->
+                <div class="accordion">
+                    <div class="accordion-item">
+        
+                        <div class="custom-accordion-header">
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"
+                            (click)="isPersonalInfoSectionOpen = !isPersonalInfoSectionOpen"
+                            [disabled]="isInvalid">
+                                المعلومات الشخصية
+                                <i *ngIf="!isPersonalInfoSectionOpen" class="fas fa-chevron-down"></i>
+                                <i *ngIf="isPersonalInfoSectionOpen" class="fas fa-chevron-up"></i>
+                            </button>
+                        </div>
+        
+                        <div id="collapseTwo" class="accordion-collapse collapse" [class.show]="isInvalid" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        
+                            <div class="accordion-body">
+        
+                            <!-- #region FirstName-->
+                            <div class="form-group mb-3 custom-field">
+                                <label for="firstName" class="col-form-label custom-label">
+                                    الاسم
+                                    <span class="text-danger">*</span>
+                                </label>
+        
+                                <input
+                                    type="text" class="form-control text-center custom-input"
+                                    placeholder="ادخل الاسم" dir="rtl"
+        
+                                    [(ngModel)]="formModel.firstName" name="firstName" 
+        
+                                    #firstName="ngModel" required maxlength="50"
+                                >
+        
+                                <div *ngIf="(firstName.touched || firstName.dirty || isInvalid) && (firstName.errors)"
+                                    class="custom-error-message">
+        
+                                    <p class="text-danger">
+                                        {{
+                                            firstName.errors['required'] ? 'هذا الحقل مطلوب'
+                                            : ''
+                                        }}
+                                    </p>
+        
+                                </div>
+        
+                            </div>
+                            <!-- #endregion -->
+        
+                            <!-- #region MiddleName-->
+                            <div class="form-group mb-3 custom-field">
+        
+                                <label for="middleName" class="col-form-label custom-label">
+                                    اسم الأب
+                                    <span class="text-danger">*</span>
+                                </label>
+        
+                                <input
+                                    type="text" class="form-control text-center custom-input"
+                                    placeholder="ادخل اسم الأب" dir="rtl"
+        
+                                    [(ngModel)]="formModel.middleName" name="middleName" 
+        
+                                    #middleName="ngModel" required maxlength="50"
+                                >
+        
+                                <div *ngIf="(middleName.touched || middleName.dirty || isInvalid) && (middleName.errors)"
+                                    class="custom-error-message">
+        
+                                    <p class="text-danger">
+                                        {{
+                                            middleName.errors['required'] ? 'هذا الحقل مطلوب'
+                                            : ''
+                                        }}
+                                    </p>
+        
+                                </div>
+        
+                            </div>
+                            <!-- #endregion -->
+        
+                            <!-- #region LastName-->
+                            <div class="form-group mb-3 custom-field">
+        
+                                <label for="lastName" class="col-form-label custom-label">
+                                    الكنية
+                                    <span class="text-danger">*</span>
+                                </label>
+        
+                                <input
+                                    type="text" class="form-control text-center custom-input"
+                                    placeholder="ادخل الكنية" dir="rtl"
+        
+                                    [(ngModel)]="formModel.lastName" name="lastName" 
+        
+                                    #lastName="ngModel" required maxlength="50"
+                                >
+        
+                                <div *ngIf="(lastName.touched || lastName.dirty || isInvalid) && (lastName.errors)"
+                                    class="custom-error-message">
+        
+                                    <p class="text-danger">
+                                        {{
+                                            lastName.errors['required'] ? 'هذا الحقل مطلوب'
+                                            : ''
+                                        }}
+                                    </p>
+        
+                                </div>
+        
+                            </div>
+                            <!-- #endregion -->
+                
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+        
+                <!-- #endregion -->
+        
+                <!-- #region Buttons-->
+        
+                <div class="accordion">
+                    <div class="accordion-item">
+        
+                        <div class="custom-accordion-header">
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
+                            (click)="isOptionsSectionOpen = !isOptionsSectionOpen"
+                            [disabled]="isInvalid">
+                                خيارات
+                                <i *ngIf="!isOptionsSectionOpen" class="fas fa-chevron-down"></i>
+                                <i *ngIf="isOptionsSectionOpen" class="fas fa-chevron-up"></i>
+                            </button>
+        
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        
+                                <div class="accordion-body">
+                                    <div class="d-grid gap-3 mb-5 custom-buttons custom-form-buttons">
+                    
+                                        <button type="submit" class="btn btn-outline-primary"
+                                            [disabled]="createDoctorUserForm.pristine">
+                                            حفظ
+                                            <i class="bi bi-save"></i>
+                                        </button>
+                            
+                                        <a [routerLink]="['..']">
+                                            <button type="button" class="btn btn-outline-primary">
+                                                عودة
+                                                <i class="bi bi-arrow-left"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+        
+                
+                <!-- #endregion -->
+            
+            </form>
         </div>
-        
-
-        
-        <!-- #endregion -->
-    
-    </form>
+    </section>
 </div>

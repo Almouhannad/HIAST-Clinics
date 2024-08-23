@@ -1,15 +1,4 @@
 /* #region custom*/
-.custom-title {
-    width: 35%;
-    padding-bottom: 0.3em;
-    border-bottom: 1px solid var(--accent-color);
-    color: var(--heading-color);
-}
-
-.custom-title h2 {
-    font-weight: 700;
-}
-
 .custom-create-button button:hover {
     font-weight: 900;
     background-color: inherit;
