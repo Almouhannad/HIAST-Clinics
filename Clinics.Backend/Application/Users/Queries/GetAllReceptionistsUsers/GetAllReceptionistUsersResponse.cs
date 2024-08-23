@@ -8,6 +8,7 @@ public class GetAllReceptionistUsersResponse
 {
     public class GetAllReceptionistUsersResponseItem
     {
+        public int Id { get; set; }
         public string UserName { get; set; } = null!;
         public string FullName { get; set; } = null!;
     }
@@ -22,6 +23,7 @@ public class GetAllReceptionistUsersResponse
                 return Result.Failure<GetAllReceptionistUsersResponse>(PersistenceErrors.NotFound);
             var receptionistUserItem = new GetAllReceptionistUsersResponseItem
             {
+                Id = receptionistUser.Id,
                 UserName = receptionistUser.User.UserName,
                 FullName = receptionistUser.PersonalInfo.FullName
             };

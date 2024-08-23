@@ -8,6 +8,7 @@ public class GetAllDoctorUsersResponse
 {
     public class GetAllDoctorUsersResponseItem
     {
+        public int Id { get; set; }
         public string UserName { get; set; } = null!;
         public string FullName { get; set; } = null!;
     }
@@ -24,6 +25,7 @@ public class GetAllDoctorUsersResponse
                 return Result.Failure<GetAllDoctorUsersResponse>(PersistenceErrors.NotFound);
             var doctorUserItem = new GetAllDoctorUsersResponseItem
             {
+                Id = doctorUser.Id,
                 FullName = doctorUser.Doctor.PersonalInfo.FullName,
                 UserName = doctorUser.User.UserName
             };
