@@ -43,8 +43,8 @@
             class="accordion-collapse collapse"
             >
 
-            <div class="accordion-body">
-              <app-update-doctor-user-data-form>
+            <div class="accordion-body custom-child">
+              <app-update-doctor-user-data-form [formModel]="editUserDataQuery">
                 
               </app-update-doctor-user-data-form>
             </div>
@@ -81,8 +81,8 @@
             class="accordion-collapse collapse"
             >
 
-            <div class="accordion-body">
-              <app-update-doctor-personal-data-form>
+            <div class="accordion-body custom-child">
+              <app-update-doctor-personal-data-form [formModel]="editPersonalDataQuery">
                 
               </app-update-doctor-personal-data-form>              
             </div>

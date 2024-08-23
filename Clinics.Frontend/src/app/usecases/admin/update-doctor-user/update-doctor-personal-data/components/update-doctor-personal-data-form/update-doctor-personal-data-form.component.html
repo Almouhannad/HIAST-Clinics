@@ -1,1 +1,121 @@
-<p>update-doctor-personal-data-form works!</p>
+<div class="cutom-child" dir="rtl">
+    <div class="custom-form">
+
+        <!-- #region Server-side errors -->
+        <div *ngIf="isFailure" class="mb-3 d-grid gap-3 custom-server-error-message">
+            <button type="button" class="btn btn-danger">خطأ: {{errorMessage}}</button>
+        </div>
+        <!-- #endregion -->
+
+        <form #form="ngForm" (ngSubmit)="onSubmit()"
+            class="text-center custom-form-container" autocomplete="off">
+            
+            <!-- #region first name-->
+            <div class="form-group mb-3 custom-field">
+
+                <!-- #region Field label-->
+                <label for="firstName" class="col-form-label custom-label">
+                    الاسم
+                    <span class="text-danger">*</span>
+                </label>
+                <!-- #endregion -->
+
+                <!-- #region Fiels input-->
+                <input type="text" class="form-control text-center custom-input" placeholder="ادخل الاسم" dir="rtl"
+
+                    [(ngModel)]="formModel.firstName" name="firstName"
+                    #firstName="ngModel" required maxlength="50">
+                    <!-- #endregion -->
+
+                <!-- #region Field errors-->
+                <div *ngIf="(firstName.touched || firstName.dirty) && (firstName.errors)" class="custom-error-message">
+
+                    <p class="text-danger">
+                        {{
+                        firstName.errors['required'] ? 'هذا الحقل مطلوب'
+                        : ''
+                        }}
+                    </p>
+                </div>
+                <!-- #endregion -->
+                
+            </div>
+            <!-- #endregion -->
+
+            <!-- #region middle name-->
+            <div class="form-group mb-3 custom-field">
+
+                <!-- #region Field label-->
+                <label for="middleName" class="col-form-label custom-label">
+                    اسم الأب
+                    <span class="text-danger">*</span>
+                </label>
+                <!-- #endregion -->
+
+                <!-- #region Fiels input-->
+                <input type="text" class="form-control text-center custom-input" placeholder="ادخل اسم الأب" dir="rtl"
+
+                    [(ngModel)]="formModel.middleName" name="middleName"
+                    #middleName="ngModel" required maxlength="50">
+                    <!-- #endregion -->
+
+                <!-- #region Field errors-->
+                <div *ngIf="(middleName.touched || middleName.dirty) && (middleName.errors)" class="custom-error-message">
+
+                    <p class="text-danger">
+                        {{
+                            middleName.errors['required'] ? 'هذا الحقل مطلوب'
+                            : ''
+                        }}
+                    </p>
+                </div>
+                <!-- #endregion -->
+                
+            </div>
+            <!-- #endregion -->            
+            
+            <!-- #region last name-->
+            <div class="form-group mb-3 custom-field">
+
+                <!-- #region Field label-->
+                <label for="lastName" class="col-form-label custom-label">
+                    الكنية
+                    <span class="text-danger">*</span>
+                </label>
+                <!-- #endregion -->
+
+                <!-- #region Fiels input-->
+                <input type="text" class="form-control text-center custom-input" placeholder="ادخل الكنية" dir="rtl"
+
+                    [(ngModel)]="formModel.lastName" name="lastName"
+                    #lastName="ngModel" required maxlength="50">
+                    <!-- #endregion -->
+
+                <!-- #region Field errors-->
+                <div *ngIf="(lastName.touched || lastName.dirty) && (lastName.errors)" class="custom-error-message">
+
+                    <p class="text-danger">
+                        {{
+                            lastName.errors['required'] ? 'هذا الحقل مطلوب'
+                            : ''
+                        }}
+                    </p>
+                </div>
+                <!-- #endregion -->
+                
+            </div>
+            <!-- #endregion -->                         
+            
+            <!-- #region Buttons-->
+            <div class="d-grid gap-3 mb-5 custom-buttons custom-form-buttons">
+                <button type="submit" class="btn btn-outline-primary"
+                [disabled]="!form.dirty || form.invalid">
+                    حفظ
+                    <i class="bi bi-save"></i>
+                </button>
+            </div>
+            <!-- #endregion -->
+            
+        </form>
+    </div>
+</div>

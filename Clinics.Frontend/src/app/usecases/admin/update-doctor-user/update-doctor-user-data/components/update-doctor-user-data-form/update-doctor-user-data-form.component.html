@@ -1,1 +1,90 @@
-<p>update-doctor-user-data-form works!</p>
+<div class="cutom-child" dir="rtl">
+    <div class="custom-form">
+
+        <!-- #region Server-side errors -->
+        <div *ngIf="isFailure" class="mb-3 d-grid gap-3 custom-server-error-message">
+            <button type="button" class="btn btn-danger">خطأ: {{errorMessage}}</button>
+        </div>
+        <!-- #endregion -->
+
+        <form #form="ngForm" (ngSubmit)="onSubmit()"
+            class="text-center custom-form-container" autocomplete="off">
+            
+            <!-- #region User name-->
+            <div class="form-group mb-3 custom-field">
+
+                <!-- #region Field label-->
+                <label for="userName" class="col-form-label custom-label">
+                    اسم المستخدم
+                    <span class="text-danger">*</span>
+                </label>
+                <!-- #endregion -->
+
+                <!-- #region Fiels input-->
+                <input type="text" class="form-control text-center custom-input" placeholder="ادخل اسم المستخدم" dir="rtl"
+
+                    [(ngModel)]="formModel.userName" name="userName"
+                    #userName="ngModel" required maxlength="50">
+                    <!-- #endregion -->
+
+                <!-- #region Field errors-->
+                <div *ngIf="(userName.touched || userName.dirty) && (userName.errors)" class="custom-error-message">
+
+                    <p class="text-danger">
+                        {{
+                        userName.errors['required'] ? 'هذا الحقل مطلوب'
+                        : ''
+                        }}
+                    </p>
+                </div>
+                <!-- #endregion -->
+                
+            </div>
+             
+            
+            <!-- #endregion -->
+
+            <!-- #region password-->
+            <div class="form-group mb-3 custom-field">
+
+                <!-- #region Field label-->
+                <label for="password" class="col-form-label custom-label">
+                    كلمة السر
+                    <span>(اختياري)</span>
+                </label>
+                <!-- #endregion -->
+
+                <!-- #region Fiels input-->
+                <input type="password" class="form-control text-center custom-input" placeholder="ادخل كلمة السر" dir="rtl"
+
+                    [(ngModel)]="formModel.password" name="password"
+                    #password="ngModel" maxlength="50">
+                    <!-- #endregion -->
+
+                <!-- #region Field errors-->
+                <div *ngIf="(password.touched || password.dirty) && (password.errors)" class="custom-error-message">
+
+                    <p class="text-danger">
+
+                    </p>
+                </div>
+                <!-- #endregion -->
+                
+            </div>
+             
+            
+            <!-- #endregion -->            
+
+            <!-- #region Buttons-->
+            <div class="d-grid gap-3 mb-5 custom-buttons custom-form-buttons">
+                <button type="submit" class="btn btn-outline-primary"
+                [disabled]="!form.dirty || form.invalid">
+                    حفظ
+                    <i class="bi bi-save"></i>
+                </button>
+            </div>
+            <!-- #endregion -->
+            
+        </form>
+    </div>
+</div>

@@ -5,5 +5,12 @@ export class DoctorUserResponse {
     public middleName!: string;
     public lastName!: string;
 
+    constructor() {
+        this.userName='';
+        this.firstName='';
+        this.middleName='';
+        this.lastName='';
+    }
+
 
 }

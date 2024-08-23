@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { updateDoctorUserQuery } from '../../classes/updateDoctorUserQuery';
 
 @Component({
   selector: 'app-update-doctor-user-data-form',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class UpdateDoctorUserDataFormComponent {
 
+  isFailure: boolean = false;
+  errorMessage: string;
+
+  @Input("formModel") formModel: updateDoctorUserQuery;
+
+  onSubmit(): void {
+
+  }
 }

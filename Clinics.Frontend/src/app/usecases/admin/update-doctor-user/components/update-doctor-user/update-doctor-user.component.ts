@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DoctorUsersService } from '../../../services/doctor-users.service';
 import { DoctorUserResponse } from '../../classes/doctor-user-response';
 import { ActivatedRoute } from '@angular/router';
+import { UpdateDoctorPersonalDataQuery } from '../../update-doctor-personal-data/classes/update-doctor-personal-data-query';
+import { updateDoctorUserQuery } from '../../update-doctor-user-data/classes/updateDoctorUserQuery';
 
 @Component({
   selector: 'app-update-doctor-user',
@@ -22,7 +24,12 @@ export class UpdateDoctorUserComponent implements OnInit{
       this.doctorUsersService.getDoctorUserById(this.doctorUserId)
       .subscribe( doctorUser => {
         this.doctorUser = doctorUser!;
-          }
+        this.editPersonalDataQuery = new UpdateDoctorPersonalDataQuery(
+          this.doctorUser.firstName, this.doctorUser.middleName,
+          this.doctorUser.lastName
+          );
+        this.editUserDataQuery = new updateDoctorUserQuery(doctorUser!.userName);
+        }
       )
   }
   // #endregion
@@ -30,7 +37,9 @@ export class UpdateDoctorUserComponent implements OnInit{
   // #region Variables
 
   doctorUserId: number;
-  doctorUser: DoctorUserResponse;
+  doctorUser: DoctorUserResponse = new DoctorUserResponse();
+  editPersonalDataQuery: UpdateDoctorPersonalDataQuery;
+  editUserDataQuery: updateDoctorUserQuery;
 
   isUserDataSelected: boolean = false;
   isPersonalInfoSelected: boolean = false;
