@@ -1,0 +1,15 @@
+/* #region custom*/
+.custom-create-button button:hover {
+    font-weight: 900;
+    background-color: inherit;
+    border-color: var(--heading-color);
+    color: var(--heading-color);
+}
+
+.custom-create-button button {
+    font-weight: 900;
+
+    background-color: var(--heading-color);
+    color: white;
+}
+/* #endregion */

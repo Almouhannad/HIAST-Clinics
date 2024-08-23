@@ -45,7 +45,7 @@ builder.Services.AddDbContext<ClinicsDbContext>(
 builder.Services.AddSignalR();
 
 // Background services:
-builder.Services.AddHostedService<ServerTimeNotifier>();
+//builder.Services.AddHostedService<ServerTimeNotifier>();
 #endregion
 
 #region Add CORS

@@ -10,6 +10,8 @@ import { DoctorUsersComponent } from './components/admin/doctor-users/doctor-use
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
 import { CreateDoctorUserFormComponent } from './components/admin/create-doctor-user-form/create-doctor-user-form.component';
 import { UpdateDoctorUserComponent } from './components/admin/update-doctor-user/update-doctor-user.component';
+import { ReceptionistUserComponent } from './components/admin/receptionist-user/receptionist-user.component';
+import { ReceptionistUsersComponent } from './components/admin/receptionist-users/receptionist-users.component';
 
 const routes: Routes = [
   {
@@ -51,6 +53,10 @@ const routes: Routes = [
       {
         path: 'doctors/update/:id',
         component: UpdateDoctorUserComponent
+      },
+      {
+        path: 'receptionists',
+        component: ReceptionistUsersComponent
       }
     ]
   },
