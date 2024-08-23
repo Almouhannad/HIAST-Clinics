@@ -2,7 +2,19 @@
     <section class="section">
         <div dir="rtl" class="mb-5 custom-form">
     
+
+            <div class="container text-center mb-3">
+      
+                <div class="custom-back-button">
+                  <a [routerLink]="['..']">
+                    <button class="btn btn-outline-primary">
+                      عودة<i class="bi bi-arrow-left"></i>
+                    </button>
+                  </a>
+                </div>
+            </div>
             <!-- #region Title-->
+            
             <div class="text-center custom-form-title mb-4">
                 <h3 style="font-weight: 800;">إضافة طبيب</h3>
             </div>
@@ -251,13 +263,7 @@
                                             حفظ
                                             <i class="bi bi-save"></i>
                                         </button>
-                            
-                                        <a [routerLink]="['..']">
-                                            <button type="button" class="btn btn-outline-primary">
-                                                عودة
-                                                <i class="bi bi-arrow-left"></i>
-                                            </button>
-                                        </a>
+                        
                                     </div>
                                 </div>
                             </div>

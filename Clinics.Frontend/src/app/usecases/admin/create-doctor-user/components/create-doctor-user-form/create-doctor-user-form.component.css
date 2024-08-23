@@ -78,6 +78,34 @@
 }
 /* #endregion */
 
+/* #region Back-button*/
+.custom-back-button {
+    margin-bottom: 1em;
+}
+.custom-back-button a{
+    width: 50%;
+}
+
+.custom-back-button a .btn{
+    width: 50%;
+    background-color: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+    font-weight: 700;
+}
+
+.custom-back-button a button:hover{
+    background-color: white;
+    border-color: var(--accent-color);
+
+    color:var(--accent-color);
+}
+
+.custom-back-button a .btn i{
+    margin-right: 0.5em;
+}
+/* #endregion */
+
 /* #region Field*/
 
 .custom-field {

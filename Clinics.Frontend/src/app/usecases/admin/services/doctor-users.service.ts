@@ -6,6 +6,7 @@ import { GetAllDoctorUsersResult } from '../list-doctor-users/classes/get-all-do
 import { GetAllDoctorUsersResponse } from '../list-doctor-users/classes/get-all-doctor-users-response';
 import { CreateDoctorUserCommand } from '../create-doctor-user/classes/create-doctor-user-command';
 import { CreateDoctorUserResult } from '../create-doctor-user/classes/create-doctor-user-result';
+import { DoctorUserResponse } from '../update-doctor-user/classes/doctor-user-response';
 
 @Injectable({
   providedIn: 'root'
@@ -51,5 +52,20 @@ export class DoctorUsersService {
   }
   // #endregion
 
+  // #region Get doctor user by Id
+  getDoctorUserById(id: number): Observable<DoctorUserResponse | null>
+  {
+    return this.http.get<DoctorUserResponse>(`${this.DOCTORUSERS_ENDPOINT}/${id}`)
+    .pipe(
+      map((doctorUser: DoctorUserResponse) => {
+        return doctorUser;
+      }),
+      catchError((error: HttpErrorResponse) => {
+        return of(null);
+      })
+    )
+  }
+  // #endregion
+  
   // #endregion
 }
