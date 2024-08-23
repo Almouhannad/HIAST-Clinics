@@ -27,18 +27,26 @@ public class UpdateDoctorUserHandler : CommandHandlerBase<UpdateDoctorUserComman
         #endregion
 
         #region 2. Check unique username
-        var uniqueUserNameResult = await _userRepository.IsUserNameAvailableAsunc(request.UserName);
-        if (uniqueUserNameResult.IsFailure)
-            return Result.Failure(uniqueUserNameResult.Error);
-        if (uniqueUserNameResult.Value == false)
-            return Result.Failure(IdentityErrors.TakenUserName);
+        if (user.User.UserName != request.UserName) // Unchanged user name, so just changing password
+        {
+            var uniqueUserNameResult = await _userRepository.IsUserNameAvailableAsunc(request.UserName);
+            if (uniqueUserNameResult.IsFailure)
+                return Result.Failure(uniqueUserNameResult.Error);
+            if (uniqueUserNameResult.Value == false)
+                return Result.Failure(IdentityErrors.TakenUserName);
+        }
+
 
         #endregion
 
         #region 3. change username
-        var updateUserNameResult = await _userRepository.ChangeUserName(user.User, request.UserName);
-        if (updateUserNameResult.IsFailure)
-            return Result.Failure(updateUserNameResult.Error);
+        if (user.User.UserName != request.UserName) // Unchanged user name, so just changing password
+        {
+            var updateUserNameResult = await _userRepository.ChangeUserName(user.User, request.UserName);
+            if (updateUserNameResult.IsFailure)
+                return Result.Failure(updateUserNameResult.Error);
+        }
+
         #endregion
 
         #region 4. Change password
