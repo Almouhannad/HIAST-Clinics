@@ -12,7 +12,7 @@ public class GetAllReceptionistUsersResponse
         public string UserName { get; set; } = null!;
         public string FullName { get; set; } = null!;
     }
-    public ICollection<GetAllReceptionistUsersResponseItem> DoctorUsers { get; set; } = [];
+    public ICollection<GetAllReceptionistUsersResponseItem> ReceptionistUsers { get; set; } = [];
 
     public static Result<GetAllReceptionistUsersResponse> GetResponse(ICollection<ReceptionistUser> receptionistUsers)
     {
@@ -31,7 +31,7 @@ public class GetAllReceptionistUsersResponse
         }
         return new GetAllReceptionistUsersResponse
         {
-            DoctorUsers = result
+            ReceptionistUsers = result
         };
     }
 }
