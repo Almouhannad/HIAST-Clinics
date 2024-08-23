@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { DoctorUsersService } from '../../../services/doctor-users.service';
 import { ToastrService } from 'ngx-toastr';
 import { CreateDoctorUserCommand } from '../../classes/create-doctor-user-command';
 import { NgForm } from '@angular/forms';
-import { DoctorUser } from '../../../list-doctor-users/classes/doctor-user';
+import { Router } from '@angular/router';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-create-doctor-user-form',
@@ -11,18 +12,13 @@ import { DoctorUser } from '../../../list-doctor-users/classes/doctor-user';
   styleUrl: './create-doctor-user-form.component.css'
 })
 export class CreateDoctorUserFormComponent {
+
   //#region CTOR DI
   constructor(private doctorUsersService: DoctorUsersService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private router: Router,
+    private scroller: ViewportScroller
   ) { }
-  //#endregion
-
-  //#region Inputs
-  @Input("parentModal") parentModal: any;
-  //#endregion
-
-  //#region Outputs
-  @Output("created") created: EventEmitter<DoctorUser> = new EventEmitter();
   //#endregion
 
   //#region Variables
@@ -46,15 +42,11 @@ export class CreateDoctorUserFormComponent {
             if (result.status === false) {
               this.isFailure = true;
               this.errorMessage = result.errorMessage!;
+              this.scroller.scrollToPosition([0,0])
             }
             else {
-              this.toastrService.success("تمت إضافة الطبيب بنجاح ✔");
-              this.created.emit(
-                new DoctorUser(
-                  this.formModel.userName, `${this.formModel.firstName} ${this.formModel.middleName} ${this.formModel.lastName}`
-                )
-              )
-
+              this.toastrService.success("تم إضافة الطبيب بنجاح ✔");
+              this.router.navigateByUrl('admin/doctors');
             }
           }
         )

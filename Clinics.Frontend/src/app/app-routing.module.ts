@@ -7,6 +7,8 @@ import { ForbiddenComponent } from './usecases/shared/components/errors/forbidde
 import { NotFoundComponent } from './usecases/shared/components/errors/not-found/not-found.component';
 import { TestSignalRComponent } from './notifications/components/test-signal-r/test-signal-r.component';
 import { DoctorUsersComponent } from './usecases/admin/list-doctor-users/components/doctor-users/doctor-users.component';
+import { AdminDashboardComponent } from './usecases/admin/shared/admin-dashboard/admin-dashboard.component';
+import { CreateDoctorUserFormComponent } from './usecases/admin/create-doctor-user/components/create-doctor-user-form/create-doctor-user-form.component';
 
 const routes: Routes = [
   {
@@ -30,11 +32,22 @@ const routes: Routes = [
   },
 
   {
-    path: 'admin/doctors',
-    component: DoctorUsersComponent,
+    path: 'admin',
+    component: AdminDashboardComponent,
     canActivate: [RoleGuard],
-    // canActivateChild: [RoleGuard],
+    canActivateChild: [RoleGuard],
+    
     data: { role: Roles.Admin },
+    children: [
+      {
+        path: 'doctors',
+        component: DoctorUsersComponent
+      },
+      {
+        path: 'doctors/create',
+        component: CreateDoctorUserFormComponent
+      }
+    ]
     
   },
   

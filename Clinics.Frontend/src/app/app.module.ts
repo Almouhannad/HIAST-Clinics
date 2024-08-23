@@ -24,6 +24,7 @@ import { DoctorUsersComponent } from './usecases/admin/list-doctor-users/compone
 import { DoctorUserComponent } from './usecases/admin/list-doctor-users/components/doctor-user/doctor-user.component';
 import { DoctorUsersService } from './usecases/admin/services/doctor-users.service';
 import { CreateDoctorUserFormComponent } from './usecases/admin/create-doctor-user/components/create-doctor-user-form/create-doctor-user-form.component';
+import { AdminDashboardComponent } from './usecases/admin/shared/admin-dashboard/admin-dashboard.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { CreateDoctorUserFormComponent } from './usecases/admin/create-doctor-us
     DoctorUserComponent,
     DoctorUsersComponent,
     CreateDoctorUserFormComponent,
+    AdminDashboardComponent,
   ],
   
   // identifies the root component that Angular should

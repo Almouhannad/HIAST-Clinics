@@ -1,116 +1,199 @@
-<div class="custom-child" dir="rtl">
-    <div>
+<div dir="rtl" class="mt-5 mb-5 custom-form">
+    
+    <!-- #region Title-->
 
-        <div class="text-center">
-            <h3 style="font-weight: 800;">إضافة طبيب</h3>
-        </div>
+    <div class="text-center custom-title mb-4">
+        <h3 style="font-weight: 800;">إضافة طبيب</h3>
+    </div>
 
-        <hr>
+    <!-- #endregion -->
+    
+    <!-- #region Server-side errors -->
+    <div *ngIf="isFailure" class="mb-3 d-grid gap-3 custom-server-error-message">
+        <button type="button" class="btn btn-danger">خطأ: {{errorMessage}}</button>
+    </div>
+    <!-- #endregion -->
 
-        <div *ngIf="isFailure" class="d-grid mb-2">
-            <button type="button" class="btn btn-danger" style="cursor: auto;">خطأ: {{errorMessage}}</button>
-        </div>
+    <form #createDoctorUserForm="ngForm" (ngSubmit)="onSubmit()" class="text-center" autocomplete="off">
 
-        <form #createDoctorUserForm="ngForm" (ngSubmit)="onSubmit()" class="text-center" autocomplete="off">
+        <!-- #region Username-->
+        <div class="form-group mb-3 custom-field">
 
-            <!-- To avoid first field auto focus -->
-            <div class="form-group">
-                <input type="text" autofocus="autofocus" style="display:none" />
-            </div>
+            <label for="username" class="col-form-label custom-label">
+                اسم المستخدم
+                <span class="text-danger">*</span>
+            </label>
 
-            <div class="form-group mb-2">
-                <label for="username" class="col-form-label custom-label mb-2">اسم المستخدم <span
-                        class="text-danger">*</span></label>
-                <input type="text" class="form-control text-center custom-input mb-2" placeholder="ادخل اسم المستخدم"
-                    dir="ltr" [(ngModel)]="formModel.userName" name="userName" #userName="ngModel" required
-                    maxlength="50">
+            <input
+                type="text" class="form-control text-center custom-input"
+                placeholder="ادخل اسم المستخدم" dir="ltr"
 
-                <div *ngIf="(userName.touched || userName.dirty) && userName.errors" class="mb-2">
-                    <span class="text-danger">
-                        {{
+                [(ngModel)]="formModel.userName" name="userName" 
+
+                #userName="ngModel" required maxlength="50"
+            >
+
+            <div *ngIf="(userName.touched || userName.dirty) && userName.errors"
+                class="custom-error-message">
+
+                <p class="text-danger">
+                    {{
                         userName.errors['required'] ? 'هذا الحقل مطلوب'
                         : ''
-                        }}
-                    </span>
-                </div>
+                    }}
+                </p>
+
             </div>
 
-            <div class="form-group mb-2">
-                <label for="password" class="col-form-label custom-label mb-2">كلمة المرور <span
-                        class="text-danger">*</span></label>
-                <input type="password" class="form-control text-center custom-input mb-2" placeholder="ادخل كلمة المرور"
-                    dir="ltr" [(ngModel)]="formModel.password" name="password" #password="ngModel" required
-                    maxlength="50">
+        </div>
+        <!-- #endregion -->
 
-                <div *ngIf="(password.touched || password.dirty) && password.errors" class="mb-2">
-                    <span class="text-danger">
-                        {{
+        <!-- #region Password-->
+        <div class="form-group mb-3 custom-field">
+
+            <label for="password" class="col-form-label custom-label">
+                كلمة المرور
+                <span class="text-danger">*</span>
+            </label>
+
+            <input
+                type="password" class="form-control text-center custom-input"
+                placeholder="ادخل كلمة المرور" dir="ltr"
+
+                [(ngModel)]="formModel.password" name="password" 
+
+                #password="ngModel" required maxlength="50"
+            >
+
+            <div *ngIf="(password.touched || password.dirty) && password.errors"
+                class="custom-error-message">
+
+                <p class="text-danger">
+                    {{
                         password.errors['required'] ? 'هذا الحقل مطلوب'
                         : ''
-                        }}
-                    </span>
-                </div>
+                    }}
+                </p>
 
             </div>
 
-            <div class="form-group mb-2">
-                <label for="firstName" class="col-form-label custom-label mb-2">الاسم الأول <span
-                        class="text-danger">*</span></label>
-                <input type="text" class="form-control text-center custom-input mt-2" placeholder="ادخل الاسم الأول"
-                    [(ngModel)]="formModel.firstName" name="firstName" #firstName="ngModel" required maxlength="50">
+        </div>
+        <!-- #endregion -->
 
-                <div *ngIf="(firstName.touched || firstName.dirty) && firstName.errors" class="mb-2">
-                    <span class="text-danger">
-                        {{
+        <!-- #region FirstName-->
+        <div class="form-group mb-3 custom-field">
+
+            <label for="firstName" class="col-form-label custom-label">
+                الاسم
+                <span class="text-danger">*</span>
+            </label>
+
+            <input
+                type="text" class="form-control text-center custom-input"
+                placeholder="ادخل الاسم" dir="rtl"
+
+                [(ngModel)]="formModel.firstName" name="firstName" 
+
+                #firstName="ngModel" required maxlength="50"
+            >
+
+            <div *ngIf="(firstName.touched || firstName.dirty) && firstName.errors"
+                class="custom-error-message">
+
+                <p class="text-danger">
+                    {{
                         firstName.errors['required'] ? 'هذا الحقل مطلوب'
                         : ''
-                        }}
-                    </span>
-                </div>
+                    }}
+                </p>
 
             </div>
 
-            <div class="form-group mb-2">
-                <label for="middleName" class="col-form-label custom-label mb-2">اسم الأب<span
-                        class="text-danger">*</span></label>
-                <input type="text" class="form-control text-center custom-input mb-2" placeholder="ادخل اسم الأب"
-                    [(ngModel)]="formModel.middleName" name="middleName" #middleName="ngModel" required maxlength="50">
+        </div>
+        <!-- #endregion -->
 
-                <div *ngIf="(middleName.touched || middleName.dirty) && middleName.errors" class="mb-2">
-                    <span class="text-danger">
-                        {{
+        <!-- #region MiddleName-->
+        <div class="form-group mb-3 custom-field">
+
+            <label for="middleName" class="col-form-label custom-label">
+                اسم الأب
+                <span class="text-danger">*</span>
+            </label>
+
+            <input
+                type="text" class="form-control text-center custom-input"
+                placeholder="ادخل اسم الأب" dir="rtl"
+
+                [(ngModel)]="formModel.middleName" name="middleName" 
+
+                #middleName="ngModel" required maxlength="50"
+            >
+
+            <div *ngIf="(middleName.touched || middleName.dirty) && middleName.errors"
+                class="custom-error-message">
+
+                <p class="text-danger">
+                    {{
                         middleName.errors['required'] ? 'هذا الحقل مطلوب'
                         : ''
-                        }}
-                    </span>
-                </div>
+                    }}
+                </p>
 
             </div>
 
-            <div class="form-group mb-2">
-                <label for="lastName" class="col-form-label custom-label mb-2">الكنية<span
-                        class="text-danger">*</span></label>
-                <input type="text" class="form-control text-center custom-input mb-2" placeholder="ادخل الكنية"
-                    [(ngModel)]="formModel.lastName" name="lastName" #lastName="ngModel" required maxlength="50">
+        </div>
+        <!-- #endregion -->
 
-                <div *ngIf="(lastName.touched || lastName.dirty) && lastName.errors" class="mb-2">
-                    <span class="text-danger">
-                        {{
+        <!-- #region MiddleName-->
+        <div class="form-group mb-3 custom-field">
+
+            <label for="lastName" class="col-form-label custom-label">
+                الكنية
+                <span class="text-danger">*</span>
+            </label>
+
+            <input
+                type="text" class="form-control text-center custom-input"
+                placeholder="ادخل الكنية" dir="rtl"
+
+                [(ngModel)]="formModel.lastName" name="lastName" 
+
+                #lastName="ngModel" required maxlength="50"
+            >
+
+            <div *ngIf="(lastName.touched || lastName.dirty) && lastName.errors"
+                class="custom-error-message">
+
+                <p class="text-danger">
+                    {{
                         lastName.errors['required'] ? 'هذا الحقل مطلوب'
                         : ''
-                        }}
-                    </span>
-                </div>
+                    }}
+                </p>
 
             </div>
 
-            <div class="d-grid gap-3">
-                <button type="submit" class="btn btn-outline-primary"
-                    [disabled]="!createDoctorUserForm.dirty || createDoctorUserForm.invalid">حفظ</button>
+        </div>
+        <!-- #endregion -->
+        
+        <!-- #region Buttons-->
+        <div class="d-grid gap-3 mb-5 custom-buttons custom-form-buttons">
+            
+            <button type="submit" class="btn btn-outline-primary"
+                [disabled]="!createDoctorUserForm.dirty || createDoctorUserForm.invalid">
+                حفظ
+                <i class="bi bi-save"></i>
+            </button>
 
-                <button type="button" class="btn btn-outline-secondary custom-cancel-button"
-                    (click)="parentModal.dismiss()">الغاء</button>
-            </div>
-        </form>
-    </div>
+            <a [routerLink]="['..']">
+                <button type="button" class="btn btn-outline-primary">
+                    عودة
+                    <i class="bi bi-arrow-left"></i>
+                </button>
+            </a>
+        </div>
+        
+        <!-- #endregion -->
+    
+    </form>
 </div>

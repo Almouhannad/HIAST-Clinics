@@ -1,21 +1,92 @@
-.custom-input,
-.custom-input::placeholder {
-    color: var(--heading-color);   
+/* #region Form card*/
+.custom-form {
+    width: 50%;
+    margin: auto;
+    padding: 1em;
+    border: 1px solid var(--accent-color);
+    border-radius: 3%;
+}
+/* #endregion */
+
+/* #region Title*/
+.custom-form .custom-title h3 {
+    width: 50%;
+    margin: auto;
+    padding: 0.5em;
+    border: 1px solid var(--accent-color);
+    border-radius: 10em;
+}
+/* #endregion */
+
+/* #region Server error message*/
+.custom-form .custom-server-error-message .btn{
+    width: 100%;
+    font-size: 1.2em;
+    font-weight: 700;
+    cursor: auto;
+}
+/* #endregion */
+
+/* #region Buttons*/
+.custom-buttons .btn {
+    font-weight: 700;
+    width: 50%;
+    margin: auto;
+    font-size: 1.2em;
 }
 
-.custom-input::placeholder {
-    opacity: 40%;
+.custom-buttons .btn i {
+    font-weight: 900;
+    font-size: 1.2em;
+    margin-right: 0.5em;
 }
 
-.custom-label {
-    color: var(--heading-color);   
+.custom-buttons .btn-outline-primary {
+    color: white;
+    background-color: var(--accent-color);
+}
+
+.custom-buttons .btn-outline-primary:hover {
+    background-color: white;
+    color: var(--accent-color);
+    box-shadow: 0 0 0 0.1em var(--accent-color);
+}
+/* #endregion */
+
+/* #region Field*/
+
+.custom-field {
+    width: 50%;
+    margin: auto;
+    color: var(--heading-color);
+}
+
+
+.custom-field .custom-label {
+    font-weight: 800;
+    margin-bottom: 0.3em;
+}
+
+.custom-field .custom-label span{
+    margin-right: 0.1em;
+}
+
+.custom-field .custom-input {
+    border: 1px solid var(--heading-color);
+    color: var(--heading-color);
+    margin-bottom: 0.3em;
+}
+
+.custom-field .custom-input:focus {
+    box-shadow: 0 0 0 0.1em var(--heading-color);
+  }
+
+.custom-field .custom-error-message {
     font-weight: 700;
 }
 
-.custom-cancel-button {
-    color: var(--heading-color);   
+.custom-form-buttons {
+    margin-top: 2em;
 }
-.custom-cancel-button:hover {
-    color: white;   
-    background-color: var(--heading-color);
-}
+
+/* #endregion */
