@@ -1,0 +1,21 @@
+.custom-input,
+.custom-input::placeholder {
+    color: var(--heading-color);   
+}
+
+.custom-input::placeholder {
+    opacity: 40%;
+}
+
+.custom-label {
+    color: var(--heading-color);   
+    font-weight: 700;
+}
+
+.custom-cancel-button {
+    color: var(--heading-color);   
+}
+.custom-cancel-button:hover {
+    color: white;   
+    background-color: var(--heading-color);
+}

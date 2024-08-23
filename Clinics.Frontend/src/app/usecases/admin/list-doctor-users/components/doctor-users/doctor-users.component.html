@@ -11,7 +11,8 @@
         <!-- #region buttons-->
 
         <div class="text-center custom-create-button">
-            <button class="btn btn-lg btn-outline-success mb-5" style="width: 35%;">إضافة طبيب +</button>
+            <button class="btn btn-lg btn-outline-success mb-5" style="width: 35%;"
+                (click)="openCreateDoctorUserForm(createDoctorUserModal)">إضافة طبيب +</button>
         </div>
 
 
@@ -21,11 +22,22 @@
         <div class="container">
             <div class="row gy-5 ">
                 <div *ngFor="let doctorUser of doctorUsers" class="col-lg-4 col-md-6">
-                    <app-doctor-user [doctorUser]="doctorUser" ></app-doctor-user>
+                    <app-doctor-user [doctorUser]="doctorUser"></app-doctor-user>
                 </div>
+                <div id="bottom"></div>
             </div>
         </div>
+
         <!-- #endregion -->
 
     </section>
+
+    <!-- #region create doctor user pop-up -->
+    <ng-template #createDoctorUserModal let-modal>
+        <div *ngIf="creating" class="modal-body">
+            <app-create-doctor-user-form (created)="onCreate($event); modal.dismiss();"
+                [parentModal]="modal"></app-create-doctor-user-form>
+        </div>
+    </ng-template>
+    <!-- #endregion -->
 </div>

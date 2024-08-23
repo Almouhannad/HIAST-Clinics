@@ -23,6 +23,7 @@ import { SignalRService } from './notifications/services/signal-r.service';
 import { DoctorUsersComponent } from './usecases/admin/list-doctor-users/components/doctor-users/doctor-users.component';
 import { DoctorUserComponent } from './usecases/admin/list-doctor-users/components/doctor-user/doctor-user.component';
 import { DoctorUsersService } from './usecases/admin/services/doctor-users.service';
+import { CreateDoctorUserFormComponent } from './usecases/admin/create-doctor-user/components/create-doctor-user-form/create-doctor-user-form.component';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { DoctorUsersService } from './usecases/admin/services/doctor-users.servi
     TestSignalRComponent,
     DoctorUserComponent,
     DoctorUsersComponent,
+    CreateDoctorUserFormComponent,
   ],
   
   // identifies the root component that Angular should
