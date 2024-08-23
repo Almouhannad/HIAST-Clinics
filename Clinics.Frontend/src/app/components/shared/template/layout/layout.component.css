@@ -50,7 +50,7 @@ app-footer {
 ::ng-deep .section {
     color: var(--default-color);
     background-color: var(--background-color);
-    padding: 60px 0;
+    padding: 30px 0;
     scroll-margin-top: 72px;
     overflow: clip;
 }
@@ -62,7 +62,7 @@ app-footer {
 
 ::ng-deep .section-title h2 {
     font-size: 32px;
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 20px;
     padding-bottom: 20px;
     position: relative;
@@ -96,6 +96,18 @@ app-footer {
 
 ::ng-deep .section-title p {
     margin-bottom: 0;
+}
+
+::ng-deep .custom-title {
+    width: fit-content;
+    padding-bottom: 0.3em;
+    border-bottom: 2px solid var(--accent-color);
+    color: var(--heading-color);
+    margin: auto;
+}
+
+::ng-deep .custom-title h2 {
+    font-weight: 700;
 }
 
 /* #endregion */
