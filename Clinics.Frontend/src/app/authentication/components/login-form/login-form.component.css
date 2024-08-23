@@ -7,6 +7,10 @@
     opacity: 40%;
 }
 
+.custom-input {
+    background-color: var(--background-color);
+}
+
 .custom-label {
     color: var(--heading-color);   
     font-weight: 700;
