@@ -26,13 +26,18 @@ export class CreateDoctorUserFormComponent {
   formModel: CreateDoctorUserCommand = new CreateDoctorUserCommand();
 
   isFailure: boolean = false;
+  isInvalid: boolean = false;
   errorMessage: string = '';
+
+  isUserSectionOpen:boolean = true;
+  isPersonalInfoSectionOpen:boolean = false;
+  isOptionsSectionOpen:boolean = false;
   //#endregion
 
   // #region on submit
   onSubmit(): void {
-    console.table(this.loginForm);
     if (this.loginForm.valid) {
+      this.isInvalid = false;
       this.isFailure = false;
       this.errorMessage = '';
 
@@ -42,7 +47,9 @@ export class CreateDoctorUserFormComponent {
             if (result.status === false) {
               this.isFailure = true;
               this.errorMessage = result.errorMessage!;
-              this.scroller.scrollToPosition([0,0])
+              this.scroller.scrollToPosition([0,0]);
+              this.loginForm.form.markAsPristine();
+
             }
             else {
               this.toastrService.success("تم إضافة الطبيب بنجاح ✔");
@@ -50,7 +57,14 @@ export class CreateDoctorUserFormComponent {
             }
           }
         )
+    }
+    else {
+      this.isInvalid = true;
+      this.isOptionsSectionOpen = true;
+      this.isPersonalInfoSectionOpen = true;
+      this.isOptionsSectionOpen = true;
       this.loginForm.form.markAsPristine();
+      this.scroller.scrollToPosition([0,0]);
 
     }
   }

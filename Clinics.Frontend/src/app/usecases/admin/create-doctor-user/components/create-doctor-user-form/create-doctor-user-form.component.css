@@ -1,3 +1,28 @@
+/* #region Accordion*/
+.accordion {
+    margin-bottom: 1em;
+}
+.accordion-header{
+    border: none;
+    
+}
+.accordion-header .accordion-button{
+    border: none;
+    
+}
+
+.accordion-item {
+    border: none;
+}
+
+.custom-accordion-header .btn-primary{
+    width: 100%;
+    background-color: var(--heading-color);
+    font-weight: 700;
+}
+
+/* #endregion */
+
 /* #region Form card*/
 .custom-form {
     width: 50%;
@@ -43,13 +68,13 @@
 
 .custom-buttons .btn-outline-primary {
     color: white;
-    background-color: var(--accent-color);
+    background-color: var(--heading-color);
 }
 
 .custom-buttons .btn-outline-primary:hover {
     background-color: white;
-    color: var(--accent-color);
-    box-shadow: 0 0 0 0.1em var(--accent-color);
+    color: var(--heading-color);
+    box-shadow: 0 0 0 0.1em var(--heading-color);
 }
 /* #endregion */
 
