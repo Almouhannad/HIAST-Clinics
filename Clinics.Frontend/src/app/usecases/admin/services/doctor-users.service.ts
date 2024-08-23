@@ -7,6 +7,10 @@ import { GetAllDoctorUsersResponse } from '../list-doctor-users/classes/get-all-
 import { CreateDoctorUserCommand } from '../create-doctor-user/classes/create-doctor-user-command';
 import { CreateDoctorUserResult } from '../create-doctor-user/classes/create-doctor-user-result';
 import { DoctorUserResponse } from '../update-doctor-user/classes/doctor-user-response';
+import { UpdateDoctorPersonalDataQuery } from '../update-doctor-user/update-doctor-personal-data/classes/update-doctor-personal-data-query';
+import { UpdateDoctorPersonalDataResult } from '../update-doctor-user/update-doctor-personal-data/classes/update-doctor-personal-data-result';
+import { updateDoctorUserQuery } from '../update-doctor-user/update-doctor-user-data/classes/update-doctor-user-query';
+import { UpdateDoctorUserDataResult } from '../update-doctor-user/update-doctor-user-data/classes/update-doctor-user-data-result';
 
 @Injectable({
   providedIn: 'root'
@@ -67,5 +71,34 @@ export class DoctorUsersService {
   }
   // #endregion
   
+  // #region Update doctor peronsal info
+  updateDoctorPersonalInfo(query: UpdateDoctorPersonalDataQuery) : Observable<UpdateDoctorPersonalDataResult> {
+    return this.http.put(this.DOCTORUSERS_ENDPOINT, query)
+    .pipe(
+      map(_ => {
+        return new UpdateDoctorPersonalDataResult(true);
+      }),
+      catchError((error: HttpErrorResponse) => {
+        return of (new UpdateDoctorPersonalDataResult(false, error.error.detail))
+      })
+    )
+  }
+  
+  // #endregion
+
+  // #region Update doctor user data 
+  updateDoctorUserData(query: updateDoctorUserQuery): Observable<UpdateDoctorUserDataResult> {
+    return this.http.put(`${this.DOCTORUSERS_ENDPOINT}/Users`, query)
+    .pipe(
+      map (_ => {
+        return new UpdateDoctorUserDataResult(true);
+      }),
+      catchError((error: HttpErrorResponse) => {
+        return of (new UpdateDoctorUserDataResult(false, error.error.detail))
+      })
+    )
+  }  
+  // #endregion
+
   // #endregion
 }
