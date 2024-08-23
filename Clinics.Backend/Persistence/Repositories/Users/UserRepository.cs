@@ -116,6 +116,26 @@ public class UserRepository : Repositroy<User>, IUserRepository
     }
     #endregion
 
+    #region Get doctor user by id
+    public async Task<Result<DoctorUser>> GetDoctorUserByIdAsync(int id)
+    {
+        try
+        {
+            var query = _context.Set<DoctorUser>()
+                .Where(doctorUser => doctorUser.Id == id)
+                .Include(doctorUser => doctorUser.User)
+                .Include(doctorUser => doctorUser.Doctor)
+                    .ThenInclude(doctor => doctor.PersonalInfo);
+            return await query.FirstAsync();
+
+        }
+        catch (Exception)
+        {
+            return Result.Failure<DoctorUser>(PersistenceErrors.NotFound);
+        }
+    }
+    #endregion
+
     #region Register doctor
     public async Task<Result<DoctorUser>> RegisterDoctorAsync(DoctorUser doctorUser)
     {

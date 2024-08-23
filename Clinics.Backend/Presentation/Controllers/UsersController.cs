@@ -3,6 +3,7 @@ using Application.Users.Commands.RegisterDoctor;
 using Application.Users.Commands.RegisterReceptionist;
 using Application.Users.Queries.GetAllDoctorUsers;
 using Application.Users.Queries.GetAllReceptionistsUsers;
+using Application.Users.Queries.GetDoctorUserById;
 using Domain.Entities.Identity.UserRoles;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -53,6 +54,17 @@ public class UsersController : ApiController
     public async Task<IActionResult> GetAllDoctorUsers()
     {
         var query = new GetAllDoctorUsersQuery();
+        var result = await _sender.Send(query);
+        if (result.IsFailure)
+            return HandleFailure(result);
+        return Ok(result.Value);
+    }
+
+    [Authorize(Roles = Roles.AdminName)]
+    [HttpGet("Doctors/{id:int}")]
+    public async Task<IActionResult> GetDoctorUserById([FromRoute(Name ="id")] int id )
+    {
+        var query = new GetDoctorUserByIdQuery { Id = id };
         var result = await _sender.Send(query);
         if (result.IsFailure)
             return HandleFailure(result);

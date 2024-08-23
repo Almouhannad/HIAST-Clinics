@@ -28,6 +28,10 @@ public interface IUserRepository : IRepository<User>
     public Task<Result<ICollection<DoctorUser>>> GetAllDoctorUsersAsync();
     #endregion
 
+    #region Get doctor user by id
+    public Task<Result<DoctorUser>> GetDoctorUserByIdAsync(int id);
+    #endregion
+
     #region Register doctor
     public Task<Result<DoctorUser>> RegisterDoctorAsync(DoctorUser doctorUser);
     #endregion
