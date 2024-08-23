@@ -17,6 +17,14 @@ public interface IUserRepository : IRepository<User>
     public Task<Result<bool>> IsUserNameAvailableAsunc(string userName);
     #endregion
 
+    #region Change password
+    public Task<Result> ChangePassword(User user, string password);
+    #endregion
+
+    #region Change username
+    public Task<Result> ChangeUserName(User user, string userName);
+    #endregion
+
     #region Doctor users
 
     #region Get doctor user by user name full
@@ -34,6 +42,10 @@ public interface IUserRepository : IRepository<User>
 
     #region Register doctor
     public Task<Result<DoctorUser>> RegisterDoctorAsync(DoctorUser doctorUser);
+    #endregion
+
+    #region Update doctor user
+    public Task<Result> UpdateDoctorUserAsync(DoctorUser doctorUser);
     #endregion
 
     #endregion

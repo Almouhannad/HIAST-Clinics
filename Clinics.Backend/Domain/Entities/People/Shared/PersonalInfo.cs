@@ -1,4 +1,5 @@
-﻿using Domain.Primitives;
+﻿using Domain.Errors;
+using Domain.Primitives;
 using Domain.Shared;
 
 namespace Domain.Entities.People.Shared;
@@ -47,6 +48,18 @@ public sealed class PersonalInfo : Entity
             return Result.Failure<PersonalInfo>(Errors.DomainErrors.InvalidValuesError);
 
         return new PersonalInfo(0, firstName, middleName, lastName);
+    }
+    #endregion
+
+    #region Update details
+    public Result UpdateDetails(string firstName, string middleName, string lastName)
+    {
+        if (firstName is null || middleName is null || lastName is null)
+            return Result.Failure(DomainErrors.InvalidValuesError);
+        FirstName = firstName;
+        MiddleName = middleName;
+        LastName = lastName;
+        return Result.Success();
     }
     #endregion
 

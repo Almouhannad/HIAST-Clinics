@@ -1,6 +1,8 @@
 ﻿using Application.Users.Commands.Login;
 using Application.Users.Commands.RegisterDoctor;
 using Application.Users.Commands.RegisterReceptionist;
+using Application.Users.Commands.UpdateDoctorPersonalInfo;
+using Application.Users.Commands.UpdateDoctorUser;
 using Application.Users.Queries.GetAllDoctorUsers;
 using Application.Users.Queries.GetAllReceptionistsUsers;
 using Application.Users.Queries.GetDoctorUserById;
@@ -70,6 +72,27 @@ public class UsersController : ApiController
             return HandleFailure(result);
         return Ok(result.Value);
     }
+
+    [Authorize(Roles = Roles.AdminName)]
+    [HttpPut("Doctors")]
+    public async Task<IActionResult> UpdateDoctorPersonalInfo([FromBody] UpdateDoctorPersonalInfoCommand command)
+    {
+        var result = await _sender.Send(command);
+        if (result.IsFailure)
+            return HandleFailure(result);
+        return Ok();
+    }
+
+    [Authorize(Roles = Roles.AdminName)]
+    [HttpPut("Doctors/Users")]
+    public async Task<IActionResult> UpdateDoctorUser([FromBody] UpdateDoctorUserCommand command)
+    {
+        var result = await _sender.Send(command);
+        if (result.IsFailure)
+            return HandleFailure(result);
+        return Ok();
+    }
+
     #endregion
 
     #region Receptionist

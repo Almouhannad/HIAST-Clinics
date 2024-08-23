@@ -63,5 +63,15 @@ public sealed class User : Entity
     }
     #endregion
 
+    #region Update userName
+    public Result UpdateUserName(string userName)
+    {
+        if (userName is null)
+            return Result.Failure(DomainErrors.InvalidValuesError);
+        UserName = userName;
+        return Result.Success();
+    }
+    #endregion
+
     #endregion
 }

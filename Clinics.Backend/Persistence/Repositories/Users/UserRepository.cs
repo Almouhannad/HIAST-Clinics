@@ -76,6 +76,45 @@ public class UserRepository : Repositroy<User>, IUserRepository
     }
     #endregion
 
+    #region Change password
+    public async Task<Result> ChangePassword(User user, string password)
+    {
+        try
+        {
+            var updatePasswordResult = user.SetHashedPassword(_passwordHasher.Hash(password));
+            if (updatePasswordResult.IsFailure)
+                return Result.Failure(updatePasswordResult.Error);
+
+            _context.Set<User>().Update(user);
+            await _context.SaveChangesAsync();
+            return Result.Success();
+        }
+        catch (Exception)
+        {
+            return Result.Failure(PersistenceErrors.UnableToCompleteTransaction);
+        }
+    }
+    #endregion
+
+    #region Change username
+    public async Task<Result> ChangeUserName(User user, string userName)
+    {
+        try
+        {
+            var updateUserNameResult = user.UpdateUserName(userName);
+            if (updateUserNameResult.IsFailure)
+                return Result.Failure(updateUserNameResult.Error);
+            _context.Set<User>().Update(user);
+            await _context.SaveChangesAsync();
+            return Result.Success();
+        }
+        catch (Exception)
+        {
+            return Result.Failure(PersistenceErrors.UnableToCompleteTransaction);
+        }
+    }
+    #endregion
+
     #region Doctor users
 
     #region Get doctor user by user name full
@@ -154,6 +193,22 @@ public class UserRepository : Repositroy<User>, IUserRepository
         catch (Exception)
         {
             return Result.Failure<DoctorUser>(IdentityErrors.UnableToRegister);
+        }
+    }
+    #endregion
+
+    #region Update doctor user
+    public async Task<Result> UpdateDoctorUserAsync(DoctorUser doctorUser)
+    {
+        try
+        {
+            _context.Set<DoctorUser>().Update(doctorUser);
+            await _context.SaveChangesAsync();
+            return Result.Success();
+        }
+        catch (Exception)
+        {
+            return Result.Failure(PersistenceErrors.UnableToCompleteTransaction);
         }
     }
     #endregion
