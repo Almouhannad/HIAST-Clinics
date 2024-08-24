@@ -23,7 +23,7 @@
                     dir="ltr" [(ngModel)]="formModel.userName" name="userName" #userName="ngModel" required
                     maxlength="50">
 
-                <div *ngIf="(userName.touched || userName.dirty) && userName.errors" class="mt-2">
+                <div *ngIf="(userName.touched || userName.dirty) && userName.errors" class="mt-2 custom-errors">
                     <span class="text-danger">
                         {{
                         userName.errors['required'] ? 'هذا الحقل مطلوب'
@@ -40,7 +40,7 @@
                     dir="ltr" [(ngModel)]="formModel.password" name="password" #password="ngModel" required
                     maxlength="50">
 
-                <div *ngIf="(password.touched || password.dirty) && password.errors" class="mt-2">
+                <div *ngIf="(password.touched || password.dirty) && password.errors" class="mt-2 custom-errors">
                     <span class="text-danger">
                         {{
                         password.errors['required'] ? 'هذا الحقل مطلوب'

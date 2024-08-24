@@ -23,7 +23,7 @@
                     dir="ltr" [(ngModel)]="formModel.serialNumber" name="serialNumber" #serialNumber="ngModel" required
                     maxlength="50">
 
-                <div *ngIf="(serialNumber.touched || serialNumber.dirty) && serialNumber.errors" class="mt-2">
+                <div *ngIf="(serialNumber.touched || serialNumber.dirty) && serialNumber.errors" class="mt-2 custom-errors">
                     <span class="text-danger">
                         {{
                         serialNumber.errors['required'] ? 'هذا الحقل مطلوب'
