@@ -100,14 +100,41 @@ app-footer {
 
 ::ng-deep .custom-title {
     width: fit-content;
-    padding-bottom: 0.3em;
     border-bottom: 2px solid var(--accent-color);
     color: var(--heading-color);
     margin: auto;
 }
 
 ::ng-deep .custom-title h2 {
+    margin-bottom: 0.3em;
     font-weight: 700;
 }
 
+::ng-deep .custom-title p {
+    margin-bottom: 0.3em;
+    font-weight: 700;
+    text-align: center;
+}
+
+::ng-deep .custom-bttuons-after-title {
+    margin-top: 1em;
+    text-align: center;
+}
+
+::ng-deep .custom-bttuons-after-title button{
+    width: 25%;
+}
+
+::ng-deep .custom-bttuons-after-title button:hover {
+    font-weight: 900;
+    background-color: inherit;
+    border-color: var(--heading-color);
+    color: var(--heading-color);
+}
+
+::ng-deep .custom-bttuons-after-title button {
+    font-weight: 900;
+    background-color: var(--heading-color);
+    color: white;
+}
 /* #endregion */

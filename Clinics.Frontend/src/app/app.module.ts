@@ -30,6 +30,9 @@ import { UpdateDoctorUserDataFormComponent } from './components/admin/update-doc
 import { ReceptionistUserComponent } from './components/admin/receptionist-user/receptionist-user.component';
 import { ReceptionistUsersComponent } from './components/admin/receptionist-users/receptionist-users.component';
 import { ReceptionistUsersService } from './services/admin/receptionist-users.service';
+import { ReceptionistDashboardComponent } from './components/receptionist/receptionist-dashboard/receptionist-dashboard.component';
+import { WaitingListComponent } from './components/receptionist/waiting-list/waiting-list.component';
+import { WaitingListItemComponent } from './components/receptionist/waiting-list-item/waiting-list-item.component';
 
 
 @NgModule({
@@ -78,6 +81,9 @@ import { ReceptionistUsersService } from './services/admin/receptionist-users.se
     UpdateDoctorUserDataFormComponent,
     ReceptionistUserComponent,
     ReceptionistUsersComponent,
+    ReceptionistDashboardComponent,
+    WaitingListComponent,
+    WaitingListItemComponent,
   ],
   
   // identifies the root component that Angular should

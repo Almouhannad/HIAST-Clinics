@@ -98,9 +98,18 @@
                                 (click)="showDropdown = !showDropdown">خيارات <i
                                     class="bi bi-chevron-down toggle-dropdown"></i></button>
                             <ul [ngClass]="{'show': showDropdown}">
+                                <li><a>إضافة مريض</a></li>
                                 <li (click)="onLogout();"><a>تسجيل الخروج</a></li>
                             </ul>
                         </li>
+
+                        <li><a><button class="btn"
+                            [class]="{'btn-outline-primary': isSelected('RecDotctors'), 'btn-outline-secondary': !isSelected('RecDotctors')}"
+                            (click)="selectButton('RecDotctors')">الأطباء</button></a></li>
+
+                        <li><a [routerLink]="'receptionist/waitinglist'"><button class="btn"
+                            [class]="{'btn-outline-primary': isSelected('WaitingList'), 'btn-outline-secondary': !isSelected('WaitingList')}"
+                            (click)="selectButton('WaitingList')">قائمة الانتظار</button></a></li>
 
                         <li><a [routerLink]="'home'"><button class="btn"
                                     [class]="{'btn-outline-primary': isSelected('Home'), 'btn-outline-secondary': !isSelected('Home')}"

@@ -12,6 +12,8 @@ import { CreateDoctorUserFormComponent } from './components/admin/create-doctor-
 import { UpdateDoctorUserComponent } from './components/admin/update-doctor-user/update-doctor-user.component';
 import { ReceptionistUserComponent } from './components/admin/receptionist-user/receptionist-user.component';
 import { ReceptionistUsersComponent } from './components/admin/receptionist-users/receptionist-users.component';
+import { ReceptionistDashboardComponent } from './components/receptionist/receptionist-dashboard/receptionist-dashboard.component';
+import { WaitingListComponent } from './components/receptionist/waiting-list/waiting-list.component';
 
 const routes: Routes = [
   {
@@ -62,6 +64,26 @@ const routes: Routes = [
       {
         path: 'receptionists',
         component: ReceptionistUsersComponent
+      }
+    ]
+  },
+
+  {
+    path: 'receptionist',
+    component: ReceptionistDashboardComponent,
+    canActivate: [RoleGuard],
+    canActivateChild: [RoleGuard],
+    
+    data: { role: Roles.Receptionist },
+    children: [
+      {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full'
+      },
+      {
+        path: 'waitinglist',
+        component: WaitingListComponent
       }
     ]
   },
