@@ -122,18 +122,18 @@ app-footer {
     text-align: center;
 }
 
-::ng-deep .custom-bttuons-after-title button{
+::ng-deep .custom-bttuons-after-title .btn{
     width: 25%;
 }
 
-::ng-deep .custom-bttuons-after-title button:hover {
+::ng-deep .custom-bttuons-after-title .btn:hover {
     font-weight: 900;
     background-color: inherit;
     border-color: var(--heading-color);
     color: var(--heading-color);
 }
 
-::ng-deep .custom-bttuons-after-title button {
+::ng-deep .custom-bttuons-after-title .btn {
     font-weight: 900;
     background-color: var(--heading-color);
     color: white;
