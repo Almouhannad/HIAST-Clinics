@@ -43,6 +43,11 @@ const routes: Routes = [
     data: { role: Roles.Admin },
     children: [
       {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full'
+      },
+      {
         path: 'doctors',
         component: DoctorUsersComponent
       },
