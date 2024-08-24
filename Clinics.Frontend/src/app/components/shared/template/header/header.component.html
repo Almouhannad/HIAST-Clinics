@@ -18,7 +18,7 @@
 
                     <ul>
                         <li><a><button class="btn" [class]="{'btn-outline-secondary': true}"
-                                    (click)="openLoginForm(loginModal)">تسجيل الدخول</button></a></li>
+                                    (click)="openPopUp(loginModal)">تسجيل الدخول</button></a></li>
 
                         <li><a href="home#about"><button class="btn"
                                     [class]="{'btn-outline-primary': isSelected('About'), 'btn-outline-secondary': !isSelected('About')}"
@@ -98,7 +98,8 @@
                                 (click)="showDropdown = !showDropdown">خيارات <i
                                     class="bi bi-chevron-down toggle-dropdown"></i></button>
                             <ul [ngClass]="{'show': showDropdown}">
-                                <li><a>إضافة مريض</a></li>
+                                <li><a (click)="openPopUp(employeeSerialNumber) ;showDropdown = false;">الاستعلام عن موظف</a></li>
+                                <li><a (click)="showDropdown = false;" [routerLink]="['receptionist/employees/create']">إضافة موظف</a></li>
                                 <li (click)="onLogout();"><a>تسجيل الخروج</a></li>
                             </ul>
                         </li>
@@ -128,6 +129,14 @@
     <ng-template #loginModal let-modal>
         <div *ngIf="userData===null" class="modal-body">
             <app-login-form (loggedIn)="onLogin($event); modal.dismiss();" [parentModal]="modal"></app-login-form>
+        </div>
+    </ng-template>
+    <!-- #endregion -->
+
+    <!-- #region employee serial number pop-up -->
+    <ng-template #employeeSerialNumber let-modal>
+        <div *ngIf="userData?.role === RECEPTIONIST" class="modal-body">
+            <app-employee-serial-number-pop-up [parentModal]="modal"></app-employee-serial-number-pop-up>
         </div>
     </ng-template>
     <!-- #endregion -->

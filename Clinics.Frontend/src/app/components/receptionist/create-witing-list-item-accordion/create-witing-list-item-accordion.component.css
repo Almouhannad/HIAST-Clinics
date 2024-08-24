@@ -1,0 +1,55 @@
+/* #region Custom*/
+.custom-back-button {
+    margin-bottom: 1em;
+}
+.custom-back-button a{
+    width: 100%;
+}
+
+.custom-back-button a .btn{
+    width: 100%;
+    background-color: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+    font-weight: 700;
+}
+
+.custom-back-button a button:hover{
+    background-color: white;
+    border-color: var(--accent-color);
+
+    color:var(--accent-color);
+}
+
+.custom-back-button a .btn i{
+    margin-right: 0.5em;
+}
+/* #endregion */
+
+/* #region Accordion*/
+.accordion {
+    margin-bottom: 1em;
+    width: 75%;
+    margin: auto;
+}
+.accordion-header{
+    border: none;
+    
+}
+.accordion-header .accordion-button{
+    border: none;
+    
+}
+
+.accordion-item {
+    border: none;
+}
+
+.custom-accordion-header .btn-primary{
+    width: 100%;
+    background-color: var(--heading-color);
+    border-color: var(--heading-color);
+    font-weight: 700;
+}
+
+/* #endregion */

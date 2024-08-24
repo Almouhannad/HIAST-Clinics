@@ -1,0 +1,63 @@
+<div class="cutom-child" dir="rtl">
+    <div class="custom-form">
+
+        <!-- #region Server-side errors -->
+        <div *ngIf="isFailure" class="mb-3 d-grid gap-3 custom-server-error-message">
+            <button type="button" class="btn btn-danger">خطأ: {{errorMessage}}</button>
+        </div>
+        <!-- #endregion -->
+
+        <form #form="ngForm" (ngSubmit)="onSubmit()"
+            class="text-center custom-form-container" autocomplete="off">
+            
+            <!-- #region Serial number-->
+            <div class="form-group mb-3 custom-field">
+
+                <!-- #region Field label-->
+                <label for="serialNumber" class="col-form-label custom-label">
+                    الرقم الذاتي
+                    <span class="text-danger">*</span>
+                </label>
+                <!-- #endregion -->
+
+                <!-- #region Field input-->
+                <input type="number" class="form-control text-center custom-input" placeholder="ادخل الرقم الذاتي" dir="ltr"
+
+                    [(ngModel)]="formModel.serialNumber" name="serialNumber"
+                    #serialNumber="ngModel" required maxlength="50">
+                    <!-- #endregion -->
+
+                <!-- #region Field errors-->
+                <div *ngIf="(serialNumber.touched || serialNumber.dirty) && (serialNumber.errors)" class="custom-error-message">
+
+                    <p class="text-danger">
+                        {{
+                        serialNumber.errors['required'] ? 'هذا الحقل مطلوب'
+                        : ''
+                        }}
+                    </p>
+                </div>
+                <!-- #endregion -->
+                
+            </div>
+             
+            
+            <!-- #endregion -->
+
+            <!-- #region Buttons-->
+            <div class="d-grid gap-3 mb-5">
+
+                <div class="custom-submit-form-button">
+                    <button type="submit" class="btn btn-outline-primary"
+                    [disabled]="!form.dirty || form.invalid">
+                        حفظ
+                        <i class="bi bi-save"></i>
+                    </button>
+                </div>
+                
+            </div>
+            <!-- #endregion -->
+            
+        </form>
+    </div>
+</div>

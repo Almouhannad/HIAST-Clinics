@@ -1,0 +1,46 @@
+<div class="custom-child" dir="rtl">
+    <div>
+
+        <div class="custom-title mb-3">
+            <h2>الاستعلام عن موظف</h2>
+        </div>
+
+        <div *ngIf="isFailure" class="d-grid mb-2">
+            <button type="button" class="btn btn-danger" style="cursor: auto; font-weight:700;">خطأ: {{errorMessage}}</button>
+        </div>
+
+        <form #form="ngForm" (ngSubmit)="onSubmit()" class="text-center" autocomplete="off">
+
+            <!-- To avoid first field auto focus -->
+            <div class="form-group">
+                <input type="text" autofocus="autofocus" style="display:none" />
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="serialNumber" class="col-form-label custom-label mb-2">الرقم الذاتي <span
+                        class="text-danger">*</span></label>
+                <input type="number" class="form-control text-center custom-input" placeholder="ادخل الرقم الذاتي"
+                    dir="ltr" [(ngModel)]="formModel.serialNumber" name="serialNumber" #serialNumber="ngModel" required
+                    maxlength="50">
+
+                <div *ngIf="(serialNumber.touched || serialNumber.dirty) && serialNumber.errors" class="mt-2">
+                    <span class="text-danger">
+                        {{
+                        serialNumber.errors['required'] ? 'هذا الحقل مطلوب'
+                        : ''
+                        }}
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="d-grid gap-3">
+                <button type="submit" class="btn btn-outline-primary custom-confirm-button"
+                    [disabled]="!form.dirty || form.invalid">تأكيد</button>
+
+                <button type="button" class="btn btn-outline-secondary custom-cancel-button"
+                    (click)="parentModal.dismiss()">الغاء</button>
+            </div>
+        </form>
+    </div>
+</div>

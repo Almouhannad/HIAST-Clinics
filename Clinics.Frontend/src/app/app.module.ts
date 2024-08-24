@@ -35,6 +35,12 @@ import { WaitingListComponent } from './components/receptionist/waiting-list/wai
 import { WaitingListItemComponent } from './components/receptionist/waiting-list-item/waiting-list-item.component';
 import { DoctorsComponent } from './components/receptionist/doctors/doctors.component';
 import { DoctorItemComponent } from './components/receptionist/doctor-item/doctor-item.component';
+import { CreateWitingListItemAccordionComponent } from './components/receptionist/create-witing-list-item-accordion/create-witing-list-item-accordion.component';
+import { CreateWitingListItemForEmployeeComponent } from './components/receptionist/create-witing-list-item-for-employee/create-witing-list-item-for-employee.component';
+import { CreateWitingListItemForFamilyMemberComponent } from './components/receptionist/create-witing-list-item-for-family-member/create-witing-list-item-for-family-member.component';
+import { CreateEmployeeFormComponent } from './components/receptionist/create-employee-form/create-employee-form.component';
+import { EmployeeSerialNumberPopUpComponent } from './components/receptionist/employee-serial-number-pop-up/employee-serial-number-pop-up.component';
+import { EmployeeComponent } from './components/receptionist/employee/employee.component';
 
 
 @NgModule({
@@ -88,6 +94,12 @@ import { DoctorItemComponent } from './components/receptionist/doctor-item/docto
     WaitingListItemComponent,
     DoctorsComponent,
     DoctorItemComponent,
+    CreateWitingListItemAccordionComponent,
+    CreateWitingListItemForEmployeeComponent,
+    CreateWitingListItemForFamilyMemberComponent,
+    CreateEmployeeFormComponent,
+    EmployeeSerialNumberPopUpComponent,
+    EmployeeComponent,
   ],
   
   // identifies the root component that Angular should

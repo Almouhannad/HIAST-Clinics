@@ -43,8 +43,8 @@ export class HeaderComponent {
 
   //#region Login
 
-  //#region Login form pop-up
-  openLoginForm(content: any): void {
+  //#region Open pop-up
+  openPopUp(content: any): void {
     this.modalService.open(content);
   }
 

@@ -1,14 +1,12 @@
 <div class="custom-child" dir="rtl">
     <div>
 
-        <div class="text-center">
-            <h3 style="font-weight: 800;">تسجيل الدخول</h3>
+        <div class="custom-title mb-3">
+            <h2>تسجيل الدخول</h2>
         </div>
 
-        <hr>
-
         <div *ngIf="isFailure" class="d-grid mb-2">
-            <button type="button" class="btn btn-danger" style="cursor: auto;">خطأ: {{errorMessage}}</button>
+            <button type="button" class="btn btn-danger" style="cursor: auto; font-weight:700;">خطأ: {{errorMessage}}</button>
         </div>
 
         <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="text-center" autocomplete="off">
@@ -54,7 +52,7 @@
             </div>
 
             <div class="d-grid gap-3">
-                <button type="submit" class="btn btn-outline-primary"
+                <button type="submit" class="btn btn-outline-primary custom-confirm-button"
                     [disabled]="!loginForm.dirty || loginForm.invalid">دخول</button>
 
                 <button type="button" class="btn btn-outline-secondary custom-cancel-button"

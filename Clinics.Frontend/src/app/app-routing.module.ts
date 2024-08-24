@@ -15,6 +15,9 @@ import { ReceptionistUsersComponent } from './components/admin/receptionist-user
 import { ReceptionistDashboardComponent } from './components/receptionist/receptionist-dashboard/receptionist-dashboard.component';
 import { WaitingListComponent } from './components/receptionist/waiting-list/waiting-list.component';
 import { DoctorsComponent } from './components/receptionist/doctors/doctors.component';
+import { CreateWitingListItemAccordionComponent } from './components/receptionist/create-witing-list-item-accordion/create-witing-list-item-accordion.component';
+import { CreateEmployeeFormComponent } from './components/receptionist/create-employee-form/create-employee-form.component';
+import { EmployeeComponent } from './components/receptionist/employee/employee.component';
 
 const routes: Routes = [
   {
@@ -85,6 +88,18 @@ const routes: Routes = [
       {
         path: 'waitinglist',
         component: WaitingListComponent
+      },
+      {
+        path: 'waitinglist/create',
+        component: CreateWitingListItemAccordionComponent
+      },
+      {
+        path: 'employees/create',
+        component: CreateEmployeeFormComponent
+      },
+      {
+        path: 'employees/:id',
+        component: EmployeeComponent
       },
       {
         path: 'doctors',
