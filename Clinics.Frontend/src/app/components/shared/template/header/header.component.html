@@ -52,15 +52,15 @@
 
                         <li><a [routerLink]="['admin/receptionists']"><button class="btn"
                                     [class]="{'btn-outline-primary': isSelected('Admin-Receptionists'), 'btn-outline-secondary': !isSelected('Admin-Receptionists')}"
-                                    (click)="selectButton('Admin-Receptionists')">موظفو الاستقبال</button></a></li>
+                                    (click)="showDropdown=false; selectButton('Admin-Receptionists')">موظفو الاستقبال</button></a></li>
 
                         <li><a [routerLink]="['admin/doctors']"><button class="btn"
                                     [class]="{'btn-outline-primary': isSelected('Admin-Dorctors'), 'btn-outline-secondary': !isSelected('Admin-Dorctors')}"
-                                    (click)="selectButton('Admin-Dorctors')">الأطباء</button></a></li>
+                                    (click)="showDropdown=false; selectButton('Admin-Dorctors')">الأطباء</button></a></li>
 
                         <li><a [routerLink]="'home'"><button class="btn"
                                     [class]="{'btn-outline-primary': isSelected('Home'), 'btn-outline-secondary': !isSelected('Home')}"
-                                    (click)="selectButton('Home')">الصفحة الرئيسية</button></a></li>
+                                    (click)="showDropdown=false; selectButton('Home')">الصفحة الرئيسية</button></a></li>
 
                     </ul>
                 </nav>
@@ -82,7 +82,7 @@
 
                         <li><a [routerLink]="'home'"><button class="btn"
                                     [class]="{'btn-outline-primary': isSelected('Home'), 'btn-outline-secondary': !isSelected('Home')}"
-                                    (click)="selectButton('Home')">الصفحة الرئيسية</button></a></li>
+                                    (click)="showDropdown=false; selectButton('Home')">الصفحة الرئيسية</button></a></li>
 
                     </ul>
                 </nav>
@@ -105,15 +105,15 @@
 
                         <li><a [routerLink]="['receptionist/doctors']"><button class="btn"
                             [class]="{'btn-outline-primary': isSelected('RecDotctors'), 'btn-outline-secondary': !isSelected('RecDotctors')}"
-                            (click)="selectButton('RecDotctors')">الأطباء</button></a></li>
+                            (click)="showDropdown=false; selectButton('RecDotctors')">الأطباء</button></a></li>
 
                         <li><a [routerLink]="'receptionist/waitinglist'"><button class="btn"
                             [class]="{'btn-outline-primary': isSelected('WaitingList'), 'btn-outline-secondary': !isSelected('WaitingList')}"
-                            (click)="selectButton('WaitingList')">قائمة الانتظار</button></a></li>
+                            (click)="showDropdown=false; selectButton('WaitingList')">قائمة الانتظار</button></a></li>
 
                         <li><a [routerLink]="'home'"><button class="btn"
                                     [class]="{'btn-outline-primary': isSelected('Home'), 'btn-outline-secondary': !isSelected('Home')}"
-                                    (click)="selectButton('Home')">الصفحة الرئيسية</button></a></li>
+                                    (click)="showDropdown=false; selectButton('Home')">الصفحة الرئيسية</button></a></li>
 
                     </ul>
                 </nav>
