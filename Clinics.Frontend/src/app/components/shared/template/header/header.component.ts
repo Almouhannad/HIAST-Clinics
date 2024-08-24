@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Roles } from '../../../../classes/authentication/roles';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,9 @@ export class HeaderComponent {
   constructor(private authenticationService: AuthenticationService,
     private router: Router,
     private modalService: NgbModal,
-    private toastrService: ToastrService) { }
+    private toastrService: ToastrService,
+    private scroller: ViewportScroller
+  ) { }
   //#endregion
 
   //#region Inputs
@@ -51,6 +54,9 @@ export class HeaderComponent {
   onLogin(userData: UserData)
   {
     this.userData = userData;
+    this.router.navigate(['']);
+    this.selectedButton = 'Home';
+    this.scroller.scrollToPosition([0,0]);
   }
   //#endregion
 
@@ -62,7 +68,9 @@ export class HeaderComponent {
     this.toastrService.success("تم تسجيل الخروج بنجاح ✔");
     this.userData = null;
     this.showDropdown = false;
+    this.selectedButton = 'Home';
     this.router.navigate(['']);
+    this.scroller.scrollToPosition([0,0]);
   }
   //#endregion
 
