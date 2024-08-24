@@ -108,6 +108,7 @@ app-footer {
 ::ng-deep .custom-title h2 {
     margin-bottom: 0.3em;
     font-weight: 700;
+    text-align: center;
 }
 
 ::ng-deep .custom-title p {

@@ -103,7 +103,7 @@
                             </ul>
                         </li>
 
-                        <li><a><button class="btn"
+                        <li><a [routerLink]="['receptionist/doctors']"><button class="btn"
                             [class]="{'btn-outline-primary': isSelected('RecDotctors'), 'btn-outline-secondary': !isSelected('RecDotctors')}"
                             (click)="selectButton('RecDotctors')">الأطباء</button></a></li>
 

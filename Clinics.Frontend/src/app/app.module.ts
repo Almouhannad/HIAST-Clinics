@@ -33,6 +33,8 @@ import { ReceptionistUsersService } from './services/admin/receptionist-users.se
 import { ReceptionistDashboardComponent } from './components/receptionist/receptionist-dashboard/receptionist-dashboard.component';
 import { WaitingListComponent } from './components/receptionist/waiting-list/waiting-list.component';
 import { WaitingListItemComponent } from './components/receptionist/waiting-list-item/waiting-list-item.component';
+import { DoctorsComponent } from './components/receptionist/doctors/doctors.component';
+import { DoctorItemComponent } from './components/receptionist/doctor-item/doctor-item.component';
 
 
 @NgModule({
@@ -84,6 +86,8 @@ import { WaitingListItemComponent } from './components/receptionist/waiting-list
     ReceptionistDashboardComponent,
     WaitingListComponent,
     WaitingListItemComponent,
+    DoctorsComponent,
+    DoctorItemComponent,
   ],
   
   // identifies the root component that Angular should

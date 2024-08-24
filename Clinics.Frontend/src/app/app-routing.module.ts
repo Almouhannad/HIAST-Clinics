@@ -14,6 +14,7 @@ import { ReceptionistUserComponent } from './components/admin/receptionist-user/
 import { ReceptionistUsersComponent } from './components/admin/receptionist-users/receptionist-users.component';
 import { ReceptionistDashboardComponent } from './components/receptionist/receptionist-dashboard/receptionist-dashboard.component';
 import { WaitingListComponent } from './components/receptionist/waiting-list/waiting-list.component';
+import { DoctorsComponent } from './components/receptionist/doctors/doctors.component';
 
 const routes: Routes = [
   {
@@ -84,6 +85,10 @@ const routes: Routes = [
       {
         path: 'waitinglist',
         component: WaitingListComponent
+      },
+      {
+        path: 'doctors',
+        component: DoctorsComponent
       }
     ]
   },
