@@ -45,7 +45,10 @@ export class HeaderComponent {
 
   //#region Open pop-up
   openPopUp(content: any): void {
-    this.modalService.open(content);
+    this.modalService.open(content, {
+      centered: true,
+      size: 'md'
+    });
   }
 
   //#endregion
