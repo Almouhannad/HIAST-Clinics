@@ -28,14 +28,54 @@
     <!-- #region buttons-->
 
 
-    <a class="d-grid gap-3 custom-edit-button">
-        <button class="btn btn-outline-secondary">
-            إرسال إلى طبيب<i class="fas fa-arrow-left"></i>
-        </button>
-    </a>
+    <div class="d-grid gap-3 custom-edit-button">
+        <a>
+            <button class="btn btn-outline-secondary" style="width: 100%;">
+                إرسال إلى طبيب<i class="fas fa-arrow-left"></i>
+            </button>
+        </a>
+
+        <div class="custom-delete-button">
+            <button class="btn btn-outline-secondary"
+            (click)="onClickDelete(confirmDeleteModal)">
+                <i class="fa fa-trash-alt"></i>
+            </button>
+        </div>
+
+    </div>
+
+
+
 
 
     <!-- #endregion -->
-
-
 </div>
+
+
+<ng-template #confirmDeleteModal let-modal>
+    <div class="modal-body">
+        <div class="custom-child" dir="rtl">
+            <p style="font-weight: 800;">هل أنت متأكد من رغبتك في حذف هذا المريض من قائمة الانتظار ؟</p>
+
+            <div class="d-grid gap-3 custom-undo-button mb-3">
+                <a>
+                    <button class="btn btn-outline-secondary" style="width: 100%;"
+                    (click)="modal.dismiss()">
+                        إلغاء
+                    </button>
+                </a>
+            </div>
+
+                <a>
+                    <div class="custom-edit-button">
+                        <button class="btn btn-outline-secondary" style="width:100%;"
+                        (click)="modal.dismiss(); onDelete()">
+                            تأكيد
+                        </button>
+                    </div>
+                </a>
+                
+
+        </div>
+    </div>
+</ng-template>

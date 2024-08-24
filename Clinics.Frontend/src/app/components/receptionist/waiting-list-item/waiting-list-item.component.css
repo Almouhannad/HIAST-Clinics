@@ -31,6 +31,37 @@
     margin-right: 0.5em;
 }
 
+.custom-delete-button button{
+    background-color: white;
+    border-color: red;
+    color: red;
+}
+
+.custom-delete-button button:hover{
+    background-color: red;
+    border-color: red;
+    color: white;
+}
+
+.custom-delete-button button i {
+    margin: auto;
+}
+
+.custom-undo-button button{
+    width: 100%;
+    background-color: var(--accent-color);
+    border: var(--accent-color);
+    color:white;
+    font-weight: 900;
+}
+
+.custom-undo-button button:hover{
+    border: 1px solid;
+    background-color: white;
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
 /* #endregion */
 
 /* #region collection item */

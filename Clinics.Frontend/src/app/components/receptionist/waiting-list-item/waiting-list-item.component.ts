@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-waiting-list-item',
@@ -7,4 +8,19 @@ import { Component } from '@angular/core';
 })
 export class WaitingListItemComponent {
 
+  constructor(private modalService: NgbModal
+
+
+  ) {}
+
+  onClickDelete(modal: any): void {
+    this.modalService.open(modal, {
+      centered: true,
+      size: 'md'
+    });
+  }
+
+  onDelete(): void {
+
+  }
 }
