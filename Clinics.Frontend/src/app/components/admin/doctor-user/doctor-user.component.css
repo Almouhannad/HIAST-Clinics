@@ -21,7 +21,7 @@
 
 .custom-edit-button button {
     font-weight: 900;
-
+    border-color: var(--heading-color);
     background-color: var(--heading-color);
     color: white;
 }

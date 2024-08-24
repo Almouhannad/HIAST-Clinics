@@ -18,6 +18,7 @@
 .custom-accordion-header .btn-primary{
     width: 100%;
     background-color: var(--heading-color);
+    border-color: var(--heading-color);
     font-weight: 700;
 }
 
@@ -69,6 +70,7 @@
 .custom-buttons .btn-outline-primary {
     color: white;
     background-color: var(--heading-color);
+    border-color: var(--heading-color);
 }
 
 .custom-buttons .btn-outline-primary:hover {

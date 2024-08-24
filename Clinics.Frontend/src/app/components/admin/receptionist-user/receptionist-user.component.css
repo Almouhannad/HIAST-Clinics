@@ -23,6 +23,7 @@
     font-weight: 900;
 
     background-color: var(--heading-color);
+    border-color: var(--heading-color);
     color: white;
 }
 

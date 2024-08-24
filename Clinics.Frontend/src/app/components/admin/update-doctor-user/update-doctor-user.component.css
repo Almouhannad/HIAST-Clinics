@@ -48,6 +48,7 @@
 .custom-accordion-header .btn-primary{
     width: 100%;
     background-color: var(--heading-color);
+    border-color: var(--heading-color);
     font-weight: 700;
 }
 
