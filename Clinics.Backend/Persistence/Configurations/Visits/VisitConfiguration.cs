@@ -21,5 +21,10 @@ internal class VisitConfiguration : IEntityTypeConfiguration<Visit>
             .WithMany()
             .HasForeignKey(visit => visit.HospitalId)
             .OnDelete(DeleteBehavior.NoAction);
+
+        builder.HasOne(visit => visit.Holiday)
+            .WithOne()
+            .HasForeignKey<Holiday>(holiday => holiday.VisitId)
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }

@@ -10,18 +10,9 @@ internal class WaitingListRecordConfiguration : IEntityTypeConfiguration<Waiting
     {
         builder.ToTable(nameof(WaitingListRecord));
 
-        builder.Property(waitingListRecord => waitingListRecord.IsServed)
-            .HasDefaultValue(false)
-            .IsRequired();
-
         builder.HasOne(waitingListRecord => waitingListRecord.Patient)
             .WithMany()
             .HasForeignKey(waitingListRecord => waitingListRecord.PatientId)
-            .OnDelete(DeleteBehavior.NoAction);
-
-        builder.HasOne(waitingListRecord => waitingListRecord.Doctor)
-            .WithMany()
-            .HasForeignKey(waitingListRecord => waitingListRecord.DoctorId)
             .OnDelete(DeleteBehavior.NoAction);
     }
 }

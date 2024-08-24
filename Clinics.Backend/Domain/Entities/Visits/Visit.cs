@@ -83,6 +83,10 @@ public sealed class Visit : Entity
 
     #endregion
 
+    #region Holiday
+    public Holiday? Holiday { get; private set; }
+    #endregion
+
     #endregion
 
     #region Methods
@@ -163,6 +167,18 @@ public sealed class Visit : Entity
         Hospital = hospital;
         HospitalId = hospital.Id;
         return Result.Success();
+    }
+    #endregion
+
+    #region Add holiday
+    public Result AddHoliday(DateOnly from, int duration)
+    {
+        var holidayResult = Holiday.Create(Id, from, duration);
+        if (holidayResult.IsFailure)
+            return Result.Failure(holidayResult.Error);
+        Holiday = holidayResult.Value;
+        return Result.Success();
+
     }
     #endregion
 

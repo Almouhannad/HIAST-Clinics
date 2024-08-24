@@ -37,4 +37,7 @@ public static class DomainErrors
     public static Error VisitAlreadyHasThisMedicalImage =>
         new("Domain.PatientAlreadyHasThisMedicine", "تحتوي هذه الزيارة بالفعل على الصورة التي تحاول اضافتها");
 
+    public static Error InvalidHolidayDuration =>
+        new("Domain.InvalidHolidayDuration", "الحد الأقصى للإجازة المرضية هو خمس أيام");
+
 }

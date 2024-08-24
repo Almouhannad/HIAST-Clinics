@@ -13,7 +13,6 @@ public sealed class WaitingListRecord : Entity
     private WaitingListRecord(int id, int patientId) : base(id)
     {
         PatientId = patientId;
-        IsServed = false;
     }
 
     #endregion
@@ -27,16 +26,9 @@ public sealed class WaitingListRecord : Entity
 
     #endregion
 
-    #region Doctor
-
-    public int? DoctorId { get; set; }
-    public Doctor? Doctor { get; set; }
-
-    #endregion
-
     #region Additional
 
-    public bool IsServed { get; set; } = false;
+    DateTime ArrivalTime { get; set; }
 
     #endregion
 
@@ -53,17 +45,6 @@ public sealed class WaitingListRecord : Entity
         return new WaitingListRecord(0, patientId);
     }
 
-    #endregion
-
-    #region Link to doctor
-    public Result LinkToDoctor(int doctorId)
-    {
-        if (doctorId <= 0)
-            return Result.Failure(Errors.DomainErrors.InvalidValuesError);
-
-        DoctorId = doctorId;
-        return Result.Success();
-    }
     #endregion
 
     #endregion
