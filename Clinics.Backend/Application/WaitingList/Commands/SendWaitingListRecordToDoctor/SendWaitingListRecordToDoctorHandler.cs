@@ -1,6 +1,6 @@
 ﻿using Application.Abstractions.CQRS.Commands;
-using Application.Abstractions.Notifications.Doctors;
-using Application.Abstractions.Notifications.Doctors.NewVisitNotifications;
+using Application.Notifications.Doctors;
+using Application.Notifications.Doctors.NewVisitNotifications;
 using Domain.Entities.People.Doctors.Shared.DoctorStatusValues;
 using Domain.Repositories;
 using Domain.Shared;
@@ -63,7 +63,7 @@ public class SendWaitingListRecordToDoctorHandler : CommandHandlerBase<SendWaiti
         #endregion
 
         #region 5. Send notification
-        var notification = NewVisitNotification.Create(request.PatientId, patient.PersonalInfo.FirstName, request.DoctorId, doctorUser.Id);
+        var notification = NewVisitNotification.Create(request.PatientId, patient.PersonalInfo.FullName, request.DoctorId, doctorUser.Id);
         await _doctorsNotificationService.SendNewVisitNotification(notification);
         #endregion
 

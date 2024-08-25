@@ -1,4 +1,6 @@
-﻿namespace Application.Abstractions.Notifications.Doctors.NewVisitNotifications;
+﻿using Application.Abstractions.Notifications;
+
+namespace Application.Notifications.Doctors.NewVisitNotifications;
 
 public class NewVisitNotification : INotification
 {

@@ -1,5 +1,5 @@
-﻿using Application.Abstractions.Notifications.Doctors;
-using Application.Abstractions.Notifications.Doctors.NewVisitNotifications;
+﻿using Application.Notifications.Doctors;
+using Application.Notifications.Doctors.NewVisitNotifications;
 using Infrastructure.Abstractions;
 using Infrastructure.NotificationsHubs;
 using Microsoft.AspNetCore.SignalR;
