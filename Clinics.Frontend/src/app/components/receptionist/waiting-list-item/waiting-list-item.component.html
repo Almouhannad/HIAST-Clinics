@@ -30,24 +30,20 @@
 
     <div class="d-grid gap-3 custom-edit-button">
         <a>
-            <button class="btn btn-outline-secondary" style="width: 100%;">
+            <button class="btn btn-outline-secondary" style="width: 100%;"
+            (click)="openModal(SendToDoctorModal)">
                 إرسال إلى طبيب<i class="fas fa-arrow-left"></i>
             </button>
         </a>
 
         <div class="custom-delete-button">
             <button class="btn btn-outline-secondary"
-            (click)="onClickDelete(confirmDeleteModal)">
+            (click)="openModal(confirmDeleteModal)">
                 <i class="fa fa-trash-alt"></i>
             </button>
         </div>
 
     </div>
-
-
-
-
-
     <!-- #endregion -->
 </div>
 
@@ -77,5 +73,43 @@
                 
 
         </div>
+    </div>
+</ng-template>
+
+
+<ng-template #SendToDoctorModal let-modal>
+    <div class="modal-body">
+        <div class="custom-child" dir="rtl">
+            <div class="custom-title mb-3">
+                <h2>إرسال إلى طبيب</h2>
+            </div>
+
+            <div class="custom-select">
+                <select class="text-center mb-3 form-control"
+                [(ngModel)]="selectedDoctorId">
+                    <option value="-1" disabled>يرجى اختيار الطبيب</option>
+                    <option *ngFor="let doctor of doctors" [ngValue]="doctor.id">{{doctor.name}}</option>
+                </select>
+            </div>
+
+            <div class="d-grid gap-3 custom-undo-button mb-3">
+                <a>
+                    <button class="btn btn-outline-secondary" style="width: 100%;"
+                    (click)="modal.dismiss()">
+                        إلغاء
+                    </button>
+                </a>
+            </div>
+
+                <a>
+                    <div class="custom-edit-button">
+                        <button class="btn btn-outline-secondary" style="width:100%;"
+                        (click)="onSendToDoctor(); modal.dismiss();">
+                            تأكيد
+                        </button>
+                    </div>
+                </a>                        
+        </div>
+            
     </div>
 </ng-template>

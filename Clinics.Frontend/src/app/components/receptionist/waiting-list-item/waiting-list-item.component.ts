@@ -29,7 +29,7 @@ export class WaitingListItemComponent {
     return this.types.FamilyMember;
   }
 
-  onClickDelete(modal: any): void {
+  openModal(modal: any): void {
     this.modalService.open(modal, {
       centered: true,
       size: 'md'
@@ -47,5 +47,17 @@ export class WaitingListItemComponent {
         this.toastrService.error('حدث خطأ، يرجى اعادة المحاولة');
       }
     })
+  }
+
+  selectedDoctorId: number = -1;
+  doctors: {id: number, name:string}[] = [
+    {id: 1, name: 'A'},
+    {id: 2, name: 'B'},
+    {id: 3, name: 'C'},
+    {id: 4, name: 'D'},
+    {id: 5, name: 'E'},
+  ]
+  onSendToDoctor(): void {
+    console.log(this.selectedDoctorId);
   }
 }
