@@ -2,7 +2,7 @@
 
 namespace Application.Employees.Commands.CreateEmployee;
 
-public class CreateEmployeeCommand : ICommand
+public class CreateEmployeeCommand : ICommand<CreateEmployeeCommandResponse>
 {
     // Future update: Employees data will be fetched from ID system's API
 

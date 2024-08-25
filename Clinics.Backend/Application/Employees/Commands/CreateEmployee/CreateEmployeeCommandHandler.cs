@@ -7,7 +7,7 @@ using Domain.UnitOfWork;
 
 namespace Application.Employees.Commands.CreateEmployee;
 
-public class CreateEmployeeCommandHandler : CommandHandlerBase<CreateEmployeeCommand>
+public class CreateEmployeeCommandHandler : CommandHandlerBase<CreateEmployeeCommand, CreateEmployeeCommandResponse>
 {
     #region CTOR DI
     private readonly IEmployeesRepository _employeesRepository;
@@ -19,7 +19,7 @@ public class CreateEmployeeCommandHandler : CommandHandlerBase<CreateEmployeeCom
 
     #endregion
 
-    public override async Task<Result> HandleHelper(CreateEmployeeCommand request, CancellationToken cancellationToken)
+    public override async Task<Result<CreateEmployeeCommandResponse>> HandleHelper(CreateEmployeeCommand request, CancellationToken cancellationToken)
     {
 
         #region 1. Create employee
@@ -34,21 +34,21 @@ public class CreateEmployeeCommandHandler : CommandHandlerBase<CreateEmployeeCom
                 request.JobStatus
                 );
         if (employeeResult.IsFailure)
-            return Result.Failure(employeeResult.Error);
+            return Result.Failure< CreateEmployeeCommandResponse>(employeeResult.Error);
         #endregion
 
         #region 2. Check existed serial number
         Result<Employee> existedResult = await _employeesRepository.GetEmployeeBySerialNumberAsync(request.SerialNumber);
         if (existedResult.IsSuccess)
-            return Result.Failure(DomainErrors.EmployeeAlreadyExist);
+            return Result.Failure< CreateEmployeeCommandResponse>(DomainErrors.EmployeeAlreadyExist);
         #endregion
 
         #region 3. Add to DB
         var createResult = await _employeesRepository.CreateAsync(employeeResult.Value);
         if (createResult.IsFailure)
-            return Result.Failure(createResult.Error);
+            return Result.Failure<CreateEmployeeCommandResponse>(createResult.Error);
         #endregion
 
-        return Result.Success();
+        return Result.Success(CreateEmployeeCommandResponse.GetResponse(createResult.Value));
     }
 }

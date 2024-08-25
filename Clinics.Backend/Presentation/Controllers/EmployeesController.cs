@@ -27,7 +27,7 @@ public class EmployeesController : ApiController
         var result = await _sender.Send(command);
         if (result.IsFailure)
             return HandleFailure(result);
-        return Created();
+        return Ok(result.Value);
     }
 
     //[Authorize(Roles = Roles.ReceptionistName)]
