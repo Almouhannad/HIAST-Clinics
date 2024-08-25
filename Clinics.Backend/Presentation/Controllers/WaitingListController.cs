@@ -2,6 +2,7 @@
 using Application.Employees.Commands.CreateEmployee;
 using Application.WaitingList.Commands.CreateWaitingListRecord;
 using Application.WaitingList.Commands.DeleteWaitingListRecord;
+using Application.WaitingList.Commands.SendWaitingListRecordToDoctor;
 using Application.WaitingList.Queries;
 using Domain.Entities.Identity.UserRoles;
 using MediatR;
@@ -50,6 +51,15 @@ public class WaitingListController : ApiController
         {
             Id = id
         };
+        var result = await _sender.Send(command);
+        if (result.IsFailure)
+            return HandleFailure(result);
+        return Ok();
+    }
+
+    [HttpPost("SendToDoctor")]
+    public async Task<IActionResult> SendToDoctor([FromBody] SendWaitingListRecordToDoctorCommand command)
+    {
         var result = await _sender.Send(command);
         if (result.IsFailure)
             return HandleFailure(result);

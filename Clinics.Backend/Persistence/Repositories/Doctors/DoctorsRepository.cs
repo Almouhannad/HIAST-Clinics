@@ -1,4 +1,5 @@
-﻿using Domain.Entities.People.Doctors;
+﻿using Domain.Entities.Identity.Users;
+using Domain.Entities.People.Doctors;
 using Domain.Entities.People.Doctors.Shared.DoctorStatusValues;
 using Domain.Errors;
 using Domain.Repositories;
@@ -34,6 +35,14 @@ public class DoctorsRepository : Repositroy<Doctor>, IDoctorsRepository
     }
     #endregion
 
+    #region Update method
+    public override Task<Result> UpdateAsync(Doctor entity)
+    {
+        _context.Entry(entity.Status).State = EntityState.Unchanged;
+        return base.UpdateAsync(entity);
+    }
+    #endregion
+
     #region Get available
     public async Task<Result<ICollection<Doctor>>> GetAvailableDoctors()
     {
@@ -49,6 +58,26 @@ public class DoctorsRepository : Repositroy<Doctor>, IDoctorsRepository
         catch (Exception)
         {
             return Result.Failure<ICollection<Doctor>>(PersistenceErrors.Unknown);
+        }
+    }
+    #endregion
+
+    #region Get user
+    public async Task<Result<DoctorUser>> GetUserByIdAsync(int id)
+    {
+        try
+        {
+            var query = _context.Set<DoctorUser>()
+                .Include(doctorUser => doctorUser.Doctor)
+                .Where(doctorUser => doctorUser.Doctor.Id == id)
+                .Include(doctorUser => doctorUser.User);
+            var result = await query.FirstAsync();
+            return result;
+
+        }
+        catch (Exception)
+        {
+            return Result.Failure<DoctorUser>(PersistenceErrors.NotFound);
         }
     }
     #endregion
