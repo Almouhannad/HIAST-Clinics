@@ -3,8 +3,8 @@ using API.Options.JWT;
 using API.SeedDatabaseHelper;
 using Application.Behaviors;
 using FluentValidation;
-using Infrastructure.BackgroundServices.Notifications;
-using Infrastructure.NotificationsService;
+using Infrastructure;
+using Infrastructure.NotificationsHubs;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -43,23 +43,20 @@ builder.Services.AddDbContext<ClinicsDbContext>(
 
 #region Add SignalR
 builder.Services.AddSignalR();
-
-// Background services:
-//builder.Services.AddHostedService<ServerTimeNotifier>();
 #endregion
 
 #region Add CORS
 builder.Services.AddCors();
 #endregion
 
-#region Link interfaces implemented in persistence
+#region Link interfaces implemented in infrastructre
 // Using Scrutor library
 builder
     .Services
     .Scan(
         selector => selector
-            .FromAssemblies(Persistence.AssemblyReference.Assembly
-            // Add other assemblies here
+            .FromAssemblies(Persistence.AssemblyReference.Assembly,
+            Infrastructure.AssemblyReference.Assembly
             )
             .AddClasses(false)
             .AsImplementedInterfaces()
@@ -142,7 +139,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 #region Map notification HUB
-app.MapHub<NotificationHub>("api/Notifications");
+app.MapHub<DoctorsNotificationsHub>("api/Notifications/Doctors");
+app.MapHub<ReceptionistsNotificationsHub>("api/Notifications/Receptionists");
 #endregion
 
 #region CORS
