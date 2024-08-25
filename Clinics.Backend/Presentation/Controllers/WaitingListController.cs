@@ -43,7 +43,7 @@ public class WaitingListController : ApiController
     }
 
     //[Authorize(Roles = Roles.ReceptionistName)]
-    [HttpDelete("/{id:int}")]
+    [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete([FromRoute(Name ="id")] int id)
     {
         var command = new DeleteWaitingListRecordCommand
