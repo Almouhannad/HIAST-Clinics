@@ -10,9 +10,10 @@ public sealed class WaitingListRecord : Entity
     #region Private ctor
     private WaitingListRecord(int id) : base(id) { }
 
-    private WaitingListRecord(int id, int patientId) : base(id)
+    private WaitingListRecord(int id, int patientId, DateTime arrivalTime) : base(id)
     {
         PatientId = patientId;
+        ArrivalTime = arrivalTime;
     }
 
     #endregion
@@ -28,7 +29,7 @@ public sealed class WaitingListRecord : Entity
 
     #region Additional
 
-    DateTime ArrivalTime { get; set; }
+    public DateTime ArrivalTime { get; set; }
 
     #endregion
 
@@ -42,7 +43,7 @@ public sealed class WaitingListRecord : Entity
     {
         if (patientId <= 0)
             return Result.Failure<WaitingListRecord>(Errors.DomainErrors.InvalidValuesError);
-        return new WaitingListRecord(0, patientId);
+        return new WaitingListRecord(0, patientId, DateTime.Now);
     }
 
     #endregion

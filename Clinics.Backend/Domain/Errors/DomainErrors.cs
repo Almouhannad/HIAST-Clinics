@@ -40,4 +40,10 @@ public static class DomainErrors
     public static Error InvalidHolidayDuration =>
         new("Domain.InvalidHolidayDuration", "الحد الأقصى للإجازة المرضية هو خمس أيام");
 
+    public static Error SerialNumberNotFound =>
+        new("Domain.SerialNumberNotFound", "لا يوجد موظف بهذا الرقم الذاتي");
+
+    public static Error PatientAlreadyInWaitingList =>
+        new("Domain.PatientAlreadyInWaitingList", "المريض موجود في قائمة الانتظار بالفعل");
+
 }

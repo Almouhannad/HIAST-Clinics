@@ -39,7 +39,7 @@ public class UsersController : ApiController
     #endregion
 
     #region Doctors
-    [Authorize(Roles = Roles.AdminName)]
+    //[Authorize(Roles = Roles.AdminName)]
     [HttpPost("Doctors")]
     public async Task<IActionResult> RegisterDoctor([FromBody] RegisterDoctorCommand command)
     {
@@ -51,7 +51,7 @@ public class UsersController : ApiController
         return Created();
     }
 
-    [Authorize(Roles = Roles.AdminName)]
+    //[Authorize(Roles = Roles.AdminName)]
     [HttpGet("Doctors")]
     public async Task<IActionResult> GetAllDoctorUsers()
     {
@@ -62,7 +62,7 @@ public class UsersController : ApiController
         return Ok(result.Value);
     }
 
-    [Authorize(Roles = Roles.AdminName)]
+    //[Authorize(Roles = Roles.AdminName)]
     [HttpGet("Doctors/{id:int}")]
     public async Task<IActionResult> GetDoctorUserById([FromRoute(Name ="id")] int id )
     {
@@ -73,7 +73,7 @@ public class UsersController : ApiController
         return Ok(result.Value);
     }
 
-    [Authorize(Roles = Roles.AdminName)]
+    //[Authorize(Roles = Roles.AdminName)]
     [HttpPut("Doctors")]
     public async Task<IActionResult> UpdateDoctorPersonalInfo([FromBody] UpdateDoctorPersonalInfoCommand command)
     {
@@ -83,7 +83,7 @@ public class UsersController : ApiController
         return Ok();
     }
 
-    [Authorize(Roles = Roles.AdminName)]
+    //[Authorize(Roles = Roles.AdminName)]
     [HttpPut("Doctors/Users")]
     public async Task<IActionResult> UpdateDoctorUser([FromBody] UpdateDoctorUserCommand command)
     {
@@ -96,7 +96,7 @@ public class UsersController : ApiController
     #endregion
 
     #region Receptionist
-    [Authorize(Roles = Roles.AdminName)]
+    //[Authorize(Roles = Roles.AdminName)]
     [HttpPost("Receptionists")]
     public async Task<IActionResult> RegisterReceptionist([FromBody] RegisterReceptionistCommand command)
     {
@@ -107,7 +107,7 @@ public class UsersController : ApiController
 
         return Created();
     }
-    [Authorize(Roles = Roles.AdminName)]
+    //[Authorize(Roles = Roles.AdminName)]
     [HttpGet("Receptionists")]
     public async Task<IActionResult> GetAllReceptionistUsers()
     {

@@ -1,6 +1,8 @@
 ﻿using Application.Employees.Commands.AttachFamilyMemberToEmployee;
 using Application.Employees.Commands.CreateEmployee;
-using Application.Employees.Queries.GetBySerialNumber;
+using Application.WaitingList.Commands.CreateWaitingListRecord;
+using Application.WaitingList.Commands.DeleteWaitingListRecord;
+using Application.WaitingList.Queries;
 using Domain.Entities.Identity.UserRoles;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -9,19 +11,19 @@ using Presentation.Controllers.Base;
 
 namespace Presentation.Controllers;
 
-[Route("api/Employees")]
-public class EmployeesController : ApiController
+[Route("api/WaitingList")]
+public class WaitingListController : ApiController
 {
 
     #region DI for MeditR sender
-    public EmployeesController(ISender sender) : base(sender)
+    public WaitingListController(ISender sender) : base(sender)
     {
     }
     #endregion
 
     //[Authorize(Roles = Roles.ReceptionistName)]
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreateEmployeeCommand command)
+    public async Task<IActionResult> Create([FromBody] CreateWaitingListRecordCommand command)
     {
         var result = await _sender.Send(command);
         if (result.IsFailure)
@@ -30,9 +32,10 @@ public class EmployeesController : ApiController
     }
 
     //[Authorize(Roles = Roles.ReceptionistName)]
-    [HttpPost("SerialNumber")] // It's a get, but serial number shouldn't be sent via routing, so we'll use post
-    public async Task<IActionResult> GetBySerialNumber([FromBody] GetEmployeeBySerialNumberQuery query)
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
     {
+        var query = new GetAllWaitingListRecordsQuery();
         var result = await _sender.Send(query);
         if (result.IsFailure)
             return HandleFailure(result);
@@ -40,12 +43,17 @@ public class EmployeesController : ApiController
     }
 
     //[Authorize(Roles = Roles.ReceptionistName)]
-    [HttpPut("FamilyMembers")]
-    public async Task<IActionResult> AttachFamilyMember([FromBody] AttachFamilyMemberToEmployeeCommand command)
+    [HttpDelete("/{id:int}")]
+    public async Task<IActionResult> Delete([FromRoute(Name ="id")] int id)
     {
+        var command = new DeleteWaitingListRecordCommand
+        {
+            Id = id
+        };
         var result = await _sender.Send(command);
         if (result.IsFailure)
             return HandleFailure(result);
         return Ok();
     }
+
 }

@@ -24,10 +24,17 @@ public class EmployeesRepository : Repositroy<Employee>, IEmployeesRepository
     #region Get by serial Number
     public async Task<Result<Employee>> GetEmployeeBySerialNumberAsync(string serialNumber)
     {
-        var all = await _context.Set<Employee>().Where(employee => employee.SerialNumber == serialNumber).ToListAsync();
-        if (all.Count != 1)
-            return Result.Failure<Employee>(PersistenceErrors.NotFound);
-        return Result.Success(all.First());
+        var query = _context.Set<Employee>()
+            .Where(employee => employee.SerialNumber == serialNumber)
+            .Include(employee => employee.Patient)
+                .ThenInclude(patient => patient.PersonalInfo)
+            .Include(employee => employee.Patient)
+                .ThenInclude(patient => patient.Gender);
+
+        var result = await query.ToListAsync();
+        if (result.Count != 1)
+            return Result.Failure<Employee>(DomainErrors.SerialNumberNotFound);
+        return Result.Success(result.First());
     }
     #endregion
 }
