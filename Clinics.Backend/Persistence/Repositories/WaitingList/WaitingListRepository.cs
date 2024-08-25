@@ -25,6 +25,7 @@ public class WaitingListRepository : Repositroy<WaitingListRecord>, IWaitingList
         {
             var query = _context.Set<WaitingListRecord>()
                 .Where(waitingListRecord => waitingListRecord.Id == id)
+                .OrderByDescending(witingListRecord => witingListRecord.ArrivalTime)
                 .Include(witingListRecord => witingListRecord.Patient)
                     .ThenInclude(patient => patient.PersonalInfo)
                 .Include(witingListRecord => witingListRecord.Patient)
