@@ -51,4 +51,23 @@ export class WaitingListService {
     );
   }
 
+  public SendToDoctor(waitingListRecordId: number,
+    patientId: number, doctorId: number) : Observable<{ status: boolean, errorMessage: string | null }> {
+      var body: any = {
+        waitingListRecordId: waitingListRecordId,
+        patientId: patientId,
+        doctorId: doctorId
+      }
+      return this.http.post(`${this.WAITINGLIST_ENDPOINT}/SendToDoctor`, body)
+      .pipe(
+        map(_ => {
+          return {status: true, errorMessage: null};
+        }),
+        catchError((error: HttpErrorResponse) => {
+          console.error(error.error.detail);
+          return of({status: false, errorMessage: error.error.detail})
+        })
+      );
+    }
+
 }

@@ -25,4 +25,17 @@ export class DoctorsService {
       })
     )
   }
+
+  getAvailable(): Observable< {id: number, name: string}[] | null > {
+    return this.http.get<{availableDoctors: {id: number, name: string}[] }>(`${this.DOCTORS_ENDPOINT}/Available`)
+    .pipe(
+      map((result) => {
+        return result.availableDoctors;
+      }),
+      catchError((error: HttpErrorResponse) => {
+        console.error(error.error.detail);
+        return of (null);
+      })
+    );
+  }
 }
