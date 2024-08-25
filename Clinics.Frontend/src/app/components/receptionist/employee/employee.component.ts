@@ -1,34 +1,61 @@
 import { ViewportScroller } from '@angular/common';
-import { Component, numberAttribute, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, numberAttribute, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { EmployeeData } from '../../../classes/employeeData/employee-data';
+import { EmployeesDataService } from '../../../services/employees/employees-data.service';
 
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
   styleUrl: './employee.component.css'
 })
-export class EmployeeComponent {
+export class EmployeeComponent implements OnInit {
 
   //#region CTOR DI
   constructor(private toastrService: ToastrService,
     private router: Router,
-    private scroller: ViewportScroller
+    private activeRoute: ActivatedRoute,
+    private scroller: ViewportScroller,
+    private employeesDataService: EmployeesDataService
+
   ) { }
   //#endregion
 
-  //#region Variables
-  @ViewChild("form") form: NgForm;
-  formModel: any = {
-    "firstName": "المهند",
-    "middleName": "ياسر",
-    "lastName": "حافظ",
-    "dateOfBirth": "2002-06-09",
-    "gender": "ذكر",
-    "serialNumber": "992022",
-    "centerStatus": "مباشر عمله",
+  ngOnInit(): void {
+    this.getIdFromUrl();
+    this.updateFormModel();
   }
+
+  getIdFromUrl(): void {
+
+    this.id = Number(this.activeRoute.snapshot.paramMap.get('id'));
+    if (isNaN(this.id)) {
+      this.toastrService.error('حدثت مشكلة، يرجى إعادة المحاولة');
+      this.router.navigateByUrl('receptionist/waitinglist');
+    }
+
+  }
+
+  updateFormModel(): void {
+    this.employeesDataService.getById(this.id)
+      .subscribe(result => {
+        if (result.status === true) {
+          this.formModel = result.employeeData!;
+        }
+        else {
+          this.toastrService.error('حدثت مشكلة، يرجى إعادة المحاولة');
+          this.router.navigateByUrl('receptionist/waitinglist');
+        }
+      })
+  }
+
+  //#region Variables
+  private id: number;
+
+  @ViewChild("form") form: NgForm;
+  formModel: EmployeeData = new EmployeeData();
 
   isFailure: boolean = false;
   isInvalid: boolean = false;
@@ -47,7 +74,7 @@ export class EmployeeComponent {
   // #region on submit
   onSubmit(): void {
     if (this.form.valid) {
-      
+
       this.isInvalid = false;
       this.isFailure = false;
       this.errorMessage = '';
@@ -60,7 +87,7 @@ export class EmployeeComponent {
       // this.isWork = true;
       // this.isOptions = true;
       this.form.form.markAsPristine();
-      this.scroller.scrollToPosition([0,0]);
+      this.scroller.scrollToPosition([0, 0]);
     }
   }
   // #endregion
@@ -72,7 +99,7 @@ export class EmployeeComponent {
 
   handleEdit(): void {
     this.isEditing = true;
-    this.scroller.scrollToPosition([0,0]);
+    this.scroller.scrollToPosition([0, 0]);
   }
-  
+
 }

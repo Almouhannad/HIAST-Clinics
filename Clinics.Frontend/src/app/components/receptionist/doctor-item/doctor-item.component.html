@@ -3,34 +3,29 @@
     <!-- #region icon -->
     <div class="icon">
         <i class="fas fa-user-md"></i>
-        <span class="online-status busy"></span>
+        <span *ngIf="doctor.status == statuses.Online" class="online-status online"></span>
+        <span *ngIf="doctor.status == statuses.Busy" class="online-status busy"></span>
+        <span *ngIf="doctor.status == statuses.InWork" class="online-status in-work"></span>
     </div>
     <!-- #endregion -->
 
     <!-- #region Name-->
     <div class="custom-user-full-name">
-        <h3 style="border:none;">د. تيسير عبداللطيف الأحمر</h3>
+        <h3 style="border:none;">{{doctor.fullName}}</h3>
     </div>
     <!-- #endregion -->
 
     <!-- #region details-->
 
-    <div class="custom-user-data mb-2">
+    <div *ngIf="doctor.phones.length !== 0" class="custom-user-data mb-2">
         <span>معلومات التواصل: </span>
-        <span></span>
     </div>
 
-    <div class="custom-user-data mb-1">
+    <div *ngFor="let phone of doctor.phones" class="custom-user-data mb-1">
         <a><i style="margin-left: 0.3em;" class="bi bi-telephone"></i></a>
-        <span>هاتف العمل: </span>
-        <span>0312515011</span>
+        <span>{{phone.name}}:</span>
+        <p style="margin-right: 0.5em;">{{phone.phone}}</p>
     </div>
-
-    <div class="custom-user-data mb-1">
-        <a><i style="margin-left: 0.3em;" class="bi bi-telephone"></i></a>
-        <span>هاتف المنزل: </span>
-        <span>0312515011</span>
-    </div>   
 
 
     <!-- #endregion -->

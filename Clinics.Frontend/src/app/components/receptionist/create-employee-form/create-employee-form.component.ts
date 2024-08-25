@@ -3,6 +3,8 @@ import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { EmployeeData } from '../../../classes/employeeData/employee-data';
+import { EmployeesDataService } from '../../../services/employees/employees-data.service';
 
 @Component({
   selector: 'app-create-employee-form',
@@ -13,21 +15,14 @@ export class CreateEmployeeFormComponent {
   //#region CTOR DI
   constructor(private toastrService: ToastrService,
     private router: Router,
-    private scroller: ViewportScroller
+    private scroller: ViewportScroller,
+    private employeesDataService: EmployeesDataService
   ) { }
   //#endregion
 
   //#region Variables
   @ViewChild("form") form: NgForm;
-  formModel: any = {
-    "firstName": "المهند",
-    "middleName": "ياسر",
-    "lastName": "حافظ",
-    "dateOfBirth": "2002-06-09",
-    "gender": "ذكر",
-    "serialNumber": "992022",
-    "centerStatus": "مباشر عمله",
-  }
+  formModel: EmployeeData = new EmployeeData();
 
   isFailure: boolean = false;
   isInvalid: boolean = false;
@@ -46,14 +41,32 @@ export class CreateEmployeeFormComponent {
       this.isInvalid = false;
       this.isFailure = false;
       this.errorMessage = '';
-    }
 
+      this.employeesDataService.create(this.formModel)
+      .subscribe(result => {
+        if (result.status === true) {
+          this.toastrService.success('تم إضافة الموظف بنجاح');
+          this.router.navigateByUrl(`receptionist/employees/${result.id!}`);
+        }
+        else {
+          this.isFailure = true;
+          this.errorMessage = result.errorMessage!;
+          this.isPersonal = true;
+          this.isAdditional = true;
+          this.isWork = true;
+          this.isOptions = true;
+          this.form.form.markAsPristine();
+          this.scroller.scrollToPosition([0,0]);
+
+        }
+      })
+    }
     else {
       this.isInvalid = true;
-      // this.isPersonal = true;
-      // this.isAdditional = true;
-      // this.isWork = true;
-      // this.isOptions = true;
+      this.isPersonal = true;
+      this.isAdditional = true;
+      this.isWork = true;
+      this.isOptions = true;
       this.form.form.markAsPristine();
       this.scroller.scrollToPosition([0,0]);
     }

@@ -8,7 +8,7 @@
 
     <!-- #region Name-->
     <div class="mb-3" class="custom-user-full-name">
-        <h3>أحمد عبدالله توفيق العلي</h3>
+        <h3>{{model.fullName}}</h3>
     </div>
     <!-- #endregion -->
 
@@ -16,12 +16,12 @@
 
     <div class="custom-user-data mb-4 mt-4">
         <span>نوع الزيارة:</span>
-        <span></span>
+        <span style="margin-right: 0.5em;">{{getType()}}</span>
     </div>
 
     <div class="custom-user-data mb-4 mt-4">
         <span>ساعة الوصول:</span>
-        <span></span>
+        <span style="margin-right: 0.5em;" dir="ltr">{{ model.arrivalTime | date: 'hh:mm a' }}</span>
     </div>
     <!-- #endregion -->
 

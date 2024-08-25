@@ -41,6 +41,8 @@ import { CreateWitingListItemForFamilyMemberComponent } from './components/recep
 import { CreateEmployeeFormComponent } from './components/receptionist/create-employee-form/create-employee-form.component';
 import { EmployeeSerialNumberPopUpComponent } from './components/receptionist/employee-serial-number-pop-up/employee-serial-number-pop-up.component';
 import { EmployeeComponent } from './components/receptionist/employee/employee.component';
+import { WaitingListService } from './services/waitingList/waiting-list.service';
+import { EmployeesDataService } from './services/employees/employees-data.service';
 
 
 @NgModule({
@@ -65,6 +67,8 @@ import { EmployeeComponent } from './components/receptionist/employee/employee.c
     SignalRService,
     DoctorUsersService,
     ReceptionistUsersService,
+    WaitingListService,
+    EmployeesDataService
   ],
 
   // components and directives that belong to this module

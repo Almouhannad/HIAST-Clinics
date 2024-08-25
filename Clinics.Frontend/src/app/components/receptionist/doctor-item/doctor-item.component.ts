@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Doctor, DoctorStatuses } from '../../../classes/doctor/doctor';
 
 @Component({
   selector: 'app-doctor-item',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class DoctorItemComponent {
 
+  @Input("doctor") doctor: Doctor = new Doctor();
+
+  statuses = {
+    Online: DoctorStatuses.Online,
+    Busy: DoctorStatuses.Busy,
+    InWork: DoctorStatuses.InWork
+  }
 }

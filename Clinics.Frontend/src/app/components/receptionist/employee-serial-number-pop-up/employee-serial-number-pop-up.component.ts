@@ -2,6 +2,7 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { EmployeesDataService } from '../../../services/employees/employees-data.service';
 
 @Component({
   selector: 'app-employee-serial-number-pop-up',
@@ -12,8 +13,8 @@ export class EmployeeSerialNumberPopUpComponent {
 
 
   //#region CTOR DI
-  constructor(private toastrService: ToastrService,
-    private router: Router
+  constructor(private router: Router,
+    private employeesDataService: EmployeesDataService
   ) {}
   //#endregion
 
@@ -23,7 +24,7 @@ export class EmployeeSerialNumberPopUpComponent {
 
   //#region Variables
   @ViewChild("form") form: NgForm;
-  formModel: any = {serialNumber: 4};
+  formModel: any = {serialNumber: ''};
 
   isFailure: boolean = false;
   errorMessage: string = '';
@@ -31,12 +32,24 @@ export class EmployeeSerialNumberPopUpComponent {
 
     // #region On submit
     onSubmit(): void {
+      this.isFailure = false;
+      this.errorMessage = '';
       if (this.form.form.valid) {
-        let id: number=5;
-        this.router.navigateByUrl(`receptionist/employees/${id}`)
-        this.parentModal.dismiss();
+        this.employeesDataService.getBySerialNumber(this.formModel.serialNumber)
+        .subscribe(result => {
+          if (result.status === true) {
+            const id = result.employeeData!.id;
+            this.parentModal.dismiss();
+            this.router.navigateByUrl(`receptionist/employees/${id}`);
+          }
+          else {
+            this.isFailure = true;
+            this.errorMessage = result.errorMessage!;
+            this.form.form.markAsPristine();
+          }
+        })
       }
-      this.form.form.markAsPristine();
+      
     }
     
     // #endregion

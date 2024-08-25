@@ -2,17 +2,6 @@
     <section class="section">
         <div dir="rtl" class="mb-5 custom-form">
     
-
-            <div class="container text-center mb-3">
-      
-                <div class="custom-back-button">
-                  <a [routerLink]="['../../waitinglist']">
-                    <button class="btn btn-outline-primary">
-                      عودة<i class="bi bi-arrow-left"></i>
-                    </button>
-                  </a>
-                </div>
-            </div>
             <!-- #region Title-->
             
             <div class="text-center custom-form-title mb-4">
@@ -27,7 +16,7 @@
             </div>
             <!-- #endregion -->
         
-            <form #createDoctorUserForm="ngForm" (ngSubmit)="onSubmit()" class="text-center custom-form-container" autocomplete="off">
+            <form #form="ngForm" (ngSubmit)="onSubmit()" class="text-center custom-form-container" autocomplete="off">
         
                 <!-- #region Personal data-->
                 <div class="accordion">
@@ -178,9 +167,9 @@
                                         <select class="form-control text-center" 
                                         [(ngModel)]="formModel.gender" name="gender" 
                                         #gender="ngModel" required>
-                                            <option value="" selected>اختر الجنس</option>
-                                            <option value="ذكر">ذكر</option>
-                                            <option value="أنثى">أنثى</option>
+                                            <option [ngValue]="null">اختر الجنس</option>
+                                            <option [ngValue]="'ذكر'">ذكر</option>
+                                            <option [ngValue]="'أنثى'">أنثى</option>
                                         </select>
                                     </div>
 
@@ -342,7 +331,7 @@
                                     <div class="d-grid gap-3 mb-5 custom-buttons custom-form-buttons">
                     
                                         <button type="submit" class="btn btn-outline-primary"
-                                            [disabled]="createDoctorUserForm.pristine">
+                                            [disabled]="form.pristine">
                                             حفظ
                                             <i class="bi bi-save"></i>
                                         </button>
