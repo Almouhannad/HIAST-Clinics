@@ -43,6 +43,7 @@ public class WaitingListRepository : Repositroy<WaitingListRecord>, IWaitingList
         try
         {
             var query = _context.Set<WaitingListRecord>()
+                .OrderBy(waitingListRecord => waitingListRecord.ArrivalTime)
                 .Include(waitingListRecord => waitingListRecord.Patient)
                     .ThenInclude(patient => patient.PersonalInfo)
                 .Include(waitingListRecord => waitingListRecord.Patient)
