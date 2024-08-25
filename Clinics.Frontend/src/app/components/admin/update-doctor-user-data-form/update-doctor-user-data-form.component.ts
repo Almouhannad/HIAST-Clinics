@@ -35,7 +35,7 @@ export class UpdateDoctorUserDataFormComponent {
       .subscribe(
         result => {
           if (result.status === true) {
-            this.toastrService.success('تم تحديث البيانات بنجاح');
+            this.toastrService.success('تم تحديث البيانات بنجاح ✔');
             this.router.navigateByUrl('admin/doctors');
           }
           else {

@@ -40,7 +40,7 @@ export class WaitingListItemComponent {
     this.waitingListService.delete(this.model.id)
     .subscribe(result => {
       if (result.status === true) {
-        this.toastrService.success('تم الحذف بنجاح');
+        this.toastrService.success('تم الحذف بنجاح ✔');
         this.deleted.emit();
       }
       else {

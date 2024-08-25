@@ -35,7 +35,7 @@ export class CreateWitingListItemForEmployeeComponent {
       this.waitingListService.createBySerialNumber(this.formModel.serialNumber)
       .subscribe((result => {
         if (result.status === true) {
-          this.toastrService.success('تمت الإضافة بنجاح');
+          this.toastrService.success('تمت الإضافة بنجاح ✔');
           this.router.navigateByUrl('receptionist/waitinglist');
         }
         else {

@@ -45,7 +45,7 @@ export class CreateEmployeeFormComponent {
       this.employeesDataService.create(this.formModel)
       .subscribe(result => {
         if (result.status === true) {
-          this.toastrService.success('تم إضافة الموظف بنجاح');
+          this.toastrService.success('تم إضافة الموظف بنجاح ✔');
           this.router.navigateByUrl(`receptionist/employees/${result.id!}`);
         }
         else {

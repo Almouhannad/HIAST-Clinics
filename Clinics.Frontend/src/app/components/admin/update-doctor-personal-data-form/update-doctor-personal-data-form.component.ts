@@ -41,7 +41,7 @@ export class UpdateDoctorPersonalDataFormComponent {
         result => {
           if (result.status === true)
           {
-            this.toastrService.success('تم تعديل البيانات بنجاح');
+            this.toastrService.success('تم تعديل البيانات بنجاح ✔');
             this.router.navigateByUrl('admin/doctors');
           }
           else {
