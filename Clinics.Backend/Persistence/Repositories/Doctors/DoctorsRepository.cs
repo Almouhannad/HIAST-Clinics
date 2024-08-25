@@ -1,4 +1,5 @@
 ﻿using Domain.Entities.People.Doctors;
+using Domain.Entities.People.Doctors.Shared.DoctorStatusValues;
 using Domain.Errors;
 using Domain.Repositories;
 using Domain.Shared;
@@ -33,4 +34,22 @@ public class DoctorsRepository : Repositroy<Doctor>, IDoctorsRepository
     }
     #endregion
 
+    #region Get available
+    public async Task<Result<ICollection<Doctor>>> GetAvailableDoctors()
+    {
+        try
+        {
+            var query = _context.Set<Doctor>()
+                .Include(doctor => doctor.Status)
+                .Where(doctor => doctor.Status == DoctorStatuses.Available)
+                .Include(doctor => doctor.PersonalInfo);
+            var result = await query.ToListAsync();
+            return result;
+        }
+        catch (Exception)
+        {
+            return Result.Failure<ICollection<Doctor>>(PersistenceErrors.Unknown);
+        }
+    }
+    #endregion
 }
