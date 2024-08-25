@@ -21,6 +21,23 @@ public class EmployeesRepository : Repositroy<Employee>, IEmployeesRepository
     }
     #endregion
 
+    #region Read methods
+    public override async Task<Result<Employee>> GetByIdAsync(int id)
+    {
+        try
+        {
+            var query = _context.Set<Employee>()
+                .Where(employee => employee.Id == id);
+            var result = await query.FirstAsync();
+            return await GetEmployeeBySerialNumberAsync(result.SerialNumber);
+        }
+        catch (Exception)
+        {
+            return Result.Failure<Employee>(PersistenceErrors.NotFound);
+        }
+    }
+    #endregion
+
     #region Get by serial Number
     public async Task<Result<Employee>> GetEmployeeBySerialNumberAsync(string serialNumber)
     {
@@ -36,5 +53,6 @@ public class EmployeesRepository : Repositroy<Employee>, IEmployeesRepository
             return Result.Failure<Employee>(DomainErrors.SerialNumberNotFound);
         return Result.Success(result.First());
     }
+
     #endregion
 }

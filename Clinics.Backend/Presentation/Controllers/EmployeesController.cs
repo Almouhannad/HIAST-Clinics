@@ -1,5 +1,6 @@
 ﻿using Application.Employees.Commands.AttachFamilyMemberToEmployee;
 using Application.Employees.Commands.CreateEmployee;
+using Application.Employees.Queries.GetById;
 using Application.Employees.Queries.GetBySerialNumber;
 using Domain.Entities.Identity.UserRoles;
 using MediatR;
@@ -38,6 +39,18 @@ public class EmployeesController : ApiController
             return HandleFailure(result);
         return Ok(result.Value);
     }
+
+    //[Authorize(Roles = Roles.ReceptionistName)]
+    [HttpGet("{id:int}")] // It's a get, but serial number shouldn't be sent via routing, so we'll use post
+    public async Task<IActionResult> GetById([FromRoute] int id)
+    {
+        var query = new GetEmployeeByIdQuery { Id = id };
+        var result = await _sender.Send(query);
+        if (result.IsFailure)
+            return HandleFailure(result);
+        return Ok(result.Value);
+    }
+
 
     //[Authorize(Roles = Roles.ReceptionistName)]
     [HttpPut("FamilyMembers")]
