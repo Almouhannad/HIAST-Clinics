@@ -50,15 +50,15 @@
                             </ul>
                         </li>
 
-                        <li><a [routerLink]="['admin/receptionists']"><button class="btn"
+                        <li><a [routerLink]="['admin/receptionists']" appScrollToTop><button class="btn"
                                     [class]="{'btn-outline-primary': isSelected('Admin-Receptionists'), 'btn-outline-secondary': !isSelected('Admin-Receptionists')}"
                                     (click)="showDropdown=false; selectButton('Admin-Receptionists')">موظفو الاستقبال</button></a></li>
 
-                        <li><a [routerLink]="['admin/doctors']"><button class="btn"
+                        <li><a [routerLink]="['admin/doctors']" appScrollToTop><button class="btn"
                                     [class]="{'btn-outline-primary': isSelected('Admin-Dorctors'), 'btn-outline-secondary': !isSelected('Admin-Dorctors')}"
                                     (click)="showDropdown=false; selectButton('Admin-Dorctors')">الأطباء</button></a></li>
 
-                        <li><a [routerLink]="'home'"><button class="btn"
+                        <li><a [routerLink]="'home'" appScrollToTop><button class="btn"
                                     [class]="{'btn-outline-primary': isSelected('Home'), 'btn-outline-secondary': !isSelected('Home')}"
                                     (click)="showDropdown=false; selectButton('Home')">الصفحة الرئيسية</button></a></li>
 
@@ -80,7 +80,7 @@
                             </ul>
                         </li>
 
-                        <li><a [routerLink]="'home'"><button class="btn"
+                        <li><a [routerLink]="'home'" appScrollToTop><button class="btn"
                                     [class]="{'btn-outline-primary': isSelected('Home'), 'btn-outline-secondary': !isSelected('Home')}"
                                     (click)="showDropdown=false; selectButton('Home')">الصفحة الرئيسية</button></a></li>
 
@@ -99,7 +99,7 @@
                                     class="bi bi-chevron-down toggle-dropdown"></i></button>
                             <ul [ngClass]="{'show': showDropdown}">
                                 <li><a (click)="openPopUp(employeeSerialNumber) ;showDropdown = false;">الاستعلام عن موظف</a></li>
-                                <li><a (click)="showDropdown = false;" [routerLink]="['receptionist/employees/create']">إضافة موظف</a></li>
+                                <li><a (click)="showDropdown = false;" [routerLink]="['receptionist/employees/create']" appScrollToTop>إضافة موظف </a></li>
                                 <li (click)="onLogout();"><a>تسجيل الخروج</a></li>
                             </ul>
                         </li>
@@ -108,11 +108,11 @@
                             [class]="{'btn-outline-primary': isSelected('RecDotctors'), 'btn-outline-secondary': !isSelected('RecDotctors')}"
                             (click)="showDropdown=false; selectButton('RecDotctors')">الأطباء</button></a></li>
 
-                        <li><a [routerLink]="'receptionist/waitinglist'"><button class="btn"
+                        <li><a [routerLink]="'receptionist/waitinglist'" appScrollToTop><button class="btn"
                             [class]="{'btn-outline-primary': isSelected('WaitingList'), 'btn-outline-secondary': !isSelected('WaitingList')}"
                             (click)="showDropdown=false; selectButton('WaitingList')">قائمة الانتظار</button></a></li>
 
-                        <li><a [routerLink]="'home'"><button class="btn"
+                        <li><a [routerLink]="'home'"><button class="btn" appScrollToTop
                                     [class]="{'btn-outline-primary': isSelected('Home'), 'btn-outline-secondary': !isSelected('Home')}"
                                     (click)="showDropdown=false; selectButton('Home')">الصفحة الرئيسية</button></a></li>
 

@@ -1,6 +1,6 @@
 /* #region Custom */
 .custom-app-name {
-    font-size: 30px;
+    font-size: 1.8em;
     font-weight: 700;
     color: var(--heading-color);
 }

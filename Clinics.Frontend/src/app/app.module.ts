@@ -43,6 +43,7 @@ import { EmployeeSerialNumberPopUpComponent } from './components/receptionist/em
 import { EmployeeComponent } from './components/receptionist/employee/employee.component';
 import { WaitingListService } from './services/waitingList/waiting-list.service';
 import { EmployeesDataService } from './services/employees/employees-data.service';
+import { ScrollToTopDirective } from './directives/scroll-to-top.directive';
 
 
 @NgModule({
@@ -104,6 +105,7 @@ import { EmployeesDataService } from './services/employees/employees-data.servic
     CreateEmployeeFormComponent,
     EmployeeSerialNumberPopUpComponent,
     EmployeeComponent,
+    ScrollToTopDirective,
   ],
   
   // identifies the root component that Angular should
