@@ -19,6 +19,8 @@ import { CreateWitingListItemAccordionComponent } from './components/receptionis
 import { CreateEmployeeFormComponent } from './components/receptionist/create-employee-form/create-employee-form.component';
 import { EmployeeComponent } from './components/receptionist/employee/employee.component';
 import { DoctorDashboardComponent } from './components/doctor/doctor-dashboard/doctor-dashboard.component';
+import { HistoryComponent } from './components/doctor/history/history.component';
+import { CreateVisitComponent } from './components/doctor/create-visit/create-visit.component';
 
 const routes: Routes = [
   {
@@ -89,6 +91,14 @@ const routes: Routes = [
       {
         path: 'waitinglist',
         component: WaitingListComponent
+      },      
+      {
+        path: 'history/:id',
+        component: HistoryComponent
+      },  
+      {
+        path: 'visits/create/:id',
+        component: CreateVisitComponent
       },      
     ]
   },  

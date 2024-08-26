@@ -53,6 +53,23 @@
     text-align: center; /* or any other alignment you prefer */
 }
 
+::ng-deep .btn:focus {
+    background-color: inherit;
+    box-shadow: none;
+}
+::ng-deep .btn:active {
+    background-color: inherit;
+    box-shadow: none;
+}
+::ng-deep .btn:visited {
+    background-color: inherit;
+    box-shadow: none;
+  }
+
+::ng-deep .btn:link {
+    background-color: inherit;
+    box-shadow: none;
+  }
 
 
 /* #endregion */

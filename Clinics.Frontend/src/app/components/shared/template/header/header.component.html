@@ -76,7 +76,7 @@
                                 (click)="showDropdown = !showDropdown">خيارات <i
                                     class="bi bi-chevron-down toggle-dropdown"></i></button>
                             <ul [ngClass]="{'show': showDropdown}">
-                                <li (click)="openPopUp(doctorAskForSerialNumberQuery);"><a>الاستعلام عن موظف</a></li>
+                                <li (click)="showDropdown=false; openPopUp(doctorAskForSerialNumberQuery);"><a>الاستعلام عن موظف</a></li>
                                 <li (click)="onLogout();"><a>تسجيل الخروج</a></li>
                             </ul>
                         </li>
