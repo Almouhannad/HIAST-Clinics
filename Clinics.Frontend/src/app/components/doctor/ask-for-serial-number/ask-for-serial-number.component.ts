@@ -3,6 +3,8 @@ import { EmployeesDataService } from '../../../services/employees/employees-data
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { DoctorsService } from '../../../services/doctors/doctors.service';
+import { AuthenticationService } from '../../../services/authentication/authentication.service';
+import { DoctorStatuses } from '../../../classes/doctor/doctor';
 
 @Component({
   selector: 'app-ask-for-serial-number',
@@ -13,7 +15,8 @@ export class AskForSerialNumberComponent {
 
   constructor(private employeeDataService: EmployeesDataService,
     private doctorsService: DoctorsService,
-    private router: Router
+    private router: Router,
+    private authenticationService: AuthenticationService
   ){}
 
   @Input("parentModal") parentModal: any;
@@ -44,6 +47,10 @@ export class AskForSerialNumberComponent {
           this.router.navigateByUrl(`doctor/history/${id}`)
         }
         else {
+          this.doctorsService.changeStatusByUserId(
+            this.authenticationService.getUserData()!.id,
+            DoctorStatuses.InWork
+          ).subscribe(_=>{});
           this.router.navigateByUrl(`doctor/visits/create/${id}`)
         }
         this.parentModal.dismiss();
