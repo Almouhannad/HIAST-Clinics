@@ -44,6 +44,8 @@ import { EmployeeComponent } from './components/receptionist/employee/employee.c
 import { WaitingListService } from './services/waitingList/waiting-list.service';
 import { EmployeesDataService } from './services/employees/employees-data.service';
 import { ScrollToTopDirective } from './directives/scroll-to-top.directive';
+import { DoctorDashboardComponent } from './components/doctor/doctor-dashboard/doctor-dashboard.component';
+import { DoctorNotificationsService } from './services/doctorsNotifications/doctor-notifications.service';
 
 
 @NgModule({
@@ -69,7 +71,8 @@ import { ScrollToTopDirective } from './directives/scroll-to-top.directive';
     DoctorUsersService,
     ReceptionistUsersService,
     WaitingListService,
-    EmployeesDataService
+    EmployeesDataService,
+    DoctorNotificationsService,
   ],
 
   // components and directives that belong to this module
@@ -106,6 +109,7 @@ import { ScrollToTopDirective } from './directives/scroll-to-top.directive';
     EmployeeSerialNumberPopUpComponent,
     EmployeeComponent,
     ScrollToTopDirective,
+    DoctorDashboardComponent,
   ],
   
   // identifies the root component that Angular should

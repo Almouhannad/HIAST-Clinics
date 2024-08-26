@@ -92,23 +92,24 @@
                 </select>
             </div>
 
-            <div class="d-grid gap-3 custom-undo-button mb-3">
                 <a>
-                    <button class="btn btn-outline-secondary" style="width: 100%;"
-                    (click)="modal.dismiss()">
-                        إلغاء
-                    </button>
-                </a>
-            </div>
-
-                <a>
-                    <div class="custom-edit-button">
+                    <div class="custom-edit-button mb-3">
                         <button class="btn btn-outline-secondary" style="width:100%;"
-                        (click)="onSendToDoctor(); modal.dismiss();">
+                        (click)="onSendToDoctor(); modal.dismiss();"
+                        [disabled]="selectedDoctorId===-1">
                             تأكيد
                         </button>
                     </div>
-                </a>                        
+                </a>      
+
+                <div class="d-grid gap-3 custom-undo-button">
+                    <a>
+                        <button class="btn btn-outline-secondary" style="width: 100%;"
+                        (click)="modal.dismiss()">
+                            إلغاء
+                        </button>
+                    </a>
+                </div>
         </div>
             
     </div>

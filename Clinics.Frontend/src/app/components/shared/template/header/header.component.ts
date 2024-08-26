@@ -27,6 +27,11 @@ export class HeaderComponent {
   @Input("userData") userData: UserData | null = null;
   //#endregion
 
+  // #region Outputs
+  @Output("loggedIn") loggedIn: EventEmitter<any> = new EventEmitter();
+  
+  // #endregion
+
   //#region Variables
 
   //#region Roles
@@ -60,6 +65,7 @@ export class HeaderComponent {
     this.router.navigate(['']);
     this.selectedButton = 'Home';
     this.scroller.scrollToPosition([0,0]);
+    this.loggedIn.emit();
   }
   //#endregion
 

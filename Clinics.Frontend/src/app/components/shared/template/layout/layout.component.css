@@ -139,4 +139,62 @@ app-footer {
     border-color: var(--heading-color);
     color: white;
 }
+
+
+::ng-deep .custom-ok-button .btn{
+    font-weight: 900;
+    width: 100%;
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
+}
+
+::ng-deep .custom-ok-button .btn:focus{
+    font-weight: 900;
+    width: 100%;
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
+
+}
+
+::ng-deep .custom-ok-button .btn:hover{
+    width: 100%;
+    background-color: white;
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+::ng-deep .custom-no-button .btn{
+    font-weight: 900;
+    width: 100%;
+    background-color: var(--heading-color);
+    border-color: var(--heading-color);
+    color: white;
+}
+
+::ng-deep .custom-no-button .btn:focus{
+    font-weight: 900;
+    width: 100%;
+    background-color: var(--heading-color);
+    border-color: var(--heading-color);
+    color: white;
+}
+
+::ng-deep .custom-no-button .btn:hover{
+    width: 100%;
+    background-color: white;
+    border-color: var(--heading-color);
+    color: var(--heading-color);
+}
+
+::ng-deep .custom-notification-message h2{
+    font-weight: 600;
+    color: var(--heading-color);
+}
+
+::ng-deep .custom-notification-message h3{
+    font-weight: 400;
+    color: var(--heading-color);
+}
 /* #endregion */

@@ -18,6 +18,7 @@ import { DoctorsComponent } from './components/receptionist/doctors/doctors.comp
 import { CreateWitingListItemAccordionComponent } from './components/receptionist/create-witing-list-item-accordion/create-witing-list-item-accordion.component';
 import { CreateEmployeeFormComponent } from './components/receptionist/create-employee-form/create-employee-form.component';
 import { EmployeeComponent } from './components/receptionist/employee/employee.component';
+import { DoctorDashboardComponent } from './components/doctor/doctor-dashboard/doctor-dashboard.component';
 
 const routes: Routes = [
   {
@@ -71,6 +72,17 @@ const routes: Routes = [
       }
     ]
   },
+
+  {
+    path: 'doctor',
+    component: DoctorDashboardComponent,
+    canActivate: [RoleGuard],
+    canActivateChild: [RoleGuard],
+    
+    data: { role: Roles.Doctor },
+    children: [
+    ]
+  },  
 
   {
     path: 'receptionist',
