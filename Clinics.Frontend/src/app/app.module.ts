@@ -46,6 +46,7 @@ import { EmployeesDataService } from './services/employees/employees-data.servic
 import { ScrollToTopDirective } from './directives/scroll-to-top.directive';
 import { DoctorDashboardComponent } from './components/doctor/doctor-dashboard/doctor-dashboard.component';
 import { DoctorNotificationsService } from './services/doctorsNotifications/doctor-notifications.service';
+import { DoctorStatusComponent } from './components/doctor/doctor-dashboard/doctor-status/doctor-status.component';
 
 
 @NgModule({
@@ -110,6 +111,7 @@ import { DoctorNotificationsService } from './services/doctorsNotifications/doct
     EmployeeComponent,
     ScrollToTopDirective,
     DoctorDashboardComponent,
+    DoctorStatusComponent,
   ],
   
   // identifies the root component that Angular should

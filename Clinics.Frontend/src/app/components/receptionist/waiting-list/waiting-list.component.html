@@ -9,8 +9,12 @@
         <!-- #endregion -->
 
         <!-- #region buttons-->
-        <div class="custom-bttuons-after-title custom-create-button" >
+        <div *ngIf="userData.role === RECEPTIONIST" class="custom-bttuons-after-title custom-create-button" >
             <a [routerLink]="['create']" appScrollToTop><button class="btn btn-lg btn-outline-success mb-5">إضافة +</button></a>
+        </div>
+
+        <div *ngIf="userData.role === DOCTOR">
+            <app-doctor-status></app-doctor-status>
         </div>
         <!-- #endregion -->
 

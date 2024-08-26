@@ -80,6 +80,10 @@
                             </ul>
                         </li>
 
+                        <li><a [routerLink]="'doctor/waitinglist'" appScrollToTop><button class="btn"
+                            [class]="{'btn-outline-primary': isSelected('WaitingList'), 'btn-outline-secondary': !isSelected('WaitingList')}"
+                            (click)="showDropdown=false; selectButton('WaitingList')">قائمة الانتظار</button></a></li>                        
+
                         <li><a [routerLink]="'home'" appScrollToTop><button class="btn"
                                     [class]="{'btn-outline-primary': isSelected('Home'), 'btn-outline-secondary': !isSelected('Home')}"
                                     (click)="showDropdown=false; selectButton('Home')">الصفحة الرئيسية</button></a></li>

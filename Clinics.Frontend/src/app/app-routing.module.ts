@@ -81,6 +81,15 @@ const routes: Routes = [
     
     data: { role: Roles.Doctor },
     children: [
+      {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full'
+      },
+      {
+        path: 'waitinglist',
+        component: WaitingListComponent
+      },      
     ]
   },  
 

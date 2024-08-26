@@ -19,10 +19,16 @@
         <span style="margin-right: 0.5em;">{{getType()}}</span>
     </div>
 
-    <div class="custom-user-data mb-4 mt-4">
+    <div class="custom-user-data mb-4 mt-4" *ngIf="userData.role === RECEPTIONIST">
         <span>ساعة الوصول:</span>
         <span style="margin-right: 0.5em;" dir="ltr">{{ model.arrivalTime | date: 'hh:mm a' }}</span>
     </div>
+
+    <div class="custom-user-data mt-4" *ngIf="userData.role === DOCTOR">
+        <span>ساعة الوصول:</span>
+        <span style="margin-right: 0.5em;" dir="ltr">{{ model.arrivalTime | date: 'hh:mm a' }}</span>
+    </div>
+
     <!-- #endregion -->
 
     <!-- #region buttons-->
@@ -31,14 +37,14 @@
     <div class="d-grid gap-3 custom-edit-button">
         <a>
             <button class="btn btn-outline-secondary" style="width: 100%;"
-            (click)="onClickSend(); openModal(SendToDoctorModal)">
+                (click)="onClickSend(); openModal(SendToDoctorModal)" *ngIf="userData.role === RECEPTIONIST">
                 إرسال إلى طبيب<i class="fas fa-arrow-left"></i>
             </button>
         </a>
 
         <div class="custom-delete-button">
-            <button class="btn btn-outline-secondary"
-            (click)="openModal(confirmDeleteModal)">
+            <button class="btn btn-outline-secondary" (click)="openModal(confirmDeleteModal)"
+                *ngIf="userData.role === RECEPTIONIST">
                 <i class="fa fa-trash-alt"></i>
             </button>
         </div>
@@ -49,28 +55,26 @@
 
 
 <ng-template #confirmDeleteModal let-modal>
-    <div class="modal-body">
+    <div *ngIf="userData.role === RECEPTIONIST" class="modal-body">
         <div class="custom-child" dir="rtl">
             <p style="font-weight: 800;">هل أنت متأكد من رغبتك في حذف هذا المريض من قائمة الانتظار ؟</p>
 
             <div class="d-grid gap-3 custom-undo-button mb-3">
                 <a>
-                    <button class="btn btn-outline-secondary" style="width: 100%;"
-                    (click)="modal.dismiss()">
+                    <button class="btn btn-outline-secondary" style="width: 100%;" (click)="modal.dismiss()">
                         إلغاء
                     </button>
                 </a>
             </div>
 
-                <a>
-                    <div class="custom-edit-button">
-                        <button class="btn btn-outline-secondary" style="width:100%;"
-                        (click)="modal.dismiss(); onDelete()">
-                            تأكيد
-                        </button>
-                    </div>
-                </a>
-                
+            <a>
+                <div class="custom-edit-button">
+                    <button class="btn btn-outline-secondary" style="width:100%;" (click)="modal.dismiss(); onDelete()">
+                        تأكيد
+                    </button>
+                </div>
+            </a>
+
 
         </div>
     </div>
@@ -78,39 +82,37 @@
 
 
 <ng-template #SendToDoctorModal let-modal>
-    <div class="modal-body">
+    <div *ngIf="userData.role === RECEPTIONIST" class="modal-body">
         <div class="custom-child" dir="rtl">
             <div class="custom-title mb-3">
                 <h2>إرسال إلى طبيب</h2>
             </div>
 
             <div class="custom-select">
-                <select class="text-center mb-3 form-control"
-                [(ngModel)]="selectedDoctorId">
+                <select class="text-center mb-3 form-control" [(ngModel)]="selectedDoctorId">
                     <option value="-1" disabled>يرجى اختيار الطبيب</option>
                     <option *ngFor="let doctor of doctors" [ngValue]="doctor.id">د. {{doctor.name}}</option>
                 </select>
             </div>
 
-                <a>
-                    <div class="custom-edit-button mb-3">
-                        <button class="btn btn-outline-secondary" style="width:100%;"
-                        (click)="onSendToDoctor(); modal.dismiss();"
-                        [disabled]="selectedDoctorId===-1">
-                            تأكيد
-                        </button>
-                    </div>
-                </a>      
-
-                <div class="d-grid gap-3 custom-undo-button">
-                    <a>
-                        <button class="btn btn-outline-secondary" style="width: 100%;"
-                        (click)="modal.dismiss()">
-                            إلغاء
-                        </button>
-                    </a>
+            <a>
+                <div class="custom-edit-button mb-3">
+                    <button class="btn btn-outline-secondary" style="width:100%;"
+                        (click)="onSendToDoctor(); modal.dismiss();" [disabled]="selectedDoctorId===-1">
+                        تأكيد
+                    </button>
                 </div>
-        </div>
+            </a>
+
+            <div class="d-grid gap-3 custom-undo-button">
+                <a>
+                    <button class="btn btn-outline-secondary" style="width: 100%;" (click)="modal.dismiss()">
+                        إلغاء
+                    </button>
+                </a>
+            </div>
             
+        </div>
+
     </div>
 </ng-template>

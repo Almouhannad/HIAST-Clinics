@@ -1,0 +1,59 @@
+<div class="custom-child" dir="rtl">
+    <div class="custom-bttuons-after-title custom-ok-button">
+        <a appScrollToTop><button class="btn btn-lg btn-outline-success" style="width: 25%; cursor:auto">الحالة:
+                متاح</button></a>
+    </div>
+
+    <div class="custom-bttuons-after-title custom-create-button">
+        <a appScrollToTop><button class="btn btn-lg btn-outline-success mb-5"
+                (click)="openModal(changeStatusModal)">تغيير الحالة</button></a>
+    </div>
+
+</div>
+
+
+
+<ng-template #changeStatusModal let-modal>
+
+    <!-- To avoid first field auto focus -->
+    <div class="form-group">
+        <input type="text" autofocus="autofocus" style="display:none" />
+    </div>
+
+
+    <div class="custom-child">
+        <section class="section">
+            <div class="custom-title mb-3">
+                <h2>تغيير الحالة</h2>
+            </div>
+
+
+
+            <div class="container">
+                <div class="custom-select">
+                    <select class="text-center mb-3 form-control">
+                        <option value="-1" disabled>يرجى اختيار الحالة</option>
+                        <!-- <option *ngFor="let doctor of doctors" [ngValue]="doctor.id">د. {{doctor.name}}</option> -->
+                    </select>
+                </div>
+
+                <a>
+                    <div class="custom-ok-button mb-3">
+                        <button class="btn btn-outline-secondary" style="width:100%;" (click)="modal.dismiss()">
+                            تأكيد
+                        </button>
+                    </div>
+                </a>
+
+                <div class="d-grid gap-3 custom-no-button">
+                    <a>
+                        <button class="btn btn-outline-secondary" style="width: 100%;" (click)="modal.dismiss()">
+                            إلغاء
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</ng-template>
