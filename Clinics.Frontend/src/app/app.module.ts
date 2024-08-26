@@ -51,6 +51,7 @@ import { AskForSerialNumberComponent } from './components/doctor/ask-for-serial-
 import { HistoryComponent } from './components/doctor/history/history.component';
 import { VisitComponent } from './components/doctor/visit/visit.component';
 import { CreateVisitComponent } from './components/doctor/create-visit/create-visit.component';
+import { MedicinesComponent } from './components/doctor/medicines/medicines.component';
 
 
 @NgModule({
@@ -120,6 +121,7 @@ import { CreateVisitComponent } from './components/doctor/create-visit/create-vi
     HistoryComponent,
     VisitComponent,
     CreateVisitComponent,
+    MedicinesComponent,
   ],
   
   // identifies the root component that Angular should

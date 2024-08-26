@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { EmployeesDataService } from '../../../services/employees/employees-data.service';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-ask-for-serial-number',
@@ -16,18 +17,24 @@ export class AskForSerialNumberComponent {
   @Input("parentModal") parentModal: any;
   @Input("type") type: 'query' | 'command';
 
+  @ViewChild("form") form: NgForm;
+
   isFailure: boolean = false;
   errorMessage: string = 'الموظف غير موجود';
 
   serialNumber: string;
 
   onSubmit(): void {
+    this.isFailure = false;
+    this.errorMessage = '';
+    
     var id: number;
     this.employeeDataService.getBySerialNumber(this.serialNumber)
     .subscribe(result => {
       if (result.status === false) {
         this.isFailure = true;
         this.errorMessage = result.errorMessage!;
+        this.form.form.markAsPristine();
       }
       else {
         id = result.employeeData!.id;

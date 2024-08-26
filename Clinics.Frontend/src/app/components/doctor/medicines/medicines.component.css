@@ -1,0 +1,14 @@
+.table {
+    --mdb-table-bg: var(--heading-color);
+    --mdb-table-accent-bg: var(--accent-color);
+    font-weight: 800;
+}
+
+.table thead th {
+    background-color: var(--heading-color);
+    color: #fff;
+}
+
+.table tbody tr td,  .table tbody tr th{
+    color: var(--heading-color);
+}
