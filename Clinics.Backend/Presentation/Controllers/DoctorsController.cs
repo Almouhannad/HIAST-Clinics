@@ -43,7 +43,7 @@ public class DoctorsController : ApiController
     }
 
     //[Authorize(Roles = Roles.DoctorName)]
-    [HttpGet("Status{id:int}")]
+    [HttpGet("Status/{id:int}")]
     public async Task<IActionResult> GetStatusByUserId([FromRoute(Name = "id")] int userId)
     {
         GetDoctorStatusByUserIdQuery query = new GetDoctorStatusByUserIdQuery { UserId = userId };
