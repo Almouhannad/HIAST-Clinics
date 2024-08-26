@@ -1,7 +1,7 @@
 <div class="custom-child" dir="rtl">
     <div class="custom-bttuons-after-title custom-ok-button">
         <a appScrollToTop><button class="btn btn-lg btn-outline-success" style="width: 25%; cursor:auto">الحالة:
-                متاح</button></a>
+                {{doctorStatus}}</button></a>
     </div>
 
     <div class="custom-bttuons-after-title custom-create-button">
@@ -31,15 +31,18 @@
 
             <div class="container">
                 <div class="custom-select">
-                    <select class="text-center mb-3 form-control">
-                        <option value="-1" disabled>يرجى اختيار الحالة</option>
-                        <!-- <option *ngFor="let doctor of doctors" [ngValue]="doctor.id">د. {{doctor.name}}</option> -->
+                    <select class="text-center mb-3 form-control"
+                    [(ngModel)]="doctorStatus">
+                        <option value="''" disabled>يرجى اختيار الحالة</option>
+                        <option *ngFor="let status of statuses" [ngValue]="status">{{status}}</option>
                     </select>
                 </div>
 
                 <a>
                     <div class="custom-ok-button mb-3">
-                        <button class="btn btn-outline-secondary" style="width:100%;" (click)="modal.dismiss()">
+                        <button class="btn btn-outline-secondary" style="width:100%;" (click)="modal.dismiss()"
+                        [disabled]="doctorStatus === ''"
+                        (click)="onChangeStatus()">
                             تأكيد
                         </button>
                     </div>

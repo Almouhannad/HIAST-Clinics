@@ -38,4 +38,30 @@ export class DoctorsService {
       })
     );
   }
+
+  getStatusByUserId(userId: number): Observable<{status: boolean, errorMessage: string | null, doctorStatus: string | null}> {
+    return this.http.get<{status: string}>(`${this.DOCTORS_ENDPOINT}/Status/${userId}`)
+    .pipe(
+      map((response: {status: string}) => {
+        return {status: true, errorMessage: null, doctorStatus: response.status};
+      }),
+      catchError((error: HttpErrorResponse) => {
+        console.error(error.error.detail);
+        return of ({status: false, errorMessage: error.error.detail, doctorStatus: null});
+      })
+    );
+  }
+
+  changeStatusByUserId(userId: number, doctorStatus: string): Observable<{status: boolean, errorMessage: string | null}> {
+    var body = {userId: userId, status: doctorStatus};
+    return this.http.post(`${this.DOCTORS_ENDPOINT}/Status`, body)
+    .pipe(
+      map(_ => {
+        return {status: true, errorMessage: null};
+      }),
+      catchError((error: HttpErrorResponse) => {
+        return of ({status: false, errorMessage: error.error.detail});
+      })
+    );
+  }
 }

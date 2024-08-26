@@ -20,9 +20,11 @@ export class DoctorNotificationsService {
     this.hubConnection
       .start()
       .then(() => {
-        console.log('Connected to signalR!')
+        // console.log('Connected to signalR!')
       })
-      .catch(err => console.error('Error while starting connection: ' + err))
+      .catch(
+        // err => console.error('Error while starting connection: ' + err)
+    )
   }
 
 }
