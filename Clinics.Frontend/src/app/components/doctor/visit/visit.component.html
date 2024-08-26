@@ -10,7 +10,7 @@
                     appAccordion [index]="index"
                     (click)="isSelected = !isSelected"
                     >
-                    زيارة بتاريخ 12/8/2024
+                    زيارة يوم {{visit.date | arabicDate}}
                     <i *ngIf="!isSelected" class="fas fa-chevron-down"></i>
                     <i *ngIf="isSelected" class="fas fa-chevron-up"></i>
       
@@ -23,15 +23,15 @@
       
                   <div class="accordion-body custom-child">
                     <div class="custom-visit-details mb-4">
-                        <h2>الطبيب: أحمد محمد فريد حافظ</h2>
+                        <h2>الطبيب: د. {{visit.doctorName}}</h2>
                     </div>
                     <div class="custom-visit-details mb-4">
-                        <h2>التشخيص: التهاب أمعاء</h2>
+                        <h2>التشخيص: {{visit.diagnosis}}</h2>
                     </div>
                     <div class="custom-visit-details mb-4">
                         <h2>الأدوية:</h2>
                     </div>
-                    <app-medicines></app-medicines>
+                    <app-medicines [medicines]="visit.medicines"></app-medicines>
                   </div>
       
                 </div>

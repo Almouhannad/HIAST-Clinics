@@ -22,7 +22,7 @@ export class DoctorsComponent implements OnInit {
     this.doctorsService.getAll()
     .subscribe(result => {
       if (result === null) {
-        this.toasreService.error('حدث خطأ، يرجى إعادة المحاولة');
+        this.toasreService.error('حدثت مشكلة، يرجى إعادة المحاولة');
       }
       else this.doctors = result;
     })

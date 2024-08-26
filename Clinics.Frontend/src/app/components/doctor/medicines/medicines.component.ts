@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { MedicineView } from '../../../classes/medicine/medicine-view';
 
 @Component({
   selector: 'app-medicines',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class MedicinesComponent {
 
+  @Input("medicines") medicines: MedicineView[] = [];
 }

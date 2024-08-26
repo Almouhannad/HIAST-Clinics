@@ -27,7 +27,7 @@ export class WaitingListComponent implements OnInit {
     this.waitingListService.getAll()
     .subscribe(result => {
       if (result === null)
-        this.toastrService.error("حدث خطأ، يرجى إعادة المحاولة");
+        this.toastrService.error("حدثت مشكلة، يرجى إعادة المحاولة");
       else this.records = result;
     });
   }

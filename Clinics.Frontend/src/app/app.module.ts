@@ -54,6 +54,8 @@ import { CreateVisitComponent } from './components/doctor/create-visit/create-vi
 import { MedicinesComponent } from './components/doctor/medicines/medicines.component';
 import { AccordionDirective } from './directives/accordion.directive';
 import { PatientIsComingNotificationComponent } from './components/doctor/patient-is-coming-notification/patient-is-coming-notification.component';
+import { VisitsService } from './services/visits/visits.service';
+import { ArabicDatePipe } from './pipes/arabic-date.pipe';
 
 
 @NgModule({
@@ -81,6 +83,7 @@ import { PatientIsComingNotificationComponent } from './components/doctor/patien
     WaitingListService,
     EmployeesDataService,
     DoctorNotificationsService,
+    VisitsService,
   ],
 
   // components and directives that belong to this module
@@ -126,6 +129,7 @@ import { PatientIsComingNotificationComponent } from './components/doctor/patien
     MedicinesComponent,
     AccordionDirective,
     PatientIsComingNotificationComponent,
+    ArabicDatePipe,
   ],
   
   // identifies the root component that Angular should

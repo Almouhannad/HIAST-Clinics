@@ -1,35 +1,13 @@
 <div class="custom-child">
     <section class="section">
         <div class="custom-title">
-            <h2 >زيارات المريض محمد رضا وائل تقلا</h2>
+            <h2 >زيارات المريض {{getEmployeeFullName()}}</h2>
         </div>
 
-
-        <div>
-            <app-visit [index]="'1'"></app-visit>
-            <!-- <hr style="border:2px solid var(--heading-color);">             -->
+        <div *ngFor="let visit of visits; let i = index">
+            <app-visit [visit]="visit" [index]="i.toString()"></app-visit>
         </div>
         
-        <div>
-            <app-visit [index]="'2'"></app-visit>
-            <!-- <hr style="border:2px solid var(--heading-color);">             -->
-        </div>
-
-        <div>
-            <app-visit [index]="'3'"></app-visit>
-            <!-- <hr style="border:2px solid var(--heading-color);">             -->
-        </div>
-
-        <div>
-            <app-visit [index]="'4'"></app-visit>
-            <!-- <hr style="border:2px solid var(--heading-color);">             -->
-        </div>
-
-        <div>
-            <app-visit [index]="'5'"></app-visit>
-            <!-- <hr style="border:2px solid var(--heading-color);">             -->
-        </div>
-
     
     </section>
 

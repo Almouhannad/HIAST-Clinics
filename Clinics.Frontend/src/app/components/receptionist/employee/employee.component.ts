@@ -25,17 +25,17 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getIdFromUrl();
-    this.updateFormModel();
   }
 
   getIdFromUrl(): void {
-
-    this.id = Number(this.activeRoute.snapshot.paramMap.get('id'));
-    if (isNaN(this.id)) {
-      this.toastrService.error('حدثت مشكلة، يرجى إعادة المحاولة');
-      this.router.navigateByUrl('receptionist/waitinglist');
-    }
-
+    this.activeRoute.params.subscribe((params: any) => {
+      this.id = Number(params.id);
+      if (isNaN(this.id)) {
+        this.toastrService.error('حدثت مشكلة، يرجى إعادة المحاولة');
+        this.router.navigateByUrl('receptionist/waitinglist');
+      }
+      this.updateFormModel();
+    });
   }
 
   updateFormModel(): void {

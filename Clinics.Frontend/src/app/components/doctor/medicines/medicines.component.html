@@ -13,22 +13,17 @@
             </thead>
             
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>أسبيرين</td>
-                <td>حب</td>
-                <td>20 حبة</td>
-                <td>1000</td>
-                <td>3</td>
+
+              <tr *ngFor="let medicine of medicines; let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{medicine.name}}</td>
+                <td>{{medicine.form}}</td>
+                <td *ngIf="medicine.form==='حبوب'">{{medicine.amount}} حبة</td>
+                <td *ngIf="medicine.form==='شراب'">{{medicine.amount}} مل</td>
+                <td>{{medicine.dosage}}</td>
+                <td>{{medicine.number}}</td>
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>باراسيتامول</td>
-                <td>شراب</td>
-                <td>500 ملل</td>
-                <td>500</td>
-                <td>2</td>
-              </tr>
+
             </tbody>
           </table>
     </div>

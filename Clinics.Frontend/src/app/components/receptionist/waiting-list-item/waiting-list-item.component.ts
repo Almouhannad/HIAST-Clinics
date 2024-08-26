@@ -54,7 +54,7 @@ export class WaitingListItemComponent implements OnInit {
         this.deleted.emit();
       }
       else {
-        this.toastrService.error('حدث خطأ، يرجى اعادة المحاولة');
+        this.toastrService.error('حدثت مشكلة، يرجى إعادة المحاولة');
       }
     })
   }
@@ -82,7 +82,7 @@ export class WaitingListItemComponent implements OnInit {
         this.deleted.emit();
       }
       else {
-        this.toastrService.error('حدثت مشكلة، يرجى اعادة المحاولة');
+        this.toastrService.error('حدثت مشكلة، يرجى إعادة المحاولة');
       }
     })
   }
