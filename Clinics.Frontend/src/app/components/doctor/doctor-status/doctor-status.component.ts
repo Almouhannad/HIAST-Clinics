@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../../../../services/authentication/authentication.service';
-import { UserData } from '../../../../classes/authentication/user-data';
+import { AuthenticationService } from '../../../services/authentication/authentication.service';
+import { UserData } from '../../../classes/authentication/user-data';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { DoctorsService } from '../../../../services/doctors/doctors.service';
+import { DoctorsService } from '../../../services/doctors/doctors.service';
 
 @Component({
   selector: 'app-doctor-status',
