@@ -1,4 +1,5 @@
-﻿using Application.Doctors.Queries.GetAllDoctors;
+﻿using Application.Doctors.Commands.ChangeStatusByUserId;
+using Application.Doctors.Queries.GetAllDoctors;
 using Application.Doctors.Queries.GetStatusByUserId;
 using Application.Employees.Queries.GetAvailable;
 using Domain.Entities.Identity.UserRoles;
@@ -50,5 +51,15 @@ public class DoctorsController : ApiController
         if (result.IsFailure)
             return HandleFailure(result);
         return Ok(result.Value);
+    }
+
+    //[Authorize(Roles = Roles.DoctorName)]
+    [HttpPost("Status")]
+    public async Task<IActionResult> ChangeStatusByUserId([FromBody] ChangeStatusByUserIdCommand command)
+    {
+        var result = await _sender.Send(command);
+        if (result.IsFailure)
+            return HandleFailure(result);
+        return Ok();
     }
 }

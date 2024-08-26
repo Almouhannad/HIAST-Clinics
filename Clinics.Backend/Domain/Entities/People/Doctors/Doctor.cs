@@ -72,14 +72,21 @@ public sealed class Doctor : Entity
     #endregion
 
     #region Change status
-    public Result ChangeStatusTo(DoctorStatus status)
+    public Result ChangeStatusTo(string status)
     {
-        if (status == DoctorStatuses.Available || status == DoctorStatuses.Busy || status == DoctorStatuses.Working)
-        {
-            Status = status;
-            return Result.Success();
-        }
-        return Result.Failure(Errors.DomainErrors.InvalidValuesError);
+        var Available = DoctorStatuses.Available;
+        var Busy = DoctorStatuses.Busy;
+        var Working = DoctorStatuses.Working;
+
+        if (status == Available.Name)
+            Status = Available;
+        else if (status == Busy.Name)
+            Status = Busy;
+        else if (status == Working.Name)
+            Status = Working;
+        else return Result.Failure(Errors.DomainErrors.InvalidValuesError);
+
+        return Result.Success();
 
     }
     #endregion

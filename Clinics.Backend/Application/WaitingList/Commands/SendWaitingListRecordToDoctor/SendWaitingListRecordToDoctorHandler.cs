@@ -42,7 +42,7 @@ public class SendWaitingListRecordToDoctorHandler : CommandHandlerBase<SendWaiti
         if (doctorFromPersistence.IsFailure)
             return Result.Failure(doctorFromPersistence.Error);
         var doctor = doctorFromPersistence.Value;
-        doctor.ChangeStatusTo(DoctorStatuses.Working);
+        doctor.ChangeStatusTo(DoctorStatuses.Working.Name);
         var changeStatusResult = await _doctorsRepository.UpdateAsync(doctor);
         if (changeStatusResult.IsFailure)
             return Result.Failure(changeStatusResult.Error);
