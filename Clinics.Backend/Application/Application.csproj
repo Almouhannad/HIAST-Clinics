@@ -14,4 +14,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Visits\Commands\" />
+  </ItemGroup>
 </Project>
