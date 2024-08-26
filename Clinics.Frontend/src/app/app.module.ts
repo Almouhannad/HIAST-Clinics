@@ -47,6 +47,9 @@ import { ScrollToTopDirective } from './directives/scroll-to-top.directive';
 import { DoctorDashboardComponent } from './components/doctor/doctor-dashboard/doctor-dashboard.component';
 import { DoctorNotificationsService } from './services/doctorsNotifications/doctor-notifications.service';
 import { DoctorStatusComponent } from './components/doctor/doctor-status/doctor-status.component';
+import { AskForSerialNumberComponent } from './components/doctor/ask-for-serial-number/ask-for-serial-number.component';
+import { HistoryComponent } from './components/doctor/history/history.component';
+import { VisitComponent } from './components/doctor/visit/visit.component';
 
 
 @NgModule({
@@ -112,6 +115,9 @@ import { DoctorStatusComponent } from './components/doctor/doctor-status/doctor-
     ScrollToTopDirective,
     DoctorDashboardComponent,
     DoctorStatusComponent,
+    AskForSerialNumberComponent,
+    HistoryComponent,
+    VisitComponent,
   ],
   
   // identifies the root component that Angular should

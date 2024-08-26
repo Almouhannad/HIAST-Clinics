@@ -197,4 +197,28 @@ app-footer {
     font-weight: 400;
     color: var(--heading-color);
 }
+
+
+::ng-deep .custom-field-layout{
+    text-align: center;
+    margin: auto;
+}
+
+::ng-deep .custom-field-layout input{
+    width: 100%;
+    border: 1px solid var(--heading-color);
+    color: var(--heading-color);
+    text-align: center;
+}
+
+::ng-deep .custom-field-layout input:focus{
+    box-shadow: 0 0 0 0.1em var(--heading-color);
+    border-color: var(--heading-color);
+}
+
+::ng-deep .custom-errors-layout span{
+    font-weight: 800;
+}
+
+
 /* #endregion */

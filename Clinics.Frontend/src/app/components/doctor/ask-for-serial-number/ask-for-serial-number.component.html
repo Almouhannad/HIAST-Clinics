@@ -1,0 +1,64 @@
+<!-- To avoid first field auto focus -->
+<div class="form-group">
+    <input type="text" autofocus="autofocus" style="display:none" />
+</div>
+
+<div class="custom-child">
+    <section class="section">
+
+        <div class="custom-title mb-3">
+            <h2 *ngIf="type === 'query'">الاستعلام عن موظف</h2>
+            <h2 *ngIf="type === 'command'">تسجيل زيارة لموظف</h2>
+        </div>
+
+        <div *ngIf="isFailure" class="d-grid mb-3">
+            <button type="button" class="btn btn-danger" style="cursor: auto; font-weight:700;">خطأ: {{errorMessage}}</button>
+        </div>
+
+
+        <form #form="ngForm" (submit)="onSubmit()" autocomplete="off">
+
+            <div class="form-group">
+                <div class="custom-field-layout mb-4" style="width:60%;">
+                    <input type="text" class="form-control" placeholder="ادخل الرقم الذاتي" dir="ltr"
+
+                    [(ngModel)]="serialNumber" 
+                    name="serialNumber"
+
+                    #serialNumberField="ngModel" required maxlength="50" pattern="[0-9]+">
+
+                    <div *ngIf="(serialNumberField.touched || serialNumberField.dirty) && serialNumberField.errors" class="mt-2 custom-errors-layout">
+                        <span class="text-danger">
+                            {{
+                                serialNumberField.errors['required'] ? 'هذا الحقل مطلوب'
+                                : serialNumberField.errors['pattern'] ? 'الرقم الذاتي غير صالح'
+                                : ''
+                            }}
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="custom-ok-button mb-2">
+                    <button class="btn btn-outline-primary"
+                    [disabled]="!form.dirty || form.invalid"
+                    type="submit"
+                    >تأكيد</button>
+                </div>
+    
+                <div class="custom-no-button">
+                    <button type="button" class="btn btn-outline-primary"
+                    (click)="parentModal.dismiss()">الغاء</button>
+                </div>
+    
+            </div>
+
+        </form>
+    
+
+
+
+    </section>
+</div>
