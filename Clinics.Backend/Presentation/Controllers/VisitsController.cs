@@ -11,7 +11,7 @@ using Presentation.Controllers.Base;
 
 namespace Presentation.Controllers;
 
-[Route("api/Doctors")]
+[Route("api/Visits")]
 public class VisitsController : ApiController
 {
 
