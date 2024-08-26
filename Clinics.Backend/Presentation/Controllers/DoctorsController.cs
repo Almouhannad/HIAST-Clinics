@@ -1,6 +1,9 @@
 ﻿using Application.Doctors.Queries.GetAllDoctors;
+using Application.Doctors.Queries.GetStatusByUserId;
 using Application.Employees.Queries.GetAvailable;
+using Domain.Entities.Identity.UserRoles;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Controllers.Base;
 
@@ -32,6 +35,17 @@ public class DoctorsController : ApiController
     public async Task<IActionResult> GetAllAvailable()
     {
         var query = new GetAvailableDoctorsQuery();
+        var result = await _sender.Send(query);
+        if (result.IsFailure)
+            return HandleFailure(result);
+        return Ok(result.Value);
+    }
+
+    //[Authorize(Roles = Roles.DoctorName)]
+    [HttpGet("Status{id:int}")]
+    public async Task<IActionResult> GetStatusByUserId([FromRoute(Name = "id")] int userId)
+    {
+        GetDoctorStatusByUserIdQuery query = new GetDoctorStatusByUserIdQuery { UserId = userId };
         var result = await _sender.Send(query);
         if (result.IsFailure)
             return HandleFailure(result);

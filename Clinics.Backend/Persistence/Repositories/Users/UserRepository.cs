@@ -164,7 +164,9 @@ public class UserRepository : Repositroy<User>, IUserRepository
                 .Where(doctorUser => doctorUser.Id == id)
                 .Include(doctorUser => doctorUser.User)
                 .Include(doctorUser => doctorUser.Doctor)
-                    .ThenInclude(doctor => doctor.PersonalInfo);
+                    .ThenInclude(doctor => doctor.PersonalInfo)
+                .Include(doctorUser => doctorUser.Doctor)
+                    .ThenInclude(doctor => doctor.Status);
             return await query.FirstAsync();
 
         }
@@ -276,7 +278,7 @@ public class UserRepository : Repositroy<User>, IUserRepository
     }
 
     #endregion
-    
+
     #endregion
 
 }
