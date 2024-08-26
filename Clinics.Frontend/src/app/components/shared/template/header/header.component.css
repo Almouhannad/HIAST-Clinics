@@ -53,20 +53,20 @@
     text-align: center; /* or any other alignment you prefer */
 }
 
-::ng-deep .btn:focus {
+.btn:focus {
     background-color: inherit;
     box-shadow: none;
 }
-::ng-deep .btn:active {
+.btn:active {
     background-color: inherit;
     box-shadow: none;
 }
-::ng-deep .btn:visited {
+.btn:visited {
     background-color: inherit;
     box-shadow: none;
   }
 
-::ng-deep .btn:link {
+.btn:link {
     background-color: inherit;
     box-shadow: none;
   }
