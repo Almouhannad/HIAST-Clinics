@@ -1,4 +1,6 @@
 .table {
+    width: 90%;
+    margin: auto;
     --mdb-table-bg: var(--heading-color);
     --mdb-table-accent-bg: var(--accent-color);
     font-weight: 800;

@@ -14,49 +14,49 @@
 
 
 <ng-template #changeStatusModal let-modal>
-
-    <!-- To avoid first field auto focus -->
-    <div class="form-group">
-        <input type="text" autofocus="autofocus" style="display:none" />
-    </div>
-
-
-    <div class="custom-child">
-        <section class="section">
-            <div class="custom-title mb-3">
-                <h2>تغيير الحالة</h2>
-            </div>
+    <div class="modal-body">
+        <!-- To avoid first field auto focus -->
+        <div class="form-group">
+            <input type="text" autofocus="autofocus" style="display:none" />
+        </div>
 
 
-
-            <div class="container">
-                <div class="custom-select">
-                    <select class="text-center mb-3 form-control"
-                    [(ngModel)]="doctorStatus">
-                        <option value="''" disabled>يرجى اختيار الحالة</option>
-                        <option *ngFor="let status of statuses" [ngValue]="status">{{status}}</option>
-                    </select>
+        <div class="custom-child">
+            <section class="section">
+                <div class="custom-title mb-3">
+                    <h2>تغيير الحالة</h2>
                 </div>
 
-                <a>
-                    <div class="custom-ok-button mb-3">
-                        <button class="btn btn-outline-secondary" style="width:100%;" (click)="modal.dismiss()"
-                        [disabled]="doctorStatus === ''"
-                        (click)="onChangeStatus()">
-                            تأكيد
-                        </button>
+
+
+                <div class="container">
+                    <div class="custom-select">
+                        <select class="text-center mb-3 form-control" [(ngModel)]="doctorStatus">
+                            <option value="''" disabled>يرجى اختيار الحالة</option>
+                            <option *ngFor="let status of statuses" [ngValue]="status">{{status}}</option>
+                        </select>
                     </div>
-                </a>
 
-                <div class="d-grid gap-3 custom-no-button">
                     <a>
-                        <button class="btn btn-outline-secondary" style="width: 100%;" (click)="modal.dismiss()">
-                            إلغاء
-                        </button>
+                        <div class="custom-ok-button mb-3">
+                            <button class="btn btn-outline-secondary" style="width:100%;" (click)="modal.dismiss()"
+                                [disabled]="doctorStatus === ''" (click)="onChangeStatus()">
+                                تأكيد
+                            </button>
+                        </div>
                     </a>
-                </div>
-            </div>
 
-        </section>
+                    <div class="d-grid gap-3 custom-no-button">
+                        <a>
+                            <button class="btn btn-outline-secondary" style="width: 100%;" (click)="modal.dismiss()">
+                                إلغاء
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+            </section>
+        </div>
     </div>
+
 </ng-template>

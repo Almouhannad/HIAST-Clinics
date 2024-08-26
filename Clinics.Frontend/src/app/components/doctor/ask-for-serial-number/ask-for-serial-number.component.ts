@@ -2,6 +2,7 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { EmployeesDataService } from '../../../services/employees/employees-data.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { DoctorsService } from '../../../services/doctors/doctors.service';
 
 @Component({
   selector: 'app-ask-for-serial-number',
@@ -11,6 +12,7 @@ import { NgForm } from '@angular/forms';
 export class AskForSerialNumberComponent {
 
   constructor(private employeeDataService: EmployeesDataService,
+    private doctorsService: DoctorsService,
     private router: Router
   ){}
 

@@ -2,35 +2,12 @@
     <app-header class="sticky-top custom-header" [userData]="userData" (loggedIn)="onUpdateUserData()"></app-header>
 
     <router-outlet></router-outlet>
-    
+
     <app-footer></app-footer>
 </div>
 
 <ng-template #doctorNotificationModal let-modal>
-    <div class="custom-child" dir="rtl">
-        <!-- To avoid first field auto focus -->
-        <div class="form-group">
-            <input type="text" autofocus="autofocus" style="display:none" />
-        </div>
-
-        <section class="section">
-            <div class="custom-title mb-3">
-                <h2><i class="bi bi-exclamation-triangle-fill" style="color: var(--heading-color);"></i> إشعار هام</h2>
-            </div>
-
-            <div class="custom-notification-message text-center mb-3">
-                <h2>المريض {{doctorNotification.patientFullName}}</h2>
-                <h3>في طريقه إليك</h3>
-            </div>
-
-            <div class="container">
-                <div class="custom-ok-button">
-                    <button class="btn btn-outline-primary" (click)="modal.dismiss()">استقبال</button>
-                </div>
-            </div>
-
-        </section>
+    <div class="modal-body" >
+        <app-patient-is-coming-notification [notification]="doctorNotification" [parentModal]="modal"></app-patient-is-coming-notification>
     </div>
-
-
 </ng-template>

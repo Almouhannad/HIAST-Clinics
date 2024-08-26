@@ -52,6 +52,8 @@ import { HistoryComponent } from './components/doctor/history/history.component'
 import { VisitComponent } from './components/doctor/visit/visit.component';
 import { CreateVisitComponent } from './components/doctor/create-visit/create-visit.component';
 import { MedicinesComponent } from './components/doctor/medicines/medicines.component';
+import { AccordionDirective } from './directives/accordion.directive';
+import { PatientIsComingNotificationComponent } from './components/doctor/patient-is-coming-notification/patient-is-coming-notification.component';
 
 
 @NgModule({
@@ -122,6 +124,8 @@ import { MedicinesComponent } from './components/doctor/medicines/medicines.comp
     VisitComponent,
     CreateVisitComponent,
     MedicinesComponent,
+    AccordionDirective,
+    PatientIsComingNotificationComponent,
   ],
   
   // identifies the root component that Angular should

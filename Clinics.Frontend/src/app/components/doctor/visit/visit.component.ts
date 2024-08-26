@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-visit',
@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class VisitComponent {
 
+  @Input("index") index: string;
+
+  isSelected: boolean = false;
 }
