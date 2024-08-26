@@ -12,7 +12,7 @@ public sealed class Medicine : Entity
 
     private Medicine(int id) : base(id) { }
 
-    private Medicine(int id, MedicineForm medicineForm, int amount, string name, decimal dosage) : base(id)
+    public Medicine(int id, MedicineForm medicineForm, int amount, string name, decimal dosage) : base(id)
     {
         MedicineForm = medicineForm;
         Amount = amount;

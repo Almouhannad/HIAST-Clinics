@@ -127,6 +127,7 @@ var app = builder.Build();
 #region Seed database
 await SeedHelper.Seed(app);
 await SeedAdminUserHelper.Seed(app);
+await SeedMedicinesHelper.Seed(app);
 #endregion
 
 // Configure the HTTP request pipeline.
