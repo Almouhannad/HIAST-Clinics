@@ -25,7 +25,7 @@ export class AskForSerialNumberComponent {
   @ViewChild("form") form: NgForm;
 
   isFailure: boolean = false;
-  errorMessage: string = 'الموظف غير موجود';
+  errorMessage: string = '';
 
   serialNumber: string;
 

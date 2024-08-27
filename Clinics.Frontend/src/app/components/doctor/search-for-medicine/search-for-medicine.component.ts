@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs';
 import { VisitMedicine } from '../../../classes/medicine/visit-medicine';
+import { ConstantMessages } from '../../../constants/messages';
 
 @Component({
   selector: 'app-search-for-medicine',
@@ -30,7 +31,7 @@ export class SearchForMedicineComponent implements OnInit {
     .subscribe(
       value => {
         if(value.status === false) {
-          this.toastrService.error('حدثت مشكلة، يرجى إعادة المحاولة');
+          this.toastrService.error(ConstantMessages.ERROR);
           this.router.navigateByUrl('doctor/waitinglist');
         }
         else {

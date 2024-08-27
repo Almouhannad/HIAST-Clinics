@@ -5,6 +5,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EmployeeData } from '../../../classes/employeeData/employee-data';
 import { EmployeesDataService } from '../../../services/employees/employees-data.service';
+import { ConstantMessages } from '../../../constants/messages';
 
 @Component({
   selector: 'app-employee',
@@ -31,7 +32,7 @@ export class EmployeeComponent implements OnInit {
     this.activeRoute.params.subscribe((params: any) => {
       this.id = Number(params.id);
       if (isNaN(this.id)) {
-        this.toastrService.error('حدثت مشكلة، يرجى إعادة المحاولة');
+        this.toastrService.error(ConstantMessages.ERROR);
         this.router.navigateByUrl('receptionist/waitinglist');
       }
       this.updateFormModel();
@@ -45,7 +46,7 @@ export class EmployeeComponent implements OnInit {
           this.formModel = result.employeeData!;
         }
         else {
-          this.toastrService.error('حدثت مشكلة، يرجى إعادة المحاولة');
+          this.toastrService.error(ConstantMessages.ERROR);
           this.router.navigateByUrl('receptionist/waitinglist');
         }
       })

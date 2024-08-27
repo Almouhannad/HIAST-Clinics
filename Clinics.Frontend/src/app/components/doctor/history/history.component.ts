@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { EmployeeData } from '../../../classes/employeeData/employee-data';
 import { VisitView } from '../../../classes/visit/visit-view';
 import { VisitsService } from '../../../services/visits/visits.service';
+import { ConstantMessages } from '../../../constants/messages';
 
 @Component({
   selector: 'app-history',
@@ -28,7 +29,7 @@ export class HistoryComponent  implements OnInit {
     this.route.params.subscribe((params: any) => {
       this.patientId = Number(params.id);
       if (isNaN(this.patientId)) {
-        this.toastrService.error('حدثت مشكلة، يرجى إعادة المحاولة');
+        this.toastrService.error(ConstantMessages.ERROR);
         this.router.navigateByUrl('doctor/waitinglist');
       }
       this.getEmployee();
@@ -42,7 +43,7 @@ export class HistoryComponent  implements OnInit {
     this.employeesDataService.getById(this.patientId)
     .subscribe(result => {
       if (result.status === false) {
-        this.toastrService.error('حدثت مشكلة، يرجى إعادة المحاولة');
+        this.toastrService.error(ConstantMessages.ERROR);
         this.router.navigateByUrl('doctor/waitinglist');
       }
       else {
@@ -59,7 +60,7 @@ export class HistoryComponent  implements OnInit {
     this.visitsService.getAllByPatientId(this.patientId)
     .subscribe(result => {
       if (result.status === false) {
-        this.toastrService.error('حدثت مشكلة، يرجى إعادة المحاولة');
+        this.toastrService.error(ConstantMessages.ERROR);
         this.router.navigateByUrl('doctor/waitinglist');
       }
       else {

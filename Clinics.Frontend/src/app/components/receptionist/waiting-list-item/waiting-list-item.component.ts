@@ -7,6 +7,7 @@ import { DoctorsService } from '../../../services/doctors/doctors.service';
 import { AuthenticationService } from '../../../services/authentication/authentication.service';
 import { UserData } from '../../../classes/authentication/user-data';
 import { Roles } from '../../../classes/authentication/roles';
+import { ConstantMessages } from '../../../constants/messages';
 
 @Component({
   selector: 'app-waiting-list-item',
@@ -50,11 +51,11 @@ export class WaitingListItemComponent implements OnInit {
     this.waitingListService.delete(this.model.id)
     .subscribe(result => {
       if (result.status === true) {
-        this.toastrService.success('تم الحذف بنجاح ✔');
+        this.toastrService.success(ConstantMessages.SUCCESS_DELETE);
         this.deleted.emit();
       }
       else {
-        this.toastrService.error('حدثت مشكلة، يرجى إعادة المحاولة');
+        this.toastrService.error(ConstantMessages.ERROR);
       }
     })
   }
@@ -66,7 +67,7 @@ export class WaitingListItemComponent implements OnInit {
     this.doctorsService.getAvailable()
     .subscribe(result => {
       if (result === null) {
-        this.toastrService.error('حدثت مشكلة، يرجى إعادة المحاولة');
+        this.toastrService.error(ConstantMessages.ERROR);
       }
       else {
         this.doctors = result;
@@ -78,11 +79,11 @@ export class WaitingListItemComponent implements OnInit {
     this.waitingListService.SendToDoctor(this.model.id, this.model.patientId, this.selectedDoctorId)
     .subscribe(result => {
       if (result.status === true) {
-        this.toastrService.success('تم الإرسال بنجاح ✔');
+        this.toastrService.success(ConstantMessages.SUCCESS_SEND_TO_DOCTOR);
         this.deleted.emit();
       }
       else {
-        this.toastrService.error('حدثت مشكلة، يرجى إعادة المحاولة');
+        this.toastrService.error(ConstantMessages.ERROR);
       }
     })
   }

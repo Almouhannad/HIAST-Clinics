@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { WaitingListService } from '../../../services/waitingList/waiting-list.service';
 import { ViewportScroller } from '@angular/common';
+import { ConstantMessages } from '../../../constants/messages';
 
 @Component({
   selector: 'app-create-witing-list-item-for-employee',
@@ -35,7 +36,7 @@ export class CreateWitingListItemForEmployeeComponent {
       this.waitingListService.createBySerialNumber(this.formModel.serialNumber)
       .subscribe((result => {
         if (result.status === true) {
-          this.toastrService.success('تمت الإضافة بنجاح ✔');
+          this.toastrService.success(ConstantMessages.SUCCESS_ADD);
           this.router.navigateByUrl('receptionist/waitinglist');
         }
         else {

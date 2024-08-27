@@ -9,6 +9,7 @@ import { VisitMedicine } from '../../../classes/medicine/visit-medicine';
 import { VisitsService } from '../../../services/visits/visits.service';
 import { AuthenticationService } from '../../../services/authentication/authentication.service';
 import { DoctorsService } from '../../../services/doctors/doctors.service';
+import { ConstantMessages } from '../../../constants/messages';
 
 @Component({
   selector: 'app-create-visit',
@@ -35,7 +36,7 @@ export class CreateVisitComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.employeeId = params['id'];
       if (isNaN(this.employeeId)) {
-        this.toastr.error("حدثت مشكلة، يرجى إعادة المحاولة");
+        this.toastr.error(ConstantMessages.ERROR);
         this.router.navigateByUrl('doctor/waitinglist');
       }
       this.setEmployee();
@@ -47,7 +48,7 @@ export class CreateVisitComponent implements OnInit {
     this.employeesDataService.getById(this.employeeId)
     .subscribe(result => {
       if (result.status === false) {
-        this.toastr.error("حدثت مشكلة، يرجى إعادة المحاولة");
+        this.toastr.error(ConstantMessages.ERROR);
         this.router.navigateByUrl('doctor/waitinglist');
       }
       else {
@@ -77,7 +78,7 @@ export class CreateVisitComponent implements OnInit {
       this.medicines.push(visitMedicine);
     }
     else {
-      this.toastr.error('هذا الدواء موجود بالفعل');
+      this.toastr.error(ConstantMessages.ERROR_ALREADY_ADDED_MEDICINE);
     }
   }
   onDeleteMedicine(index: number) {
@@ -91,19 +92,19 @@ export class CreateVisitComponent implements OnInit {
       this.employeeId, this.diagnosis, this.medicines)
       .subscribe(result => {
         if(result.status === false) {
-          this.toastr.error("حدثت مشكلة، يرجى إعادة المحاولة");
+          this.toastr.error(ConstantMessages.ERROR);
           this.router.navigateByUrl('doctor/waitinglist');
         }
         else {
           this.doctorsService.changeStatusByUserId(userId, 'متاح')
           .subscribe(_ => {});
-          this.toastr.success('تم تسجيل الزيارة بنجاح ✔');
+          this.toastr.success(ConstantMessages.SUCCESS_ADD_VISIT);
           this.router.navigateByUrl(`doctor/history/${this.employeeId}`);
         }
       })
     }
     else {
-      this.toastr.error("يرجى إضافة أدوية");
+      this.toastr.error(ConstantMessages.ERROR_NO_MEDICINES);
     }
 
 

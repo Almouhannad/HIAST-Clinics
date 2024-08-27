@@ -4,6 +4,7 @@ import { DoctorUsersService } from '../../../services/admin/doctor-users.service
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { ConstantMessages } from '../../../constants/messages';
 
 @Component({
   selector: 'app-update-doctor-user-data-form',
@@ -35,7 +36,7 @@ export class UpdateDoctorUserDataFormComponent {
       .subscribe(
         result => {
           if (result.status === true) {
-            this.toastrService.success('تم تحديث البيانات بنجاح ✔');
+            this.toastrService.success(ConstantMessages.SUCCESS_EDIT);
             this.router.navigateByUrl('admin/doctors');
           }
           else {

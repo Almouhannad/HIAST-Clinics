@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EmployeeData } from '../../../classes/employeeData/employee-data';
 import { EmployeesDataService } from '../../../services/employees/employees-data.service';
+import { ConstantMessages } from '../../../constants/messages';
 
 @Component({
   selector: 'app-create-employee-form',
@@ -45,7 +46,7 @@ export class CreateEmployeeFormComponent {
       this.employeesDataService.create(this.formModel)
       .subscribe(result => {
         if (result.status === true) {
-          this.toastrService.success('تم إضافة الموظف بنجاح ✔');
+          this.toastrService.success(ConstantMessages.SUCCESS_ADD_EMPLOYEE);
           this.router.navigateByUrl(`receptionist/employees/${result.id!}`);
         }
         else {

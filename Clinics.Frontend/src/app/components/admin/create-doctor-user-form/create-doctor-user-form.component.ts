@@ -5,6 +5,7 @@ import { CreateDoctorUserCommand } from '../../../classes/admin/create-doctor-us
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
+import { ConstantMessages } from '../../../constants/messages';
 
 @Component({
   selector: 'app-create-doctor-user-form',
@@ -52,7 +53,7 @@ export class CreateDoctorUserFormComponent {
 
             }
             else {
-              this.toastrService.success("تم إضافة الطبيب بنجاح ✔");
+              this.toastrService.success(ConstantMessages.SUCCESS_ADD_DOCTOR);
               this.router.navigateByUrl('admin/doctors');
             }
           }

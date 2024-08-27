@@ -4,6 +4,7 @@ import { UserData } from '../../../classes/authentication/user-data';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { DoctorsService } from '../../../services/doctors/doctors.service';
+import { ConstantMessages } from '../../../constants/messages';
 
 @Component({
   selector: 'app-doctor-status',
@@ -40,7 +41,7 @@ export class DoctorStatusComponent implements OnInit {
     this.doctorsService.getStatusByUserId(this.userData.id)
     .subscribe(result => {
       if (result.status === false) {
-        this.toastr.error('حدثت مشكلة، يرجى إعادة المحاولة');
+        this.toastr.error(ConstantMessages.ERROR);
       }
       else {
         this.doctorStatus = result.doctorStatus!;
@@ -54,10 +55,10 @@ export class DoctorStatusComponent implements OnInit {
     this.doctorsService.changeStatusByUserId(this.userData.id, this.doctorStatus)
     .subscribe(result => {
       if (result.status === false) {
-        this.toastr.error('حدثت مشكلة، يرجى إعادة المحاولة');
+        this.toastr.error(ConstantMessages.ERROR);
       }
       else {
-        this.toastr.success('تم تغيير الحالة بنجاح ✔')
+        this.toastr.success(ConstantMessages.SUCCESS_CHANGE_STATUS)
       }
     })
   }

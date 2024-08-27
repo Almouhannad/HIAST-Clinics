@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UserData } from '../../../classes/authentication/user-data';
 import { AuthenticationService } from '../../../services/authentication/authentication.service';
 import { Roles } from '../../../classes/authentication/roles';
+import { ConstantMessages } from '../../../constants/messages';
 
 @Component({
   selector: 'app-waiting-list',
@@ -27,7 +28,7 @@ export class WaitingListComponent implements OnInit {
     this.waitingListService.getAll()
     .subscribe(result => {
       if (result === null)
-        this.toastrService.error("حدثت مشكلة، يرجى إعادة المحاولة");
+        this.toastrService.error(ConstantMessages.ERROR);
       else this.records = result;
     });
   }

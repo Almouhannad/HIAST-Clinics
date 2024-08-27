@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
 import { UpdateDoctorPersonalDataQuery } from '../../../classes/admin/update-doctor-personal-data-query';
 import { Router } from '@angular/router';
+import { ConstantMessages } from '../../../constants/messages';
 
 @Component({
   selector: 'app-update-doctor-personal-data-form',
@@ -41,7 +42,7 @@ export class UpdateDoctorPersonalDataFormComponent {
         result => {
           if (result.status === true)
           {
-            this.toastrService.success('تم تعديل البيانات بنجاح ✔');
+            this.toastrService.success(ConstantMessages.SUCCESS_EDIT);
             this.router.navigateByUrl('admin/doctors');
           }
           else {

@@ -6,6 +6,7 @@ import { Roles } from '../../../../classes/authentication/roles';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ViewportScroller } from '@angular/common';
+import { ConstantMessages } from '../../../../constants/messages';
 
 @Component({
   selector: 'app-header',
@@ -74,7 +75,7 @@ export class HeaderComponent {
   //#region On logout
   onLogout(): void {
     this.authenticationService.logout();
-    this.toastrService.success("تم تسجيل الخروج بنجاح ✔");
+    this.toastrService.success(ConstantMessages.SUCCESS_LOGOUT);
     this.userData = null;
     this.showDropdown = false;
     this.selectedButton = 'Home';

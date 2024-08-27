@@ -4,6 +4,7 @@ import { LoginCommand } from '../../../classes/authentication/Login/login-comman
 import { AuthenticationService } from '../../../services/authentication/authentication.service';
 import { UserData } from '../../../classes/authentication/user-data';
 import { ToastrService } from 'ngx-toastr';
+import { ConstantMessages } from '../../../constants/messages';
 
 @Component({
   selector: 'app-login-form',
@@ -49,7 +50,7 @@ export class LoginFormComponent {
             this.errorMessage = result.errorMessage!;
           }
           else{
-            this.toastrService.success("تم تسجيل الدخول بنجاح ✔");
+            this.toastrService.success(ConstantMessages.SUCCESS_LOGIN);
             this.loggedIn.emit(this.authenticationService.getUserData()!);
           }
         }
