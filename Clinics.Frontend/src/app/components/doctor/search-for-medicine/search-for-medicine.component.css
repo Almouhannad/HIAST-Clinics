@@ -14,7 +14,7 @@
 
 .custom-field .custom-input:focus {
     box-shadow: 0 0 0 0.1em var(--heading-color);
-  }
+}
 
 
 .custom-no-button {
@@ -27,7 +27,7 @@
     margin: auto;
 }
 
-.custom-medicine-button .btn{
+.custom-medicine-button .btn {
     width: 100%;
     font-weight: 700;
     margin: auto;
@@ -36,7 +36,7 @@
     background-color: white;
 }
 
-.custom-medicine-button .btn:hover{
+.custom-medicine-button .btn:hover {
     margin: auto;
     color: white;
     border-color: var(--heading-color);
@@ -44,7 +44,7 @@
 }
 
 
-.custom-selected-button .btn{
+.custom-selected-button .btn {
     width: 100%;
     font-weight: 700;
     margin: auto;
@@ -53,9 +53,24 @@
     background-color: white;
 }
 
-.custom-selected-button .btn:hover{
+.custom-selected-button .btn:hover {
     margin: auto;
     color: white;
     border-color: var(--accent-color);
     background-color: var(--accent-color);
+}
+
+
+.custom-medicine-button {
+    animation: fade-in 0.5s;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }

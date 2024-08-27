@@ -71,29 +71,41 @@ export class CreateVisitComponent implements OnInit {
 
   diagnosis: string;
   medicines: VisitMedicine[] = [];
-  onAddMedicine(visitMedicine: VisitMedicine){
-    this.medicines.push(visitMedicine);
+  onAddMedicine(visitMedicine: VisitMedicine) {
+    const existingMedicine = this.medicines.find(medicine => medicine.id === visitMedicine.id);
+    if (!existingMedicine) {
+      this.medicines.push(visitMedicine);
+    }
+    else {
+      this.toastr.error('هذا الدواء موجود بالفعل');
+    }
   }
   onDeleteMedicine(index: number) {
     this.medicines.splice(index, 1);
   }
 
   onSubmit(): void {
-    var userId = this.authenticationService.getUserData()!.id;
-    this.visitsService.create(userId,
-    this.employeeId, this.diagnosis, this.medicines)
-    .subscribe(result => {
-      if(result.status === false) {
-        this.toastr.error("حدثت مشكلة، يرجى إعادة المحاولة");
-        this.router.navigateByUrl('doctor/waitinglist');
-      }
-      else {
-        this.doctorsService.changeStatusByUserId(userId, 'متاح')
-        .subscribe(_ => {});
-        this.toastr.success('تم تسجيل الزيارة بنجاح ✔');
-        this.router.navigateByUrl(`doctor/history/${this.employeeId}`);
-      }
-    })
+    if (this.medicines.length !== 0) {
+      var userId = this.authenticationService.getUserData()!.id;
+      this.visitsService.create(userId,
+      this.employeeId, this.diagnosis, this.medicines)
+      .subscribe(result => {
+        if(result.status === false) {
+          this.toastr.error("حدثت مشكلة، يرجى إعادة المحاولة");
+          this.router.navigateByUrl('doctor/waitinglist');
+        }
+        else {
+          this.doctorsService.changeStatusByUserId(userId, 'متاح')
+          .subscribe(_ => {});
+          this.toastr.success('تم تسجيل الزيارة بنجاح ✔');
+          this.router.navigateByUrl(`doctor/history/${this.employeeId}`);
+        }
+      })
+    }
+    else {
+      this.toastr.error("يرجى إضافة أدوية");
+    }
+
 
   }
 }

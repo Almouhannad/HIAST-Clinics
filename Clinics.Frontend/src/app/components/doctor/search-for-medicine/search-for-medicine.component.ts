@@ -22,7 +22,7 @@ export class SearchForMedicineComponent implements OnInit {
 
     // Listen to input changes with delay
     this.prefix.valueChanges.pipe(
-      debounceTime(1000),
+      debounceTime(500),
       distinctUntilChanged(),
       filter(value => value.trim().length >= 2), // igonre less than 2 letters
       switchMap(value => this.medicinesService.getAll(value))

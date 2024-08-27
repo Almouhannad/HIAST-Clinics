@@ -31,12 +31,15 @@
     <div *ngIf="isSelected">
         <div class="custom-field">
             <input class="form-control custom-input" type="number" placeholder="يرجى ادخال الكمية" dir="ltr"
-                [(ngModel)]="number">
+                min="1"
+                [(ngModel)]="number" #numberField="ngModel">
+                <p *ngIf="numberField.errors && numberField.errors['min']" class="text-danger text-center"
+                style="font-weight: 800;">يرجى ادخال قيمة صالحة</p>
         </div>
 
         <div class="custom-ok-button mt-3" style="width:100%">
             <button class="btn btn-outline-primary" (click)="onSave(); parentModal.dismiss()"
-                [disabled]="number === null">حفظ</button>
+                [disabled]="number === null || number! <= 0">حفظ</button>
         </div>
 
     </div>
