@@ -1,1 +1,165 @@
-<p>create-visit works!</p>
+<div class="cutom-child" dir="rtl">
+    <section class="section">
+
+        <div class="custom-title mb-4">
+            <h2>تسجيل زيارة</h2>
+        </div>
+        <div dir="rtl" class="mb-5 custom-form">
+
+            <!-- #region Title-->
+
+            <div class="text-center custom-form-title mb-4">
+                <h3 style="font-weight: 800;">{{getEmployeeFullName()}}</h3>
+            </div>
+
+            <!-- #endregion -->
+
+
+            <form #form="ngForm" (ngSubmit)="onSubmit()" class="text-center custom-form-container" autocomplete="off">
+
+                <!-- #region diagnosis-->
+                <div class="form-group mb-3 custom-field">
+
+                    <label for="diagnosis" class="col-form-label custom-label">
+                        التشخيص
+                        <span class="text-danger">*</span>
+                    </label>
+
+                    <input type="text" class="form-control text-center custom-input" placeholder="التشخيص" dir="rtl"
+                        [(ngModel)]="diagnosis" name="diagnosis" #diagnosisField="ngModel" required maxlength="50">
+
+                    <div *ngIf="(diagnosisField.touched || diagnosisField.dirty) && (diagnosisField.errors)"
+                        class="custom-error-message">
+
+                        <p class="text-danger">
+                            {{
+                            diagnosisField.errors['required'] ? 'هذا الحقل مطلوب'
+                            : ''
+                            }}
+                        </p>
+
+                    </div>
+
+                </div>
+                <!-- #endregion -->
+
+
+                <!-- #region Medicines-->
+                <div class="accordion">
+                    <div class="accordion-item">
+
+                        <div class="custom-accordion-header">
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+                                (click)="isMedicinesSectionOpen = !isMedicinesSectionOpen">
+                                الأدوية
+                                <i *ngIf="!isMedicinesSectionOpen" class="fas fa-chevron-down"></i>
+                                <i *ngIf="isMedicinesSectionOpen" class="fas fa-chevron-up"></i>
+                            </button>
+                        </div>
+
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
+
+                            <div class="accordion-body">
+
+                                <div  class="custom-ok-button mb-3">
+                                    <button type="button" class="btn btn-outline-primary"
+                                        (click)="openModal(selectMedicineModal)">إضافة دواء +</button>
+                                </div>
+
+                                <div class="custom-child" dir="rtl" *ngIf="medicines.length !== 0">
+                                    <div class="container text-center">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">اسم الدواء</th>
+                                                    <th scope="col">الشكل الدوائي</th>
+                                                    <th scope="col">سعة العلبة</th>
+                                                    <th scope="col">العيار</th>
+                                                    <th scope="col">الكمية</th>
+                                                    <th scope="col"></th> <!-- Add a new column for the delete icon -->
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+
+                                                <tr *ngFor="let medicine of medicines; let i = index">
+                                                    <th scope="row">{{i+1}}</th>
+                                                    <td>{{medicine.name}}</td>
+                                                    <td>{{medicine.form}}</td>
+                                                    <td *ngIf="medicine.form==='حبوب'">{{medicine.amount}} حبة</td>
+                                                    <td *ngIf="medicine.form==='شراب'">{{medicine.amount}} مل</td>
+                                                    <td>{{medicine.dosage}}</td>
+                                                    <td>{{medicine.number}}</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-danger btn-sm">
+                                                            <i class="fas fa-trash-alt"
+                                                            (click)="onDeleteMedicine(i)"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- #endregion -->
+
+
+                <!-- #region Options-->
+
+                <div class="accordion">
+                    <div class="accordion-item">
+
+                        <div class="custom-accordion-header">
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"
+                                (click)="isOptionsSectionOpen = !isOptionsSectionOpen">
+                                خيارات
+                                <i *ngIf="!isOptionsSectionOpen" class="fas fa-chevron-down"></i>
+                                <i *ngIf="isOptionsSectionOpen" class="fas fa-chevron-up"></i>
+                            </button>
+
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+
+                                <div class="accordion-body">
+                                    <div class="d-grid gap-3 mb-5 custom-buttons custom-form-buttons">
+
+                                        <button type="submit" class="btn btn-outline-primary"
+                                            [disabled]="!form.dirty || form.invalid">
+                                            حفظ
+                                            <i class="bi bi-save"></i>
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- #endregion -->
+
+
+            </form>
+
+
+        </div>
+    </section>
+</div>
+
+<ng-template #selectMedicineModal let-modal>
+    <div class="modal-body">
+        <app-search-for-medicine [parentModal]="modal" (created)="onAddMedicine($event)"></app-search-for-medicine>
+    </div>
+</ng-template>

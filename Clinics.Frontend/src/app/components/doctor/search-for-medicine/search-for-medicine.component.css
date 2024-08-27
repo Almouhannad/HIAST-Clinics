@@ -1,0 +1,61 @@
+.custom-field {
+    width: 100%;
+    margin: auto;
+    color: var(--heading-color);
+}
+
+
+.custom-field .custom-input {
+    border: 1px solid var(--heading-color);
+    color: var(--heading-color);
+    margin-bottom: 0.8em;
+    text-align: center;
+}
+
+.custom-field .custom-input:focus {
+    box-shadow: 0 0 0 0.1em var(--heading-color);
+  }
+
+
+.custom-no-button {
+    width: 45%;
+    margin: auto;
+}
+
+.custom-ok-button {
+    width: 45%;
+    margin: auto;
+}
+
+.custom-medicine-button .btn{
+    width: 100%;
+    font-weight: 700;
+    margin: auto;
+    color: var(--heading-color);
+    border-color: var(--heading-color);
+    background-color: white;
+}
+
+.custom-medicine-button .btn:hover{
+    margin: auto;
+    color: white;
+    border-color: var(--heading-color);
+    background-color: var(--heading-color);
+}
+
+
+.custom-selected-button .btn{
+    width: 100%;
+    font-weight: 700;
+    margin: auto;
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    background-color: white;
+}
+
+.custom-selected-button .btn:hover{
+    margin: auto;
+    color: white;
+    border-color: var(--accent-color);
+    background-color: var(--accent-color);
+}

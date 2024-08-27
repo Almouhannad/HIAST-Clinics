@@ -10,7 +10,7 @@ import { HeaderComponent } from './components/shared/template/header/header.comp
 import { FooterComponent } from './components/shared/template/footer/footer.component';
 import { HomeComponent } from './components/shared/home/home.component';
 import { LoginFormComponent } from './components/authentication/login-form/login-form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AuthenticationService } from './services/authentication/authentication.service';
@@ -56,6 +56,8 @@ import { AccordionDirective } from './directives/accordion.directive';
 import { PatientIsComingNotificationComponent } from './components/doctor/patient-is-coming-notification/patient-is-coming-notification.component';
 import { VisitsService } from './services/visits/visits.service';
 import { ArabicDatePipe } from './pipes/arabic-date.pipe';
+import { MedicinesService } from './services/medicines/medicines.service';
+import { SearchForMedicineComponent } from './components/doctor/search-for-medicine/search-for-medicine.component';
 
 
 @NgModule({
@@ -69,6 +71,8 @@ import { ArabicDatePipe } from './pipes/arabic-date.pipe';
     }),
     FormsModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
 
   // creators of services that this module contributes to the
@@ -84,6 +88,7 @@ import { ArabicDatePipe } from './pipes/arabic-date.pipe';
     EmployeesDataService,
     DoctorNotificationsService,
     VisitsService,
+    MedicinesService,
   ],
 
   // components and directives that belong to this module
@@ -130,6 +135,7 @@ import { ArabicDatePipe } from './pipes/arabic-date.pipe';
     AccordionDirective,
     PatientIsComingNotificationComponent,
     ArabicDatePipe,
+    SearchForMedicineComponent,
   ],
   
   // identifies the root component that Angular should

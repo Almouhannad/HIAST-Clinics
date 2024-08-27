@@ -1,0 +1,48 @@
+<div class="custom-child" dir="rtl">
+
+    <!-- To avoid first field auto focus -->
+    <div class="form-group">
+        <input type="text" autofocus="autofocus" style="display:none" />
+    </div>
+
+    <div class="custom-title mb-3">
+        <h2>إضافة دواء</h2>
+        <p *ngIf="!isSelected">يرجى اختيار الدواء</p>
+        <p *ngIf="isSelected">يرجى تحديد الكمية</p>
+    </div>
+
+    <div *ngIf="!isSelected">
+        <div class="custom-field">
+            <input #prefixInput class="form-control custom-input" type="text"
+                placeholder="ادخل الأحرف الأولى من اسم الدواء" [formControl]="prefix" list="medicines" dir="ltr">
+        </div>
+
+        <div class="container" style="width:45%; margin:auto">
+            <div *ngFor="let medicine of medicines; let i = index;" class="custom-medicine-button mb-2">
+                <button class="btn btn-outline-primary" (click)="onSelect(i);">{{medicine.name}}</button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="isSelected" class="text-center">
+        <h2 style="font-size:1em; font-weight: 900">الدواء: {{selectedMedicine.name}}</h2>
+    </div>
+
+    <div *ngIf="isSelected">
+        <div class="custom-field">
+            <input class="form-control custom-input" type="number" placeholder="يرجى ادخال الكمية" dir="ltr"
+                [(ngModel)]="number">
+        </div>
+
+        <div class="custom-ok-button mt-3" style="width:100%">
+            <button class="btn btn-outline-primary" (click)="onSave(); parentModal.dismiss()"
+                [disabled]="number === null">حفظ</button>
+        </div>
+
+    </div>
+
+    <div class="custom-no-button mt-3" style="width:100%">
+        <button class="btn btn-outline-primary" (click)="parentModal.dismiss()">إلغاء</button>
+    </div>
+
+</div>
