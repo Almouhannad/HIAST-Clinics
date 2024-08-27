@@ -29,6 +29,8 @@ public class ChangeStatusByUserIdHandler : CommandHandlerBase<ChangeStatusByUser
         #endregion
 
         #region 2. Change status
+        if (request.Status == doctor.Status.Name)
+            return Result.Success();
         var changeStatusResult = doctor.ChangeStatusTo(request.Status);
         if (changeStatusResult.IsFailure)
             return Result.Failure(changeStatusResult.Error);

@@ -1,4 +1,5 @@
 ﻿using Domain.Entities.Identity.Users;
+using Domain.Entities.People.Doctors;
 using Domain.Repositories.Base;
 using Domain.Shared;
 
@@ -46,6 +47,10 @@ public interface IUserRepository : IRepository<User>
 
     #region Update doctor user
     public Task<Result> UpdateDoctorUserAsync(DoctorUser doctorUser);
+    #endregion
+
+    #region Get Doctor by doctor user
+    public Task<Result<Doctor>> GetDoctorByDoctorUserIdAsync(int doctorUserId);
     #endregion
 
     #endregion

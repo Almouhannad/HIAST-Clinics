@@ -140,18 +140,18 @@ public sealed class Visit : Entity
     #endregion
 
     #region Add medicine
-    public Result AddMedicine(Medicine medicine, int number)
+    public Result AddMedicine(int medicineId, int number)
     {
         #region Create medicine to attach
-        Result<VisitMedicine> entry = VisitMedicine.Create(Id, medicine.Id, number);
+        Result<VisitMedicine> entry = VisitMedicine.Create(Id, medicineId, number);
         if (entry.IsFailure)
             return Result.Failure(entry.Error);
         #endregion
 
-        #region Check duplicate
-        if (Medicines.Where(m => m.Medicine == medicine).ToList().Count > 0)
-            return Result.Failure(Errors.DomainErrors.VisitAlreadyHasThisMedicine);
-        #endregion
+        //#region Check duplicate
+        //if (Medicines.Where(m => m.Medicine.Id == medicineId).ToList().Count > 0)
+        //    return Result.Failure(Errors.DomainErrors.VisitAlreadyHasThisMedicine);
+        //#endregion
 
         _medicines.Add(entry.Value);
         return Result.Success();

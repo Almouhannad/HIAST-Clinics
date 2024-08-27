@@ -2,6 +2,7 @@
 using Application.Doctors.Queries.GetAllDoctors;
 using Application.Doctors.Queries.GetStatusByUserId;
 using Application.Employees.Queries.GetAvailable;
+using Application.Visits.Commands.Create;
 using Application.Visits.Queries.GetAllByPatientId;
 using Domain.Entities.Identity.UserRoles;
 using MediatR;
@@ -30,6 +31,16 @@ public class VisitsController : ApiController
         if (result.IsFailure)
             return HandleFailure(result);
         return Ok(result.Value);
+    }
+
+    //[Authorize(Roles = Roles.DoctorName)]
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] CreateVisitCommand command)
+    {
+        var result = await _sender.Send(command);
+        if (result.IsFailure)
+            return HandleFailure(result);
+        return Ok();
     }
 
 }

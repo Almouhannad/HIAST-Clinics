@@ -17,6 +17,5 @@
 
   <ItemGroup>
     <Folder Include="Medicines\Commands\" />
-    <Folder Include="Visits\Commands\" />
   </ItemGroup>
 </Project>

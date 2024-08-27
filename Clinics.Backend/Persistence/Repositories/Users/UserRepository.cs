@@ -1,4 +1,5 @@
 ﻿using Domain.Entities.Identity.Users;
+using Domain.Entities.People.Doctors;
 using Domain.Errors;
 using Domain.Repositories;
 using Domain.Shared;
@@ -214,6 +215,25 @@ public class UserRepository : Repositroy<User>, IUserRepository
         }
     }
     #endregion
+
+    #region Get Doctor by doctor user
+    public async Task<Result<Doctor>> GetDoctorByDoctorUserIdAsync(int doctorUserId)
+    {
+        try
+        {
+            var query = _context.Set<DoctorUser>()
+                .Where(doctorUser => doctorUser.Id == doctorUserId)
+                .Include(doctorUser => doctorUser.Doctor);
+            var result = await query.FirstAsync();
+            return result.Doctor;
+        }
+        catch (Exception)
+        {
+            return Result.Failure<Doctor>(PersistenceErrors.NotFound);
+        }
+    }
+    #endregion
+
 
     #endregion
 
