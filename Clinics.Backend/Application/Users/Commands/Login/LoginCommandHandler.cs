@@ -38,7 +38,7 @@ public class LoginCommandHandler : CommandHandlerBase<LoginCommand, LoginRespons
         #region 2. Generate Response
 
         #region 2.1. Admin
-        if (user.Role == Roles.Admin)
+        if (user.Role == UsersRoles.Admin)
         {
             var token = _jwtProvider.Generate(user);
             return LoginResponse.GetResponse(token);
@@ -46,7 +46,7 @@ public class LoginCommandHandler : CommandHandlerBase<LoginCommand, LoginRespons
         #endregion
 
         #region 2.2. Doctor
-        if (user.Role == Roles.Doctor)
+        if (user.Role == UsersRoles.Doctor)
         {
             var doctorUserResult = await _userRepository.GetDoctorUserByUserNameFullAsync(user.UserName);
             if (doctorUserResult.IsFailure)
@@ -58,7 +58,7 @@ public class LoginCommandHandler : CommandHandlerBase<LoginCommand, LoginRespons
         #endregion
 
         #region 2.3. Receptionist user
-        if (user.Role == Roles.Receptionist)
+        if (user.Role == UsersRoles.Receptionist)
         {
             var receptionistUser = await _userRepository.GetReceptionistUserByUserNameFullAsync(user.UserName);
             if (receptionistUser.IsFailure)

@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Persistence.Configurations.Identity.Roles;
 
-public class RoleConfiguration : IEntityTypeConfiguration<Role>
+public class RoleConfiguration : IEntityTypeConfiguration<UserRole>
 {
-    public void Configure(EntityTypeBuilder<Role> builder)
+    public void Configure(EntityTypeBuilder<UserRole> builder)
     {
-        builder.ToTable(nameof(Role));
+        builder.ToTable(nameof(UserRole));
 
         builder.Property(role => role.Id).ValueGeneratedNever();
 

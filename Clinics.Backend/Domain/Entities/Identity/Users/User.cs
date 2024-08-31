@@ -12,7 +12,7 @@ public sealed class User : Entity
     {
     }
 
-    private User(int id, string userName, string hashedPassword, Role role) : base(id)
+    private User(int id, string userName, string hashedPassword, UserRole role) : base(id)
     {
         UserName = userName;
         HashedPassword = hashedPassword;
@@ -23,7 +23,7 @@ public sealed class User : Entity
     #region Properties
     public string UserName { get; private set; } = null!;
     public string HashedPassword { get; private set; } = null!;
-    public Role Role { get; private set; } = null!;
+    public UserRole Role { get; private set; } = null!;
     #endregion
 
     #region Methods
@@ -37,9 +37,9 @@ public sealed class User : Entity
         }
 
         #region Check role
-        Result<Role> selectedRole = Result.Failure<Role>(IdentityErrors.InvalidRole);
-        List<Role> roles = Roles.GetAll();
-        foreach (Role roleItem in roles)
+        Result<UserRole> selectedRole = Result.Failure<UserRole>(IdentityErrors.InvalidRole);
+        List<UserRole> roles = UsersRoles.GetAll();
+        foreach (UserRole roleItem in roles)
         {
             if (roleItem.Name == role)
                 selectedRole = roleItem;

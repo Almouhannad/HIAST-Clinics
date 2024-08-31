@@ -4,7 +4,7 @@ using Persistence.Context;
 
 namespace Persistence.SeedDatabase;
 
-public class UserRoles : ISeed<Role>
+public class UserRoles : ISeed<UserRole>
 {
     #region CTOR DI
     private readonly ClinicsDbContext _context;
@@ -16,19 +16,19 @@ public class UserRoles : ISeed<Role>
     #endregion
     public async Task Seed()
     {
-        DbSet<Role> roles = _context.Set<Role>();
+        DbSet<UserRole> roles = _context.Set<UserRole>();
 
         var current = await roles.ToListAsync();
         // TODO: perform deep check on all seed operations
-        if (current.Count != Roles.Count)
+        if (current.Count != UsersRoles.Count)
         {
             roles.RemoveRange(current);
 
-            roles.Add(Roles.Admin);
+            roles.Add(UsersRoles.Admin);
 
-            roles.Add(Roles.Doctor);
+            roles.Add(UsersRoles.Doctor);
 
-            roles.Add(Roles.Receptionist);
+            roles.Add(UsersRoles.Receptionist);
 
             await _context.SaveChangesAsync();
         }

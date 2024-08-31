@@ -14,7 +14,7 @@ public class SeedAdminUserHelper
     {
         using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
         {
-            var seedAdminUser = serviceScope.ServiceProvider.GetRequiredService<ISeedAdminUser>();
+            var seedAdminUser = serviceScope.ServiceProvider.GetRequiredService<ISeedUsers>();
             await seedAdminUser.Seed();
         }
     }

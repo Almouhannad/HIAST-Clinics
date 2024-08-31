@@ -7,49 +7,19 @@ public static class FamilyRoles
     #region Constant id values
 
     public static int Count => 4;
-    public static FamilyRole Husband
-    {
-        get
-        {
-            var result = FamilyRole.Create("زوج", 1);
-            if (result.IsFailure)
-                throw new InvalidValuesDomainException<FamilyRole>();
-            return result.Value;
-        }
-    }
 
-    public static FamilyRole Wife
-    {
-        get
-        {
-            var result = FamilyRole.Create("زوجة", 2);
-            if (result.IsFailure)
-                throw new InvalidValuesDomainException<FamilyRole>();
-            return result.Value;
-        }
-    }
+    public readonly static FamilyRole _husband = FamilyRole.Create("زوج", 1).Value;
+    public static FamilyRole Husband => _husband;
 
-    public static FamilyRole Son
-    {
-        get
-        {
-            var result = FamilyRole.Create("ابن", 3);
-            if (result.IsFailure)
-                throw new InvalidValuesDomainException<FamilyRole>();
-            return result.Value;
-        }
-    }
+    public readonly static FamilyRole _wife = FamilyRole.Create("زوجة", 2).Value;
+    public static FamilyRole Wife => _wife;
 
-    public static FamilyRole Daughter
-    {
-        get
-        {
-            var result = FamilyRole.Create("ابنة", 4);
-            if (result.IsFailure)
-                throw new InvalidValuesDomainException<FamilyRole>();
-            return result.Value;
-        }
-    }
+    public readonly static FamilyRole _son = FamilyRole.Create("ابن", 3).Value;
+    public static FamilyRole Son => _son;
+
+    public readonly static FamilyRole _daughter = FamilyRole.Create("ابنة", 4).Value;
+    public static FamilyRole Daughter => _daughter;
+    
 
     #endregion
 }

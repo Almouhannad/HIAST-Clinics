@@ -1,6 +1,6 @@
 ﻿namespace Persistence.SeedDatabase.AdminUser;
 
-public interface ISeedAdminUser
+public interface ISeedUsers
 {
     public Task Seed();
 }

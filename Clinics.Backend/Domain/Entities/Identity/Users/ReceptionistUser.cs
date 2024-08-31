@@ -37,7 +37,7 @@ public sealed class ReceptionistUser : Entity
         if (personalInfoResult.IsFailure)
             return Result.Failure<ReceptionistUser>(personalInfoResult.Error);
 
-        Result<User> userResult = User.Create(userName, hashedPassword, Roles.Receptionist.Name);
+        Result<User> userResult = User.Create(userName, hashedPassword, UsersRoles.Receptionist.Name);
         if (userResult.IsFailure)
             return Result.Failure<ReceptionistUser>(userResult.Error);
 

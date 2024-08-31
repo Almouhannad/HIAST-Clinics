@@ -2,14 +2,14 @@
 
 namespace Domain.Entities.Identity.UserRoles;
 
-public sealed class Role : Entity
+public sealed class UserRole : Entity
 {
     #region Private ctor
-    private Role(int id) : base(id)
+    private UserRole(int id) : base(id)
     {
     }
 
-    private Role(int id, string name) : base(id)
+    private UserRole(int id, string name) : base(id)
     {
         Name = name;
     }
@@ -22,9 +22,9 @@ public sealed class Role : Entity
     #region Methods
 
     #region Static factory
-    internal static Role Create(int id, string name)
+    internal static UserRole Create(int id, string name)
     {
-        return new Role(id, name);
+        return new UserRole(id, name);
     }
     #endregion
 

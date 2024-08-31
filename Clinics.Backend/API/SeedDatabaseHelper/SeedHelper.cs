@@ -25,7 +25,7 @@ public class SeedHelper
             var seedMedicineForms = serviceScope.ServiceProvider.GetRequiredService<ISeed<MedicineForm>>();
             await seedMedicineForms.Seed();
 
-            var seedUserRoles = serviceScope.ServiceProvider.GetRequiredService<ISeed<Role>>();
+            var seedUserRoles = serviceScope.ServiceProvider.GetRequiredService<ISeed<UserRole>>();
             await seedUserRoles.Seed();
         }
     }

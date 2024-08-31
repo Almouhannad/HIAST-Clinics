@@ -9,38 +9,14 @@ public static class DoctorStatuses
 
     public static int Count => 3;
 
-    public static DoctorStatus Available
-    {
-        get
-        {
-            var result = DoctorStatus.Create("متاح", 1);
-            if (result.IsFailure)
-                throw new InvalidValuesDomainException<DoctorStatus>();
-            return result.Value;
-        }
-    }
+    private readonly static DoctorStatus _available = DoctorStatus.Create("متاح", 1).Value;
+    public static DoctorStatus Available => _available;
 
-    public static DoctorStatus Working
-    {
-        get
-        {
-            var result = DoctorStatus.Create("لديه مريض", 2);
-            if (result.IsFailure)
-                throw new InvalidValuesDomainException<DoctorStatus>();
-            return result.Value;
-        }
-    }
+    private readonly static DoctorStatus _working = DoctorStatus.Create("لديه مريض", 2).Value;
+    public static DoctorStatus Working => _working;
 
-    public static DoctorStatus Busy
-    {
-        get
-        {
-            var result = DoctorStatus.Create("مشغول", 3);
-            if (result.IsFailure)
-                throw new InvalidValuesDomainException<DoctorStatus>();
-            return result.Value;
-        }
-    }
+    private readonly static DoctorStatus _busy = DoctorStatus.Create("مشغول", 3).Value;
+    public static DoctorStatus Busy => _busy;
 
     #endregion
 }

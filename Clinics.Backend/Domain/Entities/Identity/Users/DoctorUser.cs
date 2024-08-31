@@ -37,7 +37,7 @@ public sealed class DoctorUser : Entity
         if (doctorResult.IsFailure)
             return Result.Failure<DoctorUser>(doctorResult.Error);
 
-        Result<User> userResult = User.Create(username, hashedPassword, Roles.Doctor.Name);
+        Result<User> userResult = User.Create(username, hashedPassword, UsersRoles.Doctor.Name);
         if (userResult.IsFailure)
             return Result.Failure<DoctorUser>(userResult.Error);
 
