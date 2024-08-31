@@ -63,9 +63,9 @@
 
                             <div class="accordion-body">
 
-                                <div  class="custom-ok-button mb-3">
+                                <div class="custom-ok-button mb-3">
                                     <button type="button" class="btn btn-outline-primary"
-                                        (click)="openModal(selectMedicineModal)">إضافة دواء +</button>
+                                        (click)="openMedicinesModal(selectMedicineModal)">إضافة دواء +</button>
                                 </div>
 
                                 <div class="custom-child" dir="rtl" *ngIf="medicines.length !== 0">
@@ -96,7 +96,7 @@
                                                     <td>
                                                         <button type="button" class="btn btn-danger btn-sm">
                                                             <i class="fas fa-trash-alt"
-                                                            (click)="onDeleteMedicine(i)"></i>
+                                                                (click)="onDeleteMedicine(i)"></i>
                                                         </button>
                                                     </td>
                                                 </tr>
@@ -131,15 +131,27 @@
                                 data-bs-parent="#accordionExample">
 
                                 <div class="accordion-body">
-                                    <div class="d-grid gap-3 mb-5 custom-buttons custom-form-buttons">
 
+                                    <div class="d-grid gap-3 custom-buttons custom-show-visits-button">
+
+                                        <button type="button" class="btn btn-outline-primary"
+                                        (click)="openVisitsModal(visitsHistoryModal);">
+                                            عرض التاريخ المرضي
+                                            <i class="bi bi-clock-history"></i>
+                                        </button>
+
+                                    </div>
+
+                                    <div class="d-grid gap-3 mb-5 custom-buttons custom-form-buttons">
                                         <button type="submit" class="btn btn-outline-primary"
                                             [disabled]="!form.dirty || form.invalid">
                                             حفظ
                                             <i class="bi bi-save"></i>
                                         </button>
-
                                     </div>
+
+
+
                                 </div>
                             </div>
                         </div>
@@ -161,5 +173,12 @@
 <ng-template #selectMedicineModal let-modal>
     <div class="modal-body">
         <app-search-for-medicine [parentModal]="modal" (created)="onAddMedicine($event)"></app-search-for-medicine>
+    </div>
+</ng-template>
+
+
+<ng-template #visitsHistoryModal let-modal>
+    <div class="modal-body">
+        <app-history [patientId]="employeeId"></app-history>
     </div>
 </ng-template>

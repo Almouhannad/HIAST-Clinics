@@ -84,6 +84,18 @@
     box-shadow: 0 0 0 0.1em var(--heading-color);
 }
 
+.custom-show-visits-button .btn-outline-primary{
+    color: white;
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.custom-show-visits-button .btn-outline-primary:hover{
+    background-color: white;
+    color: var(--accent-color);
+    box-shadow: 0 0 0 0.1em var(--accent-color);
+}
+
 /* #endregion */
 
 /* #region Back-button*/

@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { EmployeesDataService } from '../../../services/employees/employees-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -24,7 +24,7 @@ export class HistoryComponent  implements OnInit {
       this.setId();
   }
 
-  patientId: number;
+  @Input("patientId") patientId: number;
   setId(): void {
     this.route.params.subscribe((params: any) => {
       this.patientId = Number(params.id);

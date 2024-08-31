@@ -60,10 +60,17 @@ export class CreateVisitComponent implements OnInit {
     return `${this.employee.firstName} ${this.employee.middleName} ${this.employee.lastName}`
   }
 
-  openModal(modal: any): void {
+  openMedicinesModal(modal: any): void {
     this.modalService.open(modal, {
       centered: true,
       size: 'md'
+    });
+  }
+
+  openVisitsModal(modal: any): void {
+    this.modalService.open(modal, {
+      centered: true,
+      size: 'lg'
     });
   }
 
