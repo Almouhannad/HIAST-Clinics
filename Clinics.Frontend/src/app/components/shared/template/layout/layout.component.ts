@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserData } from '../../../../classes/authentication/user-data';
 import { AuthenticationService } from '../../../../services/authentication/authentication.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DoctorNotificationsService } from '../../../../services/doctorsNotifications/doctor-notifications.service';
+import { DoctorNotificationsService } from '../../../../services/notifications/doctor-notifications/doctor-notifications.service';
 
 @Component({
   selector: 'app-layout',

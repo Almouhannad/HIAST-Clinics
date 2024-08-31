@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserData } from '../../../../classes/authentication/user-data';
 import { AuthenticationService } from '../../../../services/authentication/authentication.service';
 import { Router } from '@angular/router';
-import { Roles } from '../../../../classes/authentication/roles';
+import { Roles } from '../../../../classes/authentication/roles-constants/roles';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ViewportScroller } from '@angular/common';

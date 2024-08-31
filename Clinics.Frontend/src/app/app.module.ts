@@ -9,58 +9,55 @@ import { LayoutComponent } from './components/shared/template/layout/layout.comp
 import { HeaderComponent } from './components/shared/template/header/header.component';
 import { FooterComponent } from './components/shared/template/footer/footer.component';
 import { HomeComponent } from './components/shared/home/home.component';
-import { LoginFormComponent } from './components/authentication/login-form/login-form.component';
+import { LoginFormComponent } from './components/usecases/shared-usecases/login/login-form/login-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-
 import { AuthenticationService } from './services/authentication/authentication.service';
 import { AuthenticationInterceptor } from './services/authentication/interceptor/authentication.interceptor';
 import { ForbiddenComponent } from './components/shared/errors/forbidden/forbidden.component';
 import { NotFoundComponent } from './components/shared/errors/not-found/not-found.component';
-import { TestSignalRComponent } from './components/notifications/test-signal-r/test-signal-r.component';
-import { SignalRService } from './services/notifications/signal-r.service';
-import { DoctorUsersComponent } from './components/admin/doctor-users/doctor-users.component';
-import { DoctorUserComponent } from './components/admin/doctor-user/doctor-user.component';
-import { DoctorUsersService } from './services/admin/doctor-users.service';
-import { CreateDoctorUserFormComponent } from './components/admin/create-doctor-user-form/create-doctor-user-form.component';
-import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
-import { UpdateDoctorUserComponent } from './components/admin/update-doctor-user/update-doctor-user.component';
-import { UpdateDoctorPersonalDataFormComponent } from './components/admin/update-doctor-personal-data-form/update-doctor-personal-data-form.component';
-import { UpdateDoctorUserDataFormComponent } from './components/admin/update-doctor-user-data-form/update-doctor-user-data-form.component';
-import { ReceptionistUserComponent } from './components/admin/receptionist-user/receptionist-user.component';
-import { ReceptionistUsersComponent } from './components/admin/receptionist-users/receptionist-users.component';
-import { ReceptionistUsersService } from './services/admin/receptionist-users.service';
-import { ReceptionistDashboardComponent } from './components/receptionist/receptionist-dashboard/receptionist-dashboard.component';
-import { WaitingListComponent } from './components/receptionist/waiting-list/waiting-list.component';
-import { WaitingListItemComponent } from './components/receptionist/waiting-list-item/waiting-list-item.component';
-import { DoctorsComponent } from './components/receptionist/doctors/doctors.component';
-import { DoctorItemComponent } from './components/receptionist/doctor-item/doctor-item.component';
-import { CreateWitingListItemAccordionComponent } from './components/receptionist/create-witing-list-item-accordion/create-witing-list-item-accordion.component';
-import { CreateWitingListItemForEmployeeComponent } from './components/receptionist/create-witing-list-item-for-employee/create-witing-list-item-for-employee.component';
-import { CreateWitingListItemForFamilyMemberComponent } from './components/receptionist/create-witing-list-item-for-family-member/create-witing-list-item-for-family-member.component';
-import { CreateEmployeeFormComponent } from './components/receptionist/create-employee-form/create-employee-form.component';
-import { EmployeeSerialNumberPopUpComponent } from './components/receptionist/employee-serial-number-pop-up/employee-serial-number-pop-up.component';
-import { EmployeeComponent } from './components/receptionist/employee/employee.component';
+import { DoctorUsersComponent } from './components/usecases/admin-usecases/list-doctor-users/doctor-users/doctor-users.component';
+import { DoctorUserComponent } from './components/usecases/admin-usecases/list-doctor-users/doctor-user/doctor-user.component';
+import { DoctorUsersService } from './services/doctor-users/doctor-users.service';
+import { CreateDoctorUserFormComponent } from './components/usecases/admin-usecases/create-doctor-user/create-doctor-user-form/create-doctor-user-form.component';
+import { AdminDashboardComponent } from './components/usecases/admin-usecases/shared/admin-dashboard/admin-dashboard.component';
+import { UpdateDoctorUserComponent } from './components/usecases/admin-usecases/update-doctor-user/shared/update-doctor-user/update-doctor-user.component';
+import { UpdateDoctorPersonalDataFormComponent } from './components/usecases/admin-usecases/update-doctor-user/update-doctor-user-personal-data/update-doctor-personal-data-form/update-doctor-personal-data-form.component';
+import { UpdateDoctorUserDataFormComponent } from './components/usecases/admin-usecases/update-doctor-user/update-doctor-user-account-data/update-doctor-user-data-form/update-doctor-user-data-form.component';
+import { ReceptionistUserComponent } from './components/usecases/admin-usecases/list-receptionist-users/receptionist-user/receptionist-user.component';
+import { ReceptionistUsersComponent } from './components/usecases/admin-usecases/list-receptionist-users/receptionist-users/receptionist-users.component';
+import { ReceptionistUsersService } from './services/receptionist-users/receptionist-users.service';
+import { ReceptionistDashboardComponent } from './components/usecases/receptionist-usecases/shared/receptionist-dashboard/receptionist-dashboard.component';
+import { WaitingListComponent } from './components/usecases/receptionist-usecases/list-waiting-list-items/waiting-list/waiting-list.component';
+import { WaitingListItemComponent } from './components/usecases/receptionist-usecases/list-waiting-list-items/waiting-list-item/waiting-list-item.component';
+import { DoctorsComponent } from './components/usecases/receptionist-usecases/list-doctors/doctors/doctors.component';
+import { DoctorItemComponent } from './components/usecases/receptionist-usecases/list-doctors/doctor-item/doctor-item.component';
+import { CreateWitingListItemAccordionComponent } from './components/usecases/receptionist-usecases/create-waiting-list-item/create-witing-list-item-accordion/create-witing-list-item-accordion.component';
+import { CreateWitingListItemForEmployeeComponent } from './components/usecases/receptionist-usecases/create-waiting-list-item/create-witing-list-item-for-employee/create-witing-list-item-for-employee.component';
+import { CreateWitingListItemForFamilyMemberComponent } from './components/usecases/receptionist-usecases/create-waiting-list-item/create-witing-list-item-for-family-member/create-witing-list-item-for-family-member.component';
+import { CreateEmployeeFormComponent } from './components/usecases/receptionist-usecases/create-employee/create-employee-form/create-employee-form.component';
+import { EmployeeSerialNumberPopUpComponent } from './components/usecases/receptionist-usecases/shared/employee-serial-number-pop-up/employee-serial-number-pop-up.component';
+import { EmployeeComponent } from './components/usecases/receptionist-usecases/show-employee/employee/employee.component';
 import { WaitingListService } from './services/waitingList/waiting-list.service';
 import { EmployeesDataService } from './services/employees/employees-data.service';
 import { ScrollToTopDirective } from './directives/scroll-to-top.directive';
-import { DoctorDashboardComponent } from './components/doctor/doctor-dashboard/doctor-dashboard.component';
-import { DoctorNotificationsService } from './services/doctorsNotifications/doctor-notifications.service';
-import { DoctorStatusComponent } from './components/doctor/doctor-status/doctor-status.component';
-import { AskForSerialNumberComponent } from './components/doctor/ask-for-serial-number/ask-for-serial-number.component';
-import { HistoryComponent } from './components/doctor/history/history.component';
-import { VisitComponent } from './components/doctor/visit/visit.component';
-import { CreateVisitComponent } from './components/doctor/create-visit/create-visit.component';
-import { MedicinesComponent } from './components/doctor/medicines/medicines.component';
+import { DoctorDashboardComponent } from './components/usecases/doctor-usecases/shared/doctor-dashboard/doctor-dashboard.component';
+import { DoctorNotificationsService } from './services/notifications/doctor-notifications/doctor-notifications.service';
+import { DoctorStatusComponent } from './components/usecases/doctor-usecases/show-status/doctor-status/doctor-status.component';
+import { AskForSerialNumberComponent } from './components/usecases/doctor-usecases/shared/ask-for-serial-number/ask-for-serial-number.component';
+import { HistoryComponent } from './components/usecases/doctor-usecases/list-visits-history/history/history.component';
+import { VisitComponent } from './components/usecases/doctor-usecases/create-visit/visit/visit.component';
+import { CreateVisitComponent } from './components/usecases/doctor-usecases/create-visit/create-visit/create-visit.component';
+import { MedicinesComponent } from './components/usecases/doctor-usecases/list-visits-history/medicines/medicines.component';
 import { AccordionDirective } from './directives/accordion.directive';
-import { PatientIsComingNotificationComponent } from './components/doctor/patient-is-coming-notification/patient-is-coming-notification.component';
+import { PatientIsComingNotificationComponent } from './components/notifications/doctor-notifications/patient-is-coming-notification/patient-is-coming-notification.component';
 import { VisitsService } from './services/visits/visits.service';
 import { ArabicDatePipe } from './pipes/arabic-date.pipe';
 import { MedicinesService } from './services/medicines/medicines.service';
-import { SearchForMedicineComponent } from './components/doctor/search-for-medicine/search-for-medicine.component';
-import { DoctorPhoneComponent } from './components/doctor/doctor-phone/doctor-phone.component';
-import { DoctorPhonesComponent } from './components/doctor/doctor-phones/doctor-phones.component';
-import { CreateDoctorPhoneComponent } from './components/doctor/create-doctor-phone/create-doctor-phone.component';
+import { SearchForMedicineComponent } from './components/usecases/doctor-usecases/create-visit/search-for-medicine/search-for-medicine.component';
+import { DoctorPhoneComponent } from './components/usecases/doctor-usecases/list-doctor-phones/doctor-phone/doctor-phone.component';
+import { DoctorPhonesComponent } from './components/usecases/doctor-usecases/list-doctor-phones/doctor-phones/doctor-phones.component';
+import { CreateDoctorPhoneComponent } from './components/usecases/doctor-usecases/create-doctor-phone/create-doctor-phone/create-doctor-phone.component';
 
 
 @NgModule({
@@ -84,7 +81,6 @@ import { CreateDoctorPhoneComponent } from './components/doctor/create-doctor-ph
   providers: [
     AuthenticationService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true},
-    SignalRService,
     DoctorUsersService,
     ReceptionistUsersService,
     WaitingListService,
@@ -106,7 +102,6 @@ import { CreateDoctorPhoneComponent } from './components/doctor/create-doctor-ph
     LoginFormComponent,
     ForbiddenComponent,
     NotFoundComponent,
-    TestSignalRComponent,
     DoctorUserComponent,
     DoctorUsersComponent,
     CreateDoctorUserFormComponent,

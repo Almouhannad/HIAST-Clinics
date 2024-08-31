@@ -3,12 +3,12 @@ import { AppModule } from '../../app.module';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import * as config from "../../../../config";
 import { catchError, map, Observable, of } from 'rxjs';
-import { JWTHandler } from './jwtHandler';
-import { LoginCommand } from '../../classes/authentication/Login/login-command';
-import { LoginResponse } from '../../classes/authentication/Login/login-response';
-import { LoginResult } from '../../classes/authentication/Login/login-result';
+import { JWTHandler } from './jwt/jwtHandler';
+import { LoginCommand } from '../../classes/usecases/shared-usecases/login/login-command';
+import { LoginResponse } from '../../classes/usecases/shared-usecases/login/login-response';
+import { LoginResult } from '../../classes/usecases/shared-usecases/login/login-result';
 import { UserData } from '../../classes/authentication/user-data';
-import { Roles } from '../../classes/authentication/roles';
+import { Roles } from '../../classes/authentication/roles-constants/roles';
 
 @Injectable({
   providedIn: AppModule

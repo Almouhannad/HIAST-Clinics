@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as config from '../../../../config';
 import { catchError, map, Observable, of } from 'rxjs';
-import { MedicineSearchResult } from '../../classes/medicine/medicine-search-result';
+import { MedicineSearchResult } from '../../classes/usecases/doctor-usecases/search-for-medicine/medicine-search-result';
 @Injectable({
   providedIn: 'root'
 })

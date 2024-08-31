@@ -1,4 +1,4 @@
-import { MedicineView } from "../medicine/medicine-view";
+import { MedicineView } from "../usecases/doctor-usecases/search-for-medicine/medicine-view";
 
 export class VisitView {
     doctorName: string;

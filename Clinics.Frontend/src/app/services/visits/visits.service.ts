@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import * as config from '../../../../config';
 import { catchError, map, Observable, of } from 'rxjs';
 import { VisitView } from '../../classes/visit/visit-view';
-import { VisitMedicine } from '../../classes/medicine/visit-medicine';
+import { VisitMedicine } from '../../classes/visit/visit-medicine/visit-medicine';
 
 @Injectable({
   providedIn: 'root'

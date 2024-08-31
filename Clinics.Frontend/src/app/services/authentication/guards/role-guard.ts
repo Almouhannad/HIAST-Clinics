@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, CanActivateChild, GuardResult, MaybeAsync } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
 import { UserData } from '../../../classes/authentication/user-data';
-import { Roles } from '../../../classes/authentication/roles';
+import { Roles } from '../../../classes/authentication/roles-constants/roles';
 
 
 @Injectable({

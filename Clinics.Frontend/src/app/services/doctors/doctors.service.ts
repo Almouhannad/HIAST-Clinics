@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 import * as config from '../../../../config';
 import { catchError, map, Observable, of } from 'rxjs';
 import { Doctor } from '../../classes/doctor/doctor';
-import { AuthenticationService } from '../authentication/authentication.service';
-import { DoctorPhone } from '../../classes/doctor/phones/doctor-phone';
-import { HttpError } from '@microsoft/signalr';
+import { DoctorPhone } from '../../classes/doctor/doctor-phones/doctor-phone';
 
 @Injectable({
   providedIn: 'root'

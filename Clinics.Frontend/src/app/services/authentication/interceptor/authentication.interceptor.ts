@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders } from '@angular/common/http';
-import { JWTHandler } from '../jwtHandler';
+import { JWTHandler } from '../jwt/jwtHandler';
 import { Observable } from 'rxjs';
 
 @Injectable()

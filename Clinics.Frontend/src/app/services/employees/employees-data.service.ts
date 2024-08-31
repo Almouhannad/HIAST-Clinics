@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as config from '../../../../config';
-import { EmployeeData } from '../../classes/employeeData/employee-data';
+import { EmployeeData } from '../../classes/employee/employee-data';
 import { catchError, map, Observable, of } from 'rxjs';
 
 @Injectable({
