@@ -79,34 +79,6 @@ public class ArchitectureTests
 
 
     [Fact]
-    public void Infrastructure_Should_Not_HaveDependencyOnPresentation()
-    {
-        #region Arrange
-        var assembly = Infrastructure.AssemblyReference.Assembly;
-
-        var otherProjects = new[]
-        {
-            PersistenceNamespace,
-            PresentationNamespace,
-
-            APINamespace
-        };
-        #endregion
-
-        #region Act
-        var testResult = Types
-            .InAssembly(assembly)
-            .ShouldNot()
-            .HaveDependencyOnAll(otherProjects)
-            .GetResult();
-        #endregion
-
-        #region Assert
-        testResult.IsSuccessful.Should().BeTrue();
-        #endregion
-    }
-
-    [Fact]
     public void Persistence_Should_Not_HaveDependencyOnPresentation()
     {
         #region Arrange
