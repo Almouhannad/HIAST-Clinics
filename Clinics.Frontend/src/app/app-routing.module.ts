@@ -21,6 +21,8 @@ import { EmployeeComponent } from './components/receptionist/employee/employee.c
 import { DoctorDashboardComponent } from './components/doctor/doctor-dashboard/doctor-dashboard.component';
 import { HistoryComponent } from './components/doctor/history/history.component';
 import { CreateVisitComponent } from './components/doctor/create-visit/create-visit.component';
+import { DoctorPhonesComponent } from './components/doctor/doctor-phones/doctor-phones.component';
+import { CreateDoctorPhoneComponent } from './components/doctor/create-doctor-phone/create-doctor-phone.component';
 
 const routes: Routes = [
   {
@@ -99,7 +101,15 @@ const routes: Routes = [
       {
         path: 'visits/create/:id',
         component: CreateVisitComponent
-      },      
+      },   
+      {
+        path: 'phones',
+        component: DoctorPhonesComponent
+      },
+      {
+        path: 'phones/create',
+        component: CreateDoctorPhoneComponent
+      },
     ]
   },  
 

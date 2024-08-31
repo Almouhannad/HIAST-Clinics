@@ -1,0 +1,121 @@
+/* #region Form card*/
+.custom-form {
+    width: 60%;
+    margin: auto;
+    padding: 1em;
+    border: 1px solid var(--accent-color);
+    border-radius: 3%;
+}
+/* #endregion */
+
+/* #region Title*/
+.custom-form .custom-form-title h3 {
+    width: 50%;
+    margin: auto;
+    padding: 0.5em;
+    border: 1px solid var(--accent-color);
+    border-radius: 10em;
+}
+/* #endregion */
+
+/* #region Server error message*/
+.custom-form .custom-server-error-message .btn{
+    width: 100%;
+    font-size: 1.2em;
+    font-weight: 700;
+    cursor: auto;
+}
+/* #endregion */
+
+/* #region Buttons*/
+.custom-buttons .btn {
+    font-weight: 700;
+    width: 50%;
+    margin: auto;
+    font-size: 1.2em;
+}
+
+.custom-buttons .btn i {
+    font-weight: 900;
+    font-size: 1.2em;
+    margin-right: 0.5em;
+}
+
+.custom-buttons .btn-outline-primary {
+    color: white;
+    background-color: var(--heading-color);
+    border-color: var(--heading-color);
+}
+
+.custom-buttons .btn-outline-primary:hover {
+    background-color: white;
+    color: var(--heading-color);
+    box-shadow: 0 0 0 0.1em var(--heading-color);
+}
+/* #endregion */
+
+/* #region Back-button*/
+.custom-back-button {
+    margin-bottom: 1em;
+}
+.custom-back-button a{
+    width: 50%;
+}
+
+.custom-back-button a .btn{
+    width: 50%;
+    background-color: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+    font-weight: 700;
+}
+
+.custom-back-button a button:hover{
+    background-color: white;
+    border-color: var(--accent-color);
+
+    color:var(--accent-color);
+}
+
+.custom-back-button a .btn i{
+    margin-right: 0.5em;
+}
+/* #endregion */
+
+/* #region Field*/
+
+.custom-field {
+    width: 50%;
+    margin: auto;
+    color: var(--heading-color);
+}
+
+
+.custom-field .custom-label {
+    font-weight: 800;
+    margin-bottom: 0.3em;
+}
+
+.custom-field .custom-label span{
+    margin-right: 0.1em;
+}
+
+.custom-field .custom-input {
+    border: 1px solid var(--heading-color);
+    color: var(--heading-color);
+    margin-bottom: 0.3em;
+}
+
+.custom-field .custom-input:focus {
+    box-shadow: 0 0 0 0.1em var(--heading-color);
+  }
+
+.custom-field .custom-error-message {
+    font-weight: 700;
+}
+
+.custom-form-buttons {
+    margin-top: 2em;
+}
+
+/* #endregion */

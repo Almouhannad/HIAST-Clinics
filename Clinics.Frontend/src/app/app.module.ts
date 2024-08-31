@@ -58,6 +58,9 @@ import { VisitsService } from './services/visits/visits.service';
 import { ArabicDatePipe } from './pipes/arabic-date.pipe';
 import { MedicinesService } from './services/medicines/medicines.service';
 import { SearchForMedicineComponent } from './components/doctor/search-for-medicine/search-for-medicine.component';
+import { DoctorPhoneComponent } from './components/doctor/doctor-phone/doctor-phone.component';
+import { DoctorPhonesComponent } from './components/doctor/doctor-phones/doctor-phones.component';
+import { CreateDoctorPhoneComponent } from './components/doctor/create-doctor-phone/create-doctor-phone.component';
 
 
 @NgModule({
@@ -136,6 +139,9 @@ import { SearchForMedicineComponent } from './components/doctor/search-for-medic
     PatientIsComingNotificationComponent,
     ArabicDatePipe,
     SearchForMedicineComponent,
+    DoctorPhoneComponent,
+    DoctorPhonesComponent,
+    CreateDoctorPhoneComponent,
   ],
   
   // identifies the root component that Angular should

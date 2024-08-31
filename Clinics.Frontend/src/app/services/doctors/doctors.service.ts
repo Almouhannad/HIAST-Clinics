@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import * as config from '../../../../config';
 import { catchError, map, Observable, of } from 'rxjs';
 import { Doctor } from '../../classes/doctor/doctor';
+import { AuthenticationService } from '../authentication/authentication.service';
+import { DoctorPhone } from '../../classes/doctor/phones/doctor-phone';
+import { HttpError } from '@microsoft/signalr';
 
 @Injectable({
   providedIn: 'root'
@@ -63,5 +66,38 @@ export class DoctorsService {
         return of ({status: false, errorMessage: error.error.detail});
       })
     );
+  }
+
+  getPhoneByUserId(userId: number)
+  : Observable<{status: boolean, errorMessage: string | null, phones: DoctorPhone[] | null}> {
+    return this.http.get<{phones: DoctorPhone[]}>(`${this.DOCTORS_ENDPOINT}/Phones/${userId}`)
+    .pipe(
+      map((response: {phones: DoctorPhone[]}) => {
+        return {status: true, errorMessage: null, phones: response.phones}
+      }),
+      catchError ((error: HttpErrorResponse) => {
+        console.error(error.error.detail);
+        return of({status: false, errorMessage: error.error.detail, phones: null});
+      })
+    )
+  }
+
+  addPhoneByUserId(userId: number, doctorPhone: DoctorPhone)
+  : Observable<{status: boolean, errorMessage: string | null}> {
+    var body = {
+      doctorUserId: userId,
+      name: doctorPhone.name,
+      phone: doctorPhone.phone
+    };
+    return this.http.post(`${this.DOCTORS_ENDPOINT}/phones`, body)
+    .pipe(
+      map(_ => {
+        return {status: true, errorMessage: null};
+      }),
+      catchError((error: HttpErrorResponse) => {
+        return of ({status: false, errorMessage: error.error.detail});
+      })
+    )
+
   }
 }
