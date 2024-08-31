@@ -15,25 +15,7 @@
         {
             "form": "حبوب",
             "amount": 10,
-            "name": "Ceatcodaen",
-            "dosage": 325
-        },
-        {
-            "form": "حبوب",
-            "amount": 10,
-            "name": "Cetaprofin",
-            "dosage": 325
-        },
-        {
-            "form": "حبوب",
-            "amount": 10,
-            "name": "Cetacold",
-            "dosage": 325
-        },
-        {
-            "form": "حبوب",
-            "amount": 10,
-            "name": "Cetagrape",
+            "name": "Cetacodaen",
             "dosage": 325
         },
         {
@@ -47,6 +29,12 @@
             "amount": 12,
             "name": "Aspirin",
             "dosage": 500
+        },
+        {
+            "form": "شراب",
+            "amount": 500,
+            "name": "Asprofin",
+            "dosage": 1000
         },
         {
             "form": "شراب",
