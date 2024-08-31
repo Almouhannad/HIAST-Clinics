@@ -26,6 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\EmployeesAPI\EmployeesAPI.csproj" />
     <ProjectReference Include="..\Infrastructure\NotificationsService.csproj" />
     <ProjectReference Include="..\MedicinesAPI\MedicinesAPI.csproj" />
     <ProjectReference Include="..\Persistence\Persistence.csproj" />

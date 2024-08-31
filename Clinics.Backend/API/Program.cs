@@ -61,7 +61,8 @@ builder
             .FromAssemblies(
             Persistence.AssemblyReference.Assembly,
             NotificationsService.AssemblyReference.Assembly,
-            MedicinesAPI.AssemblyReference.Assembly
+            MedicinesAPI.AssemblyReference.Assembly,
+            EmployeesAPI.AssemblyReference.Assembly
             )
             .AddClasses(false)
             .AsImplementedInterfaces()
@@ -133,6 +134,7 @@ var app = builder.Build();
 await SeedHelper.Seed(app);
 await SeedAdminUserHelper.Seed(app);
 await SeedMedicinesHelper.Seed(app);
+await SeedEmployeesHelper.Seed(app);
 #endregion
 
 // Configure the HTTP request pipeline.

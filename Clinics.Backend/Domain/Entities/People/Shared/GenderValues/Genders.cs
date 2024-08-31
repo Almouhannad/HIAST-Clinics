@@ -8,27 +8,11 @@ public static class Genders
 
     public static int Count => 2;
 
-    public static Gender Male
-    {
-        get
-        {
-            var result = Gender.Create("ذكر", 1);
-            if (result.IsFailure)
-                throw new InvalidValuesDomainException<Gender>();
-            return result.Value;
-        }
-    }
+    private readonly static Gender _male = Gender.Create("ذكر", 1).Value;
+    public static Gender Male => _male;
 
-    public static Gender Female
-    {
-        get
-        {
-            var result = Gender.Create("أنثى", 2);
-            if (result.IsFailure)
-                throw new InvalidValuesDomainException<Gender>();
-            return result.Value;
-        }
-    }
+    private readonly static Gender _female = Gender.Create("أنثى", 2).Value;
+    public static Gender Female => _female;
 
     #endregion
 }

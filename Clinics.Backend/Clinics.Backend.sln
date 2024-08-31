@@ -35,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{C6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataPersistence", "DataPersistence", "{2776718C-A689-415D-9E65-0DBE61F0C66F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeesAPI", "EmployeesAPI\EmployeesAPI.csproj", "{4CDBB65C-33AB-41EC-A423-5F5CF71E8D2B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,10 @@ Global
 		{D0573185-52B8-4091-B3B2-BD8D354C715C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0573185-52B8-4091-B3B2-BD8D354C715C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0573185-52B8-4091-B3B2-BD8D354C715C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CDBB65C-33AB-41EC-A423-5F5CF71E8D2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CDBB65C-33AB-41EC-A423-5F5CF71E8D2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CDBB65C-33AB-41EC-A423-5F5CF71E8D2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CDBB65C-33AB-41EC-A423-5F5CF71E8D2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +98,7 @@ Global
 		{D0573185-52B8-4091-B3B2-BD8D354C715C} = {74A202AC-94B8-40C0-B308-CCCEAED898CF}
 		{C6BE3A7A-3C92-414E-ACFF-4A61E829273F} = {FDA56BCD-A53D-4BA1-A59D-3F44FA32DDD7}
 		{2776718C-A689-415D-9E65-0DBE61F0C66F} = {FDA56BCD-A53D-4BA1-A59D-3F44FA32DDD7}
+		{4CDBB65C-33AB-41EC-A423-5F5CF71E8D2B} = {74A202AC-94B8-40C0-B308-CCCEAED898CF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E9FC9252-1283-485F-8F84-3574CFA12633}
