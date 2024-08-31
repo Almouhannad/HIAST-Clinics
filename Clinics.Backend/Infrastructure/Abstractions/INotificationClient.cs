@@ -1,6 +1,6 @@
 ﻿using Application.Abstractions.Notifications;
 
-namespace Infrastructure.Abstractions;
+namespace NotificationsService.Abstractions;
 
 public interface INotificationClient
 {

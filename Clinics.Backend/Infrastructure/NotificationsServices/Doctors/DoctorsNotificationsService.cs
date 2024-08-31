@@ -1,10 +1,10 @@
 ﻿using Application.Notifications.Doctors;
 using Application.Notifications.Doctors.NewVisitNotifications;
-using Infrastructure.Abstractions;
-using Infrastructure.NotificationsHubs;
 using Microsoft.AspNetCore.SignalR;
+using NotificationsService.Abstractions;
+using NotificationsService.NotificationsHubs;
 
-namespace Infrastructure.NotificationsServices.Doctors;
+namespace NotificationsService.NotificationsServices.Doctors;
 
 public class DoctorsNotificationsService : IDoctorsNotificationService
 {
@@ -16,7 +16,7 @@ public class DoctorsNotificationsService : IDoctorsNotificationService
         _context = context;
     }
     #endregion
-    
+
     public async Task SendNewVisitNotification(NewVisitNotification notification)
     {
         await _context.Clients.All.ReceiveNotification(notification);

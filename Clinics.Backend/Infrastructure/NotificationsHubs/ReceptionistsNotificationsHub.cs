@@ -1,7 +1,7 @@
-﻿using Infrastructure.Abstractions;
-using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.SignalR;
+using NotificationsService.Abstractions;
 
-namespace Infrastructure.NotificationsHubs;
+namespace NotificationsService.NotificationsHubs;
 
 public class ReceptionistsNotificationsHub : Hub<INotificationClient>
 {

@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Infrastructure;
+namespace NotificationsService;
 
 public class AssemblyReference
 {

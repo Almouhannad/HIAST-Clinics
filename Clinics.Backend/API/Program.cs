@@ -3,13 +3,12 @@ using API.Options.JWT;
 using API.SeedDatabaseHelper;
 using Application.Behaviors;
 using FluentValidation;
-using Infrastructure;
-using Infrastructure.NotificationsHubs;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using NotificationsService.NotificationsHubs;
 using Persistence.Context;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -55,8 +54,9 @@ builder
     .Services
     .Scan(
         selector => selector
-            .FromAssemblies(Persistence.AssemblyReference.Assembly,
-            Infrastructure.AssemblyReference.Assembly
+            .FromAssemblies(
+            Persistence.AssemblyReference.Assembly,
+            NotificationsService.AssemblyReference.Assembly
             )
             .AddClasses(false)
             .AsImplementedInterfaces()
