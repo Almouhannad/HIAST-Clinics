@@ -37,6 +37,6 @@ export class DoctorPhonesComponent implements OnInit{
     })
   }
 
-  phones: Phone[] = [new Phone("المنزل", "0943646733")];
+  phones: Phone[] = [];
 
 }
