@@ -1,0 +1,316 @@
+{
+    "medicines": [
+        {
+            "form": "حبوب",
+            "amount": 10,
+            "name": "Paracetamol",
+            "dosage": 325
+        },
+        {
+            "form": "حبوب",
+            "amount": 10,
+            "name": "Cetamol",
+            "dosage": 325
+        },
+        {
+            "form": "حبوب",
+            "amount": 10,
+            "name": "Ceatcodaen",
+            "dosage": 325
+        },
+        {
+            "form": "حبوب",
+            "amount": 10,
+            "name": "Cetaprofin",
+            "dosage": 325
+        },
+        {
+            "form": "حبوب",
+            "amount": 10,
+            "name": "Cetacold",
+            "dosage": 325
+        },
+        {
+            "form": "حبوب",
+            "amount": 10,
+            "name": "Cetagrape",
+            "dosage": 325
+        },
+        {
+            "form": "شراب",
+            "amount": 100,
+            "name": "Cough",
+            "dosage": 50
+        },
+        {
+            "form": "حبوب",
+            "amount": 12,
+            "name": "Aspirin",
+            "dosage": 500
+        },
+        {
+            "form": "شراب",
+            "amount": 120,
+            "name": "Pediatric",
+            "dosage": 60
+        },
+        {
+            "form": "حبوب",
+            "amount": 8,
+            "name": "Amoxicillin",
+            "dosage": 250
+        },
+        {
+            "form": "شراب",
+            "amount": 150,
+            "name": "Acetaminophen",
+            "dosage": 160
+        },
+        {
+            "form": "حبوب",
+            "amount": 15,
+            "name": "Ibuprofen",
+            "dosage": 400
+        },
+        {
+            "form": "حبوب",
+            "amount": 20,
+            "name": "Loratadine",
+            "dosage": 10
+        },
+        {
+            "form": "شراب",
+            "amount": 200,
+            "name": "Vitamin D",
+            "dosage": 400
+        },
+        {
+            "form": "حبوب",
+            "amount": 30,
+            "name": "Nurofen",
+            "dosage": 200
+        },
+        {
+            "form": "شراب",
+            "amount": 120,
+            "name": "Antihistamine",
+            "dosage": 5
+        },
+        {
+            "form": "حبوب",
+            "amount": 14,
+            "name": "Claritin",
+            "dosage": 10
+        },
+        {
+            "form": "شراب",
+            "amount": 150,
+            "name": "Flu",
+            "dosage": 100
+        },
+        {
+            "form": "حبوب",
+            "amount": 10,
+            "name": "Panadol",
+            "dosage": 500
+        },
+        {
+            "form": "شراب",
+            "amount": 100,
+            "name": "Ibuprofen",
+            "dosage": 100
+        },
+        {
+            "form": "حبوب",
+            "amount": 16,
+            "name": "Spirin",
+            "dosage": 100
+        },
+        {
+            "form": "شراب",
+            "amount": 180,
+            "name": "Cough Suppressant",
+            "dosage": 60
+        },
+        {
+            "form": "حبوب",
+            "amount": 18,
+            "name": "Cetal",
+            "dosage": 500
+        },
+        {
+            "form": "شراب",
+            "amount": 120,
+            "name": "Tuskan",
+            "dosage": 120
+        },
+        {
+            "form": "حبوب",
+            "amount": 12,
+            "name": "Naproxen",
+            "dosage": 250
+        },
+        {
+            "form": "شراب",
+            "amount": 100,
+            "name": "Bronchicum",
+            "dosage": 150
+        },
+        {
+            "form": "حبوب",
+            "amount": 14,
+            "name": "Fenistil",
+            "dosage": 5
+        },
+        {
+            "form": "شراب",
+            "amount": 100,
+            "name": "Fenistil",
+            "dosage": 30
+        },
+        {
+            "form": "حبوب",
+            "amount": 10,
+            "name": "Diclofenac",
+            "dosage": 50
+        },
+        {
+            "form": "شراب",
+            "amount": 125,
+            "name": "Amoclan",
+            "dosage": 250
+        },
+        {
+            "form": "حبوب",
+            "amount": 12,
+            "name": "Zinnat",
+            "dosage": 250
+        },
+        {
+            "form": "شراب",
+            "amount": 200,
+            "name": "Novalgin",
+            "dosage": 500
+        },
+        {
+            "form": "حبوب",
+            "amount": 15,
+            "name": "Milga",
+            "dosage": 250
+        },
+        {
+            "form": "شراب",
+            "amount": 150,
+            "name": "Multivitamin",
+            "dosage": 50
+        },
+        {
+            "form": "حبوب",
+            "amount": 18,
+            "name": "Trifluor",
+            "dosage": 250
+        },
+        {
+            "form": "شراب",
+            "amount": 100,
+            "name": "Zithromax",
+            "dosage": 200
+        },
+        {
+            "form": "حبوب",
+            "amount": 10,
+            "name": "Ferrotron",
+            "dosage": 50
+        },
+        {
+            "form": "شراب",
+            "amount": 100,
+            "name": "Feroglobin",
+            "dosage": 100
+        },
+        {
+            "form": "حبوب",
+            "amount": 16,
+            "name": "Farcolin",
+            "dosage": 200
+        },
+        {
+            "form": "شراب",
+            "amount": 120,
+            "name": "Clindamycin",
+            "dosage": 300
+        },
+        {
+            "form": "حبوب",
+            "amount": 12,
+            "name": "Trimed Flu",
+            "dosage": 325
+        },
+        {
+            "form": "شراب",
+            "amount": 150,
+            "name": "Prospan",
+            "dosage": 100
+        },
+        {
+            "form": "حبوب",
+            "amount": 20,
+            "name": "Omeprazole",
+            "dosage": 40
+        },
+        {
+            "form": "شراب",
+            "amount": 200,
+            "name": "Lactulose",
+            "dosage": 15
+        },
+        {
+            "form": "حبوب",
+            "amount": 18,
+            "name": "Tavanic",
+            "dosage": 500
+        },
+        {
+            "form": "شراب",
+            "amount": 100,
+            "name": "Ventolin",
+            "dosage": 2
+        },
+        {
+            "form": "حبوب",
+            "amount": 10,
+            "name": "Losartan",
+            "dosage": 50
+        },
+        {
+            "form": "شراب",
+            "amount": 120,
+            "name": "Promax",
+            "dosage": 100
+        },
+        {
+            "form": "حبوب",
+            "amount": 12,
+            "name": "Nurofen Cold & Flu",
+            "dosage": 200
+        },
+        {
+            "form": "شراب",
+            "amount": 150,
+            "name": "Guava",
+            "dosage": 60
+        },
+        {
+            "form": "حبوب",
+            "amount": 8,
+            "name": "Profenid",
+            "dosage": 150
+        },
+        {
+            "form": "شراب",
+            "amount": 100,
+            "name": "Depakine",
+            "dosage": 200
+        }
+    ]
+}
