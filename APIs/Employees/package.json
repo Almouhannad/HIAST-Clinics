@@ -1,0 +1,18 @@
+{
+  "name": "employees",
+  "version": "1.0.0",
+  "description": "Mock api for employees data",
+  "main": "index.js",
+  "scripts": {
+    "start": "json-server --watch ./data/db.json --port 9002"
+  },
+  "repository": {
+    "type": "git",
+    "url": "../"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^1.0.0-beta.2"
+  }
+}
