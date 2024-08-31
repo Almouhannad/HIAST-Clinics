@@ -1,5 +1,7 @@
-﻿using Application.Doctors.Commands.ChangeStatusByUserId;
+﻿using Application.Doctors.Commands.AddPhoneNumberByUserId;
+using Application.Doctors.Commands.ChangeStatusByUserId;
 using Application.Doctors.Queries.GetAllDoctors;
+using Application.Doctors.Queries.GetPhonesByUserId;
 using Application.Doctors.Queries.GetStatusByUserId;
 using Application.Employees.Queries.GetAvailable;
 using Domain.Entities.Identity.UserRoles;
@@ -56,6 +58,27 @@ public class DoctorsController : ApiController
     //[Authorize(Roles = Roles.DoctorName)]
     [HttpPost("Status")]
     public async Task<IActionResult> ChangeStatusByUserId([FromBody] ChangeStatusByUserIdCommand command)
+    {
+        var result = await _sender.Send(command);
+        if (result.IsFailure)
+            return HandleFailure(result);
+        return Ok();
+    }
+
+    //[Authorize(Roles = Roles.DoctorName)]
+    [HttpGet("Phones/{id:int}")]
+    public async Task<IActionResult> GetPhonesByUserId([FromRoute(Name = "id")] int doctorUserId)
+    {
+        var query = new GetDoctorPhonesByUserIdQuery { DoctorUserId = doctorUserId };
+        var result = await _sender.Send(query);
+        if (result.IsFailure)
+            return HandleFailure(result);
+        return Ok(result.Value);
+    }
+
+    //[Authorize(Roles = Roles.DoctorName)]
+    [HttpPost("Phones")]
+    public async Task<IActionResult> AddPhoneByUserId([FromBody] AddPhoneNumberByUserIdCommand command)
     {
         var result = await _sender.Send(command);
         if (result.IsFailure)

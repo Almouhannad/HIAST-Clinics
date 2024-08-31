@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using Persistence.Context;
 using Persistence.Repositories.Base;
 using Persistence.Repositories.Doctors.Specifications;
-using System.Collections.Generic;
 
 namespace Persistence.Repositories.Doctors;
 
@@ -38,7 +37,8 @@ public class DoctorsRepository : Repositroy<Doctor>, IDoctorsRepository
     #region Update method
     public override Task<Result> UpdateAsync(Doctor entity)
     {
-        _context.Entry(entity.Status).State = EntityState.Unchanged;
+        if (entity.Status is not null)
+            _context.Entry(entity.Status).State = EntityState.Unchanged;
         return base.UpdateAsync(entity);
     }
     #endregion

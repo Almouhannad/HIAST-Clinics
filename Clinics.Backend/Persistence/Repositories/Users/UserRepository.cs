@@ -216,14 +216,15 @@ public class UserRepository : Repositroy<User>, IUserRepository
     }
     #endregion
 
-    #region Get Doctor by doctor user
+    #region Get Doctor by doctor user id
     public async Task<Result<Doctor>> GetDoctorByDoctorUserIdAsync(int doctorUserId)
     {
         try
         {
             var query = _context.Set<DoctorUser>()
                 .Where(doctorUser => doctorUser.Id == doctorUserId)
-                .Include(doctorUser => doctorUser.Doctor);
+                .Include(doctorUser => doctorUser.Doctor)
+                    .ThenInclude(doctor => doctor.Phones);
             var result = await query.FirstAsync();
             return result.Doctor;
         }
