@@ -48,6 +48,10 @@ builder.Services.AddSignalR();
 builder.Services.AddCors();
 #endregion
 
+#region Add HTTP client
+builder.Services.AddHttpClient();
+#endregion
+
 #region Link interfaces implemented in infrastructre
 // Using Scrutor library
 builder
@@ -56,7 +60,8 @@ builder
         selector => selector
             .FromAssemblies(
             Persistence.AssemblyReference.Assembly,
-            NotificationsService.AssemblyReference.Assembly
+            NotificationsService.AssemblyReference.Assembly,
+            MedicinesAPI.AssemblyReference.Assembly
             )
             .AddClasses(false)
             .AsImplementedInterfaces()
